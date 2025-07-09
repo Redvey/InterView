@@ -1,0 +1,108 @@
+import 'package:flutter/material.dart';
+
+class AchievementsForm extends StatefulWidget {
+  const AchievementsForm({super.key});
+
+  @override
+  State<AchievementsForm> createState() => _AchievementsFormState();
+}
+
+class _AchievementsFormState extends State<AchievementsForm> {
+  final List<TextEditingController> _achievementControllers = [];
+
+  void _addAchievement() {
+    setState(() {
+      _achievementControllers.add(TextEditingController());
+    });
+  }
+
+  void _removeAchievement(int index) {
+    setState(() {
+      _achievementControllers.removeAt(index);
+    });
+  }
+
+  @override
+  void dispose() {
+    for (var controller in _achievementControllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("Achievements", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 16),
+
+          ..._achievementControllers.asMap().entries.map((entry) {
+            final index = entry.key;
+            final controller = entry.value;
+            return Container(
+              margin: const EdgeInsets.only(bottom: 12),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFF8E1),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.grey.shade300),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: controller,
+                      maxLines: null,
+                      decoration: const InputDecoration(
+                        hintText: "Enter an achievement...",
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.delete, color: Colors.red),
+                    onPressed: () => _removeAchievement(index),
+                  ),
+                ],
+              ),
+            );
+          }),
+
+          const SizedBox(height: 12),
+          GestureDetector(
+            onTap: _addAchievement,
+            child: DottedBorderContainer(label: "+ Add Achievement"),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DottedBorderContainer extends StatelessWidget {
+  final String label;
+  const DottedBorderContainer({super.key, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.black,
+          style: BorderStyle.solid,
+          width: 1,
+        ),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Text(
+        label,
+        style: const TextStyle(fontWeight: FontWeight.w500),
+      ),
+    );
+  }
+}
