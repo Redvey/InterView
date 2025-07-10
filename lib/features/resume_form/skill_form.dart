@@ -66,34 +66,44 @@ class _SkillFormState extends State<SkillForm> {
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           color: AppColors.skillForm,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(12.0),
         ),
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text("Skills", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 16),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  ..._skills.map((skill) => Chip(
-                    label: Text(skill),
-                    deleteIcon: const Icon(Icons.close),
-                    onDeleted: () => _removeSkill(skill),
-                    backgroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height * 0.6,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Skills",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 16),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    ..._skills.map(
+                      (skill) => Chip(
+                        label: Text(skill),
+                        deleteIcon: const Icon(Icons.close),
+                        onDeleted: () => _removeSkill(skill),
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
                     ),
-                  )),
-                  GestureDetector(
-                    onTap: _showAddSkillDialog,
-                    child: DottedBorderContainer(),
-                  ),
-                ],
-              ),
-            ],
+                    GestureDetector(
+                      onTap: _showAddSkillDialog,
+                      child: DottedBorderContainer(),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

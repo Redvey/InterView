@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/constants/colors.dart';
+
 class AchievementsForm extends StatefulWidget {
   const AchievementsForm({super.key});
 
@@ -32,52 +34,69 @@ class _AchievementsFormState extends State<AchievementsForm> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text("Achievements", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 16),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Container(
+        padding: const EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+          color: AppColors.achievementsForm,
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        child: SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height * 0.6,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Achievements",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 16),
 
-          ..._achievementControllers.asMap().entries.map((entry) {
-            final index = entry.key;
-            final controller = entry.value;
-            return Container(
-              margin: const EdgeInsets.only(bottom: 12),
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: const Color(0xFFFFF8E1),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.grey.shade300),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: controller,
-                      maxLines: null,
-                      decoration: const InputDecoration(
-                        hintText: "Enter an achievement...",
-                        border: InputBorder.none,
-                      ),
+                ..._achievementControllers.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  final controller = entry.value;
+                  return Container(
+                    margin: const EdgeInsets.only(bottom: 12),
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFFF8E1),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.grey.shade300),
                     ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.delete, color: Colors.red),
-                    onPressed: () => _removeAchievement(index),
-                  ),
-                ],
-              ),
-            );
-          }),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            controller: controller,
+                            maxLines: null,
+                            decoration: const InputDecoration(
+                              hintText: "Enter an achievement...",
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.delete, color: Colors.red),
+                          onPressed: () => _removeAchievement(index),
+                        ),
+                      ],
+                    ),
+                  );
+                }),
 
-          const SizedBox(height: 12),
-          GestureDetector(
-            onTap: _addAchievement,
-            child: DottedBorderContainer(label: "+ Add Achievement"),
+                const SizedBox(height: 12),
+                GestureDetector(
+                  onTap: _addAchievement,
+                  child: DottedBorderContainer(label: "+ Add Achievement"),
+                ),
+              ],
+            ),
           ),
-        ],
+        ),
       ),
     );
   }
@@ -85,6 +104,7 @@ class _AchievementsFormState extends State<AchievementsForm> {
 
 class DottedBorderContainer extends StatelessWidget {
   final String label;
+
   const DottedBorderContainer({super.key, required this.label});
 
   @override
@@ -99,10 +119,7 @@ class DottedBorderContainer extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Text(
-        label,
-        style: const TextStyle(fontWeight: FontWeight.w500),
-      ),
+      child: Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
     );
   }
 }

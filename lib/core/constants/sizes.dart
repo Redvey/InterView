@@ -7,7 +7,9 @@ class AppSizes {
 
 
   // Font sizes
+  static const double fontSizeSs = 12.0;
   static const double fontSizeSm = 16.0;
+  static const double fontSizeSd = 18.0;
   static const double fontSizeMd = 20.0;
   static const double fontSizeLg = 22.0;
 
@@ -17,8 +19,6 @@ class AppSizes {
   static const double buttonWidth = 120.0;
   static const double buttonElevation = 4.0;
 
-  // AppBar height
-  static const double appBarHeight = 56.0;
 
   // Image sizes
   static const double imageThumbSize = 80.0;
@@ -26,6 +26,7 @@ class AppSizes {
   // Default spacing between sections
   static const double defaultSpace = 12.0;
   static const double spaceBtwItems = 16.0;
+  static const double spaceBtwFields = 20.0;
   static const double spaceBtwSections = 48.0;
 
   // Border radius
@@ -45,21 +46,9 @@ class AppSizes {
   static const double inputFieldRadius = 12.0;
   static const double spaceBtwInputFields = 16.0;
 
-  // Card sizes
-  static const double cardRadiusLg = 16.0;
-  static const double cardRadiusMd = 12.0;
-  static const double cardRadiusSm = 10.0;
-  static const double cardRadiusXs = 6.0;
-  static const double cardElevation = 2.0;
 
-  // Image carousel height
-  static const double imageCarouselHeight = 200.0;
 
-  // Loading indicator size
-  static const double loadingIndicatorSize = 36.0;
 
-  // Grid view spacing
-  static const double gridViewSpacing = 16.0;
 }
 
 

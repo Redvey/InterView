@@ -21,8 +21,6 @@ class AppColors{
   static const purple = Color(0xFFB05CFF);
   static const purpleLight = Color(0xFFE8D0FF);
 
-
-
   // Gradient background
   static const backgroundGradient = LinearGradient(
     begin: Alignment.topCenter,
@@ -81,14 +79,23 @@ class AppColors{
 
   //card colors
   static const generalInformation = Color(0xFFC6B9FF);
-  static const contactForm = Color(0xFFBEFFB9);
+  static const contactForm = Color(0xFF91E48A);
   static const educationForm = Color(0xFFFFB9B9);
   static const skillForm = Color(0xFFFFF1D6);
   static const rolesForm = Color(0xFFFFD6FA);
+  static const projectForm = Color(0xFFFFB685);
+  static const socialForm = Color(0xFFA6C8FF);
+  static const jobForm = Color(0xFFFF76C8);
+  static const achievementsForm = Color(0xFF92FFEF);
+  static const otherForm = Color(0xFFEDE3FF);
 
 
 
   // Text Colors
+
+  static const black = Color(0xFF000000);
+  static const blackLight = Color(0xFF1E1E1E);
+
   static const textRed = Color(0xFFFF9594);
   static const textRedBg = Color(0xFFFFE7E7);
 
