@@ -28,4 +28,26 @@ class AppTextStyles {
 
 
 
+  //Resume Builder
+  static const infoHeader = TextStyle(
+    fontFamily: AppFonts.poppins,
+    fontSize: AppSizes.fontSizeSd,
+    fontWeight: FontWeight.w600,
+  );
+  static const detailHeader = TextStyle(
+    fontFamily: AppFonts.poppins,
+    fontSize: AppSizes.fontSizeSm,
+    fontWeight: FontWeight.w400,
+    color: AppColors.black,
+  );
+  static TextStyle hintText({required Color color}) => TextStyle(
+    fontFamily: AppFonts.poppins,
+    fontSize: AppSizes.fontSizeSs,
+    fontWeight: FontWeight.w400,
+    color: color,
+  );
+
+
+
+
 }

@@ -36,7 +36,7 @@ class _OtherInformationFormState extends State<OtherInformationForm> {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color(0xFFEDE3FF), // Light lavender background
+          color: const Color(0xFFEDE3FF),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(

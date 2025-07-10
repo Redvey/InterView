@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:interview/features/resume_form/contact_form.dart';
 import 'package:interview/features/resume_form/resume_builder.dart';
+import 'package:interview/features/resume_form/resume_builder_home.dart';
 import '../features/home/home.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -20,6 +21,12 @@ final GoRouter appRouter = GoRouter(
       name: 'contact',
       builder: (context, state) => const ContactForm(),
     ),
+    GoRoute(
+      path: '/final',
+      name: 'final resume',
+      builder: (context, state) => const ResumeBuilderFinalScreen(),
+    ),
+
 
   ],
 );

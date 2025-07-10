@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:interview/core/constants/colors.dart';
+import 'package:interview/core/constants/strings.dart';
+import 'package:interview/core/themes/text_styles.dart';
+
+import '../../shared/widgets/labelled_text_field.dart';
+
 
 class SocialLinksForm extends StatefulWidget {
   const SocialLinksForm({super.key});
@@ -9,10 +15,10 @@ class SocialLinksForm extends StatefulWidget {
 
 class _SocialLinksFormState extends State<SocialLinksForm> {
   final Map<String, TextEditingController> _controllers = {
-    "Portfolio Website": TextEditingController(),
-    "LinkedIn": TextEditingController(),
-    "GitHub": TextEditingController(),
-    "LeetCode": TextEditingController(),
+    AppStrings.portfolio: TextEditingController(),
+    AppStrings.linkedIn: TextEditingController(),
+    AppStrings.github: TextEditingController(),
+    AppStrings.codingProfile: TextEditingController(),
   };
 
   final List<String> _customLinks = [];
@@ -58,6 +64,17 @@ class _SocialLinksFormState extends State<SocialLinksForm> {
     });
   }
 
+  Widget _buildSocialField(String label, {bool removable = false}) {
+    return LabeledTextField(
+      label: label,
+      hint: "Paste link",
+      containerColor: AppColors.socialForm,
+      controller: _controllers[label],
+      removable: removable,
+      onRemove: removable ? () => _removeCustomLink(label) : null,
+    );
+  }
+
   @override
   void dispose() {
     for (var controller in _controllers.values) {
@@ -66,59 +83,43 @@ class _SocialLinksFormState extends State<SocialLinksForm> {
     super.dispose();
   }
 
-  Widget _buildTextField(String label, {bool removable = false}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
-            if (removable)
-              IconButton(
-                icon: const Icon(Icons.close, size: 20, color: Colors.red),
-                onPressed: () => _removeCustomLink(label),
-              )
-          ],
-        ),
-        const SizedBox(height: 6),
-        TextField(
-          controller: _controllers[label],
-          decoration: const InputDecoration(
-            hintText: "Paste link",
-            border: OutlineInputBorder(),
-          ),
-        ),
-        const SizedBox(height: 16),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    final predefined = ["Portfolio Website", "LinkedIn", "GitHub", "LeetCode"];
+    final List<String> predefined = [
+      AppStrings.portfolio,
+      AppStrings.linkedIn,
+      AppStrings.github,
+      AppStrings.codingProfile,
+    ];
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text("Social Links", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 16),
+      child: Container(
+        padding: const EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+          color: AppColors.socialForm,
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(AppStrings.socialLink, style: AppTextStyles.infoHeader),
+              const SizedBox(height: 16),
 
-            // Predefined Links
-            ...predefined.map((label) => _buildTextField(label)),
+              // Predefined social link fields
+              ...predefined.map((label) => _buildSocialField(label)),
 
-            // Custom Added Links
-            ..._customLinks.map((label) => _buildTextField(label, removable: true)),
+              // Custom social link fields
+              ..._customLinks.map((label) => _buildSocialField(label, removable: true)),
 
-            // Add Other Button
-            GestureDetector(
-              onTap: _addCustomLink,
-              child: const DottedBorderContainer(label: "+ Add Other"),
-            ),
-          ],
+              // Add other button
+              GestureDetector(
+                onTap: _addCustomLink,
+                child: const DottedBorderContainer(label: "+ Add Other"),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,70 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/strings.dart';
-import '../../core/constants/colors.dart';
+import 'package:interview/core/themes/text_styles.dart';
+import 'package:interview/shared/widgets/labelled_text_field.dart';
+import 'package:interview/core/constants/colors.dart';
+import 'package:interview/core/constants/sizes.dart';
 
 class GeneralInformation extends StatelessWidget {
   const GeneralInformation({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final backgroundColor = AppColors.generalInformation;
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
-          color: AppColors.generalInformation,
-
+          color: backgroundColor,
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // First Name
-              Text(AppStrings.firstName),
-              const SizedBox(height: 8),
-              const TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: AppStrings.hintFirstName,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height * 0.6,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  AppStrings.generalInformation,
+                  style: AppTextStyles.infoHeader,
                 ),
-              ),
-              const SizedBox(height: 16),
+                SizedBox(height: AppSizes.spaceBtwFields),
 
-              // Last Name
-              Text(AppStrings.lastName),
-              const SizedBox(height: 8),
-              const TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: AppStrings.lastName,
+                LabeledTextField(
+                  label: AppStrings.firstName,
+                  hint: AppStrings.hintFirstName,
+                  containerColor: backgroundColor,
                 ),
-              ),
-              const SizedBox(height: 16),
-
-              // Short Bio
-              Text(AppStrings.shortBio),
-              const SizedBox(height: 8),
-              const TextField(
-                maxLines: 3,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: AppStrings.bio,
+                LabeledTextField(
+                  label: AppStrings.lastName,
+                  hint: AppStrings.lastName,
+                  containerColor: backgroundColor,
                 ),
-              ),
-              const SizedBox(height: 16),
-
-              // Years of Experience
-              Text(AppStrings.yearsOfExperience),
-              const SizedBox(height: 8),
-              const TextField(
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: AppStrings.experience,
+                LabeledTextField(
+                  label: AppStrings.shortBio,
+                  hint: AppStrings.bio,
+                  containerColor: backgroundColor,
+                  maxLines: 3,
                 ),
-              ),
-            ],
+                LabeledTextField(
+                  label: AppStrings.yearsOfExperience,
+                  hint: AppStrings.experience,
+                  keyboardType: TextInputType.number,
+                  containerColor: backgroundColor,
+                ),
+              ],
+            ),
           ),
         ),
       ),
