@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/strings.dart';
-import 'package:interview/core/themes/text_styles.dart';
+import 'package:interview/app/themes/text_styles.dart';
 
 class WelcomeMessage extends StatelessWidget {
   const WelcomeMessage({

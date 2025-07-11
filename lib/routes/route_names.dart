@@ -1,0 +1,26 @@
+
+
+abstract class RouteNames {
+  //  Home
+  static const String home = 'home';
+
+  //  Resume Builder
+  static const String resumeForm = 'resume';
+  static const String contactForm = 'contact_form';
+  static const String finalResume = 'final_resume';
+
+  //  Resume Review
+  static const String resumeReview = 'resume_review';
+
+  //  Flashcards
+  static const String flashcards = 'flashcards';
+
+  //  Mock Interview
+  static const String mockInterview = 'mock_interview';
+
+  // ✉ Cold Mailer
+  static const String coldMailer = 'cold_mailer';
+
+  //  Under Development
+  static const String underDevelopment = 'under_development';
+}

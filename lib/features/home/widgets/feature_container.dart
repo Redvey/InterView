@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/themes/text_styles.dart';
+import '../../../app/themes/text_styles.dart';
 
 
 class FeatureContainer extends StatelessWidget {
