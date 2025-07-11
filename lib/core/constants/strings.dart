@@ -13,7 +13,10 @@ class AppStrings {
   static const flashcardPracticeSubtitle = "< for your quick revision />";
 
   static const mockInterviewTitle = "Take Mock Interview";
-  static const mockInterviewSubtitle = "< real time interview >";
+  static const mockInterviewSubtitle = "< real time interview />";
+
+  static const coldMailTitle = "Cold Mail";
+  static const coldMailSubtitle = "< for the recruiters />";
 
   //#resume builder texts
 
