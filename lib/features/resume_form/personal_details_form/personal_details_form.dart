@@ -12,6 +12,12 @@ class GeneralInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     final backgroundColor = AppColors.generalInformation;
 
+    // Focus nodes for field-to-field navigation
+    final firstNameFocus = FocusNode();
+    final lastNameFocus = FocusNode();
+    final bioFocus = FocusNode();
+    final experienceFocus = FocusNode();
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
@@ -28,33 +34,37 @@ class GeneralInformation extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  AppStrings.generalInformation,
-                  style: AppTextStyles.infoHeader,
-                ),
+                Text(AppStrings.generalInformation, style: AppTextStyles.infoHeader),
                 SizedBox(height: AppSizes.spaceBtwFields),
 
                 LabeledTextField(
                   label: AppStrings.firstName,
                   hint: AppStrings.hintFirstName,
                   containerColor: backgroundColor,
+                  focusNode: firstNameFocus,
+                  nextFocus: lastNameFocus,
                 ),
                 LabeledTextField(
                   label: AppStrings.lastName,
                   hint: AppStrings.lastName,
                   containerColor: backgroundColor,
+                  focusNode: lastNameFocus,
+                  nextFocus: bioFocus,
                 ),
                 LabeledTextField(
                   label: AppStrings.shortBio,
                   hint: AppStrings.bio,
                   containerColor: backgroundColor,
                   maxLines: 3,
+                  focusNode: bioFocus,
+                  nextFocus: experienceFocus,
                 ),
                 LabeledTextField(
                   label: AppStrings.yearsOfExperience,
                   hint: AppStrings.experience,
                   keyboardType: TextInputType.number,
                   containerColor: backgroundColor,
+                  focusNode: experienceFocus,
                 ),
               ],
             ),

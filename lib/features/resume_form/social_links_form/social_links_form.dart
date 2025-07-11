@@ -3,7 +3,7 @@ import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/strings.dart';
 import 'package:interview/core/themes/text_styles.dart';
 
-import '../../shared/widgets/labelled_text_field.dart';
+import '../../../shared/widgets/labelled_text_field.dart';
 
 
 class SocialLinksForm extends StatefulWidget {

@@ -9,10 +9,11 @@ InputDecoration whiteInputDecoration(String hint, Color hintColor) =>
       hintText: hint,
       hintStyle: AppTextStyles.hintText(color: hintColor),
       border: const OutlineInputBorder(),
-      enabledBorder: const OutlineInputBorder(
+      enabledBorder:  OutlineInputBorder(
         borderSide: BorderSide(color: AppColors.backgroundWhite),
+
       ),
-      focusedBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.backgroundWhite, width: 2),
+      focusedBorder:  OutlineInputBorder(
+        borderSide: BorderSide(color: hintColor, width: 1),
       ),
     );

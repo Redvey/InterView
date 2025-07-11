@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/themes/text_styles.dart';
 import 'package:interview/core/utils/color_utils.dart';
+import 'package:interview/features/resume_form/widgets/dotted_button.dart';
 import 'package:interview/shared/widgets/labelled_text_field.dart';
-import '../../core/constants/colors.dart';
+import '../../../core/constants/colors.dart';
 
 class EducationForm extends StatefulWidget {
   const EducationForm({super.key});
@@ -39,7 +40,6 @@ class _EducationFormState extends State<EducationForm> {
       decoration: BoxDecoration(
         color: AppColors.educationForm,
         borderRadius: BorderRadius.circular(12),
-
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,21 +100,15 @@ class _EducationFormState extends State<EducationForm> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              ..._entryIds
-                  .asMap()
-                  .entries
-                  .map((entry) => _buildEducationEntry(entry.key, containerColor)),
+              ..._entryIds.asMap().entries.map(
+                (entry) => _buildEducationEntry(entry.key, containerColor),
+              ),
               const SizedBox(height: 12),
               Align(
                 alignment: Alignment.centerLeft,
-                child: ElevatedButton.icon(
-
-                  onPressed: _addEducationEntry,
-                  icon: const Icon(Icons.add),
-                  label: const Text('Add Education'),
-                  style: ElevatedButton.styleFrom(
-                   backgroundColor: AppColors.backgroundYellow,
-                  ),
+                child: GestureDetector(
+                  onTap: _addEducationEntry,
+                  child: DottedBorderButton(detail: "Add Education"),
                 ),
               ),
             ],

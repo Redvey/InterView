@@ -9,7 +9,7 @@ class AppStrings {
   static const resumeReviewTitle = "Resume Review";
   static const resumeReviewSubtitle = "< know your feedback />";
 
-  static const flashcardPracticeTitle = "Rapid Practice Flash Card";
+  static const flashcardPracticeTitle = "Practice Flash Card";
   static const flashcardPracticeSubtitle = "< for your quick revision />";
 
   static const mockInterviewTitle = "Take Mock Interview";
@@ -50,4 +50,17 @@ class AppStrings {
   static const codingProfile = "Coding Profile";
   //social links
   static const pasteLink = "Paste Link";
+
+  // Work Experience
+  static const workExperience = "Work Experience";
+  static const jobTitle = "Job Title";
+  static const company = "Company";
+  static const jobDescription = "Job Description";
+  static const from = "FROM: ";
+  static const to = "TO: ";
+  static const stillWorkHere = "Still working here?";
+  static const removeExperience = "Remove this experience";
+  static const select = "Select";
+  static const addExperience = "Add Experience";
+
 }

@@ -11,6 +11,8 @@ class LabeledTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final Color containerColor;
   final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final FocusNode? nextFocus;
   final bool removable;
   final VoidCallback? onRemove;
 
@@ -22,6 +24,8 @@ class LabeledTextField extends StatelessWidget {
     this.maxLines = 1,
     this.keyboardType = TextInputType.text,
     this.controller,
+    this.focusNode,
+    this.nextFocus,
     this.removable = false,
     this.onRemove,
   });
@@ -50,8 +54,18 @@ class LabeledTextField extends StatelessWidget {
         // Text Field
         TextField(
           controller: controller,
+          focusNode: focusNode,
           maxLines: maxLines,
           keyboardType: keyboardType,
+          textInputAction:
+          nextFocus != null ? TextInputAction.next : TextInputAction.done,
+          onEditingComplete: () {
+            if (nextFocus != null) {
+              FocusScope.of(context).requestFocus(nextFocus);
+            } else {
+              focusNode?.unfocus();
+            }
+          },
           decoration: whiteInputDecoration(hint, hintTextColor),
         ),
 
@@ -60,6 +74,3 @@ class LabeledTextField extends StatelessWidget {
     );
   }
 }
-
-
-

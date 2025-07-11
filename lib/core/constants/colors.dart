@@ -85,7 +85,7 @@ class AppColors{
   static const rolesForm = Color(0xFFFFD6FA);
   static const projectForm = Color(0xFFFFB685);
   static const socialForm = Color(0xFFA6C8FF);
-  static const jobForm = Color(0xFFFF76C8);
+  static const jobForm = Color(0xFFFFBFE5);
   static const achievementsForm = Color(0xFF92FFEF);
   static const otherForm = Color(0xFFEDE3FF);
 

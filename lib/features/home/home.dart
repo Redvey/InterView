@@ -37,37 +37,65 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: AppSizes.spaceBtwItems),
+
+                //resume builder
                 GestureDetector(
                   onTap: () => context.push('/form'),
                   child: FeatureContainer(
                     gradient: AppColors.resumeBuilderGradient,
                     title: AppStrings.buildYourResumeTitle,
                     subTitle: AppStrings.buildYourResumeSubtitle,
+                    color: AppColors.textRedBg,
+                    colorBg: AppColors.textRed,
                   ),
                 ),
                 SizedBox(height: AppSizes.defaultSpace),
-                FeatureContainer(
-                  gradient: AppColors.reviewGradient,
-                  title: AppStrings.resumeReviewTitle,
-                  subTitle: AppStrings.resumeReviewSubtitle,
+
+                //resume review
+                GestureDetector(
+                  onTap: () => context.push('/unfinished'),
+                  child: FeatureContainer(
+                    gradient: AppColors.reviewGradient,
+                    title: AppStrings.resumeReviewTitle,
+                    subTitle: AppStrings.resumeReviewSubtitle,
+                    color: AppColors.textBlueBg,
+                    colorBg: AppColors.textBlue,
+                  ),
                 ),
                 SizedBox(height: AppSizes.defaultSpace),
-                FeatureContainer(
-                  gradient: AppColors.flashcardGradient,
-                  title: AppStrings.flashcardPracticeTitle,
-                  subTitle: AppStrings.flashcardPracticeSubtitle,
+
+                //flashcard
+                GestureDetector(
+                  onTap: () => context.push('/unfinished'),
+                  child: FeatureContainer(
+                    gradient: AppColors.flashcardGradient,
+                    title: AppStrings.flashcardPracticeTitle,
+                    subTitle: AppStrings.flashcardPracticeSubtitle,
+                    color: AppColors.textGreenBg,
+                    colorBg: AppColors.textGreen,
+                  ),
                 ),
                 SizedBox(height: AppSizes.defaultSpace),
-                FeatureContainer(
-                  gradient: AppColors.interviewGradient,
-                  title: AppStrings.mockInterviewTitle,
-                  subTitle: AppStrings.mockInterviewSubtitle,
+                GestureDetector(
+                  onTap: () => context.push('/unfinished'),
+                  child: FeatureContainer(
+                    gradient: AppColors.interviewGradient,
+                    title: AppStrings.mockInterviewTitle,
+                    subTitle: AppStrings.mockInterviewSubtitle,
+                    color: AppColors.textYellowBg,
+                    colorBg: AppColors.textYellow,
+                  ),
                 ),
                 SizedBox(height: AppSizes.defaultSpace),
-                FeatureContainer(
-                  gradient: AppColors.coldMailGradient,
-                  title: AppStrings.mockInterviewTitle,
-                  subTitle: AppStrings.mockInterviewSubtitle,
+                GestureDetector(
+                  onTap: () => context.push('/unfinished'),
+                  child: FeatureContainer(
+                    gradient: AppColors.coldMailGradient,
+                    title: AppStrings.mockInterviewTitle,
+                    subTitle: AppStrings.mockInterviewSubtitle,
+                    color: AppColors.textPurpleBg,
+                    colorBg: AppColors.textPurple,
+                  ),
                 ),
                 Container(
                   height: 200,

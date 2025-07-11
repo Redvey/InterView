@@ -7,8 +7,10 @@ class FeatureContainer extends StatelessWidget {
   final Gradient gradient;
   final String title;
   final String subTitle;
+  final Color color;
+  final Color colorBg;
   const FeatureContainer({
-    super.key, required this.gradient, required this.title, required this.subTitle,
+    super.key, required this.gradient, required this.title, required this.subTitle, required this.color, required this.colorBg,
   });
 
   @override
@@ -29,12 +31,21 @@ class FeatureContainer extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title,style: AppTextStyles.heading,),
-                Text(subTitle,style: AppTextStyles.subheading,),
+                Text(title,style: AppTextStyles.heading(color: color),),
+                Text(subTitle,style: AppTextStyles.subheading(color: colorBg),),
               ],
             ),
             CircleAvatar(
               backgroundColor: AppColors.backgroundYellow,
+              child: ShaderMask(
+                shaderCallback: (bounds) => gradient.createShader(bounds),
+                child: const Icon(
+                  Icons.brush_outlined,
+                  size: 32,
+                  color: Colors.white, // Must be white to reveal gradient
+                ),
+              )
+
             )
           ],
         ),

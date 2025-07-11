@@ -6,18 +6,18 @@ import 'fonts.dart';
 
 
 class AppTextStyles {
-  static const heading = TextStyle(
+  static  heading({required Color color}) =>  TextStyle(
     fontFamily: AppFonts.poppins,
     fontSize: AppSizes.fontSizeLg,
     fontWeight: FontWeight.w600,
-    color: AppColors.textRedBg,
+    color: color,
   );
 
-  static const subheading = TextStyle(
+  static  subheading({required Color color}) =>  TextStyle(
     fontFamily: AppFonts.poppins,
     fontSize: AppSizes.fontSizeSm,
     fontWeight: FontWeight.w600,
-      color: AppColors.textRed,
+      color: color,
   );
 
   static const welcome = TextStyle(
@@ -45,6 +45,14 @@ class AppTextStyles {
     fontSize: AppSizes.fontSizeSs,
     fontWeight: FontWeight.w400,
     color: color,
+  );
+
+  //buttons
+  static const buttonLight = TextStyle(
+    fontFamily: AppFonts.poppins,
+    fontSize: AppSizes.fontSizeSm,
+    fontWeight: FontWeight.w400,
+    color: AppColors.blackLight,
   );
 
 

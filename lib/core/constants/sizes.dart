@@ -8,7 +8,8 @@ class AppSizes {
 
   // Font sizes
   static const double fontSizeSs = 12.0;
-  static const double fontSizeSm = 16.0;
+  static const double fontSizeSm = 14.0;
+  static const double fontSizeSx = 16.0;
   static const double fontSizeSd = 18.0;
   static const double fontSizeMd = 20.0;
   static const double fontSizeLg = 22.0;
