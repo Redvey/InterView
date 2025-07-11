@@ -38,6 +38,12 @@ class _OpenToRolesFormState extends State<OpenToRolesForm> {
     );
   }
 
+  // @override
+  // void dispose() {
+  //   _controller.dispose();
+  //   super.dispose();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -51,11 +57,15 @@ class _OpenToRolesFormState extends State<OpenToRolesForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Open to Roles", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const Text(
+              "Open to Roles",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 16),
             SelectableItemWrap(
               selectedItems: _controller.selectedItems,
-              onDelete: (role) => _controller.removeItem(role, () => setState(() {})),
+              onDelete: (role) =>
+                  _controller.removeItem(role, () => setState(() {})),
               onAdd: _showRolesBottomSheet,
               addLabel: " Add a Role",
             ),
