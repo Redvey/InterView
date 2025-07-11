@@ -1,12 +1,13 @@
+
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/strings.dart';
 import 'package:interview/features/resume/widgets/labelled_text_field.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../core/constants/sizes.dart';
+import '../resume/screens/roles_form/widget/response_sheet.dart';
 
 class ResumeReviewScreen extends StatefulWidget {
   const ResumeReviewScreen({super.key});
@@ -51,29 +52,25 @@ class _ResumeReviewScreenState extends State<ResumeReviewScreen> {
       response = 'Response for "$promptType" prompt will appear here.';
     });
 
-    showCustomBottomSheet();
+    showCustomBottomSheet("Tell me about the resume",
+      response,
+      isLoading,);
   }
 
-  void showCustomBottomSheet() {
-    showMaterialModalBottomSheet(
+  void showCustomBottomSheet(String promptTitle, String? response, bool isLoading) {
+    showModalBottomSheet(
       context: context,
-      expand: true,
-      backgroundColor: Colors.white,
-      builder: (context) => DraggableScrollableSheet(
-        initialChildSize: 0.5,
-        minChildSize: 0.4,
-        maxChildSize: 0.95,
-        expand: false,
-        builder: (_, scrollController) => response == null
-            ? const Center(child: CircularProgressIndicator())
-            : SingleChildScrollView(
-                controller: scrollController,
-                padding: const EdgeInsets.all(16),
-                child: Text(response!, style: const TextStyle(fontSize: 16)),
-              ),
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => AiResponseBottomSheet(
+        promptTitle: promptTitle,
+        response: response,
+        isLoading: isLoading,
       ),
     );
   }
+
+
 
   @override
   Widget build(BuildContext context) {
