@@ -110,4 +110,19 @@ class AppColors{
 
   static const textPurple = Color(0xFFFF94F3);
   static const textPurpleBg = Color(0xFFFFE7F9);
+
+  //button colors
+  static const buttonPurple = Color(0xFFEFEAFF); // Button background: EFEAFF, Text: 6D3CFA
+  static const buttonTextPurple = Color(0xFF6D3CFA);
+
+  static const buttonBlue = Color(0xFFE5F3FE); // Button background: E5F3FE, Text: 008DFF
+  static const buttonTextBlue = Color(0xFF008DFF);
+
+  static const buttonGray = Color(0xFFF1F1F1); // Button background: E1FAE8, Text: 37C25C
+  static const buttonTextGray = Color(0xFF787878);
+
+  static const buttonRed = Color(0xFFFDEFEE); // Button background: FDEFEE, Text: EC6A5B
+  static const buttonTextRed = Color(0xFFEC6A5B);
+
+
 }

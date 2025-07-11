@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import '../model/skill_item.dart';
-import '../widgets/skill_chip.dart';
+import 'model/selectable_item.dart';
+import 'selectable_item_chip.dart';
 
-class SkillListView extends StatelessWidget {
-  final Map<String, List<SkillItem>> skills;
+class SelectableItemListView extends StatelessWidget {
+  final Map<String, List<SelectableItem>> items;
   final int selectedCount;
   final int maxSelection;
-  final Function(SkillItem) onToggle;
+  final Function(SelectableItem) onToggle;
 
-  const SkillListView({
+  const SelectableItemListView({
     super.key,
-    required this.skills,
+    required this.items,
     required this.selectedCount,
     required this.maxSelection,
     required this.onToggle,
@@ -19,7 +19,7 @@ class SkillListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: skills.entries.map((entry) {
+      children: items.entries.map((entry) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -31,9 +31,9 @@ class SkillListView extends StatelessWidget {
             Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: entry.value.map((skill) {
-                return SelectableSkillChip(
-                  skill: skill,
+              children: entry.value.map((item) {
+                return SelectableItemChip(
+                  item: item,
                   selectedCount: selectedCount,
                   maxSelection: maxSelection,
                   onToggle: onToggle,

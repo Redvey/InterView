@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interview/features/resume/screens/projects_form/widgets/add_project_sheet.dart';
 
 import '../../../../core/constants/colors.dart';
 
@@ -13,75 +14,27 @@ class _ProjectsFormState extends State<ProjectsForm> {
   final List<Project> _projects = [];
 
   void _showAddProjectDialog() {
-    final titleController = TextEditingController();
-    final aboutController = TextEditingController();
-    final githubController = TextEditingController();
-    final liveController = TextEditingController();
-
-    showDialog(
+    showModalBottomSheet(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text("Add Project"),
-        content: SingleChildScrollView(
-          child: Column(
-            children: [
-              TextField(
-                controller: titleController,
-                decoration: const InputDecoration(
-                  labelText: "Project Title",
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: aboutController,
-                maxLines: 3,
-                decoration: const InputDecoration(
-                  labelText: "About the Project",
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: githubController,
-                decoration: const InputDecoration(
-                  labelText: "GitHub Link",
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: liveController,
-                decoration: const InputDecoration(
-                  labelText: "Live Link (optional)",
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ],
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              final project = Project(
-                title: titleController.text.trim(),
-                about: aboutController.text.trim(),
-                githubLink: githubController.text.trim(),
-                liveLink: liveController.text.trim(),
-              );
-              if (project.title.isNotEmpty && project.about.isNotEmpty) {
-                setState(() {
-                  _projects.add(project);
-                });
-              }
-              Navigator.pop(context);
-            },
-            child: const Text("Add"),
-          ),
-        ],
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => AddProjectSheet(
+        onAdd: (title, about, github, live) {
+          setState(() {
+            _projects.add(Project(
+              title: title,
+              about: about,
+              githubLink: github,
+              liveLink: live,
+            ));
+          });
+        },
       ),
     );
   }
+
 
   void _removeProject(int index) {
     setState(() {

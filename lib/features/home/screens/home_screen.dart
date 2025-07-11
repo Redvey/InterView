@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:interview/app/themes/text_styles.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/sizes.dart';
 import 'package:interview/core/constants/strings.dart';
@@ -35,6 +36,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     gradient: AppColors.backgroundGradient,
                   ),
+                  child: Center(child: Text("GOOGLE AD",style: AppTextStyles.welcome,)),
                 ),
                 SizedBox(height: AppSizes.spaceBtwItems),
 
@@ -104,8 +106,9 @@ class HomeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(
                       AppSizes.borderRadiusLg,
                     ),
-                    color: Colors.transparent,
+                    gradient: AppColors.backgroundGradient,
                   ),
+                  child: Center(child: Text("GOOGLE AD",style: AppTextStyles.welcome,)),
                 ),
               ],
             ),

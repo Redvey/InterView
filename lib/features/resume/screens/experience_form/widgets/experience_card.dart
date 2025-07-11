@@ -3,9 +3,9 @@ import 'package:intl/intl.dart';
 import 'package:interview/core/constants/strings.dart';
 import 'package:interview/features/resume/screens/experience_form/experience_entry_model.dart';
 import 'package:interview/features/resume/screens/experience_form/widgets/toggle_field.dart';
-import '../../../../../core/utils/color_utils.dart';
+import '../../../../../core/utils/color_utils.dart';// Update with correct path
+import '../../../widgets/labelled_text_field.dart';
 import 'date_picker.dart';
-import 'experience_text_field.dart';
 
 class ExperienceCard extends StatefulWidget {
   final ExperienceEntry experience;
@@ -55,34 +55,34 @@ class _ExperienceCardState extends State<ExperienceCard> {
       ),
       child: Column(
         children: [
-          ExperienceTextField(
-            controller: exp.jobTitleController,
+          LabeledTextField(
+            label: "Job Title",
             hint: AppStrings.jobTitle,
+            controller: exp.jobTitleController,
+            containerColor: lighterJobColor,
           ),
-
           const SizedBox(height: 8),
-
-          ExperienceTextField(
-            controller: exp.companyController,
+          LabeledTextField(
+            label: "Company",
             hint: AppStrings.company,
+            controller: exp.companyController,
+            containerColor: lighterJobColor,
           ),
-
           const SizedBox(height: 8),
-
-          ExperienceTextField(
-              controller: exp.descriptionController,
-              maxLines: 4,
-              hint: AppStrings.jobDescription),
-
+          LabeledTextField(
+            label: "Description",
+            hint: AppStrings.jobDescription,
+            controller: exp.descriptionController,
+            maxLines: 4,
+            containerColor: lighterJobColor,
+          ),
           const SizedBox(height: 12),
-
           DatePickerField(
             label: AppStrings.from,
             date: exp.fromDate,
             onPressed: () => _selectDate(isFrom: true),
             formatter: formatter,
           ),
-
           ToggleField(
             label: AppStrings.stillWorkHere,
             value: exp.isCurrent,
@@ -93,7 +93,6 @@ class _ExperienceCardState extends State<ExperienceCard> {
               });
             },
           ),
-
           if (!exp.isCurrent)
             DatePickerField(
               label: AppStrings.to,
@@ -101,7 +100,6 @@ class _ExperienceCardState extends State<ExperienceCard> {
               onPressed: () => _selectDate(isFrom: false),
               formatter: formatter,
             ),
-
           const SizedBox(height: 12),
           TextButton.icon(
             onPressed: widget.onRemove,

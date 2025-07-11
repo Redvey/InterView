@@ -48,14 +48,14 @@ class _EducationFormState extends State<EducationForm> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Education Entry', style: AppTextStyles.infoHeader),
+              const Text('First educational entry...', style: TextStyle(fontSize: 14)),
               IconButton(
                 icon: const Icon(Icons.delete_outline, color: Colors.red),
                 onPressed: () => _removeEducationEntry(index),
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 8),
           LabeledTextField(
             label: 'Institution Name',
             hint: 'Enter institution name',
@@ -100,7 +100,10 @@ class _EducationFormState extends State<EducationForm> {
         ),
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Text('Education Entry', style: AppTextStyles.infoHeader),
+              const SizedBox(height: 16),
               ..._entryIds.asMap().entries.map(
                 (entry) => _buildEducationEntry(entry.key, containerColor),
               ),

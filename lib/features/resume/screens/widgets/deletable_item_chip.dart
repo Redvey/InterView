@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class DeletableSkillChip extends StatelessWidget {
+class DeletableItemChip extends StatelessWidget {
   final String label;
   final VoidCallback onDeleted;
 
-  const DeletableSkillChip({
+  const DeletableItemChip({
     super.key,
     required this.label,
     required this.onDeleted,

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:interview/features/resume/screens/skill_form/widgets/skill_chip.dart';
-
-import '../../features/resume/screens/skill_form/sheet/skill_selection_bottom_sheet.dart';
+import '../../features/resume/screens/widgets/model/selectable_item.dart';
+import '../../features/resume/screens/widgets/selectable_item_bottom_sheet.dart';
 
 void launchCategoryBottomSheet({
   required BuildContext context,
   required String title,
-  required Map<String, List<SelectableSkillChip>> categoryData,
+  required Map<String, List<SelectableItem>> categoryData,
   required List<String> initiallySelected,
   required int maxSelection,
   required Function(List<String>) onConfirm,
@@ -14,8 +13,9 @@ void launchCategoryBottomSheet({
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
-    builder: (_) => SkillSelectionBottomSheet(
-
+    builder: (_) => SelectableItemBottomSheet(
+      title: title,
+      categoryData: categoryData,
       initiallySelected: initiallySelected,
       maxSelection: maxSelection,
       onConfirm: onConfirm,
