@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
 
                 //resume review
                 GestureDetector(
-                  onTap: () => context.push('/unfinished'),
+                  onTap: () => context.push('/review'),
                   child: FeatureContainer(
                     gradient: AppColors.reviewGradient,
                     title: AppStrings.resumeReviewTitle,
@@ -88,11 +88,11 @@ class HomeScreen extends StatelessWidget {
                 ),
                 SizedBox(height: AppSizes.defaultSpace),
                 GestureDetector(
-                  onTap: () => context.push('/unfinished'),
+                  onTap: () => context.push('/review'),
                   child: FeatureContainer(
                     gradient: AppColors.coldMailGradient,
-                    title: AppStrings.mockInterviewTitle,
-                    subTitle: AppStrings.mockInterviewSubtitle,
+                    title: AppStrings.coldMailTitle,
+                    subTitle: AppStrings.coldMailSubtitle,
                     color: AppColors.textPurpleBg,
                     colorBg: AppColors.textPurple,
                   ),

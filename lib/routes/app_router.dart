@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:interview/features/review/review.dart';
 import '../features/home/screens/home_screen.dart';
 import '../features/resume/screens/contact_form/contact_form.dart';
 import '../features/resume/screens/resume_builder.dart';
@@ -32,6 +33,11 @@ final GoRouter appRouter = GoRouter(
       path: '/unfinished',
       name: RouteNames.underDevelopment,
       builder: (context, state) => const UnderDev(),
+    ),
+    GoRoute(
+      path: '/review',
+      name: RouteNames.resumeReview,
+      builder: (context, state) => const ResumeReviewScreen(),
     ),
   ],
 );
