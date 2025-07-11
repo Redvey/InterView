@@ -85,6 +85,7 @@ class _OtherInformationFormState extends State<OtherInformationForm> {
       selectedColor: Colors.black,
       backgroundColor: Colors.white,
       shape: StadiumBorder(side: BorderSide(color: Colors.grey.shade400)),
+      showCheckmark: false,
     );
   }
 }

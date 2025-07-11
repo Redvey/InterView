@@ -106,10 +106,17 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(
-                  onPressed: () => context.pop(),
-                  icon: const Icon(Icons.arrow_back_ios),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () => context.pop(),
+                      icon: const Icon(Icons.arrow_back_ios),
+                    ),
+                    CircleAvatar(radius: 15,)
+                  ],
                 ),
+                SizedBox(height: AppSizes.spaceBtwItems-10),
                 PageIndicator(
                   pageController: _pageController,
                   totalPages: _totalPages,

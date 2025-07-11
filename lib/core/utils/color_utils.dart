@@ -20,3 +20,7 @@ final darkerJobColor = HSLColor.fromColor(AppColors.jobForm)
     .withLightness((HSLColor.fromColor(AppColors.jobForm).lightness - 0.5).clamp(0.0, 1.0))
     .toColor();
 
+final darkerProjectColor = HSLColor.fromColor(AppColors.projectForm)
+    .withLightness((HSLColor.fromColor(AppColors.jobForm).lightness - 0.5).clamp(0.0, 1.0))
+    .toColor();
+

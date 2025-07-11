@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import '../model/skill_item.dart';
 
-class SelectableSkillChip extends StatelessWidget {
-  final SkillItem skill;
+import 'model/selectable_item.dart';
+
+
+class SelectableItemChip extends StatelessWidget {
+  final SelectableItem item;
   final int selectedCount;
   final int maxSelection;
-  final Function(SkillItem) onToggle;
+  final Function(SelectableItem) onToggle;
 
-  const SelectableSkillChip({
+  const SelectableItemChip({
     super.key,
-    required this.skill,
+    required this.item,
     required this.selectedCount,
     required this.maxSelection,
     required this.onToggle,
@@ -17,19 +19,19 @@ class SelectableSkillChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isSelected = skill.isSelected;
+    final isSelected = item.isSelected;
 
     return ChoiceChip(
-      label: Text(skill.name),
+      label: Text(item.name),
       avatar: Icon(
-        skill.icon,
+        item.icon,
         size: 18,
         color: isSelected ? Colors.white : Colors.black,
       ),
       selected: isSelected,
       onSelected: (_) {
         if (!isSelected && selectedCount >= maxSelection) return;
-        onToggle(skill);
+        onToggle(item);
       },
       selectedColor: Colors.black,
       backgroundColor: Colors.grey[200],

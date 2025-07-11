@@ -18,7 +18,7 @@ class AppStrings {
   static const coldMailTitle = "Cold Mail";
   static const coldMailSubtitle = "< for the recruiters />";
 
-  //#resume builder texts
+  //resume builder texts
 
   //General Information
   static const generalInformation = "General Information";
@@ -65,5 +65,16 @@ class AppStrings {
   static const removeExperience = "Remove this experience";
   static const select = "Select";
   static const addExperience = "Add Experience";
+
+
+  //review review
+  static const runPrompts = "Run Prompts";
+  static const uploadResume = "Upload Your Resume(.pdf)";
+  static const provideJD = "Please provide JD and upload resume";
+  static const aboutResume = "Tell me about the resume";
+  static const improviseSkill = "How can I improvise my skills?";
+  static const missingKeywords = "What are the keywords that are missing?";
+  static const percentageMatch = "Percentage Match";
+  static const pasteJobDesc = "Paste Job Description";
 
 }

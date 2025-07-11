@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/features/resume/widgets/dotted_button.dart';
+import 'package:interview/features/resume/screens/widgets/selectable_controller.dart';
+import 'package:interview/features/resume/screens/widgets/selectable_item_bottom_sheet.dart';
+import 'package:interview/features/resume/screens/widgets/selectable_item_wrap.dart';
+
+import 'data/roles_data.dart';
 
 class OpenToRolesForm extends StatefulWidget {
   const OpenToRolesForm({super.key});
@@ -10,46 +14,26 @@ class OpenToRolesForm extends StatefulWidget {
 }
 
 class _OpenToRolesFormState extends State<OpenToRolesForm> {
-  final List<String> _roles = [];
-  final TextEditingController _roleController = TextEditingController();
+  final GenericSelectableController _controller = GenericSelectableController();
 
-  void _addRole(String role) {
-    final trimmed = role.trim();
-    if (trimmed.isEmpty || _roles.contains(trimmed)) return;
-    setState(() => _roles.add(trimmed));
-    _roleController.clear();
-  }
-
-  void _removeRole(String role) {
-    setState(() => _roles.remove(role));
-  }
-
-  void _showAddRoleDialog() {
-    showDialog(
+  void _showRolesBottomSheet() {
+    showModalBottomSheet(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text("Add a Role"),
-        content: TextField(
-          controller: _roleController,
-          autofocus: true,
-          decoration: const InputDecoration(
-            hintText: "Enter a role (e.g. Flutter Dev)",
-            border: OutlineInputBorder(),
-          ),
-          onSubmitted: (value) {
-            Navigator.pop(context);
-            _addRole(value);
-          },
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              _addRole(_roleController.text);
-            },
-            child: const Text("Add"),
-          ),
-        ],
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => SelectableItemBottomSheet(
+        title: "Select Roles",
+        categoryData: roleData,
+        initiallySelected: _controller.selectedItems,
+        maxSelection: 6,
+        sheetColor: AppColors.rolesForm,
+        onConfirm: (selected) {
+          setState(() {
+            _controller.setItems(selected);
+          });
+        },
       ),
     );
   }
@@ -69,24 +53,11 @@ class _OpenToRolesFormState extends State<OpenToRolesForm> {
           children: [
             const Text("Open to Roles", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                ..._roles.map((role) => Chip(
-                  label: Text(role),
-                  deleteIcon: const Icon(Icons.close),
-                  onDeleted: () => _removeRole(role),
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                )),
-                GestureDetector(
-                  onTap: _showAddRoleDialog,
-                  child: const DottedBorderButton(detail: "Add a Role"),
-                ),
-              ],
+            SelectableItemWrap(
+              selectedItems: _controller.selectedItems,
+              onDelete: (role) => _controller.removeItem(role, () => setState(() {})),
+              onAdd: _showRolesBottomSheet,
+              addLabel: " Add a Role",
             ),
           ],
         ),
@@ -94,5 +65,3 @@ class _OpenToRolesFormState extends State<OpenToRolesForm> {
     );
   }
 }
-
-

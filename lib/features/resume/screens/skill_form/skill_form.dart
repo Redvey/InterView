@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/features/resume/screens/skill_form/sheet/skill_selection_bottom_sheet.dart';
-import 'package:interview/features/resume/screens/skill_form/widgets/skill_wrap.dart';
+import 'package:interview/features/resume/screens/widgets/selectable_item_bottom_sheet.dart';
+import 'package:interview/features/resume/screens/widgets/selectable_item_wrap.dart';
+import 'package:interview/features/resume/screens/skill_form/data/skill_data.dart';
 
-import 'controller/skills_controller.dart';
-
+import '../widgets/selectable_controller.dart';
 
 class SkillForm extends StatefulWidget {
   const SkillForm({super.key});
@@ -14,7 +14,7 @@ class SkillForm extends StatefulWidget {
 }
 
 class _SkillFormState extends State<SkillForm> {
-  final SkillController _controller = SkillController();
+  final GenericSelectableController _controller = GenericSelectableController();
 
   void _showSkillBottomSheet() {
     showModalBottomSheet(
@@ -23,19 +23,20 @@ class _SkillFormState extends State<SkillForm> {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (context) => SkillSelectionBottomSheet(
-        initiallySelected: _controller.skills,
+      builder: (context) => SelectableItemBottomSheet(
+        title: "Select Skills",
+        sheetColor: AppColors.skillForm,
+        categoryData: skillData,
+        initiallySelected: _controller.selectedItems,
+        maxSelection: 12,
         onConfirm: (selected) {
           setState(() {
-            _controller.setSkills(selected);
+            _controller.setItems(selected);
           });
         },
       ),
     );
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +51,15 @@ class _SkillFormState extends State<SkillForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Skills", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const Text("Your Skills", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
-            SkillWrap(
-              skills: _controller.skills,
-              onDelete: (skill) => _controller.removeSkill(skill, () => setState(() {})),
+            SelectableItemWrap(
+              selectedItems: _controller.selectedItems,
+              onDelete: (item) => _controller.removeItem(item, () => setState(() {})),
               onAdd: _showSkillBottomSheet,
+              addLabel: " Add Skill",
             ),
+
           ],
         ),
       ),

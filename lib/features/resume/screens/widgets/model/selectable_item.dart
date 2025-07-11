@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 
-class SkillItem {
+class SelectableItem {
   final String name;
   final IconData icon;
   bool isSelected;
 
-  SkillItem({
+  SelectableItem({
     required this.name,
     required this.icon,
     this.isSelected = false,
   });
+
+
+  SelectableItem clone() {
+    return SelectableItem(
+      name: name,
+      icon: icon,
+      isSelected: isSelected,
+    );
+  }
 }

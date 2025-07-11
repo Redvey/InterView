@@ -17,6 +17,7 @@ dependencies:
   intl: ^0.20.2
   percent_indicator: ^4.2.5
   file_picker: ^10.2.0
+  modal_bottom_sheet: ^3.0.0
 
 dev_dependencies:
   flutter_test:
