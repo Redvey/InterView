@@ -1,9 +1,9 @@
 import 'package:go_router/go_router.dart';
-import 'package:interview/features/review/review.dart';
 import '../features/home/screens/home_screen.dart';
 import '../features/resume/screens/contact_form/contact_form.dart';
 import '../features/resume/screens/resume_builder.dart';
 import '../features/resume/screens/resume_builder_home.dart';
+import '../features/review/screens/resume_review_screen.dart';
 import '../features/under_dev.dart';
 import 'route_names.dart';
 
