@@ -1,5 +1,9 @@
+
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:interview/features/profile/profile.dart';
 import '../features/home/screens/home_screen.dart';
+import '../features/profile/widgets/animation/circle_entry.dart';
 import '../features/resume/screens/contact_form/contact_form.dart';
 import '../features/resume/screens/resume_builder.dart';
 import '../features/resume/screens/resume_builder_home.dart';
@@ -39,5 +43,27 @@ final GoRouter appRouter = GoRouter(
       name: RouteNames.resumeReview,
       builder: (context, state) => const ResumeReviewScreen(),
     ),
+    GoRoute(
+      path: '/profile',
+      name: RouteNames.profile,
+      builder: (context, state) => const ProfileScreen(),
+    ),
+    GoRoute(
+      path: '/profile-animation',
+      name: RouteNames.profileAnimations,
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: const CircleEntryAnimation(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        opaque: false, // ← Makes background transparent
+        barrierColor: Colors.transparent, // Optional: keep background see-through
+      ),
+    ),
+
   ],
 );

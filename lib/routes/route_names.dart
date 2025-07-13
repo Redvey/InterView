@@ -1,6 +1,9 @@
 
 
 abstract class RouteNames {
+  static const String profile = 'profile';
+  static const String profileAnimations = 'profile-animation';
+
   //  Home
   static const String home = 'home';
 

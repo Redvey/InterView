@@ -20,6 +20,9 @@ class PageIndicator extends StatelessWidget {
         controller: pageController,
         count: totalPages,
         effect: ExpandingDotsEffect(
+          radius: 7,
+          dotHeight: 10,
+          dotWidth: 10,
           activeDotColor: activeDotColor,
           dotColor: activeDotColor.withAlpha((0.3 * 255).round()),
         ),

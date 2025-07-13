@@ -9,6 +9,8 @@ import 'package:interview/features/resume/screens/skill_form/skill_form.dart';
 import 'package:interview/features/resume/screens/social_links_form/social_links_form.dart';
 import 'package:interview/features/resume/widgets/page_indicator.dart';
 import '../../../core/utils/color_utils.dart';
+import '../../widgets/back_button.dart';
+import '../../widgets/profile_avatar.dart';
 import 'achievements_form/achievements_form.dart';
 import 'contact_form/contact_form.dart';
 import 'education_form/education_form.dart';
@@ -66,7 +68,9 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: const Text("Final Step"),
-            content: const Text("Have you filled in all your details correctly?"),
+            content: const Text(
+              "Have you filled in all your details correctly?",
+            ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
@@ -109,14 +113,13 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(
-                      onPressed: () => context.pop(),
-                      icon: const Icon(Icons.arrow_back_ios),
+                    CircleBackButton(pageColor: _getPageColor(_currentPage)),
+                    ProfileAvatar(
                     ),
-                    CircleAvatar(radius: 15,)
                   ],
                 ),
-                SizedBox(height: AppSizes.spaceBtwItems-10),
+
+                SizedBox(height: AppSizes.defaultSpace),
                 PageIndicator(
                   pageController: _pageController,
                   totalPages: _totalPages,
@@ -124,7 +127,7 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
                     _getPageColor(_currentPage),
                   ),
                 ),
-                SizedBox(height: AppSizes.spaceBtwItems),
+                SizedBox(height: AppSizes.defaultSpace),
                 Expanded(
                   child: PageView(
                     controller: _pageController,
@@ -191,3 +194,5 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
     );
   }
 }
+
+

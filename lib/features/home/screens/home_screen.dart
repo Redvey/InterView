@@ -104,6 +104,17 @@ class HomeScreen extends StatelessWidget {
                     colorBg: AppColors.textPurple,
                   ),
                 ),
+                SizedBox(height: AppSizes.defaultSpace),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CircleAvatar(radius: 5,),
+                    CircleAvatar(radius: 5,),
+                    CircleAvatar(radius: 5,),
+                  ],
+                ),
+                SizedBox(height: AppSizes.defaultSpace),
                 Container(
                   height: 200,
                   width: double.infinity,

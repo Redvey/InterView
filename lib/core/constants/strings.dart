@@ -3,7 +3,7 @@ class AppStrings {
   static const name = "Roopam";
 
   //Card-Text
-  static const buildYourResumeTitle = "Build Your Resume PDF";
+  static const buildYourResumeTitle = "Build Your Resume";
   static const buildYourResumeSubtitle = "‹ your quick resume builder / ›";
 
   static const resumeReviewTitle = "Resume Review";
