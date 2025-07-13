@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/strings.dart';
 import 'package:interview/app/themes/text_styles.dart';
+import 'package:interview/features/widgets/profile_avatar.dart';
 
 class WelcomeMessage extends StatelessWidget {
   const WelcomeMessage({
@@ -12,7 +13,7 @@ class WelcomeMessage extends StatelessWidget {
     return Row(
       children: [
 
-        CircleAvatar(),
+        ProfileAvatar(),
         SizedBox(width: 5,),
         Text(AppStrings.hi,style: AppTextStyles.welcome,),
         SizedBox(width: 5,),
