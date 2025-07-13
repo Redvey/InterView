@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../core/constants/colors.dart';
 import '../../../core/constants/sizes.dart';
 import '../../../app/themes/text_styles.dart';
 import '../../../core/utils/color_utils.dart';
@@ -15,6 +16,7 @@ class LabeledTextField extends StatelessWidget {
   final FocusNode? nextFocus;
   final bool removable;
   final VoidCallback? onRemove;
+  final Color borderColor;
 
   const LabeledTextField({
     super.key,
@@ -28,6 +30,7 @@ class LabeledTextField extends StatelessWidget {
     this.nextFocus,
     this.removable = false,
     this.onRemove,
+    this.borderColor=AppColors.backgroundWhite,
   });
 
   @override
@@ -53,6 +56,7 @@ class LabeledTextField extends StatelessWidget {
 
         // Text Field
         TextField(
+          style: AppTextStyles.textField,
           controller: controller,
           focusNode: focusNode,
           maxLines: maxLines,
@@ -66,7 +70,7 @@ class LabeledTextField extends StatelessWidget {
               focusNode?.unfocus();
             }
           },
-          decoration: whiteInputDecoration(hint, hintTextColor),
+          decoration: whiteInputDecoration(hint, hintTextColor,borderColor),
         ),
 
         const SizedBox(height: AppSizes.spaceBtwFields),

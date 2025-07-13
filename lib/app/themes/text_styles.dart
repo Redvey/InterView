@@ -5,6 +5,12 @@ import 'fonts.dart';
 
 
 class AppTextStyles {
+
+  static const textField = TextStyle(
+      fontFamily: AppFonts.poppins,
+
+  );
+
   static  heading({required Color color}) =>  TextStyle(
     fontFamily: AppFonts.poppins,
     fontSize: AppSizes.fontSizeLg,

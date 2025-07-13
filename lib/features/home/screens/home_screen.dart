@@ -34,9 +34,14 @@ class HomeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(
                       AppSizes.borderRadiusLg,
                     ),
-                    gradient: AppColors.backgroundGradient,
+                    color: AppColors.blackLight,
                   ),
-                  child: Center(child: Text("GOOGLE AD",style: AppTextStyles.welcome,)),
+                  child: Center(
+                    child: Text(
+                      "< crack the interview />",
+                      style: TextStyle(color: AppColors.textGreen),
+                    ),
+                  ),
                 ),
                 SizedBox(height: AppSizes.spaceBtwItems),
 
@@ -108,7 +113,9 @@ class HomeScreen extends StatelessWidget {
                     ),
                     gradient: AppColors.backgroundGradient,
                   ),
-                  child: Center(child: Text("GOOGLE AD",style: AppTextStyles.welcome,)),
+                  child: Center(
+                    child: Text("GOOGLE AD", style: AppTextStyles.welcome),
+                  ),
                 ),
               ],
             ),
