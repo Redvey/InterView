@@ -8,6 +8,8 @@ import 'package:interview/features/resume/screens/roles_form/roles_form.dart';
 import 'package:interview/features/resume/screens/skill_form/skill_form.dart';
 import 'package:interview/features/resume/screens/social_links_form/social_links_form.dart';
 import 'package:interview/features/resume/widgets/page_indicator.dart';
+import '../../../app/themes/text_styles.dart';
+import '../../../core/constants/strings.dart';
 import '../../../core/utils/color_utils.dart';
 import '../../widgets/back_button.dart';
 import '../../widgets/profile_avatar.dart';
@@ -114,6 +116,7 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CircleBackButton(pageColor: _getPageColor(_currentPage)),
+                    Text(AppStrings.resumeBuilder,style: AppTextStyles.featureTitle,),
                     ProfileAvatar(
                     ),
                   ],

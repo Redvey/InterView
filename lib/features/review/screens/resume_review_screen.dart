@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:interview/app/themes/text_styles.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/sizes.dart';
 import 'package:interview/core/constants/strings.dart';
+import 'package:interview/features/widgets/profile_avatar.dart';
 import '../../widgets/back_button.dart';
 import '../controllers/resume_review_controllers.dart';
 import '../widgets/jd_input_field.dart';
@@ -43,8 +45,8 @@ class _ResumeReviewScreenState extends State<ResumeReviewScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CircleBackButton(pageColor: AppColors.blackLight),
-                      Text(AppStrings.resumeReviewTitle),
-                      const CircleAvatar(),
+                      Text(AppStrings.resumeReviewTitle,style: AppTextStyles.featureTitle,),
+                      const ProfileAvatar(),
                     ],
                   ),
                   const SizedBox(height: 16),

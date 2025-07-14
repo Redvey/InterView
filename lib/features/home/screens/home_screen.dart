@@ -73,7 +73,7 @@ class HomeScreen extends StatelessWidget {
 
                 //flashcard
                 GestureDetector(
-                  onTap: () => context.push('/unfinished'),
+                  onTap: () => context.push('/flash-card'),
                   child: FeatureContainer(
                     gradient: AppColors.flashcardGradient,
                     title: AppStrings.flashcardPracticeTitle,
@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 SizedBox(height: AppSizes.defaultSpace),
                 GestureDetector(
-                  onTap: () => context.push('/unfinished'),
+                  onTap: () => context.push('/interview'),
                   child: FeatureContainer(
                     gradient: AppColors.interviewGradient,
                     title: AppStrings.mockInterviewTitle,
@@ -95,7 +95,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 SizedBox(height: AppSizes.defaultSpace),
                 GestureDetector(
-                  onTap: () => context.push('/review'),
+                  onTap: () => context.push('/interview'),
                   child: FeatureContainer(
                     gradient: AppColors.coldMailGradient,
                     title: AppStrings.coldMailTitle,

@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interview/core/constants/colors.dart';
+import 'package:interview/core/constants/strings.dart';
 
 import '../../../../core/constants/sizes.dart';
 import 'package:blobs/blobs.dart';
@@ -173,7 +174,7 @@ class _CircleEntryAnimationState extends State<CircleEntryAnimation>
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Profile",
+              AppStrings.profile,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -182,11 +183,11 @@ class _CircleEntryAnimationState extends State<CircleEntryAnimation>
             ),
             SizedBox(height: 10),
             Text(
-              "Settings",
+              AppStrings.settings,
               style: TextStyle(fontSize: 20, color: Colors.white),
             ),
             SizedBox(height: 10),
-            Text("Logout", style: TextStyle(fontSize: 20, color: Colors.white)),
+            Text(AppStrings.logOut, style: TextStyle(fontSize: 20, color: Colors.white)),
           ],
         ),
       ),

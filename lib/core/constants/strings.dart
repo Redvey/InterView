@@ -4,19 +4,21 @@ class AppStrings {
 
   //Card-Text
   static const buildYourResumeTitle = "Build Your Resume";
+  static const resumeBuilder = "Resume Builder";
   static const buildYourResumeSubtitle = "‹ your quick resume builder / ›";
 
   static const resumeReviewTitle = "Resume Review";
   static const resumeReviewSubtitle = "< know your feedback />";
 
   static const flashcardPracticeTitle = "Practice Flash Card";
+  static const flashcard = "Flash Card";
   static const flashcardPracticeSubtitle = "< for your quick revision />";
 
   static const mockInterviewTitle = "Take Mock Interview";
   static const mockInterviewSubtitle = "< real time interview />";
 
   static const coldMailTitle = "Cold Mail";
-  static const coldMailSubtitle = "< for the recruiters />";
+  static const coldMailSubtitle = "< to the recruiters />";
 
   //resume builder texts
 
@@ -76,5 +78,12 @@ class AppStrings {
   static const missingKeywords = "What are the keywords that are missing?";
   static const percentageMatch = "Percentage Match";
   static const pasteJobDesc = "Paste Job Description";
+
+
+  //profile
+  static const menu = "Menu";
+  static const logOut = "Log out";
+  static const settings = "settings";
+  static const profile = "profile";
 
 }
