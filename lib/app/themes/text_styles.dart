@@ -31,6 +31,12 @@ class AppTextStyles {
     fontWeight: FontWeight.normal,
   );
 
+  static const featureTitle = TextStyle(
+    fontFamily: AppFonts.poppins,
+    fontSize: AppSizes.fontSizeSs,
+    fontWeight: FontWeight.normal,
+  );
+
 
 
   //Resume Builder
