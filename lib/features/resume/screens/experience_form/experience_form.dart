@@ -50,7 +50,7 @@ class _WorkExperienceFormState extends State<WorkExperienceForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(AppStrings.workExperience, style: AppTextStyles.infoHeader),
+              Text(AppStrings.workExperience, style: AppTextStyles.infoHeader),
               const SizedBox(height: 16),
               ..._experiences.asMap().entries.map((entry) {
                 final index = entry.key;

@@ -76,6 +76,18 @@ class AppColors{
     ],
     // stops: [0.0, 0.3],
   );
+  static const starGradient = LinearGradient(
+    begin: Alignment.bottomLeft,
+    end: Alignment.topRight,
+    colors: [
+      backgroundOrange,
+      backgroundLightOrange,
+      backgroundYellow,
+      backgroundWhite,
+    ],
+
+    // stops: [0.0, 0.3],
+  );
 
   //card colors
   static const generalInformation = Color(0xFFC6B9FF);

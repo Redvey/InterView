@@ -25,13 +25,13 @@ class AppTextStyles {
       color: color,
   );
 
-  static const welcome = TextStyle(
+  static final welcome = TextStyle(
     fontFamily: AppFonts.poppins,
     fontSize: AppSizes.fontSizeMd,
-    fontWeight: FontWeight.normal,
+    fontWeight: FontWeight.w400,
   );
 
-  static const featureTitle = TextStyle(
+  static final featureTitle = TextStyle(
     fontFamily: AppFonts.poppins,
     fontSize: AppSizes.fontSizeSs,
     fontWeight: FontWeight.normal,
@@ -40,12 +40,12 @@ class AppTextStyles {
 
 
   //Resume Builder
-  static const infoHeader = TextStyle(
+  static final infoHeader = TextStyle(
     fontFamily: AppFonts.poppins,
     fontSize: AppSizes.fontSizeSd,
     fontWeight: FontWeight.w600,
   );
-  static const detailHeader = TextStyle(
+  static final detailHeader = TextStyle(
     fontFamily: AppFonts.poppins,
     fontSize: AppSizes.fontSizeSm,
     fontWeight: FontWeight.w400,
@@ -59,7 +59,7 @@ class AppTextStyles {
   );
 
   //buttons
-  static const buttonLight = TextStyle(
+  static final buttonLight = TextStyle(
     fontFamily: AppFonts.poppins,
     fontSize: AppSizes.fontSizeSm,
     fontWeight: FontWeight.w400,

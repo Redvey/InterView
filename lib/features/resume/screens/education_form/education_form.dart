@@ -102,7 +102,7 @@ class _EducationFormState extends State<EducationForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Education Entry', style: AppTextStyles.infoHeader),
+              Text('Education Entry', style: AppTextStyles.infoHeader),
               const SizedBox(height: 16),
               ..._entryIds.asMap().entries.map(
                 (entry) => _buildEducationEntry(entry.key, containerColor),

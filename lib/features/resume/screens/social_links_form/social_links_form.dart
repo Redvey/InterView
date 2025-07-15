@@ -105,7 +105,7 @@ class _SocialLinksFormState extends State<SocialLinksForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(AppStrings.socialLink, style: AppTextStyles.infoHeader),
+              Text(AppStrings.socialLink, style: AppTextStyles.infoHeader),
               const SizedBox(height: 16),
 
               // Predefined social link fields

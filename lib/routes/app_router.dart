@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:interview/app/app.dart' hide InterView;
 import 'package:interview/features/flash_card/flash_card.dart';
 import 'package:interview/features/profile/profile.dart';
 import '../features/home/screens/home_screen.dart';

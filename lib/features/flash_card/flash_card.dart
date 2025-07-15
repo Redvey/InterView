@@ -37,7 +37,7 @@ class _FlashCardState extends State<FlashCard> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: Padding(
-            padding: const EdgeInsets.all(AppSizes.lg),
+            padding:  EdgeInsets.all(AppSizes.lg),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

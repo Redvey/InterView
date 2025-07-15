@@ -4,8 +4,10 @@ import 'package:interview/app/themes/text_styles.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/sizes.dart';
 import 'package:interview/core/constants/strings.dart';
-import 'package:interview/features/home/widgets/feature_container.dart';
 import 'package:interview/features/home/widgets/welcome_message.dart';
+
+import '../../../core/utils/helper_functions.dart';
+import '../widgets/welcome_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -17,104 +19,90 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Padding(
-          padding: const EdgeInsets.only(
+          padding: EdgeInsets.only(
             top: AppSizes.xl,
             left: AppSizes.lg,
             right: AppSizes.lg,
           ),
           child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                WelcomeMessage(),
-                SizedBox(height: AppSizes.spaceBtwSections),
-                Container(
-                  height: 200,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      AppSizes.borderRadiusLg,
-                    ),
-                    color: AppColors.blackLight,
-                  ),
-                  child: Center(
-                    child: Text(
-                      "< crack the interview />",
-                      style: TextStyle(color: AppColors.textGreen),
-                    ),
-                  ),
-                ),
+                const WelcomeMessage(),
+                 SizedBox(height: AppSizes.spaceBtwSections),
+                const WelcomeCard(),
                 SizedBox(height: AppSizes.spaceBtwItems),
 
-                //resume builder
-                GestureDetector(
+                // Resume Builder
+                featureListItem(
+                  context: context,
                   onTap: () => context.push('/form'),
-                  child: FeatureContainer(
-                    gradient: AppColors.resumeBuilderGradient,
-                    title: AppStrings.buildYourResumeTitle,
-                    subTitle: AppStrings.buildYourResumeSubtitle,
-                    color: AppColors.textRedBg,
-                    colorBg: AppColors.textRed,
-                  ),
+                  gradient: AppColors.resumeBuilderGradient,
+                  title: AppStrings.buildYourResumeTitle,
+                  subTitle: AppStrings.buildYourResumeSubtitle,
+                  color: AppColors.textRedBg,
+                  colorBg: AppColors.textRed,
                 ),
-                SizedBox(height: AppSizes.defaultSpace),
 
-                //resume review
-                GestureDetector(
+                // Resume Review
+                featureListItem(
+                  context: context,
                   onTap: () => context.push('/review'),
-                  child: FeatureContainer(
-                    gradient: AppColors.reviewGradient,
-                    title: AppStrings.resumeReviewTitle,
-                    subTitle: AppStrings.resumeReviewSubtitle,
-                    color: AppColors.textBlueBg,
-                    colorBg: AppColors.textBlue,
-                  ),
+                  gradient: AppColors.reviewGradient,
+                  title: AppStrings.resumeReviewTitle,
+                  subTitle: AppStrings.resumeReviewSubtitle,
+                  color: AppColors.textBlueBg,
+                  colorBg: AppColors.textBlue,
                 ),
-                SizedBox(height: AppSizes.defaultSpace),
 
-                //flashcard
-                GestureDetector(
+                // Flashcard Practice
+                featureListItem(
+                  context: context,
                   onTap: () => context.push('/flash-card'),
-                  child: FeatureContainer(
-                    gradient: AppColors.flashcardGradient,
-                    title: AppStrings.flashcardPracticeTitle,
-                    subTitle: AppStrings.flashcardPracticeSubtitle,
-                    color: AppColors.textGreenBg,
-                    colorBg: AppColors.textGreen,
-                  ),
+                  gradient: AppColors.flashcardGradient,
+                  title: AppStrings.flashcardPracticeTitle,
+                  subTitle: AppStrings.flashcardPracticeSubtitle,
+                  color: AppColors.textGreenBg,
+                  colorBg: AppColors.textGreen,
                 ),
-                SizedBox(height: AppSizes.defaultSpace),
-                GestureDetector(
+
+                // Mock Interview
+                featureListItem(
+                  context: context,
                   onTap: () => context.push('/interview'),
-                  child: FeatureContainer(
-                    gradient: AppColors.interviewGradient,
-                    title: AppStrings.mockInterviewTitle,
-                    subTitle: AppStrings.mockInterviewSubtitle,
-                    color: AppColors.textYellowBg,
-                    colorBg: AppColors.textYellow,
-                  ),
+                  gradient: AppColors.interviewGradient,
+                  title: AppStrings.mockInterviewTitle,
+                  subTitle: AppStrings.mockInterviewSubtitle,
+                  color: AppColors.textYellowBg,
+                  colorBg: AppColors.textYellow,
                 ),
-                SizedBox(height: AppSizes.defaultSpace),
-                GestureDetector(
+
+                // Cold Mail Generator
+                featureListItem(
+                  context: context,
                   onTap: () => context.push('/interview'),
-                  child: FeatureContainer(
-                    gradient: AppColors.coldMailGradient,
-                    title: AppStrings.coldMailTitle,
-                    subTitle: AppStrings.coldMailSubtitle,
-                    color: AppColors.textPurpleBg,
-                    colorBg: AppColors.textPurple,
-                  ),
+                  gradient: AppColors.coldMailGradient,
+                  title: AppStrings.coldMailTitle,
+                  subTitle: AppStrings.coldMailSubtitle,
+                  color: AppColors.textPurpleBg,
+                  colorBg: AppColors.textPurple,
                 ),
-                SizedBox(height: AppSizes.defaultSpace),
+
+                // Pagination Dots
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CircleAvatar(radius: 5,),
-                    CircleAvatar(radius: 5,),
-                    CircleAvatar(radius: 5,),
-                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    3,
+                    (_) => const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 4),
+                      child: CircleAvatar(radius: 5),
+                    ),
+                  ),
                 ),
-                SizedBox(height: AppSizes.defaultSpace),
+
+                 SizedBox(height: AppSizes.defaultSpace),
+
+                // Google Ad Container
                 Container(
                   height: 200,
                   width: double.infinity,

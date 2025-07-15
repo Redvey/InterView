@@ -71,7 +71,7 @@ class _CircleEntryAnimationState extends State<CircleEntryAnimation>
       begin: Offset.zero,
       end: const Offset(0.3, 0.4),
     ).animate(curved);
-    // _avatarScaleAnim = Tween<double>(begin: 1.0, end: 6.0).animate(curved);
+
 
     _iconEntryAnim = Tween<Offset>(
       begin: const Offset(2, -1),
@@ -197,7 +197,7 @@ class _CircleEntryAnimationState extends State<CircleEntryAnimation>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
+      padding:  EdgeInsets.only(
         top: AppSizes.xl,
         left: AppSizes.lg,
         right: AppSizes.lg,

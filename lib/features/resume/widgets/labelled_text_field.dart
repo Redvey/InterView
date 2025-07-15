@@ -73,7 +73,7 @@ class LabeledTextField extends StatelessWidget {
           decoration: whiteInputDecoration(hint, hintTextColor,borderColor),
         ),
 
-        const SizedBox(height: AppSizes.spaceBtwFields),
+        SizedBox(height: AppSizes.spaceBtwFields),
       ],
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:interview/core/constants/colors.dart';
 import '../../../app/themes/text_styles.dart';
 
 class FeatureContainer extends StatelessWidget {
@@ -8,6 +7,7 @@ class FeatureContainer extends StatelessWidget {
   final String subTitle;
   final Color color;
   final Color colorBg;
+  final IconData icon;
 
   const FeatureContainer({
     super.key,
@@ -16,6 +16,7 @@ class FeatureContainer extends StatelessWidget {
     required this.subTitle,
     required this.color,
     required this.colorBg,
+    this.icon = Icons.brush_outlined,
   });
 
   @override
@@ -32,21 +33,25 @@ class FeatureContainer extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            // Left Side Text
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(title, style: AppTextStyles.heading(color: color)),
+                const SizedBox(height: 4),
                 Text(subTitle, style: AppTextStyles.subheading(color: colorBg)),
               ],
             ),
+            // Icon
             CircleAvatar(
-              backgroundColor: AppColors.backgroundYellow,
+              backgroundColor: Colors.white.withAlpha(26),
               child: ShaderMask(
                 shaderCallback: (bounds) => gradient.createShader(bounds),
-                child: const Icon(
-                  Icons.brush_outlined,
-                  size: 32,
-                  color: Colors.white, // Must be white to reveal gradient
+                child: Icon(
+                  icon,
+                  size: 28,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -56,3 +61,4 @@ class FeatureContainer extends StatelessWidget {
     );
   }
 }
+

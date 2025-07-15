@@ -15,10 +15,10 @@ class ProfileScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: Padding(
-            padding: const EdgeInsets.all(AppSizes.lg),
+            padding:  EdgeInsets.all(AppSizes.lg),
             child: Row(
               children: [
-                CircleBackButton(pageColor: AppColors.backgroundWhite)
+                CircleBackButton(pageColor: AppColors.blackLight)
               ],
             ),
           ),

@@ -68,27 +68,103 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text("Final Step"),
-            content: const Text(
-              "Have you filled in all your details correctly?",
+          return Dialog(
+            backgroundColor: Colors.transparent,
+            insetPadding: const EdgeInsets.all(24),
+            child: Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: AppColors.blackLight, // blackLight
+                borderRadius: BorderRadius.circular(28),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.purple.withAlpha(1075), // glow
+                    blurRadius: 40,
+                    offset: const Offset(0, -10),
+                    spreadRadius: 2,
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Top Glow Bar (similar to the purple strip)
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      width: 60,
+                      height: 6,
+                      decoration: BoxDecoration(
+                        color: AppColors.otherForm,
+                        borderRadius: BorderRadius.circular(3),
+                        boxShadow: [BoxShadow(
+                          color: AppColors.purple, // glow
+                          blurRadius: 100,
+                          offset: const Offset(0, -10),
+                          spreadRadius: 25,
+                        ),]
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+
+                  // Title
+                  const Text(
+                    "Final Step",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+
+                  // Content
+                  const Text(
+                    "Have you filled in all your details correctly?",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+
+                  // Actions
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.white,
+                        ),
+                        child: const Text("No"),
+                      ),
+                      const SizedBox(width: 12),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          context.push('/final');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.purple,
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: const Text("Yes, Proceed"),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text("No"),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  context.push('/final');
-                },
-                child: const Text("Yes, Proceed"),
-              ),
-            ],
           );
         },
       );
+
     }
   }
 
@@ -107,7 +183,7 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
       body: Container(
         decoration: BoxDecoration(gradient: AppColors.backgroundGradient),
         child: Padding(
-          padding: const EdgeInsets.all(AppSizes.lg),
+          padding: EdgeInsets.all(AppSizes.lg-10),
           child: SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,6 +230,7 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
                     ],
                   ),
                 ),
+                // SizedBox(height: 20,),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Row(
@@ -166,7 +243,7 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
                             radius: 30,
                             backgroundColor: AppColors.blackLight,
                             child: Icon(
-                              Icons.arrow_back_ios,
+                              Icons.arrow_back,
                               color: AppColors.backgroundLightOrange,
                               size: AppSizes.buttonHeight,
                             ),
@@ -180,7 +257,7 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
                           child: Icon(
                             _currentPage == _totalPages - 1
                                 ? Icons.check
-                                : Icons.arrow_forward_ios,
+                                : Icons.arrow_forward,
                             color: AppColors.backgroundLime,
                             size: AppSizes.buttonHeight,
                           ),

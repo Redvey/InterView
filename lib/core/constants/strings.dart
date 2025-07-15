@@ -1,6 +1,8 @@
 class AppStrings {
-  static const hi = "Hii!";
-  static const name = "Roopam";
+  static const hi = "Hello";
+  static const name = "Roopam!";
+
+  static const crackIt = "< crack the interview />";
 
   //Card-Text
   static const buildYourResumeTitle = "Build Your Resume";

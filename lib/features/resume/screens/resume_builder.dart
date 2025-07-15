@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/features/resume/widgets/template_preview.dart';
 
+import '../../../core/constants/sizes.dart';
+
 class ResumeBuilderFinalScreen extends StatefulWidget {
   const ResumeBuilderFinalScreen({super.key});
 
@@ -27,36 +29,41 @@ class _ResumeBuilderFinalScreenState extends State<ResumeBuilderFinalScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Choose Template")),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _sectionTitle(context, "Resume PDFs"),
-            const SizedBox(height: 8),
-            _buildRecentResumes(),
+      body: Container(
+        decoration: BoxDecoration(gradient: AppColors.backgroundGradient),
+        child: Padding(
+          padding: EdgeInsets.all(AppSizes.lg - 10),
+          child: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
 
-            const SizedBox(height: 16),
-            _sectionTitle(context, "Templates"),
-            const SizedBox(height: 12),
-            _buildTemplateSelector(),
-            const SizedBox(height: 12),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: _buildResume,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.blackLight,
+                _sectionTitle(context, "Resume PDFs"),
+                const SizedBox(height: 8),
+                _buildRecentResumes(),
+
+                const SizedBox(height: 16),
+                _sectionTitle(context, "Templates"),
+                const SizedBox(height: 12),
+                _buildTemplateSelector(),
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: _buildResume,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.blackLight,
+                    ),
+                    child: const Text(
+                      "Build Resume ✨",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
                 ),
-                child: const Text(
-                  "Build Resume ✨",
-                  style: TextStyle(fontSize: 18),
-                ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
