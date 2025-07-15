@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:interview/core/constants/colors.dart';
+import 'package:interview/core/constants/sizes.dart';
 import '../../../app/themes/text_styles.dart';
 
 class FeatureContainer extends StatelessWidget {
@@ -23,13 +25,13 @@ class FeatureContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(AppSizes.borderRadiusLg),
         gradient: gradient,
       ),
-      height: 100,
+      height: AppSizes.featureCard,
       width: double.infinity,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding:  EdgeInsets.all(AppSizes.md),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -39,19 +41,19 @@ class FeatureContainer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(title, style: AppTextStyles.heading(color: color)),
-                const SizedBox(height: 4),
+                 SizedBox(height: AppSizes.headSubhead),
                 Text(subTitle, style: AppTextStyles.subheading(color: colorBg)),
               ],
             ),
             // Icon
             CircleAvatar(
-              backgroundColor: Colors.white.withAlpha(26),
+              backgroundColor: AppColors.cardOverlay,
               child: ShaderMask(
                 shaderCallback: (bounds) => gradient.createShader(bounds),
                 child: Icon(
                   icon,
-                  size: 28,
-                  color: Colors.white,
+                  size: AppSizes.star,
+                  color: AppColors.backgroundWhite,
                 ),
               ),
             ),

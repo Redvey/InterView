@@ -88,23 +88,14 @@ class HomeScreen extends StatelessWidget {
                   colorBg: AppColors.textPurple,
                 ),
 
-                // Pagination Dots
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                    3,
-                    (_) => const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 4),
-                      child: CircleAvatar(radius: 5),
-                    ),
-                  ),
-                ),
+                //Ads
+                Divider(),
 
                  SizedBox(height: AppSizes.defaultSpace),
 
                 // Google Ad Container
                 Container(
-                  height: 200,
+                  height: AppSizes.adCard,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(

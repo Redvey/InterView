@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interview/core/constants/sizes.dart';
 import 'package:interview/core/constants/strings.dart';
 import 'package:interview/app/themes/text_styles.dart';
 import 'package:interview/features/widgets/profile_avatar.dart';
@@ -14,9 +15,9 @@ class WelcomeMessage extends StatelessWidget {
       children: [
 
         ProfileAvatar(),
-        SizedBox(width: 5,),
+        SizedBox(width: AppSizes.headSubhead,),
         Text(AppStrings.hi,style: AppTextStyles.welcome,),
-        SizedBox(width: 5,),
+        SizedBox(width: AppSizes.headSubhead,),
         Text(AppStrings.name,style: AppTextStyles.welcome,),
 
       ],
