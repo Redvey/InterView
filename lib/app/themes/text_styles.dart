@@ -28,7 +28,7 @@ class AppTextStyles {
   static final welcome = TextStyle(
     fontFamily: AppFonts.poppins,
     fontSize: AppSizes.fontSizeMd,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w600,
   );
 
   static final featureTitle = TextStyle(
@@ -64,6 +64,18 @@ class AppTextStyles {
     fontSize: AppSizes.fontSizeSm,
     fontWeight: FontWeight.w400,
     color: AppColors.blackLight,
+  );
+  static final welcomeCardFinal = TextStyle(
+    color: AppColors.backgroundYellow,
+    fontFamily: AppFonts.poppins,
+    fontSize: AppSizes.fontSizeLg,
+    fontWeight: FontWeight.w400,
+  );
+  static final crackIt = TextStyle(
+    color: AppColors.textGreen,
+    fontFamily: AppFonts.poppins,
+    fontSize: AppSizes.fontSizeSm,
+    fontWeight: FontWeight.w400,
   );
 
 

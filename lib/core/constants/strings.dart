@@ -3,6 +3,7 @@ class AppStrings {
   static const name = "Roopam!";
 
   static const crackIt = "< crack the interview />";
+  static const finalSteps = "Final Steps Toward Your Goal";
 
   //Card-Text
   static const buildYourResumeTitle = "Build Your Resume";

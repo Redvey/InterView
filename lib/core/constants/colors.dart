@@ -6,6 +6,7 @@ class AppColors{
   //background
   static const backgroundYellow = Color(0xFFFFFDD0);
   static const backgroundWhite = Color(0xFFFFFFFF);
+  static final cardOverlay = backgroundWhite.withAlpha(26);
   static const backgroundRed = Color(0xFF993030);
   static const backgroundRedPink = Color(0xFFFF514F);
   static const backgroundBlue = Color(0xFF341899);
@@ -19,6 +20,7 @@ class AppColors{
 
   //widget background
   static const purple = Color(0xFFB05CFF);
+  static final purpleOverlay = purple.withAlpha(107);
   static const purpleLight = Color(0xFFE8D0FF);
 
   // Gradient background
