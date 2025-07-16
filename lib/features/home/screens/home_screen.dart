@@ -18,22 +18,18 @@ class HomeScreen extends StatelessWidget {
       decoration: BoxDecoration(gradient: AppColors.backgroundGradient),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Padding(
-          padding: EdgeInsets.only(
-            top: AppSizes.xl,
-            left: AppSizes.lg,
-            right: AppSizes.lg,
-          ),
+        body: SafeArea(
           child: SingleChildScrollView(
+            padding: AppSizes.screenPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const WelcomeMessage(),
-                 SizedBox(height: AppSizes.spaceBtwSections),
+                SizedBox(height: AppSizes.spaceBtwSections),
                 const WelcomeCard(),
-                SizedBox(height: AppSizes.spaceBtwItems),
+                SizedBox(height: AppSizes.defaultSpace),
 
-                // Resume Builder
+                /// Resume Builder
                 featureListItem(
                   context: context,
                   onTap: () => context.push('/form'),
@@ -44,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                   colorBg: AppColors.textRed,
                 ),
 
-                // Resume Review
+                /// Resume Review
                 featureListItem(
                   context: context,
                   onTap: () => context.push('/review'),
@@ -55,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                   colorBg: AppColors.textBlue,
                 ),
 
-                // Flashcard Practice
+                /// Flashcard Practice
                 featureListItem(
                   context: context,
                   onTap: () => context.push('/flash-card'),
@@ -66,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                   colorBg: AppColors.textGreen,
                 ),
 
-                // Mock Interview
+                /// Mock Interview
                 featureListItem(
                   context: context,
                   onTap: () => context.push('/interview'),
@@ -77,7 +73,7 @@ class HomeScreen extends StatelessWidget {
                   colorBg: AppColors.textYellow,
                 ),
 
-                // Cold Mail Generator
+                /// Cold Mail Generator
                 featureListItem(
                   context: context,
                   onTap: () => context.push('/interview'),
@@ -88,19 +84,15 @@ class HomeScreen extends StatelessWidget {
                   colorBg: AppColors.textPurple,
                 ),
 
-                //Ads
-                Divider(),
+                /// Ads Section
+                Divider(thickness: AppSizes.dividerHeight),
+                SizedBox(height: AppSizes.defaultSpace),
 
-                 SizedBox(height: AppSizes.defaultSpace),
-
-                // Google Ad Container
                 Container(
                   height: AppSizes.adCard,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      AppSizes.borderRadiusLg,
-                    ),
+                    borderRadius: BorderRadius.circular(AppSizes.borderRadiusLg),
                     gradient: AppColors.backgroundGradient,
                   ),
                   child: Center(

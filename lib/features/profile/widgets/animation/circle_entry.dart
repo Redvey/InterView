@@ -102,7 +102,7 @@ class _CircleEntryAnimationState extends State<CircleEntryAnimation>
       child: ScaleTransition(
         scale: _scaleAnim,
         child: Blob.fromID(
-          id: ['13-3-59'],
+          id: ['20-8-748351'],
           size: 500,
           styles: BlobStyles(
             color: AppColors.blackLight, // Use any color you want
