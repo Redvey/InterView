@@ -1,23 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/sizes.dart';
-import 'package:interview/features/resume/screens/personal_details_form/personal_details_form.dart';
-import 'package:interview/features/resume/screens/projects_form/projects_form.dart';
-import 'package:interview/features/resume/screens/roles_form/roles_form.dart';
-import 'package:interview/features/resume/screens/skill_form/skill_form.dart';
-import 'package:interview/features/resume/screens/social_links_form/social_links_form.dart';
+import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/final_step_dialog.dart';
+import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_bottom_buttons.dart';
+import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_pages.dart';
+import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_top_bar.dart';
 import 'package:interview/features/resume/widgets/page_indicator.dart';
-import '../../../app/themes/text_styles.dart';
-import '../../../core/constants/strings.dart';
 import '../../../core/utils/color_utils.dart';
-import '../../widgets/back_button.dart';
-import '../../widgets/profile_avatar.dart';
-import 'achievements_form/achievements_form.dart';
-import 'contact_form/contact_form.dart';
-import 'education_form/education_form.dart';
-import 'experience_form/experience_form.dart';
-import 'other_form/other_form.dart';
 
 class ResumeFormScreen extends StatefulWidget {
   const ResumeFormScreen({super.key});
@@ -67,102 +56,7 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
     } else {
       showDialog(
         context: context,
-        builder: (BuildContext context) {
-          return Dialog(
-            backgroundColor: Colors.transparent,
-            insetPadding: const EdgeInsets.all(24),
-            child: Container(
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: AppColors.blackLight, // blackLight
-                borderRadius: BorderRadius.circular(28),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.purple.withAlpha(1075), // glow
-                    blurRadius: 40,
-                    offset: const Offset(0, -10),
-                    spreadRadius: 2,
-                  ),
-                ],
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // Top Glow Bar (similar to the purple strip)
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Container(
-                      width: 60,
-                      height: 6,
-                      decoration: BoxDecoration(
-                        color: AppColors.otherForm,
-                        borderRadius: BorderRadius.circular(3),
-                        boxShadow: [BoxShadow(
-                          color: AppColors.purple, // glow
-                          blurRadius: 100,
-                          offset: const Offset(0, -10),
-                          spreadRadius: 25,
-                        ),]
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-
-                  // Title
-                  const Text(
-                    "Final Step",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-
-                  // Content
-                  const Text(
-                    "Have you filled in all your details correctly?",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 16,
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-
-                  // Actions
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        style: TextButton.styleFrom(
-                          foregroundColor: Colors.white,
-                        ),
-                        child: const Text("No"),
-                      ),
-                      const SizedBox(width: 12),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                          context.push('/final');
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.purple,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: const Text("Yes, Proceed"),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
+        builder: (BuildContext context) => const FinalStepDialog(),
       );
 
     }
@@ -182,90 +76,35 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(gradient: AppColors.backgroundGradient),
-        child: Padding(
-          padding: EdgeInsets.all(AppSizes.lg-10),
-          child: SafeArea(
+        child: SafeArea(
+          child: Padding(
+            padding: AppSizes.screenPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CircleBackButton(pageColor: _getPageColor(_currentPage)),
-                    Text(AppStrings.resumeBuilder,style: AppTextStyles.featureTitle,),
-                    ProfileAvatar(
-                    ),
-                  ],
-                ),
+                ResumeFormTopBar(pageColor: _getPageColor(_currentPage)),
 
                 SizedBox(height: AppSizes.defaultSpace),
                 PageIndicator(
                   pageController: _pageController,
                   totalPages: _totalPages,
-                  activeDotColor: getMatchingHintColor(
-                    _getPageColor(_currentPage),
-                  ),
+                  activeDotColor: getMatchingHintColor(_getPageColor(_currentPage)),
                 ),
                 SizedBox(height: AppSizes.defaultSpace),
                 Expanded(
-                  child: PageView(
+                  child: ResumeFormPages(
                     controller: _pageController,
-                    physics: const NeverScrollableScrollPhysics(),
-                    onPageChanged: (index) {
-                      setState(() {
-                        _currentPage = index;
-                      });
-                    },
-                    children: [
-                      const GeneralInformation(),
-                      const ContactForm(),
-                      const EducationForm(),
-                      const SkillForm(),
-                      const OpenToRolesForm(),
-                      const ProjectsForm(),
-                      const SocialLinksForm(),
-                      const WorkExperienceForm(),
-                      const AchievementsForm(),
-                      const OtherInformationForm(),
-                    ],
+                    onPageChanged: (index) => setState(() => _currentPage = index),
                   ),
                 ),
-                // SizedBox(height: 20,),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      if (_currentPage > 0)
-                        GestureDetector(
-                          onTap: _previousPage,
-                          child: CircleAvatar(
-                            radius: 30,
-                            backgroundColor: AppColors.blackLight,
-                            child: Icon(
-                              Icons.arrow_back,
-                              color: AppColors.backgroundLightOrange,
-                              size: AppSizes.buttonHeight,
-                            ),
-                          ),
-                        ),
-                      GestureDetector(
-                        onTap: _nextPage,
-                        child: CircleAvatar(
-                          radius: 30,
-                          backgroundColor: AppColors.blackLight,
-                          child: Icon(
-                            _currentPage == _totalPages - 1
-                                ? Icons.check
-                                : Icons.arrow_forward,
-                            color: AppColors.backgroundLime,
-                            size: AppSizes.buttonHeight,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+
+                ResumeFormBottomButtons(
+                  currentPage: _currentPage,
+                  totalPages: _totalPages,
+                  onNext: _nextPage,
+                  onPrevious: _previousPage,
                 ),
+
               ],
             ),
           ),
@@ -274,5 +113,3 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
     );
   }
 }
-
-

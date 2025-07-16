@@ -20,14 +20,6 @@ class WelcomeCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.blackLight,
           borderRadius: BorderRadius.circular(AppSizes.borderRadiusLg),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.purpleOverlay,
-              blurRadius: AppSizes.welcomeBlur,
-              offset:  Offset(AppSizes.zero, AppSizes.shadowOffsetY),
-              spreadRadius: AppSizes.welcomeSpread,
-            ),
-          ],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

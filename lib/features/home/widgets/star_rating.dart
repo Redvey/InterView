@@ -12,7 +12,7 @@ Widget buildStarRating({
   final List<Widget> stars = [];
 
   final ratings = rating ?? 5;
-  final iconSizes = iconSize ?? AppSizes.star;
+  final iconSizes = iconSize ?? AppSizes.iconSize;
   final maxedStars = maxStars ?? AppSizes.maxStars;
   final gradient0 = gradient ?? AppColors.backgroundGradient;
   final spacing0 = spacing ?? AppSizes.starSpacing;
