@@ -8,7 +8,7 @@ import '../../widgets/back_button.dart';
 import '../controllers/resume_review_controllers.dart';
 import '../widgets/jd_input_field.dart';
 import '../widgets/prompt_button.dart';
-import '../widgets/resume_upload_button.dart';
+import '../../widgets/upload_download_button.dart';
 
 class ResumeReviewScreen extends StatefulWidget {
   const ResumeReviewScreen({super.key});
@@ -56,7 +56,9 @@ class _ResumeReviewScreenState extends State<ResumeReviewScreen> {
                   const SizedBox(height: 16),
 
                   // Resume Upload Button
-                  ResumeUploadButton(
+                  UploadDownloadButton(
+                    icon: Icons.upload_file,
+                    process: AppStrings.uploadResume,
                     fileName: controller.fileName,
                     onPick: () async {
                       final picked = await controller.pickResume();

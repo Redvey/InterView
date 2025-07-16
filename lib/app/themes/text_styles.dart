@@ -10,6 +10,10 @@ class AppTextStyles {
       fontFamily: AppFonts.poppins,
 
   );
+  static const bodyBold = TextStyle(
+      fontFamily: AppFonts.poppins,
+    fontWeight: FontWeight.w600,
+  );
 
   static  heading({required Color color}) =>  TextStyle(
     fontFamily: AppFonts.poppins,

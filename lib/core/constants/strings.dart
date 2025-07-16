@@ -1,6 +1,7 @@
 class AppStrings {
   static const hi = "Hello";
   static const name = "Roopam!";
+  static const ad = "ADVERTISEMENT";
 
   static const crackIt = "< crack the interview />";
   static const finalSteps = "Final Steps Toward Your Goal";

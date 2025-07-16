@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/constants/strings.dart';
 
-class ResumeUploadButton extends StatelessWidget {
+class UploadDownloadButton extends StatelessWidget {
   final String? fileName;
   final VoidCallback onPick;
+  final IconData icon;
+  final String process;
 
-  const ResumeUploadButton({
+  const UploadDownloadButton({
     super.key,
     required this.fileName,
-    required this.onPick,
+    required this.onPick, required this.icon, required this.process,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       onPressed: onPick,
-      icon: const Icon(Icons.upload_file, color: AppColors.textGreen),
+      icon:  Icon(icon, color: AppColors.textGreen),
       label: Text(
-        fileName ?? AppStrings.uploadResume,
+        fileName ?? process,
         style: const TextStyle(color: AppColors.textGreenBg),
       ),
       style: ElevatedButton.styleFrom(

@@ -52,7 +52,7 @@ class FeatureContainer extends StatelessWidget {
                 shaderCallback: (bounds) => gradient.createShader(bounds),
                 child: Icon(
                   icon,
-                  size: AppSizes.star,
+                  size: AppSizes.iconSize,
                   color: AppColors.backgroundWhite,
                 ),
               ),

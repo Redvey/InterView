@@ -11,7 +11,8 @@ class AppSizes {
   static double xlV = 60.h;
 
   // Icons size
-  static double star = 28.sp;
+  static double iconSize = 28.sp;
+
 
   // Blur radius & spread radius
   static double welcomeBlur = 40.r;
@@ -43,6 +44,8 @@ class AppSizes {
 
   // Offsets
   static final double shadowOffsetY = -10.0.h;
+  static final double shadowOffsetY2 = 1.0.h;
+  static final double shadowOffsetX2 = 2.0.h;
   static final double zero = 0.h;
 
   // Horizontal spacing
@@ -52,6 +55,9 @@ class AppSizes {
   static double headSubhead = 4.w;
 
   // Vertical spacing
+  static double spaceLessH = 10.h;
+  static double defaultSpaceH = 12.h;
+  static double spaceBtwItemsH = 16.h;
   static double spaceBtwFields = 20.h;
   static double spaceBtwSections = 48.h;
 

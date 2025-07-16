@@ -96,7 +96,7 @@ class HomeScreen extends StatelessWidget {
                     gradient: AppColors.backgroundGradient,
                   ),
                   child: Center(
-                    child: Text("GOOGLE AD", style: AppTextStyles.welcome),
+                    child: Text(AppStrings.ad, style: AppTextStyles.welcome),
                   ),
                 ),
               ],

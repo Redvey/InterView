@@ -139,4 +139,9 @@ class AppColors{
   static const buttonTextRed = Color(0xFFEC6A5B);
 
 
+  static const buttonYellow = Color(0xFFFEAA02);
+
+
+
+
 }
