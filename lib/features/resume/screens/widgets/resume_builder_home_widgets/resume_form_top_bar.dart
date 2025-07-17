@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:interview/core/constants/strings.dart';
 import 'package:interview/core/extensions/responsive_extension.dart';
 
 
 import '../../../../widgets/back_button.dart';
-import '../../../../profile/profile_avatar.dart';
+import '../../../../widgets/membership.dart';
 
 class ResumeFormTopBar extends StatelessWidget {
   final Color pageColor;
+  final String title;
 
   const ResumeFormTopBar({
     super.key,
     required this.pageColor,
+    required this.title,
   });
 
   @override
@@ -20,8 +21,8 @@ class ResumeFormTopBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CircleBackButton(pageColor: pageColor),
-        Text(AppStrings.resumeBuilder, style: context.featureTitleStyle),
-        const ProfileAvatar(),
+        Text(title, style: context.featureTitleStyle),
+        const MembershipIcon(),
       ],
     );
   }

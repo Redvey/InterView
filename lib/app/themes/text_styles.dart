@@ -38,7 +38,7 @@ class AppTextStyles {
   static TextStyle featureTitle(BuildContext context) => TextStyle(
     fontFamily: AppFonts.poppins,
     fontSize: context.fontSizeSs,
-    fontWeight: FontWeight.normal,
+    fontWeight: FontWeight.w500,
   );
 
   // Resume Builder

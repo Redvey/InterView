@@ -10,14 +10,8 @@ import '../widgets/welcome_card.dart';
 
 
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
+        // floatingActionButton: FloatingActionButton(onPressed: (){}),
       ),
     );
   }

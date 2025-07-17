@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../data/models/metaball_circle.dart';
 
-
 /// Custom painter for drawing metaball circles
 class MetaballShapesPainterV1 extends CustomPainter {
   final List<MetaballCircle> circles;
@@ -38,6 +37,9 @@ class MetaballShapesPainterV1 extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    if (oldDelegate is MetaballShapesPainterV1) {
+      return oldDelegate.circles != circles;
+    }
     return true; // Repaint on every frame for smooth animation
   }
 }

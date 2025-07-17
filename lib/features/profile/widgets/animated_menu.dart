@@ -29,12 +29,14 @@ class AnimatedMenuItem extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Text(
-            text,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
+          child: Semantics(
+            label: text, button: onTap != null,
+            child: Text(
+              text,
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                color: Theme.of(context).colorScheme.onPrimary,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
         ),

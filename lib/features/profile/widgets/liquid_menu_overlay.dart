@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/extensions/responsive_extension.dart';
-
 import '../data/models/metaball_circle.dart';
 import '../utils/metaball_config.dart';
 import 'animated_menu.dart';
@@ -96,6 +95,7 @@ class _LiquidMenuOverlayState extends State<LiquidMenuOverlay>
     }
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {

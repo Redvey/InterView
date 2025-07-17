@@ -4,6 +4,7 @@ import 'package:interview/core/extensions/responsive_extension.dart';
 import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_top_bar.dart';
 import 'package:interview/features/resume/widgets/template_preview.dart';
 
+import '../../../core/constants/strings.dart';
 import '../../widgets/upload_download_button.dart';
 
 class ResumeBuilderFinalScreen extends StatefulWidget {
@@ -37,7 +38,7 @@ class _ResumeBuilderFinalScreenState extends State<ResumeBuilderFinalScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ResumeFormTopBar(pageColor: AppColors.blackLight),
+                ResumeFormTopBar(pageColor: AppColors.blackLight, title: AppStrings.resumeBuilder,),
                 SizedBox(height:  context.spaceBtwItems),
                 _sectionTitle(context, "Resume PDFs"),
                 SizedBox(height:  context.spaceBtwItems),
