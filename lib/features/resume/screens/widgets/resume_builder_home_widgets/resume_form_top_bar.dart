@@ -4,7 +4,7 @@ import 'package:interview/core/extensions/responsive_extension.dart';
 
 
 import '../../../../widgets/back_button.dart';
-import '../../../../widgets/profile_avatar.dart';
+import '../../../../profile/profile_avatar.dart';
 
 class ResumeFormTopBar extends StatelessWidget {
   final Color pageColor;

@@ -5,7 +5,7 @@ import '../../core/constants/colors.dart';
 import '../../core/constants/sizes.dart';
 import '../../core/constants/strings.dart';
 import '../widgets/back_button.dart';
-import '../widgets/profile_avatar.dart';
+import '../profile/profile_avatar.dart';
 
 class FlashCard extends StatefulWidget {
   const FlashCard({super.key});

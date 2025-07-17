@@ -3,7 +3,7 @@ import 'package:interview/core/extensions/responsive_extension.dart';
 
 import '../../../core/constants/colors.dart';
 import '../widgets/back_button.dart';
-import '../widgets/profile_avatar.dart';
+import '../profile/profile_avatar.dart';
 
 
 class MockInterviewScreen extends StatefulWidget {
