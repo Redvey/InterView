@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interview/features/profile/widgets/liquid_menu_overlay.dart';
 
-
+final GlobalKey _repaintKey = GlobalKey();
 class ProfileAvatar extends StatefulWidget {
   final double radius;
   const ProfileAvatar({super.key, this.radius = 20});
@@ -57,26 +57,51 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
       _isMenuOpen = false;
     }
   }
-
   Widget _getCurrentPageWidget() {
-    // You can customize this based on your current route or pass it as a parameter
-    // For now, we'll create a simple container that captures the current screen
-    return SizedBox(
-      width: double.infinity,
-      height: double.infinity,
-      child: Builder(
-        builder: (context) {
-          // This will capture the current page content
-          return Material(
-            child: Container(
-              color: Colors.transparent,
-              child: const SizedBox.expand(),
-            ),
-          );
-        },
+    return RepaintBoundary(
+      key: _repaintKey,
+      child: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Builder(
+          builder: (context) {
+            return Material(
+              child: Container(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                child: const SizedBox.expand(),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
+
+  // Widget _getCurrentPageWidget() {
+  //   // You can customize this based on your current route or pass it as a parameter
+  //   // For now, we'll create a simple container that captures the current screen
+  //   return RepaintBoundary(
+  //     key: _repaintKey,
+  //
+  //     child: SizedBox(
+  //       width: double.infinity,
+  //       height: double.infinity,
+  //       child: Builder(
+  //         builder: (context) {
+  //           // This will capture the current page content
+  //           return Material(
+  //             child: Container(
+  //               color: Theme.of(context).scaffoldBackgroundColor,
+  //               child: const SizedBox.expand(),
+  //             ),
+  //           );
+  //         },
+  //       ),
+  //     ),
+  //   );
+  // }
+
+
 
   void _handleMenuItemTap(String item) {
     switch (item.toLowerCase()) {

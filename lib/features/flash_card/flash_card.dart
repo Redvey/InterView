@@ -5,7 +5,6 @@ import '../../core/constants/colors.dart';
 import '../../core/constants/sizes.dart';
 import '../../core/constants/strings.dart';
 import '../widgets/back_button.dart';
-import '../profile/profile_avatar.dart';
 
 class FlashCard extends StatefulWidget {
   const FlashCard({super.key});
@@ -48,7 +47,7 @@ class _FlashCardState extends State<FlashCard> {
                     children: [
                       CircleBackButton(pageColor: AppColors.blackLight),
                       Text(AppStrings.flashcard, style: AppTextStyles.featureTitle(context)),
-                      const ProfileAvatar(),
+
                     ],
                   ),
                   const SizedBox(height: 16),
@@ -92,6 +91,10 @@ class _FlashCardState extends State<FlashCard> {
       ),
     );
   }
+}
+
+class ProfileAvatar {
+  const ProfileAvatar();
 }
 
 Widget _buildChip(String label, String? selectedValue, Function(String) onSelected) {
