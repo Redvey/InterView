@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:interview/core/extensions/responsive_extension.dart';
+
 class AppSizes {
   // iPhone 16 width as reference
   static const double baseWidth = 393.0;
@@ -42,6 +44,7 @@ class AppSizes {
   static double mdV(BuildContext context) => 16.0 * _getHeightScaleFactor(context);
   static double lg(BuildContext context) => 24.0 * _getScaleFactor(context);
   static double lgV(BuildContext context) => 24.0 * _getHeightScaleFactor(context);
+  static double lgAnim(BuildContext context) => 80.0 * _getHeightScaleFactor(context);
   static double xl(BuildContext context) => 60.0 * _getScaleFactor(context);
   static double xlV(BuildContext context) => 60.0 * _getHeightScaleFactor(context);
 
@@ -99,8 +102,8 @@ class AppSizes {
   // Combined spacing
   static EdgeInsets screenPadding(BuildContext context) {
     // EdgeInsets safePadding = MediaQuery.of(context).padding;
-    return EdgeInsets.symmetric(horizontal: lg(context)).copyWith(
-        top: lgV(context),
+    return EdgeInsets.symmetric(horizontal: context.lg).copyWith(
+        top: context.lgV,
         bottom: spaceBtwSections(context)
     );
   }

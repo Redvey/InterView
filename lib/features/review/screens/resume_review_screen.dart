@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/strings.dart';
 import 'package:interview/core/extensions/responsive_extension.dart';
-import 'package:interview/features/widgets/profile_avatar.dart';
+import 'package:interview/features/profile/profile_avatar.dart';
 import '../../widgets/back_button.dart';
 import '../controllers/resume_review_controllers.dart';
 import '../widgets/jd_input_field.dart';

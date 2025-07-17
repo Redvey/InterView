@@ -12,6 +12,7 @@ extension ResponsiveContext on BuildContext {
   double get mdV => AppSizes.mdV(this);
   double get lg => AppSizes.lg(this);
   double get lgV => AppSizes.lgV(this);
+  double get lgA => AppSizes.lgAnim(this);
   double get xl => AppSizes.xl(this);
   double get xlV => AppSizes.xlV(this);
 
