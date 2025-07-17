@@ -49,7 +49,7 @@ class AppSizes {
   static double xlV(BuildContext context) => 60.0 * _getHeightScaleFactor(context);
 
   // Icons size
-  static double iconSize(BuildContext context) => 28.0 * _getScaleFactor(context);
+  static double iconSize(BuildContext context) => 30.0 * _getScaleFactor(context);
 
   // Blur radius & spread radius
   static double welcomeBlur(BuildContext context) => 40.0 * _getScaleFactor(context);

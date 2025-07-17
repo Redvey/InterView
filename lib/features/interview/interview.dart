@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:interview/core/extensions/responsive_extension.dart';
 
 import '../../../core/constants/colors.dart';
-import '../widgets/back_button.dart';
-import '../profile/profile_avatar.dart';
+import '../../core/constants/strings.dart';
+import '../resume/screens/widgets/resume_builder_home_widgets/resume_form_top_bar.dart';
 
 
 class MockInterviewScreen extends StatefulWidget {
@@ -42,14 +42,8 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Header
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CircleBackButton(pageColor: AppColors.blackLight),
-                      Text("Select an Interview Template", style: context.featureTitleStyle),
-                      const ProfileAvatar(),
-                    ],
-                  ),
+                  ResumeFormTopBar(pageColor: AppColors.blackLight, title: AppStrings.mockInterview,),
+
                   const SizedBox(height: 16),
 
                   // Category Filter Row

@@ -89,6 +89,9 @@ class AppStrings {
   static const settings = "settings";
   static const profile = "profile";
 
+  //mock-interview
+  static const mockInterview ="Select an Interview Template";
+
   //membership
   // static const membershipSubTitle = "Only ${"perMonth"} per month";
 }

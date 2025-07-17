@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../app/themes/text_styles.dart';
 import '../../core/constants/colors.dart';
 import '../../core/constants/sizes.dart';
 import '../../core/constants/strings.dart';
-import '../widgets/back_button.dart';
+import '../resume/screens/widgets/resume_builder_home_widgets/resume_form_top_bar.dart';
 
 class FlashCard extends StatefulWidget {
   const FlashCard({super.key});
@@ -42,14 +41,7 @@ class _FlashCardState extends State<FlashCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Header
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CircleBackButton(pageColor: AppColors.blackLight),
-                      Text(AppStrings.flashcard, style: AppTextStyles.featureTitle(context)),
-
-                    ],
-                  ),
+                  ResumeFormTopBar(pageColor: AppColors.blackLight, title: AppStrings.flashcard,),
                   const SizedBox(height: 16),
 
                   const Text("Practice Cards", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18)),

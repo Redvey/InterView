@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/strings.dart';
 import 'package:interview/core/extensions/responsive_extension.dart';
-import 'package:interview/features/profile/profile_avatar.dart';
-import '../../widgets/back_button.dart';
+import '../../resume/screens/widgets/resume_builder_home_widgets/resume_form_top_bar.dart';
 import '../controllers/resume_review_controllers.dart';
 import '../widgets/jd_input_field.dart';
 import '../widgets/prompt_button.dart';
@@ -40,14 +39,7 @@ class _ResumeReviewScreenState extends State<ResumeReviewScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Header
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CircleBackButton(pageColor: AppColors.blackLight),
-                      Text(AppStrings.resumeReviewTitle,style:  context.featureTitleStyle,),
-                      const ProfileAvatar(),
-                    ],
-                  ),
+                  ResumeFormTopBar(pageColor: AppColors.blackLight, title: AppStrings.resumeReviewTitle,),
                   const SizedBox(height: 16),
 
                   // JD Input Field
