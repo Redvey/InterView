@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/constants/sizes.dart';
-import 'package:interview/app/themes/text_styles.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 
 class SubscriptionPlanBottomSheet extends StatefulWidget {
   const SubscriptionPlanBottomSheet({super.key});
@@ -17,20 +16,20 @@ class _SubscriptionPlanBottomSheetState extends State<SubscriptionPlanBottomShee
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(AppSizes.borderRadiusLg)),
+      borderRadius: BorderRadius.vertical(top: Radius.circular( context.borderRadiusLg )),
       child: Container(
-        padding: AppSizes.screenPadding,
+        padding:  context.screenPadding ,
         decoration: BoxDecoration(
             color: AppColors.backgroundWhite,
           boxShadow: [
             BoxShadow(
               color: AppColors.purpleOverlay,
-              blurRadius: AppSizes.welcomeBlur,
-              offset:  Offset(0, AppSizes.shadowOffsetY),
-              spreadRadius: AppSizes.welcomeSpread,
+              blurRadius:  context.welcomeBlur ,
+              offset:  Offset(0,  context.shadowOffsetY ),
+              spreadRadius:  context.welcomeSpread ,
             ),
           ],
-          borderRadius: BorderRadius.vertical(top: Radius.circular(AppSizes.borderRadiusLg)),
+          borderRadius: BorderRadius.vertical(top: Radius.circular( context.borderRadiusLg )),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -67,21 +66,21 @@ class _SubscriptionPlanBottomSheetState extends State<SubscriptionPlanBottomShee
 
   Widget _buildTag(String text) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: AppSizes.md, vertical: AppSizes.spaceLess / 2),
-      margin: EdgeInsets.only(bottom: AppSizes.spaceLess),
+      padding: EdgeInsets.symmetric(horizontal:  context.md , vertical:  context.spaceLess  / 2),
+      margin: EdgeInsets.only(bottom:  context.spaceLess ),
       decoration: BoxDecoration(
         color: AppColors.buttonYellow,
         boxShadow: [
           BoxShadow(
             color: AppColors.buttonYellow,
-            blurRadius: AppSizes.glowBlur,
-            offset: Offset(AppSizes.shadowOffsetX2, AppSizes.shadowOffsetY2),
-            spreadRadius: AppSizes.glowSpread,
+            blurRadius:  context.glowBlur ,
+            offset: Offset( context.shadowOffsetX2 ,  context.shadowOffsetY2 ),
+            spreadRadius:  context.glowSpread ,
           ),
         ],
-        borderRadius: BorderRadius.circular(AppSizes.borderRadiusMd),
+        borderRadius: BorderRadius.circular( context.borderRadiusMd ),
       ),
-      child: Text(text, style: AppTextStyles.bodyBold.copyWith(color: AppColors.blackLight)),
+      child: Text(text, style: context.bodyBoldStyle.copyWith(color: AppColors.blackLight)),
     );
   }
 
@@ -99,14 +98,14 @@ class _SubscriptionPlanBottomSheetState extends State<SubscriptionPlanBottomShee
     return GestureDetector(
       onTap: () => setState(() => _selectedIndex = index),
       child: Container(
-        margin: EdgeInsets.only(top: AppSizes.spaceLess),
-        padding: AppSizes.screenPadding.copyWith(top: AppSizes.md, bottom: AppSizes.md),
+        margin: EdgeInsets.only(top:  context.spaceLess ),
+        padding:  context.screenPadding .copyWith(top:  context.md , bottom:  context.md ),
         decoration: BoxDecoration(
           border: Border.all(
             color: isSelected ? AppColors.purple : Colors.grey.shade300,
             width: isSelected ? 2 : 1,
           ),
-          borderRadius: BorderRadius.circular(AppSizes.borderRadiusLg),
+          borderRadius: BorderRadius.circular( context.borderRadiusLg ),
         ),
         child: Row(
           children: [
@@ -114,17 +113,17 @@ class _SubscriptionPlanBottomSheetState extends State<SubscriptionPlanBottomShee
               isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
               color: isSelected ? AppColors.purple : Colors.grey,
             ),
-            SizedBox(width: AppSizes.spaceLess),
+            SizedBox(width:  context.spaceLess ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: AppTextStyles.bodyBold.copyWith(fontSize: AppSizes.fontSizeMd)),
+                  Text(title, style: context.bodyBoldStyle.copyWith(fontSize:  context.fontSizeMd )),
                   if (perMonth != null)
                     Text(
                       "Only $perMonth per month",
                       style: TextStyle(
-                        fontSize: AppSizes.fontSizeSm,
+                        fontSize:  context.fontSizeSm ,
                         color: AppColors.buttonYellow,
                         fontWeight: FontWeight.w600,
                       ),
@@ -154,7 +153,7 @@ class _SubscriptionPlanBottomSheetState extends State<SubscriptionPlanBottomShee
                 ),
                 Text(
                   newPrice,
-                  style: AppTextStyles.bodyBold.copyWith(fontSize: AppSizes.fontSizeMd),
+                  style: context.bodyBoldStyle.copyWith(fontSize:  context.fontSizeMd ),
                 ),
               ],
             ),

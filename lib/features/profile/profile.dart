@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 import 'package:interview/features/widgets/back_button.dart';
-
-import '../../core/constants/sizes.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -15,7 +14,7 @@ class ProfileScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: Padding(
-            padding:  EdgeInsets.all(AppSizes.lg),
+            padding:  EdgeInsets.all( context.lg),
             child: Row(
               children: [
                 CircleBackButton(pageColor: AppColors.blackLight)

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/constants/sizes.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 
 class FinalStepDialog extends StatelessWidget {
   const FinalStepDialog({super.key});
@@ -10,18 +10,18 @@ class FinalStepDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: Colors.transparent,
-      insetPadding: EdgeInsets.all(AppSizes.lg),
+      insetPadding: EdgeInsets.all( context.lg),
       child: Container(
-        padding: EdgeInsets.all(AppSizes.lg),
+        padding: EdgeInsets.all( context.lg),
         decoration: BoxDecoration(
           color: AppColors.blackLight,
-          borderRadius: BorderRadius.circular(AppSizes.borderRadiusLg),
+          borderRadius: BorderRadius.circular( context.borderRadiusLg),
           boxShadow: [
             BoxShadow(
               color: AppColors.purple.withAlpha(1075),
-              blurRadius: AppSizes.welcomeBlur,
-              offset: Offset(0, AppSizes.shadowOffsetY),
-              spreadRadius: AppSizes.welcomeSpread,
+              blurRadius:  context.welcomeBlur,
+              offset: Offset(0,  context.shadowOffsetY),
+              spreadRadius:  context.welcomeSpread,
             ),
           ],
         ),
@@ -31,23 +31,23 @@ class FinalStepDialog extends StatelessWidget {
             Align(
               alignment: Alignment.topCenter,
               child: Container(
-                width: AppSizes.glowW,
-                height: AppSizes.glowH,
+                width:  context.glowW,
+                height:  context.glowH,
                 decoration: BoxDecoration(
                   color: AppColors.otherForm,
-                  borderRadius: BorderRadius.circular(AppSizes.glowH / 2),
+                  borderRadius: BorderRadius.circular( context.glowH / 2),
                   boxShadow: [
                     BoxShadow(
                       color: AppColors.purple,
-                      blurRadius: AppSizes.glowBlur,
-                      offset: Offset(0, AppSizes.shadowOffsetY),
-                      spreadRadius: AppSizes.glowSpread,
+                      blurRadius:  context.glowBlur,
+                      offset: Offset(0,  context.shadowOffsetY),
+                      spreadRadius:  context.glowSpread,
                     ),
                   ],
                 ),
               ),
             ),
-            SizedBox(height: AppSizes.spaceBtwItems),
+            SizedBox(height:  context.spaceBtwItems),
             const Text(
               "Final Step",
               style: TextStyle(
@@ -56,7 +56,7 @@ class FinalStepDialog extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: AppSizes.defaultSpace),
+            SizedBox(height:  context.defaultSpace),
             const Text(
               "Have you filled in all your details correctly?",
               textAlign: TextAlign.center,
@@ -65,7 +65,7 @@ class FinalStepDialog extends StatelessWidget {
                 fontSize: 16,
               ),
             ),
-            SizedBox(height: AppSizes.spaceBtwFields),
+            SizedBox(height:  context.spaceBtwFields),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -74,7 +74,7 @@ class FinalStepDialog extends StatelessWidget {
                   style: TextButton.styleFrom(foregroundColor: Colors.white),
                   child: const Text("No"),
                 ),
-                SizedBox(width: AppSizes.defaultSpace),
+                SizedBox(width:  context.defaultSpace),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
@@ -84,7 +84,7 @@ class FinalStepDialog extends StatelessWidget {
                     backgroundColor: AppColors.purple,
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(AppSizes.buttonRadius),
+                      borderRadius: BorderRadius.circular( context.buttonRadius),
                     ),
                   ),
                   child: const Text("Yes, Proceed"),

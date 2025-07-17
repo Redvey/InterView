@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:interview/app/themes/text_styles.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 import 'package:interview/core/utils/color_utils.dart';
 import 'package:interview/features/resume/widgets/dotted_button.dart';
 import 'package:interview/features/resume/widgets/labelled_text_field.dart';
@@ -102,7 +102,7 @@ class _EducationFormState extends State<EducationForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Education Entry', style: AppTextStyles.infoHeader),
+              Text('Education Entry', style:  context.infoHeaderStyle),
               const SizedBox(height: 16),
               ..._entryIds.asMap().entries.map(
                 (entry) => _buildEducationEntry(entry.key, containerColor),

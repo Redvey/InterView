@@ -1,88 +1,87 @@
 import 'package:flutter/material.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 import '../../core/constants/colors.dart';
-import '../../core/constants/sizes.dart';
 import 'fonts.dart';
-
 
 class AppTextStyles {
 
-  static const textField = TextStyle(
-      fontFamily: AppFonts.poppins,
-
-  );
-  static const bodyBold = TextStyle(
-      fontFamily: AppFonts.poppins,
-    fontWeight: FontWeight.w600,
-  );
-
-  static  heading({required Color color}) =>  TextStyle(
+  static TextStyle textField(BuildContext context) => TextStyle(
     fontFamily: AppFonts.poppins,
-    fontSize: AppSizes.fontSizeLg,
+    fontSize: context.fontSizeSx,
+  );
+
+  static TextStyle bodyBold(BuildContext context) => TextStyle(
+    fontFamily: AppFonts.poppins,
+    fontWeight: FontWeight.w600,
+    fontSize: context.fontSizeSx,
+  );
+
+  static TextStyle heading(BuildContext context, {required Color color}) => TextStyle(
+    fontFamily: AppFonts.poppins,
+    fontWeight: FontWeight.w600,
+    fontSize: context.fontSizeLg,
+    color: color,
+  );
+
+  static TextStyle subheading(BuildContext context, {required Color color}) => TextStyle(
+    fontFamily: AppFonts.poppins,
+    fontSize: context.fontSizeSm,
     fontWeight: FontWeight.w600,
     color: color,
   );
 
-  static  subheading({required Color color}) =>  TextStyle(
+  static TextStyle welcome(BuildContext context) => TextStyle(
     fontFamily: AppFonts.poppins,
-    fontSize: AppSizes.fontSizeSm,
-    fontWeight: FontWeight.w600,
-      color: color,
-  );
-
-  static final welcome = TextStyle(
-    fontFamily: AppFonts.poppins,
-    fontSize: AppSizes.fontSizeMd,
+    fontSize: context.fontSizeMd,
     fontWeight: FontWeight.w600,
   );
 
-  static final featureTitle = TextStyle(
+  static TextStyle featureTitle(BuildContext context) => TextStyle(
     fontFamily: AppFonts.poppins,
-    fontSize: AppSizes.fontSizeSs,
+    fontSize: context.fontSizeSs,
     fontWeight: FontWeight.normal,
   );
 
-
-
-  //Resume Builder
-  static final infoHeader = TextStyle(
+  // Resume Builder
+  static TextStyle infoHeader(BuildContext context) => TextStyle(
     fontFamily: AppFonts.poppins,
-    fontSize: AppSizes.fontSizeSd,
+    fontSize: context.fontSizeSd ,
     fontWeight: FontWeight.w600,
   );
-  static final detailHeader = TextStyle(
+
+  static TextStyle detailHeader(BuildContext context) => TextStyle(
     fontFamily: AppFonts.poppins,
-    fontSize: AppSizes.fontSizeSm,
+    fontSize:  context.fontSizeSm ,
     fontWeight: FontWeight.w400,
     color: AppColors.black,
   );
-  static TextStyle hintText({required Color color}) => TextStyle(
+
+  static TextStyle hintText(BuildContext context, {required Color color}) => TextStyle(
     fontFamily: AppFonts.poppins,
-    fontSize: AppSizes.fontSizeSs,
+    fontSize:  context.fontSizeSs ,
     fontWeight: FontWeight.w400,
     color: color,
   );
 
-  //buttons
-  static final buttonLight = TextStyle(
+  // Buttons
+  static TextStyle buttonLight(BuildContext context) => TextStyle(
     fontFamily: AppFonts.poppins,
-    fontSize: AppSizes.fontSizeSm,
+    fontSize:  context.fontSizeSm ,
     fontWeight: FontWeight.w400,
     color: AppColors.blackLight,
   );
-  static final welcomeCardFinal = TextStyle(
+
+  static TextStyle welcomeCardFinal(BuildContext context) => TextStyle(
     color: AppColors.backgroundYellow,
     fontFamily: AppFonts.poppins,
-    fontSize: AppSizes.fontSizeLg,
+    fontSize:  context.fontSizeLg ,
     fontWeight: FontWeight.w400,
   );
-  static final crackIt = TextStyle(
+
+  static TextStyle crackIt(BuildContext context) => TextStyle(
     color: AppColors.textGreen,
     fontFamily: AppFonts.poppins,
-    fontSize: AppSizes.fontSizeSm,
+    fontSize:  context.fontSizeSm ,
     fontWeight: FontWeight.w400,
   );
-
-
-
-
 }

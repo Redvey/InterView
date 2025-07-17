@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:interview/core/constants/strings.dart';
 import 'package:interview/features/resume/screens/experience_form/experience_entry_model.dart';
 import 'package:interview/features/resume/screens/experience_form/widgets/toggle_field.dart';
+import '../../../../../core/constants/colors.dart';
 import '../../../../../core/utils/color_utils.dart';// Update with correct path
 import '../../../widgets/labelled_text_field.dart';
 import 'date_picker.dart';
@@ -30,7 +31,25 @@ class _ExperienceCardState extends State<ExperienceCard> {
       initialDate: DateTime.now(),
       firstDate: DateTime(1990),
       lastDate: DateTime(2100),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: AppColors.backgroundRed, // Header & selected date
+              onPrimary: AppColors.backgroundWhite,              // Header text/icon color
+              onSurface: AppColors.backgroundPink,              // General text color
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: AppColors.backgroundRedPink,
+              ),
+            ), dialogTheme: DialogThemeData(backgroundColor: AppColors.blackLight),
+          ),
+          child: child!,
+        );
+      },
     );
+
     if (picked != null) {
       setState(() {
         if (isFrom) {
@@ -41,6 +60,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
       });
     }
   }
+
 
   @override
   Widget build(BuildContext context) {

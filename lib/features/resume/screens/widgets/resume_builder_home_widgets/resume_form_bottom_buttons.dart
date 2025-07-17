@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/constants/sizes.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 
 class ResumeFormBottomButtons extends StatelessWidget {
   final int currentPage;
@@ -20,7 +19,7 @@ class ResumeFormBottomButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(AppSizes.md),
+      padding: EdgeInsets.all( context.md),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -28,24 +27,24 @@ class ResumeFormBottomButtons extends StatelessWidget {
             GestureDetector(
               onTap: onPrevious,
               child: CircleAvatar(
-                radius: 30.r,
+                radius: 3,
                 backgroundColor: AppColors.blackLight,
                 child: Icon(
                   Icons.arrow_back,
                   color: AppColors.backgroundLightOrange,
-                  size: AppSizes.buttonHeight,
+                  size:  context.buttonHeight,
                 ),
               ),
             ),
           GestureDetector(
             onTap: onNext,
             child: CircleAvatar(
-              radius: 30.r,
+              radius: 30,
               backgroundColor: AppColors.blackLight,
               child: Icon(
                 currentPage == totalPages - 1 ? Icons.check : Icons.arrow_forward,
                 color: AppColors.backgroundLime,
-                size: AppSizes.buttonHeight,
+                size:  context.buttonHeight,
               ),
             ),
           ),

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/strings.dart';
-import 'package:interview/app/themes/text_styles.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 import 'package:interview/features/resume/widgets/labelled_text_field.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/constants/sizes.dart';
 
 class GeneralInformation extends StatelessWidget {
   const GeneralInformation({super.key});
@@ -34,8 +33,8 @@ class GeneralInformation extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(AppStrings.generalInformation, style: AppTextStyles.infoHeader),
-                SizedBox(height: AppSizes.spaceBtwFields),
+                Text(AppStrings.generalInformation, style:  context.infoHeaderStyle),
+                SizedBox(height:  context.spaceBtwFields),
 
                 LabeledTextField(
                   label: AppStrings.firstName,

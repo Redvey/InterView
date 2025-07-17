@@ -1,91 +1,141 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/material.dart';
 
 class AppSizes {
+  // Base dimensions (you can adjust these as needed)
+  static const double baseWidth = 393.0; // iPhone 16 width as reference
+  static const double baseHeight = 852.0; // iPhone 16 height as reference
+
+  // Get scale factors
+  static double _getWidthScaleFactor(BuildContext context) {
+    return MediaQuery.of(context).size.width / baseWidth;
+  }
+
+  static double _getHeightScaleFactor(BuildContext context) {
+    return MediaQuery.of(context).size.height / baseHeight;
+  }
+
+  static double _getScaleFactor(BuildContext context) {
+    // Use the smaller scale factor to ensure content fits on screen
+    return (_getWidthScaleFactor(context) + _getHeightScaleFactor(context)) / 2;
+  }
+
   // Padding and margin sizes
-  static double md = 16.w;
-  static double mdV = 16.h;
-  static double lg = 24.w;
-  static double lgV = 24.h;
-  static double xl = 60.w;
-  static double xlV = 60.h;
+  static double md(BuildContext context) => 16.0 * _getScaleFactor(context);
+  static double mdV(BuildContext context) => 16.0 * _getHeightScaleFactor(context);
+  static double lg(BuildContext context) => 24.0 * _getScaleFactor(context);
+  static double lgV(BuildContext context) => 24.0 * _getHeightScaleFactor(context);
+  static double xl(BuildContext context) => 60.0 * _getScaleFactor(context);
+  static double xlV(BuildContext context) => 60.0 * _getHeightScaleFactor(context);
 
   // Icons size
-  static double iconSize = 28.sp;
-
+  static double iconSize(BuildContext context) => 28.0 * _getScaleFactor(context);
 
   // Blur radius & spread radius
-  static double welcomeBlur = 40.r;
-  static double welcomeSpread = 2.r;
-  static double glowBlur = 100.r;
-  static double glowSpread = 25.r;
+  static double welcomeBlur(BuildContext context) => 40.0 * _getScaleFactor(context);
+  static double welcomeSpread(BuildContext context) => 2.0 * _getScaleFactor(context);
+  static double glowBlur(BuildContext context) => 100.0 * _getScaleFactor(context);
+  static double glowSpread(BuildContext context) => 25.0 * _getScaleFactor(context);
 
   // Glow bar sizes
-  static double glowH = 6.h;
-  static double glowW = 60.w;
-  static double glowB = 3.r;
+  static double glowH(BuildContext context) => 6.0 * _getHeightScaleFactor(context);
+  static double glowW(BuildContext context) => 60.0 * _getWidthScaleFactor(context);
+  static double glowB(BuildContext context) => 3.0 * _getScaleFactor(context);
 
   // Font sizes
-  static double fontSizeSs = 12.sp;
-  static double fontSizeSm = 14.sp;
-  static double fontSizeSx = 16.sp;
-  static double fontSizeSd = 18.sp;
-  static double fontSizeMd = 20.sp;
-  static double fontSizeLg = 22.sp;
+  static double fontSizeSs(BuildContext context) => 12.0 * _getScaleFactor(context);
+  static double fontSizeSm(BuildContext context) => 14.0 * _getScaleFactor(context);
+  static double fontSizeSx(BuildContext context) => 16.0 * _getScaleFactor(context);
+  static double fontSizeSd(BuildContext context) => 18.0 * _getScaleFactor(context);
+  static double fontSizeMd(BuildContext context) => 20.0 * _getScaleFactor(context);
+  static double fontSizeLg(BuildContext context) => 22.0 * _getScaleFactor(context);
 
   // Button sizes
-  static double buttonHeight = 18.h;
-  static double buttonRadius = 12.r;
-  static double buttonWidth = 120.w;
-  static double buttonElevation = 4.r;
+  static double buttonHeight(BuildContext context) => 18.0 * _getHeightScaleFactor(context);
+  static double buttonRadius(BuildContext context) => 12.0 * _getScaleFactor(context);
+  static double buttonWidth(BuildContext context) => 120.0 * _getWidthScaleFactor(context);
+  static double buttonElevation(BuildContext context) => 4.0 * _getScaleFactor(context);
 
   // Image sizes
-  static double imageThumbSize = 80.w;
+  static double imageThumbSize(BuildContext context) => 80.0 * _getWidthScaleFactor(context);
 
   // Offsets
-  static final double shadowOffsetY = -10.0.h;
-  static final double shadowOffsetY2 = 1.0.h;
-  static final double shadowOffsetX2 = 2.0.h;
-  static final double zero = 0.h;
+  static double shadowOffsetY(BuildContext context) => -10.0 * _getHeightScaleFactor(context);
+  static double shadowOffsetY2(BuildContext context) => 1.0 * _getHeightScaleFactor(context);
+  static double shadowOffsetX2(BuildContext context) => 2.0 * _getWidthScaleFactor(context);
+  static double zero(BuildContext context) => 0.0;
 
   // Horizontal spacing
-  static double spaceLess = 10.w;
-  static double defaultSpace = 12.w;
-  static double spaceBtwItems = 16.w;
-  static double headSubhead = 4.w;
+  static double spaceLess(BuildContext context) => 10.0 * _getWidthScaleFactor(context);
+  static double defaultSpace(BuildContext context) => 12.0 * _getWidthScaleFactor(context);
+  static double spaceBtwItems(BuildContext context) => 16.0 * _getWidthScaleFactor(context);
+  static double headSubhead(BuildContext context) => 4.0 * _getWidthScaleFactor(context);
 
   // Vertical spacing
-  static double spaceLessH = 10.h;
-  static double defaultSpaceH = 12.h;
-  static double spaceBtwItemsH = 16.h;
-  static double spaceBtwFields = 20.h;
-  static double spaceBtwSections = 48.h;
+  static double spaceLessH(BuildContext context) => 10.0 * _getHeightScaleFactor(context);
+  static double defaultSpaceH(BuildContext context) => 12.0 * _getHeightScaleFactor(context);
+  static double spaceBtwItemsH(BuildContext context) => 16.0 * _getHeightScaleFactor(context);
+  static double spaceBtwFields(BuildContext context) => 20.0 * _getHeightScaleFactor(context);
+  static double spaceBtwSections(BuildContext context) => 48.0 * _getHeightScaleFactor(context);
 
   // Combined spacing
-  static EdgeInsets screenPadding = EdgeInsets.symmetric(horizontal: lg).copyWith(top: lgV, bottom: spaceBtwSections);
+  static EdgeInsets screenPadding(BuildContext context) {
+    // EdgeInsets safePadding = MediaQuery.of(context).padding;
+    return EdgeInsets.symmetric(horizontal: lg(context)).copyWith(
+        top: lgV(context),
+        bottom: spaceBtwSections(context)
+    );
+  }
+
+
+  static EdgeInsets defaultPadding(BuildContext context) {
+    return EdgeInsets.all(md(context));
+  }
+
+  static EdgeInsets horizontalPadding(BuildContext context) {
+    return EdgeInsets.symmetric(horizontal: md(context));
+  }
+
+  static EdgeInsets verticalPadding(BuildContext context) {
+    return EdgeInsets.symmetric(vertical: mdV(context));
+  }
 
   // Border radius
-  static double borderRadiusSm = 4.r;
-  static double borderRadiusMd = 8.r;
-  static double borderRadiusLg = 24.r;
+  static double borderRadiusSm(BuildContext context) => 4.0 * _getScaleFactor(context);
+  static double borderRadiusMd(BuildContext context) => 8.0 * _getScaleFactor(context);
+  static double borderRadiusLg(BuildContext context) => 24.0 * _getScaleFactor(context);
+  static double sheetRadius(BuildContext context) => 24.0 * _getScaleFactor(context);
 
   // Divider
-  static double dividerHeight = 1.h;
+  static double dividerHeight(BuildContext context) => 1.0 * _getHeightScaleFactor(context);
 
   // Product item dimensions
-  static double productImageSize = 120.w;
-  static double productImageRadius = 16.r;
-  static double productItemHeight = 160.h;
+  static double productImageSize(BuildContext context) => 120.0 * _getWidthScaleFactor(context);
+  static double productImageRadius(BuildContext context) => 16.0 * _getScaleFactor(context);
+  static double productItemHeight(BuildContext context) => 160.0 * _getHeightScaleFactor(context);
 
   // Input field
-  static double inputFieldRadius = 12.r;
-  static double spaceBtwInputFields = 16.h;
+  static double inputFieldRadius(BuildContext context) => 12.0 * _getScaleFactor(context);
+  static double spaceBtwInputFields(BuildContext context) => 16.0 * _getHeightScaleFactor(context);
 
   // Welcome card
-  static double adCard = 200.h;
-  static double featureCard = 100.h;
+  static double adCard(BuildContext context) => 200.0 * _getHeightScaleFactor(context);
+  static double featureCard(BuildContext context) => 100.0 * _getHeightScaleFactor(context);
 
   // Star Rating
-  static double starSpacing = 4.w;
+  static double starSpacing(BuildContext context) => 4.0 * _getWidthScaleFactor(context);
   static int maxStars = 5;
+
+  // Helper methods for responsive design
+  static bool isMobile(BuildContext context) {
+    return MediaQuery.of(context).size.width < 600;
+  }
+
+  static bool isTablet(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    return width >= 600 && width < 1200;
+  }
+
+  static bool isDesktop(BuildContext context) {
+    return MediaQuery.of(context).size.width >= 1200;
+  }
 }

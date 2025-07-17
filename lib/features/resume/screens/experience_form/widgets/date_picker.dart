@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/app/themes/text_styles.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 import 'package:intl/intl.dart';
 import '../../../../../core/constants/strings.dart';
 
@@ -9,7 +9,7 @@ class DatePickerField extends StatelessWidget {
   final String label;
   final DateTime? date;
   final VoidCallback onPressed;
-  final DateFormat formatter; // Pass formatter if needed, or create internally
+  final DateFormat formatter;
 
   const DatePickerField({
     super.key,
@@ -32,7 +32,7 @@ class DatePickerField extends StatelessWidget {
             date != null
                 ? formatter.format(date!)
                 : AppStrings.select,
-            style: AppTextStyles.buttonLight,// Assuming AppStrings.select exists
+            style:  context.buttonLightStyle,
           ),
         ),
       ],

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:interview/app/themes/text_styles.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/constants/sizes.dart';
 import 'package:interview/core/constants/strings.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 import 'package:interview/features/widgets/profile_avatar.dart';
 import '../../widgets/back_button.dart';
 import '../controllers/resume_review_controllers.dart';
@@ -35,7 +34,7 @@ class _ResumeReviewScreenState extends State<ResumeReviewScreen> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: Padding(
-            padding:  EdgeInsets.all(AppSizes.lg),
+            padding:  EdgeInsets.all( context.lg),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +44,7 @@ class _ResumeReviewScreenState extends State<ResumeReviewScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CircleBackButton(pageColor: AppColors.blackLight),
-                      Text(AppStrings.resumeReviewTitle,style: AppTextStyles.featureTitle,),
+                      Text(AppStrings.resumeReviewTitle,style:  context.featureTitleStyle,),
                       const ProfileAvatar(),
                     ],
                   ),

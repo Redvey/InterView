@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 import '../../../core/constants/colors.dart';
-import '../../../core/constants/sizes.dart';
-import '../../../app/themes/text_styles.dart';
 import '../../../core/utils/color_utils.dart';
 import 'input_decoration.dart';
 
@@ -44,7 +43,7 @@ class LabeledTextField extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(label.toUpperCase(), style: AppTextStyles.detailHeader),
+            Text(label.toUpperCase(), style:  context.detailHeaderStyle),
             if (removable && onRemove != null)
               IconButton(
                 icon: const Icon(Icons.close, color: Colors.red, size: 20),
@@ -56,7 +55,7 @@ class LabeledTextField extends StatelessWidget {
 
         // Text Field
         TextField(
-          style: AppTextStyles.textField,
+          style:  context.textFieldStyle,
           controller: controller,
           focusNode: focusNode,
           maxLines: maxLines,
@@ -70,10 +69,10 @@ class LabeledTextField extends StatelessWidget {
               focusNode?.unfocus();
             }
           },
-          decoration: whiteInputDecoration(hint, hintTextColor,borderColor),
+          decoration: whiteInputDecoration(context,hint, hintTextColor,borderColor),
         ),
 
-        SizedBox(height: AppSizes.spaceBtwFields),
+        SizedBox(height:  context.spaceBtwFields),
       ],
     );
   }

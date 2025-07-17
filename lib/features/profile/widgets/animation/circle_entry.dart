@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/strings.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 
-import '../../../../core/constants/sizes.dart';
 import 'package:blobs/blobs.dart';
 
 class CircleEntryAnimation extends StatefulWidget {
@@ -198,9 +198,9 @@ class _CircleEntryAnimationState extends State<CircleEntryAnimation>
   Widget build(BuildContext context) {
     return Padding(
       padding:  EdgeInsets.only(
-        top: AppSizes.xl,
-        left: AppSizes.lg,
-        right: AppSizes.lg,
+        top:  context.xl,
+        left:  context.lg,
+        right:  context.lg,
       ),
 
       child: Container(
