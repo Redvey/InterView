@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:interview/app/themes/text_styles.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/constants/sizes.dart';
 import 'package:interview/core/constants/strings.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 import 'package:interview/features/home/widgets/welcome_message.dart';
 
 import '../../../core/utils/helper_functions.dart';
 import '../widgets/welcome_card.dart';
+
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -20,16 +21,15 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         body: SafeArea(
           child: SingleChildScrollView(
-            padding: AppSizes.screenPadding,
+            padding:   context.screenPadding  ,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const WelcomeMessage(),
-                SizedBox(height: AppSizes.spaceBtwSections),
+                SizedBox(height:   context.spaceBtwSections  ),
                 const WelcomeCard(),
-                SizedBox(height: AppSizes.defaultSpace),
+                SizedBox(height:   context.defaultSpaceH  ),
 
-                /// Resume Builder
                 featureListItem(
                   context: context,
                   onTap: () => context.push('/form'),
@@ -40,7 +40,6 @@ class HomeScreen extends StatelessWidget {
                   colorBg: AppColors.textRed,
                 ),
 
-                /// Resume Review
                 featureListItem(
                   context: context,
                   onTap: () => context.push('/review'),
@@ -51,7 +50,6 @@ class HomeScreen extends StatelessWidget {
                   colorBg: AppColors.textBlue,
                 ),
 
-                /// Flashcard Practice
                 featureListItem(
                   context: context,
                   onTap: () => context.push('/flash-card'),
@@ -62,7 +60,6 @@ class HomeScreen extends StatelessWidget {
                   colorBg: AppColors.textGreen,
                 ),
 
-                /// Mock Interview
                 featureListItem(
                   context: context,
                   onTap: () => context.push('/interview'),
@@ -73,7 +70,6 @@ class HomeScreen extends StatelessWidget {
                   colorBg: AppColors.textYellow,
                 ),
 
-                /// Cold Mail Generator
                 featureListItem(
                   context: context,
                   onTap: () => context.push('/interview'),
@@ -84,19 +80,18 @@ class HomeScreen extends StatelessWidget {
                   colorBg: AppColors.textPurple,
                 ),
 
-                /// Ads Section
-                Divider(thickness: AppSizes.dividerHeight),
-                SizedBox(height: AppSizes.defaultSpace),
+                Divider(thickness:   context.dividerHeight  ),
+                SizedBox(height:   context.defaultSpaceH  ),
 
                 Container(
-                  height: AppSizes.adCard,
+                  height:   context.adCard  ,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppSizes.borderRadiusLg),
+                    borderRadius: BorderRadius.circular(  context.borderRadiusLg  ),
                     gradient: AppColors.backgroundGradient,
                   ),
                   child: Center(
-                    child: Text(AppStrings.ad, style: AppTextStyles.welcome),
+                    child: Text(AppStrings.ad, style: context.welcomeStyle  ),
                   ),
                 ),
               ],

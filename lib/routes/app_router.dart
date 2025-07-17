@@ -62,8 +62,8 @@ final GoRouter appRouter = GoRouter(
             child: child,
           );
         },
-        opaque: false, // ← Makes background transparent
-        barrierColor: Colors.transparent, // Optional: keep background see-through
+        opaque: false,
+        barrierColor: Colors.transparent,
       ),
     ),
     GoRoute(
@@ -74,7 +74,7 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/interview',
       name: RouteNames.interview,
-      builder: (context, state) => const InterView(),
+      builder: (context, state) => const InterViewScreen(),
 
     ),
 

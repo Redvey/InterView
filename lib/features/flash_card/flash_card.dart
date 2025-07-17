@@ -37,7 +37,7 @@ class _FlashCardState extends State<FlashCard> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: Padding(
-            padding:  EdgeInsets.all(AppSizes.lg),
+            padding:  EdgeInsets.all(AppSizes.lg(context)),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +47,7 @@ class _FlashCardState extends State<FlashCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CircleBackButton(pageColor: AppColors.blackLight),
-                      Text(AppStrings.flashcard, style: AppTextStyles.featureTitle),
+                      Text(AppStrings.flashcard, style: AppTextStyles.featureTitle(context)),
                       const ProfileAvatar(),
                     ],
                   ),

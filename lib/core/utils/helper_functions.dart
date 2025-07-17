@@ -48,7 +48,7 @@ Widget featureListItem({
           icon: icon,
         ),
       ),
-      SizedBox(height: AppSizes.defaultSpace),
+      SizedBox(height: AppSizes.defaultSpaceH(context)),
     ],
   );
 }

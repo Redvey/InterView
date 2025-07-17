@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/strings.dart';
-import 'package:interview/app/themes/text_styles.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 
 import '../../widgets/labelled_text_field.dart';
 
@@ -105,7 +105,7 @@ class _SocialLinksFormState extends State<SocialLinksForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(AppStrings.socialLink, style: AppTextStyles.infoHeader),
+              Text(AppStrings.socialLink, style:  context.infoHeaderStyle),
               const SizedBox(height: 16),
 
               // Predefined social link fields

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:interview/app/themes/text_styles.dart';
 import 'package:interview/core/constants/strings.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 
 
 import '../../../../widgets/back_button.dart';
@@ -20,7 +20,7 @@ class ResumeFormTopBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CircleBackButton(pageColor: pageColor),
-        Text(AppStrings.resumeBuilder, style: AppTextStyles.featureTitle),
+        Text(AppStrings.resumeBuilder, style: context.featureTitleStyle),
         const ProfileAvatar(),
       ],
     );

@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 
-import '../../../app/themes/text_styles.dart';
 import '../../../core/constants/colors.dart';
-import '../../../core/constants/sizes.dart';
 import '../../widgets/back_button.dart';
 import '../../widgets/profile_avatar.dart';
 
-class InterView extends StatefulWidget {
-  const InterView({super.key});
+class InterViewScreen extends StatefulWidget {
+  const InterViewScreen({super.key});
 
   @override
-  State<InterView> createState() => _InterViewState();
+  State<InterViewScreen> createState() => _InterViewScreenState();
 }
 
-class _InterViewState extends State<InterView> {
+class _InterViewScreenState extends State<InterViewScreen> {
   String selectedCategory = 'Programming Languages';
 
   // Category Tabs
@@ -36,7 +35,7 @@ class _InterViewState extends State<InterView> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: Padding(
-            padding:  EdgeInsets.all(AppSizes.lg),
+            padding:  EdgeInsets.all( context.lg),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +45,7 @@ class _InterViewState extends State<InterView> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CircleBackButton(pageColor: AppColors.blackLight),
-                      Text("Select an Interview Template", style: AppTextStyles.featureTitle),
+                      Text("Select an Interview Template", style: context.featureTitleStyle),
                       const ProfileAvatar(),
                     ],
                   ),

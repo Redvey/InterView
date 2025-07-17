@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/constants/sizes.dart';
-import '../../../app/themes/text_styles.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 
 class FeatureContainer extends StatelessWidget {
   final Gradient gradient;
@@ -25,13 +24,13 @@ class FeatureContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppSizes.borderRadiusLg),
+        borderRadius: BorderRadius.circular( context.borderRadiusLg ),
         gradient: gradient,
       ),
-      height: AppSizes.featureCard,
+      height:  context.featureCard ,
       width: double.infinity,
       child: Padding(
-        padding:  EdgeInsets.all(AppSizes.md),
+        padding:  EdgeInsets.all( context.md ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -40,9 +39,9 @@ class FeatureContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(title, style: AppTextStyles.heading(color: color)),
-                 SizedBox(height: AppSizes.headSubhead),
-                Text(subTitle, style: AppTextStyles.subheading(color: colorBg)),
+                Text(title, style: context.headingStyle(color: color)),
+                 SizedBox(height:  context.headSubhead ),
+                Text(subTitle, style: context.subheadingStyle(color: colorBg )),
               ],
             ),
             // Icon
@@ -52,7 +51,7 @@ class FeatureContainer extends StatelessWidget {
                 shaderCallback: (bounds) => gradient.createShader(bounds),
                 child: Icon(
                   icon,
-                  size: AppSizes.iconSize,
+                  size:  context.iconSize ,
                   color: AppColors.backgroundWhite,
                 ),
               ),

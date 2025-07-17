@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 
-import '../../../app/themes/text_styles.dart';
 
 class DottedBorderButton extends StatelessWidget {
   final String detail;
@@ -20,7 +20,7 @@ class DottedBorderButton extends StatelessWidget {
       ),
       child:  Text(
         '+$detail',
-        style: AppTextStyles.buttonLight,
+        style:  context.buttonLightStyle,
       ),
     );
   }

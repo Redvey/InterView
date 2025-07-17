@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/strings.dart';
-import 'package:interview/app/themes/text_styles.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 import 'package:interview/features/resume/widgets/labelled_text_field.dart';
 
 class ContactForm extends StatelessWidget {
@@ -23,7 +23,7 @@ class ContactForm extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(AppStrings.contactForm, style: AppTextStyles.infoHeader),
+              Text(AppStrings.contactForm, style:  context.infoHeaderStyle),
               const SizedBox(height: 16),
 
               LabeledTextField(

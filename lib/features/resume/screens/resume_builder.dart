@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/constants/sizes.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_top_bar.dart';
 import 'package:interview/features/resume/widgets/template_preview.dart';
 
@@ -33,21 +33,21 @@ class _ResumeBuilderFinalScreenState extends State<ResumeBuilderFinalScreen> {
         decoration: BoxDecoration(gradient: AppColors.backgroundGradient),
         child: SafeArea(
           child: Padding(
-            padding: AppSizes.screenPadding,
+            padding:  context.screenPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ResumeFormTopBar(pageColor: AppColors.blackLight),
-                SizedBox(height: AppSizes.spaceBtwItems),
+                SizedBox(height:  context.spaceBtwItems),
                 _sectionTitle(context, "Resume PDFs"),
-                SizedBox(height: AppSizes.spaceBtwItems),
+                SizedBox(height:  context.spaceBtwItems),
                 _buildRecentResumes(),
 
-                SizedBox(height: AppSizes.spaceBtwItems),
+                SizedBox(height:  context.spaceBtwItems),
                 _sectionTitle(context, "Templates"),
-                SizedBox(height: AppSizes.spaceLess),
+                SizedBox(height:  context.spaceLess),
                 _buildTemplateSelector(),
-                SizedBox(height: AppSizes.spaceLess),
+                SizedBox(height:  context.spaceLess),
               SizedBox(
                 width: double.infinity,
                 child: UploadDownloadButton(
@@ -88,17 +88,17 @@ class _ResumeBuilderFinalScreenState extends State<ResumeBuilderFinalScreen> {
   Widget _pdfChip(String name, String time) {
     return Container(
       width: 100,
-      margin: EdgeInsets.only(right: AppSizes.spaceLess),
-      padding: EdgeInsets.all(AppSizes.spaceLess / 2),
+      margin: EdgeInsets.only(right:  context.spaceLess),
+      padding: EdgeInsets.all( context.spaceLess / 2),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: Colors.black12),
-        borderRadius: BorderRadius.circular(AppSizes.borderRadiusMd),
+        borderRadius: BorderRadius.circular( context.borderRadiusMd),
       ),
       child: Column(
         children: [
           const Icon(Icons.picture_as_pdf, color: Colors.red, size: 40),
-          SizedBox(height: AppSizes.spaceLess / 2),
+          SizedBox(height:  context.spaceLess / 2),
           Text(name, textAlign: TextAlign.center),
           Text(time, style: const TextStyle(fontSize: 12, color: Colors.grey)),
         ],
@@ -118,16 +118,16 @@ class _ResumeBuilderFinalScreenState extends State<ResumeBuilderFinalScreen> {
                 Stack(
                   children: [
                     Container(
-                      margin: EdgeInsets.all(AppSizes.spaceLess / 2),
+                      margin: EdgeInsets.all( context.spaceLess / 2),
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: isSelected ? Colors.green : Colors.grey,
                           width: 2,
                         ),
-                        borderRadius: BorderRadius.circular(AppSizes.borderRadiusLg / 2),
+                        borderRadius: BorderRadius.circular( context.borderRadiusLg / 2),
                       ),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(AppSizes.borderRadiusLg / 2),
+                        borderRadius: BorderRadius.circular( context.borderRadiusLg / 2),
                         child: Image.asset(_templateThumbnails[index]),
                       ),
                     ),

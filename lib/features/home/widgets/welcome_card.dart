@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 import 'package:interview/features/home/widgets/star_rating.dart';
 
-import '../../../app/themes/text_styles.dart';
 import '../../../core/constants/colors.dart';
-import '../../../core/constants/sizes.dart';
 import '../../../core/constants/strings.dart';
 
 class WelcomeCard extends StatelessWidget {
@@ -12,49 +11,41 @@ class WelcomeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(AppSizes.borderRadiusLg),
+      borderRadius: BorderRadius.circular( context.borderRadiusLg),
       child: Container(
-        height: AppSizes.adCard,
+        height:  context.adCard,
         width: double.infinity,
-        padding: EdgeInsets.all(AppSizes.lg),
+        padding: EdgeInsets.all( context.lg),
         decoration: BoxDecoration(
           color: AppColors.blackLight,
-          borderRadius: BorderRadius.circular(AppSizes.borderRadiusLg),
+          borderRadius: BorderRadius.circular( context.borderRadiusLg),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Top Glow Bar
             Container(
-              width: AppSizes.glowW,
-              height: AppSizes.glowH,
+              width:  context.glowW,
+              height:  context.glowH,
               decoration: BoxDecoration(
                 color: AppColors.otherForm,
-                borderRadius: BorderRadius.circular(AppSizes.glowB),
+                borderRadius: BorderRadius.circular( context.glowB),
                 boxShadow: [
                   BoxShadow(
                     color: AppColors.purple,
-                    blurRadius: AppSizes.glowBlur,
-                    offset: Offset(AppSizes.zero, AppSizes.shadowOffsetY),
-                    spreadRadius: AppSizes.glowSpread,
+                    blurRadius:  context.glowBlur,
+                    offset: Offset( context.zero,  context.shadowOffsetY),
+                    spreadRadius:  context.glowSpread,
                   ),
                 ],
               ),
             ),
-
-            Text(AppStrings.finalSteps, style: AppTextStyles.welcomeCardFinal),
-
-            Text(
-              AppStrings.crackIt,
-              style: AppTextStyles.crackIt,
-              textAlign: TextAlign.center,
-            ),
-
-            ///To Do
-            buildStarRating(rating: 4.5),
+            Text(AppStrings.finalSteps, style: context.welcomeCardFinalStyle),
+            Text(AppStrings.crackIt, style: context.crackItStyle, textAlign: TextAlign.center),
+            buildStarRating(rating: 4.5,context),
           ],
         ),
       ),
     );
   }
 }
+

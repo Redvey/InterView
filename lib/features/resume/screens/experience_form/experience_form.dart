@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/strings.dart';
-import 'package:interview/app/themes/text_styles.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 import 'package:interview/features/resume/screens/experience_form/experience_entry_model.dart';
 import 'package:interview/features/resume/screens/experience_form/widgets/experience_card.dart';
 import 'package:interview/features/resume/widgets/dotted_button.dart';
@@ -50,7 +50,7 @@ class _WorkExperienceFormState extends State<WorkExperienceForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(AppStrings.workExperience, style: AppTextStyles.infoHeader),
+              Text(AppStrings.workExperience, style:  context.infoHeaderStyle),
               const SizedBox(height: 16),
               ..._experiences.asMap().entries.map((entry) {
                 final index = entry.key;

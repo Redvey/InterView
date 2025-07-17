@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/constants/sizes.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/final_step_dialog.dart';
 import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_bottom_buttons.dart';
 import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_pages.dart';
@@ -78,19 +78,19 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
         decoration: BoxDecoration(gradient: AppColors.backgroundGradient),
         child: SafeArea(
           child: Padding(
-            padding: AppSizes.screenPadding,
+            padding:  context.screenPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ResumeFormTopBar(pageColor: _getPageColor(_currentPage)),
 
-                SizedBox(height: AppSizes.defaultSpace),
+                SizedBox(height:  context.defaultSpace),
                 PageIndicator(
                   pageController: _pageController,
                   totalPages: _totalPages,
                   activeDotColor: getMatchingHintColor(_getPageColor(_currentPage)),
                 ),
-                SizedBox(height: AppSizes.defaultSpace),
+                SizedBox(height:  context.defaultSpace),
                 Expanded(
                   child: ResumeFormPages(
                     controller: _pageController,
