@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interview/features/flash_card/flash_card.dart';
+import 'package:interview/features/interview/interview.dart';
 import 'package:interview/features/profile/profile.dart';
 import '../features/home/screens/home_screen.dart';
 import '../features/profile/widgets/animation/circle_entry.dart';
-import '../features/resume/interview/interview.dart';
 import '../features/resume/screens/contact_form/contact_form.dart';
 import '../features/resume/screens/resume_builder.dart';
 import '../features/resume/screens/resume_builder_home.dart';
@@ -74,7 +74,7 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/interview',
       name: RouteNames.interview,
-      builder: (context, state) => const InterViewScreen(),
+      builder: (context, state) => const MockInterviewScreen(),
 
     ),
 

@@ -74,7 +74,7 @@ class AppTextStyles {
   static TextStyle welcomeCardFinal(BuildContext context) => TextStyle(
     color: AppColors.backgroundYellow,
     fontFamily: AppFonts.poppins,
-    fontSize:  context.fontSizeLg ,
+    fontSize:  context.fontSizeMd,
     fontWeight: FontWeight.w400,
   );
 
@@ -83,5 +83,12 @@ class AppTextStyles {
     fontFamily: AppFonts.poppins,
     fontSize:  context.fontSizeSm ,
     fontWeight: FontWeight.w400,
+  );
+
+  //membership
+  static TextStyle membershipSubTitle(BuildContext context) =>TextStyle(
+  fontSize:  context.fontSizeSm ,
+  color: AppColors.buttonYellow,
+  fontWeight: FontWeight.w600,
   );
 }

@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:interview/core/extensions/responsive_extension.dart';
 
 import '../../../core/constants/colors.dart';
-import '../../widgets/back_button.dart';
-import '../../widgets/profile_avatar.dart';
+import '../widgets/back_button.dart';
+import '../widgets/profile_avatar.dart';
 
-class InterViewScreen extends StatefulWidget {
-  const InterViewScreen({super.key});
+
+class MockInterviewScreen extends StatefulWidget {
+  const MockInterviewScreen({super.key});
 
   @override
-  State<InterViewScreen> createState() => _InterViewScreenState();
+  State<MockInterviewScreen> createState() => _MockInterviewScreenState();
 }
 
-class _InterViewScreenState extends State<InterViewScreen> {
+class _MockInterviewScreenState extends State<MockInterviewScreen> {
   String selectedCategory = 'Programming Languages';
 
   // Category Tabs
