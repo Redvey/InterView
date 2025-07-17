@@ -57,6 +57,7 @@ class AppStrings {
   static const linkedIn = "linkedIn";
   static const github = "github profile";
   static const codingProfile = "Coding Profile";
+
   //social links
   static const pasteLink = "Paste Link";
 
@@ -72,7 +73,6 @@ class AppStrings {
   static const select = "Select";
   static const addExperience = "Add Experience";
 
-
   //review review
   static const runPrompts = "Run Prompts";
   static const uploadResume = "Upload Your Resume(.pdf)";
@@ -83,11 +83,12 @@ class AppStrings {
   static const percentageMatch = "Percentage Match";
   static const pasteJobDesc = "Paste Job Description";
 
-
   //profile
   static const menu = "Menu";
   static const logOut = "Log out";
   static const settings = "settings";
   static const profile = "profile";
 
+  //membership
+  // static const membershipSubTitle = "Only ${"perMonth"} per month";
 }

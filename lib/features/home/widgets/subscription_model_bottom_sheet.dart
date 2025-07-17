@@ -122,11 +122,7 @@ class _SubscriptionPlanBottomSheetState extends State<SubscriptionPlanBottomShee
                   if (perMonth != null)
                     Text(
                       "Only $perMonth per month",
-                      style: TextStyle(
-                        fontSize:  context.fontSizeSm ,
-                        color: AppColors.buttonYellow,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: context.membershipSubTitle
                     ),
                   if (save != null)
                     Text(

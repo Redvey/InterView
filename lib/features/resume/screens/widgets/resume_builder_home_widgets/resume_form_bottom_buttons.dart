@@ -27,7 +27,7 @@ class ResumeFormBottomButtons extends StatelessWidget {
             GestureDetector(
               onTap: onPrevious,
               child: CircleAvatar(
-                radius: 3,
+                radius: context.circularButtonRadius,
                 backgroundColor: AppColors.blackLight,
                 child: Icon(
                   Icons.arrow_back,
@@ -39,7 +39,7 @@ class ResumeFormBottomButtons extends StatelessWidget {
           GestureDetector(
             onTap: onNext,
             child: CircleAvatar(
-              radius: 30,
+              radius: context.circularButtonRadius,
               backgroundColor: AppColors.blackLight,
               child: Icon(
                 currentPage == totalPages - 1 ? Icons.check : Icons.arrow_forward,

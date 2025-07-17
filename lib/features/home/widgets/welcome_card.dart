@@ -41,7 +41,7 @@ class WelcomeCard extends StatelessWidget {
             ),
             Text(AppStrings.finalSteps, style: context.welcomeCardFinalStyle),
             Text(AppStrings.crackIt, style: context.crackItStyle, textAlign: TextAlign.center),
-            buildStarRating(rating: 4.5,context),
+            buildStarRating(context,rating: 4.5),
           ],
         ),
       ),

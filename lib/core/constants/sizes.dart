@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class AppSizes {
-  // Base dimensions (you can adjust these as needed)
-  static const double baseWidth = 393.0; // iPhone 16 width as reference
-  static const double baseHeight = 852.0; // iPhone 16 height as reference
+  // iPhone 16 width as reference
+  static const double baseWidth = 393.0;
+  static const double baseHeight = 852.0;
 
   // Get scale factors
   static double _getWidthScaleFactor(BuildContext context) {
@@ -16,6 +17,23 @@ class AppSizes {
 
   static double _getScaleFactor(BuildContext context) {
     // Use the smaller scale factor to ensure content fits on screen
+    return math.min(_getWidthScaleFactor(context), _getHeightScaleFactor(context));
+  }
+// ignore: unused_element
+  static double _getMinScaleFactor(BuildContext context) {
+    // Use minimum scale factor to ensure content fits on screen
+    return math.min(_getWidthScaleFactor(context), _getHeightScaleFactor(context));
+  }
+
+  // ignore: unused_element
+  static double _getMaxScaleFactor(BuildContext context) {
+    // Use maximum scale factor for elements that should fill available space
+    return math.max(_getWidthScaleFactor(context), _getHeightScaleFactor(context));
+  }
+
+  // ignore: unused_element
+  static double _getAverageScaleFactor(BuildContext context) {
+    // Use average scale factor for balanced scaling
     return (_getWidthScaleFactor(context) + _getHeightScaleFactor(context)) / 2;
   }
 
@@ -52,6 +70,7 @@ class AppSizes {
   // Button sizes
   static double buttonHeight(BuildContext context) => 18.0 * _getHeightScaleFactor(context);
   static double buttonRadius(BuildContext context) => 12.0 * _getScaleFactor(context);
+  static double circularButtonRadius(BuildContext context) => 30.0 * _getScaleFactor(context);
   static double buttonWidth(BuildContext context) => 120.0 * _getWidthScaleFactor(context);
   static double buttonElevation(BuildContext context) => 4.0 * _getScaleFactor(context);
 
@@ -86,7 +105,7 @@ class AppSizes {
     );
   }
 
-
+  // Missing EdgeInsets methods
   static EdgeInsets defaultPadding(BuildContext context) {
     return EdgeInsets.all(md(context));
   }

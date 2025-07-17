@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/sizes.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 
 Widget buildStarRating(
     BuildContext context, {
@@ -13,10 +14,10 @@ Widget buildStarRating(
   final List<Widget> stars = [];
 
   final ratings = rating ?? 5;
-  final iconSizes = iconSize ?? AppSizes.iconSize(context);
+  final iconSizes = iconSize ?? context.iconSize;
   final maxedStars = maxStars ?? AppSizes.maxStars;
   final gradient0 = gradient ?? AppColors.backgroundGradient;
-  final spacing0 = spacing ?? AppSizes.starSpacing(context);
+  final spacing0 = spacing ?? context.starSpacing;
 
   for (int i = 0; i < maxedStars; i++) {
     if (i > 0) stars.add(SizedBox(width: spacing0));

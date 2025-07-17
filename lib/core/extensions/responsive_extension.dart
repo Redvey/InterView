@@ -40,6 +40,7 @@ extension ResponsiveContext on BuildContext {
   // Buttons
   double get buttonHeight => AppSizes.buttonHeight(this);
   double get buttonRadius => AppSizes.buttonRadius(this);
+  double get circularButtonRadius => AppSizes.circularButtonRadius(this);
   double get buttonWidth => AppSizes.buttonWidth(this);
   double get buttonElevation => AppSizes.buttonElevation(this);
 
@@ -110,6 +111,7 @@ extension ResponsiveContext on BuildContext {
   TextStyle get buttonLightStyle => AppTextStyles.buttonLight(this);
   TextStyle get welcomeCardFinalStyle => AppTextStyles.welcomeCardFinal(this);
   TextStyle get crackItStyle => AppTextStyles.crackIt(this);
+  TextStyle get membershipSubTitle => AppTextStyles.membershipSubTitle(this);
 
   // === SCREEN INFO ===
   Size get screenSize => MediaQuery.of(this).size;
