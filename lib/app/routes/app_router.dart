@@ -1,11 +1,12 @@
 import 'package:go_router/go_router.dart';
 import 'package:interview/features/flash_card/flash_card.dart';
 import 'package:interview/features/interview/interview.dart';
-import '../features/home/screens/home_screen.dart';
-import '../features/resume/screens/contact_form/contact_form.dart';
-import '../features/resume/screens/resume_builder_final.dart';
-import '../features/resume/screens/resume_builder_home.dart';
-import '../features/review/screens/resume_review_screen.dart';
+
+import '../../features/home/screens/home_screen.dart';
+import '../../features/resume/screens/contact_form/contact_form.dart';
+import '../../features/resume/screens/resume_builder_final.dart';
+import '../../features/resume/screens/resume_builder_home.dart';
+import '../../features/review/screens/resume_review_screen.dart';
 import 'route_names.dart';
 
 final GoRouter appRouter = GoRouter(

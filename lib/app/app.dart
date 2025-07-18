@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:interview/routes/app_router.dart';
+import 'package:interview/app/routes/app_router.dart';
+
 
 class InterView extends StatelessWidget {
   const InterView({super.key});
