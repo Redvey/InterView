@@ -110,6 +110,7 @@ class AppColors{
   static const black = Color(0xFF000000);
   static const blackLight = Color(0xFF1E1E1E);
 
+
   static const textRed = Color(0xFFFF9594);
   static const textRedBg = Color(0xFFFFE7E7);
 

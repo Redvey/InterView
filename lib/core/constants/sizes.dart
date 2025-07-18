@@ -56,11 +56,14 @@ class AppSizes {
   static double welcomeSpread(BuildContext context) => 2.0 * _getScaleFactor(context);
   static double glowBlur(BuildContext context) => 100.0 * _getScaleFactor(context);
   static double glowSpread(BuildContext context) => 25.0 * _getScaleFactor(context);
+  static double metaBlur(BuildContext context) => 30.0 * _getScaleFactor(context);
 
   // Glow bar sizes
   static double glowH(BuildContext context) => 6.0 * _getHeightScaleFactor(context);
   static double glowW(BuildContext context) => 60.0 * _getWidthScaleFactor(context);
   static double glowB(BuildContext context) => 3.0 * _getScaleFactor(context);
+
+
 
   // Font sizes
   static double fontSizeSs(BuildContext context) => 12.0 * _getScaleFactor(context);
@@ -98,6 +101,26 @@ class AppSizes {
   static double spaceBtwItemsH(BuildContext context) => 16.0 * _getHeightScaleFactor(context);
   static double spaceBtwFields(BuildContext context) => 20.0 * _getHeightScaleFactor(context);
   static double spaceBtwSections(BuildContext context) => 48.0 * _getHeightScaleFactor(context);
+
+  //Profile Screen Items
+  static double profileHeight(BuildContext context) => 38.0 * _getHeightScaleFactor(context);
+  static double profileWidth(BuildContext context) => 38.0 * _getWidthScaleFactor(context);
+
+  // === NEW ADDITIONS FOR LIQUID MENU OVERLAY ===
+
+  // Profile button animations
+  static double profileTranslateX(BuildContext context) => 70.0 * _getWidthScaleFactor(context);
+
+  // Close button properties
+  static double closeButtonHideOffset(BuildContext context) => 50.0 * _getWidthScaleFactor(context);
+  static int closeButtonOpacity = 51; // Alpha value for Colors.white.withAlpha(51)
+  static double closeButtonIconSize(BuildContext context) => 24.0 * _getScaleFactor(context);
+
+  // User greeting animation properties
+  static int userGreetingAnimationDuration = 800; // milliseconds
+  static double userGreetingTranslateX(BuildContext context) => 300.0 * _getWidthScaleFactor(context);
+  static double userGreetingPadding(BuildContext context) => 40.0 * _getScaleFactor(context);
+  static double userAvatarRadius(BuildContext context) => 60.0 * _getScaleFactor(context);
 
   // Combined spacing
   static EdgeInsets screenPadding(BuildContext context) {

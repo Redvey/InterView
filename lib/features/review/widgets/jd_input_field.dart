@@ -18,6 +18,7 @@ class JDInputField extends StatelessWidget {
       controller: controller,
       maxLines: 8,
       label: AppStrings.jobDescription,
+      keyboardType: TextInputType.multiline,
       hint: AppStrings.pasteJobDesc,
       containerColor: AppColors.textYellow,
       borderColor: AppColors.backgroundOrange,

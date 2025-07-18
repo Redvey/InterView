@@ -1,7 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
+import 'package:interview/core/constants/image_strings.dart';
 import 'package:interview/core/extensions/responsive_extension.dart';
+import '../../../core/constants/strings.dart';
 import '../data/models/metaball_circle.dart';
 import '../utils/metaball_config.dart';
 import 'animated_menu.dart';
@@ -63,14 +64,14 @@ class _LiquidMenuOverlayState extends State<LiquidMenuOverlay>
         final index = entry.key;
         final circle = entry.value;
         return Tween<double>(
-          begin: circle.baseRadius,
-          end: circle.scaledRadius,
-        ).animate(
-          CurvedAnimation(
-            parent: _controllers[index],
-            curve: Curves.easeInOut,
-          ),
-        )
+            begin: circle.baseRadius,
+            end: circle.scaledRadius,
+          ).animate(
+            CurvedAnimation(
+              parent: _controllers[index],
+              curve: Curves.easeInOut,
+            ),
+          )
           ..addListener(() {
             if (mounted) {
               setState(() {
@@ -95,7 +96,6 @@ class _LiquidMenuOverlayState extends State<LiquidMenuOverlay>
     }
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +138,7 @@ class _LiquidMenuOverlayState extends State<LiquidMenuOverlay>
           child: ColorFiltered(
             colorFilter: ColorFilter.matrix(MetaballConfig.metaballColorMatrix),
             child: CustomPaint(
-              painter: MetaballShapesPainterV1(circles: _circles),
+              painter: MetaballShapesPainterV1(circles: _circles, metaBlur: context.metaBlur),
               size: Size.infinite,
             ),
           ),
@@ -151,29 +151,31 @@ class _LiquidMenuOverlayState extends State<LiquidMenuOverlay>
     return Positioned(
       top: context.lgA,
       left: context.lg,
-      child: Container(
-        height: 40,
-        width: 40,
-        clipBehavior: Clip.none,
-        decoration: const BoxDecoration(
-          color: AppColors.blackLight,
-          shape: BoxShape.circle,
-        ),
-        child: AnimatedOpacity(
-          opacity: _showMenu ? 0 : 1.0,
+      child: GestureDetector(
+        onTap: _openMenu,
+        child: AnimatedContainer(
           duration: MetaballConfig.animationDuration,
-          child: AnimatedContainer(
+          curve: Curves.easeInOut,
+          height: context.profileHeight,
+          width: context.profileWidth,
+          transform: Matrix4.translationValues(
+            _showMenu ? -context.profileTranslateX : context.zero,
+            context.zero,
+            context.zero,
+          ),
+
+          decoration: const BoxDecoration(
+            color: AppColors.blackLight,
+            shape: BoxShape.circle,
+          ),
+          child: AnimatedOpacity(
+            curve: Curves.easeOut,
+            opacity: _showMenu ? 0.3 : 1.0,
             duration: MetaballConfig.animationDuration,
-            curve: Curves.easeInOut,
-            transform: Matrix4.translationValues(
-              _showMenu ? -70 : 0,
-              0,
-              0,
-            ),
-            child: const Center(
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/templates/template1.jpeg'),
-              ),
+            child: Container(
+              clipBehavior: Clip.none,
+              // Add your profile content here if needed
+              // For example: Icon, Image, etc.
             ),
           ),
         ),
@@ -183,23 +185,25 @@ class _LiquidMenuOverlayState extends State<LiquidMenuOverlay>
 
   Widget _buildCloseButton() {
     return AnimatedPositioned(
-      top: MediaQuery.of(context).padding.top + 16,
-      right: _showMenu ? 16 : -50,
+      top: MediaQuery.of(context).padding.top + context.md,
+      right: _showMenu ? context.md : -context.closeButtonHideOffset,
       duration: MetaballConfig.closeButtonAnimationDuration,
       child: GestureDetector(
         onTap: _closeMenu,
         child: Container(
-          height: 40,
-          width: 40,
+          height: context.profileHeight,
+          width: context.profileWidth,
           decoration: BoxDecoration(
-            color: Colors.white.withAlpha(51),
+            color: AppColors.backgroundWhite.withAlpha(
+              context.closeButtonOpacity,
+            ),
             shape: BoxShape.circle,
           ),
-          child: const Center(
+          child: Center(
             child: Icon(
               Icons.close,
-              color: Colors.white,
-              size: 24,
+              color: AppColors.backgroundWhite,
+              size: context.closeButtonIconSize,
             ),
           ),
         ),
@@ -214,30 +218,30 @@ class _LiquidMenuOverlayState extends State<LiquidMenuOverlay>
         children: [
           // User greeting
           AnimatedContainer(
-            duration: Duration(milliseconds: 800),
+            duration: Duration(
+              milliseconds: context.userGreetingAnimationDuration,
+            ),
             curve: Curves.easeInOut,
             transform: Matrix4.translationValues(
-              _showMenu ? 0 : -300,
-              0,
-              0,
+              _showMenu ? context.zero : -context.userGreetingTranslateX,
+              context.zero,
+              context.zero,
             ),
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 40),
+              padding: EdgeInsets.all(context.userGreetingPadding),
               child: Column(
                 children: [
                   CircleAvatar(
-                    radius: 40,
-                    backgroundImage: AssetImage('assets/templates/template1.jpeg'),
+                    radius: context.userAvatarRadius,
+                    backgroundImage: AssetImage(AppImage.pfp),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: context.md),
                   Text(
-                    'Hello ${widget.userName}!',
-                    style: const TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                    '${AppStrings.hi} ${widget.userName}..',
+                    style: context.welcomeCardFinalStyle,
                   ),
+
+                  Divider(),
                 ],
               ),
             ),
@@ -303,14 +307,3 @@ class _LiquidMenuOverlayState extends State<LiquidMenuOverlay>
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-

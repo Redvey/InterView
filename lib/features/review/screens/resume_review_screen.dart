@@ -17,7 +17,7 @@ class ResumeReviewScreen extends StatefulWidget {
 
 class _ResumeReviewScreenState extends State<ResumeReviewScreen> {
   final controller = ResumeReviewController();
-  String? loadingPrompt; // which prompt is loading
+  String? loadingPrompt;
 
   @override
   void dispose() {

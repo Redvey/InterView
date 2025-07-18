@@ -24,6 +24,7 @@ extension ResponsiveContext on BuildContext {
   double get welcomeSpread => AppSizes.welcomeSpread(this);
   double get glowBlur => AppSizes.glowBlur(this);
   double get glowSpread => AppSizes.glowSpread(this);
+  double get metaBlur => AppSizes.metaBlur(this);
 
   // Glow bars
   double get glowH => AppSizes.glowH(this);
@@ -47,6 +48,8 @@ extension ResponsiveContext on BuildContext {
 
   // Images
   double get imageThumbSize => AppSizes.imageThumbSize(this);
+  double get profileHeight => AppSizes.profileHeight(this);
+  double get profileWidth => AppSizes.profileWidth(this);
 
   // Offsets
   double get shadowOffsetY => AppSizes.shadowOffsetY(this);
@@ -92,6 +95,22 @@ extension ResponsiveContext on BuildContext {
   // Star rating
   double get starSpacing => AppSizes.starSpacing(this);
   int get maxStars => AppSizes.maxStars;
+
+  // === NEW ADDITIONS FOR LIQUID MENU OVERLAY ===
+
+  // Profile button animations
+  double get profileTranslateX => AppSizes.profileTranslateX(this);
+
+  // Close button properties
+  double get closeButtonHideOffset => AppSizes.closeButtonHideOffset(this);
+  int get closeButtonOpacity => AppSizes.closeButtonOpacity;
+  double get closeButtonIconSize => AppSizes.closeButtonIconSize(this);
+
+  // User greeting animation properties
+  int get userGreetingAnimationDuration => AppSizes.userGreetingAnimationDuration;
+  double get userGreetingTranslateX => AppSizes.userGreetingTranslateX(this);
+  double get userGreetingPadding => AppSizes.userGreetingPadding(this);
+  double get userAvatarRadius => AppSizes.userAvatarRadius(this);
 
   // === EDGE INSETS ===
   EdgeInsets get screenPadding => AppSizes.screenPadding(this);

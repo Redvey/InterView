@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interview/features/profile/widgets/liquid_menu_overlay.dart';
 
-final GlobalKey _repaintKey = GlobalKey();
+
 class ProfileAvatar extends StatefulWidget {
   final double radius;
   const ProfileAvatar({super.key, this.radius = 20});
+
 
   @override
   State<ProfileAvatar> createState() => _ProfileAvatarState();
@@ -14,6 +15,7 @@ class ProfileAvatar extends StatefulWidget {
 class _ProfileAvatarState extends State<ProfileAvatar> {
   OverlayEntry? _overlayEntry;
   bool _isMenuOpen = false;
+  final GlobalKey _repaintKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {

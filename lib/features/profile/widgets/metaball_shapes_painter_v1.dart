@@ -5,8 +5,8 @@ import '../data/models/metaball_circle.dart';
 /// Custom painter for drawing metaball circles
 class MetaballShapesPainterV1 extends CustomPainter {
   final List<MetaballCircle> circles;
-
-  MetaballShapesPainterV1({required this.circles});
+  final double metaBlur;
+  MetaballShapesPainterV1({required this.metaBlur, required this.circles});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -30,7 +30,7 @@ class MetaballShapesPainterV1 extends CustomPainter {
         circle.radius,
         Paint()
           ..color = circle.color
-          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 30.0),
+          ..maskFilter = MaskFilter.blur(BlurStyle.normal,metaBlur),
       );
     }
   }
@@ -40,6 +40,6 @@ class MetaballShapesPainterV1 extends CustomPainter {
     if (oldDelegate is MetaballShapesPainterV1) {
       return oldDelegate.circles != circles;
     }
-    return true; // Repaint on every frame for smooth animation
+    return true;
   }
 }

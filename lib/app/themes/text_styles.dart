@@ -51,7 +51,7 @@ class AppTextStyles {
   static TextStyle detailHeader(BuildContext context) => TextStyle(
     fontFamily: AppFonts.poppins,
     fontSize: context.fontSizeSm,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w500,
     color: AppColors.black,
   );
 

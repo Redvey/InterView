@@ -24,7 +24,11 @@ class AppStrings {
   static const coldMailTitle = "Cold Mail";
   static const coldMailSubtitle = "< to the recruiters />";
 
+
   //resume builder texts
+  static const preview = "Preview";
+  static const resumePDF = "Resume PDFs";
+  static const templates = "Templates";
 
   //General Information
   static const generalInformation = "General Information";
