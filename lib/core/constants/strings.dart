@@ -98,4 +98,12 @@ class AppStrings {
 
   //membership
   // static const membershipSubTitle = "Only ${"perMonth"} per month";
+
+//dialog box
+  static const alertTitle ="Final Step";
+  static const alertSubTitle ="Have you filled in all your details correctly?";
+  static const alertYes ="Yes,Proceed";
+  static const alertNo ="No";
+  static const alertStart ="Start";
+  static const alertCancel ="Cancel";
 }

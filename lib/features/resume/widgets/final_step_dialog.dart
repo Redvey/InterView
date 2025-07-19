@@ -4,24 +4,37 @@ import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/extensions/responsive_extension.dart';
 
 class FinalStepDialog extends StatelessWidget {
-  const FinalStepDialog({super.key});
+  final String title;
+  final String subTitle;
+  final String yes;
+  final String no;
+  final String navigate;
+
+
+  const FinalStepDialog({
+    super.key,
+    required this.title,
+    required this.subTitle,
+    required this.yes,
+    required this.no, required this.navigate,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: Colors.transparent,
-      insetPadding: EdgeInsets.all( context.lg),
+      insetPadding: EdgeInsets.all(context.lg),
       child: Container(
-        padding: EdgeInsets.all( context.lg),
+        padding: EdgeInsets.all(context.lg),
         decoration: BoxDecoration(
           color: AppColors.blackLight,
-          borderRadius: BorderRadius.circular( context.borderRadiusLg),
+          borderRadius: BorderRadius.circular(context.borderRadiusLg),
           boxShadow: [
             BoxShadow(
               color: AppColors.purple.withAlpha(1075),
-              blurRadius:  context.welcomeBlur,
-              offset: Offset(0,  context.shadowOffsetY),
-              spreadRadius:  context.welcomeSpread,
+              blurRadius: context.welcomeBlur,
+              offset: Offset(0, context.shadowOffsetY),
+              spreadRadius: context.welcomeSpread,
             ),
           ],
         ),
@@ -31,63 +44,60 @@ class FinalStepDialog extends StatelessWidget {
             Align(
               alignment: Alignment.topCenter,
               child: Container(
-                width:  context.glowW,
-                height:  context.glowH,
+                width: context.glowW,
+                height: context.glowH,
                 decoration: BoxDecoration(
                   color: AppColors.otherForm,
-                  borderRadius: BorderRadius.circular( context.glowH / 2),
+                  borderRadius: BorderRadius.circular(context.glowH / 2),
                   boxShadow: [
                     BoxShadow(
                       color: AppColors.purple,
-                      blurRadius:  context.glowBlur,
-                      offset: Offset(0,  context.shadowOffsetY),
-                      spreadRadius:  context.glowSpread,
+                      blurRadius: context.glowBlur,
+                      offset: Offset(0, context.shadowOffsetY),
+                      spreadRadius: context.glowSpread,
                     ),
                   ],
                 ),
               ),
             ),
-            SizedBox(height:  context.spaceBtwItems),
-            const Text(
-              "Final Step",
+            SizedBox(height: context.spaceBtwItems),
+             Text(
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
+              title,
             ),
-            SizedBox(height:  context.defaultSpace),
-            const Text(
-              "Have you filled in all your details correctly?",
+            SizedBox(height: context.defaultSpace),
+             Text(
+              subTitle,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white70,
-                fontSize: 16,
-              ),
+              style: TextStyle(color: Colors.white70, fontSize: 16),
             ),
-            SizedBox(height:  context.spaceBtwFields),
+            SizedBox(height: context.spaceBtwFields),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),
                   style: TextButton.styleFrom(foregroundColor: Colors.white),
-                  child: const Text("No"),
+                  child: Text(no),
                 ),
-                SizedBox(width:  context.defaultSpace),
+                SizedBox(width: context.defaultSpace),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
-                    context.push('/final');
+                    context.push(navigate);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.purple,
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular( context.buttonRadius),
+                      borderRadius: BorderRadius.circular(context.buttonRadius),
                     ),
                   ),
-                  child: const Text("Yes, Proceed"),
+                  child:  Text(yes),
                 ),
               ],
             ),

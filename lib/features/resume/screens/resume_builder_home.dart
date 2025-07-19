@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/extensions/responsive_extension.dart';
-import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/final_step_dialog.dart';
+import 'package:interview/features/resume/widgets/final_step_dialog.dart';
 import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_bottom_buttons.dart';
 import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_pages.dart';
 import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_top_bar.dart';
@@ -57,9 +57,14 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
     } else {
       showDialog(
         context: context,
-        builder: (BuildContext context) => const FinalStepDialog(),
+        builder: (BuildContext context) => const FinalStepDialog(
+          title: AppStrings.alertTitle,
+          subTitle: AppStrings.alertSubTitle,
+          yes: AppStrings.alertYes,
+          no: AppStrings.alertNo,
+          navigate: '/final',
+        ),
       );
-
     }
   }
 
@@ -79,23 +84,29 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
         decoration: BoxDecoration(gradient: AppColors.backgroundGradient),
         child: SafeArea(
           child: Padding(
-            padding:  context.screenPadding,
+            padding: context.screenPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ResumeFormTopBar(pageColor: _getPageColor(_currentPage), title: AppStrings.resumeBuilder,),
+                ResumeFormTopBar(
+                  pageColor: _getPageColor(_currentPage),
+                  title: AppStrings.resumeBuilder,
+                ),
 
-                SizedBox(height:  context.defaultSpace),
+                SizedBox(height: context.defaultSpace),
                 PageIndicator(
                   pageController: _pageController,
                   totalPages: _totalPages,
-                  activeDotColor: getMatchingHintColor(_getPageColor(_currentPage)),
+                  activeDotColor: getMatchingHintColor(
+                    _getPageColor(_currentPage),
+                  ),
                 ),
-                SizedBox(height:  context.defaultSpace),
+                SizedBox(height: context.defaultSpace),
                 Expanded(
                   child: ResumeFormPages(
                     controller: _pageController,
-                    onPageChanged: (index) => setState(() => _currentPage = index),
+                    onPageChanged: (index) =>
+                        setState(() => _currentPage = index),
                   ),
                 ),
 
@@ -105,7 +116,6 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
                   onNext: _nextPage,
                   onPrevious: _previousPage,
                 ),
-
               ],
             ),
           ),

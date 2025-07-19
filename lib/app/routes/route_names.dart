@@ -4,6 +4,9 @@ abstract class RouteNames {
   static const String profile = 'profile';
   static const String profileAnimations = 'profile-animation';
 
+  //topic
+  static const String quiz = 'quiz';
+
   //  Home
   static const String home = 'home';
 
