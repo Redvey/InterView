@@ -106,4 +106,10 @@ class AppStrings {
   static const alertNo ="No";
   static const alertStart ="Start";
   static const alertCancel ="Cancel";
+
+  // Animation index constants for better maintainability
+  static const int welcomeMessageAnimationIndex = 0;
+  static const int welcomeCardAnimationIndex = 1;
+  static const int featuresListStartIndex = 2;
+  static const int adSectionAnimationIndex = 7;
 }

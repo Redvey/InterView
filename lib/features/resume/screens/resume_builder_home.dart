@@ -6,6 +6,7 @@ import 'package:interview/features/resume/screens/widgets/resume_builder_home_wi
 import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_pages.dart';
 import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_top_bar.dart';
 import 'package:interview/features/resume/widgets/page_indicator.dart';
+import '../../../app/routes/route_names.dart';
 import '../../../core/constants/strings.dart';
 import '../../../core/utils/color_utils.dart';
 
@@ -62,7 +63,7 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
           subTitle: AppStrings.alertSubTitle,
           yes: AppStrings.alertYes,
           no: AppStrings.alertNo,
-          navigate: '/final',
+          navigate: RouteNames.finalResume,
         ),
       );
     }

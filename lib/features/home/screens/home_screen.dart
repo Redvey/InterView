@@ -9,7 +9,6 @@ import '../animation/home_animation_manager.dart';
 import '../widgets/feature_list.dart';
 import '../widgets/welcome_card.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -18,6 +17,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+
+
   late AnimationController _controller;
   late HomeAnimationManager _animationManager;
 
@@ -71,16 +72,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   Widget _buildWelcomeSection() {
     return AnimatedContentWrapper(
-      fadeAnimation: _animationManager.fadeAnimations[0],
-      slideAnimation: _animationManager.slideAnimations[0],
+      fadeAnimation: _animationManager.fadeAnimations[AppStrings.welcomeMessageAnimationIndex],
+      slideAnimation: _animationManager.slideAnimations[AppStrings.welcomeMessageAnimationIndex],
       child: const WelcomeMessage(),
     );
   }
 
   Widget _buildWelcomeCard() {
     return AnimatedContentWrapper(
-      fadeAnimation: _animationManager.fadeAnimations[1],
-      slideAnimation: _animationManager.slideAnimations[1],
+      fadeAnimation: _animationManager.fadeAnimations[AppStrings.welcomeCardAnimationIndex],
+      slideAnimation: _animationManager.slideAnimations[AppStrings.welcomeCardAnimationIndex],
       child: const WelcomeCard(),
     );
   }
@@ -88,14 +89,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget _buildFeaturesList() {
     return AnimatedFeatureList(
       animationManager: _animationManager,
-      startIndex: 2,
+      startIndex: AppStrings.featuresListStartIndex,
     );
   }
 
   Widget _buildAdSection() {
     return AnimatedContentWrapper(
-      fadeAnimation: _animationManager.fadeAnimations[7],
-      slideAnimation: _animationManager.slideAnimations[7],
+      fadeAnimation: _animationManager.fadeAnimations[AppStrings.adSectionAnimationIndex],
+      slideAnimation: _animationManager.slideAnimations[AppStrings.adSectionAnimationIndex],
       child: Column(
         children: [
           Divider(thickness: context.dividerHeight),

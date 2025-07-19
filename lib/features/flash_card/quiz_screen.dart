@@ -120,7 +120,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage(AppImage.pfp)),
+        image: DecorationImage(image: AssetImage(AppImage.temp3)),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -138,6 +138,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       onRestart: _restartQuiz,
                       onBackToTopics: () => context.pop(),
                     ),
+                    SizedBox(height: 12,),
                     // Topic Title
                     Container(
                       width: double.infinity,

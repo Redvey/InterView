@@ -1,7 +1,7 @@
 import '../models/question.dart';
 
 class QuestionService {
-  // Sample data - replace with your actual data source
+  // Sample data
   static final List<Question> _allQuestions = [
     // Python Questions
     Question(
@@ -102,9 +102,115 @@ class QuestionService {
     return getQuestionsForTopic(topic).length;
   }
 
-  // Method to add more questions dynamically
+  /// Validates and adds a question to the collection.
+  ///
+  /// Throws [ArgumentError] if the question fails validation.
+  /// Validation checks include:
+  /// - Non-null and non-empty required fields
+  /// - Unique question ID
+  /// - Valid options for multiple choice questions
+  /// - Proper question format
   static void addQuestion(Question question) {
+    _validateQuestion(question);
     _allQuestions.add(question);
+  }
+
+  /// Validates a question object for data integrity.
+  ///
+  /// Throws [ArgumentError] if validation fails.
+  static void _validateQuestion(Question question) {
+    // Check for null question
+    if (question.id.trim().isEmpty) {
+      throw ArgumentError('Question ID cannot be null or empty');
+    }
+
+    // Check for duplicate ID
+    if (_allQuestions.any((q) => q.id == question.id)) {
+      throw ArgumentError('Question with ID "${question.id}" already exists');
+    }
+
+    // Validate topic
+    if (question.topic.trim().isEmpty) {
+      throw ArgumentError('Question topic cannot be null or empty');
+    }
+
+    // Validate question text
+    if (question.question.trim().isEmpty) {
+      throw ArgumentError('Question text cannot be null or empty');
+    }
+
+    // Question text should be reasonable length
+    if (question.question.trim().length < 5) {
+      throw ArgumentError('Question text must be at least 5 characters long');
+    }
+
+    // Validate answer
+    if (question.answer.trim().isEmpty) {
+      throw ArgumentError('Question answer cannot be null or empty');
+    }
+
+    // Answer should be reasonable length
+    if (question.answer.trim().length < 3) {
+      throw ArgumentError('Answer must be at least 3 characters long');
+    }
+
+    // Validate multiple choice specific requirements
+    if (question.type == QuestionType.multipleChoice) {
+      if (question.options == null || question.options!.isEmpty) {
+        throw ArgumentError('Multiple choice questions must have options');
+      }
+
+      if (question.options!.length < 2) {
+        throw ArgumentError('Multiple choice questions must have at least 2 options');
+      }
+
+      if (question.options!.length > 6) {
+        throw ArgumentError('Multiple choice questions cannot have more than 6 options');
+      }
+
+      // Check for duplicate options
+      final uniqueOptions = question.options!.toSet();
+      if (uniqueOptions.length != question.options!.length) {
+        throw ArgumentError('Multiple choice options must be unique');
+      }
+
+      // Check for empty options
+      if (question.options!.any((option) => option.trim().isEmpty)) {
+        throw ArgumentError('All multiple choice options must be non-empty');
+      }
+    } else {
+      // For non-multiple choice questions, options should be null or empty
+      if (question.options != null && question.options!.isNotEmpty) {
+        throw ArgumentError('Non-multiple choice questions should not have options');
+      }
+    }
+
+    // Validate ID format (should contain only alphanumeric characters, underscores, and hyphens)
+    final idRegex = RegExp(r'^[a-zA-Z0-9_-]+$');
+    if (!idRegex.hasMatch(question.id)) {
+      throw ArgumentError('Question ID can only contain letters, numbers, underscores, and hyphens');
+    }
+
+    // Validate topic format (should not contain special characters except spaces)
+    final topicRegex = RegExp(r'^[a-zA-Z0-9\s]+$');
+    if (!topicRegex.hasMatch(question.topic.trim())) {
+      throw ArgumentError('Topic can only contain letters, numbers, and spaces');
+    }
+  }
+
+  /// Safely adds a question with validation, returning success status.
+  ///
+  /// Returns [true] if the question was successfully added, [false] otherwise.
+  /// This method catches validation errors and handles them gracefully.
+  static bool tryAddQuestion(Question question) {
+    try {
+      addQuestion(question);
+      return true;
+    } catch (e) {
+      // Log error or handle as needed
+      print('Failed to add question: $e');
+      return false;
+    }
   }
 
   // Method to load questions from JSON (for future use)
