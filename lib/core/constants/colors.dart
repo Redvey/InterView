@@ -1,8 +1,6 @@
-
 import 'package:flutter/cupertino.dart';
 
-class AppColors{
-
+class AppColors {
   //background
   static const backgroundYellow = Color(0xFFFFFDD0);
   static const backgroundWhite = Color(0xFFFFFFFF);
@@ -24,61 +22,43 @@ class AppColors{
   static const purpleLight = Color(0xFFE8D0FF);
 
   // Gradient background
-  static const backgroundGradient = LinearGradient(
+  static const Gradient backgroundGradient = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
-    colors: [
-      backgroundWhite,
-      backgroundYellow,
-    ],
+    colors: [backgroundWhite, backgroundYellow],
     // stops: [0.0, 0.3],
   );
-  static const resumeBuilderGradient = LinearGradient(
+  static const Gradient resumeBuilderGradient = LinearGradient(
     begin: Alignment.centerRight,
     end: Alignment.centerLeft,
-    colors: [
-      backgroundRed,
-      backgroundRedPink,
-    ],
+    colors: [backgroundRed, backgroundRedPink],
     stops: [0.0, 0.3],
   );
-  static const reviewGradient = LinearGradient(
+  static const Gradient reviewGradient = LinearGradient(
     begin: Alignment.centerRight,
     end: Alignment.centerLeft,
-    colors: [
-      backgroundBlue,
-      backgroundSky,
-    ],
+    colors: [backgroundBlue, backgroundSky],
     // stops: [0.0, 0.3],
   );
-  static const flashcardGradient = LinearGradient(
+  static const Gradient flashcardGradient = LinearGradient(
     begin: Alignment.centerRight,
     end: Alignment.centerLeft,
-    colors: [
-      backgroundGreen,
-      backgroundLime,
-    ],
+    colors: [backgroundGreen, backgroundLime],
     // stops: [0.0, 0.3],
   );
-  static const interviewGradient = LinearGradient(
+  static const Gradient interviewGradient = LinearGradient(
     begin: Alignment.centerRight,
     end: Alignment.centerLeft,
-    colors: [
-      backgroundOrange,
-      backgroundLightOrange,
-    ],
+    colors: [backgroundOrange, backgroundLightOrange],
     // stops: [0.0, 0.3],
   );
-  static const coldMailGradient = LinearGradient(
+  static const Gradient coldMailGradient = LinearGradient(
     begin: Alignment.centerRight,
     end: Alignment.centerLeft,
-    colors: [
-      backgroundPink,
-      backgroundLightPink,
-    ],
+    colors: [backgroundPink, backgroundLightPink],
     // stops: [0.0, 0.3],
   );
-  static const starGradient = LinearGradient(
+  static const Gradient starGradient = LinearGradient(
     begin: Alignment.bottomLeft,
     end: Alignment.topRight,
     colors: [
@@ -103,13 +83,10 @@ class AppColors{
   static const achievementsForm = Color(0xFF92FFEF);
   static const otherForm = Color(0xFFEDE3FF);
 
-
-
   // Text Colors
 
   static const black = Color(0xFF000000);
   static const blackLight = Color(0xFF1E1E1E);
-
 
   static const textRed = Color(0xFFFF9594);
   static const textRedBg = Color(0xFFFFE7E7);
@@ -127,22 +104,25 @@ class AppColors{
   static const textPurpleBg = Color(0xFFFFE7F9);
 
   //button colors
-  static const buttonPurple = Color(0xFFEFEAFF); // Button background: EFEAFF, Text: 6D3CFA
+  static const buttonPurple = Color(
+    0xFFEFEAFF,
+  ); // Button background: EFEAFF, Text: 6D3CFA
   static const buttonTextPurple = Color(0xFF6D3CFA);
 
-  static const buttonBlue = Color(0xFFE5F3FE); // Button background: E5F3FE, Text: 008DFF
+  static const buttonBlue = Color(
+    0xFFE5F3FE,
+  ); // Button background: E5F3FE, Text: 008DFF
   static const buttonTextBlue = Color(0xFF008DFF);
 
-  static const buttonGray = Color(0xFFF1F1F1); // Button background: E1FAE8, Text: 37C25C
+  static const buttonGray = Color(
+    0xFFF1F1F1,
+  ); // Button background: E1FAE8, Text: 37C25C
   static const buttonTextGray = Color(0xFF787878);
 
-  static const buttonRed = Color(0xFFFDEFEE); // Button background: FDEFEE, Text: EC6A5B
+  static const buttonRed = Color(
+    0xFFFDEFEE,
+  ); // Button background: FDEFEE, Text: EC6A5B
   static const buttonTextRed = Color(0xFFEC6A5B);
 
-
   static const buttonYellow = Color(0xFFFEAA02);
-
-
-
-
 }

@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:interview/features/flash_card/flash_card.dart';
 import 'package:interview/features/interview/interview.dart';
 
+import '../../features/flash_card/quiz_screen.dart';
 import '../../features/home/screens/home_screen.dart';
 import '../../features/resume/screens/contact_form/contact_form.dart';
 import '../../features/resume/screens/resume_builder_final.dart';
@@ -45,9 +46,25 @@ final GoRouter appRouter = GoRouter(
       path: '/interview',
       name: RouteNames.interview,
       builder: (context, state) => const MockInterviewScreen(),
-
+    ),
+    // Option 1: Using path parameter
+    GoRoute(
+      path: '/quiz/:topic',
+      name: RouteNames.quiz,
+      builder: (context, state) {
+        final topic = state.pathParameters['topic']!;
+        return QuizScreen(topic: topic);
+      },
     ),
 
-
+    // Alternative Option 2: Using query parameter (uncomment if you prefer this)
+    // GoRoute(
+    //   path: '/quiz',
+    //   name: RouteNames.quiz,
+    //   builder: (context, state) {
+    //     final topic = state.uri.queryParameters['topic'] ?? 'Unknown';
+    //     return QuizPage(topic: topic);
+    //   },
+    // ),
   ],
 );

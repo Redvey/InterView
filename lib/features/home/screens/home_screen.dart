@@ -1,17 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/strings.dart';
 import 'package:interview/core/extensions/responsive_extension.dart';
 import 'package:interview/features/home/widgets/welcome_message.dart';
 
-import '../../../core/utils/helper_functions.dart';
+import '../widgets/animated_wrapper.dart';
+import '../animation/home_animation_manager.dart';
+import '../widgets/feature_list.dart';
 import '../widgets/welcome_card.dart';
 
 
-
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+  late AnimationController _controller;
+  late HomeAnimationManager _animationManager;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeAnimations();
+  }
+
+  void _initializeAnimations() {
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 1200),
+      vsync: this,
+    );
+
+    _animationManager = HomeAnimationManager(_controller);
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,84 +51,67 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         body: SafeArea(
           child: SingleChildScrollView(
-            padding:   context.screenPadding  ,
+            padding: context.screenPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const WelcomeMessage(),
-                SizedBox(height:   context.spaceBtwSections  ),
-                const WelcomeCard(),
-                SizedBox(height:   context.defaultSpaceH  ),
-
-                featureListItem(
-                  context: context,
-                  onTap: () => context.push('/form'),
-                  gradient: AppColors.resumeBuilderGradient,
-                  title: AppStrings.buildYourResumeTitle,
-                  subTitle: AppStrings.buildYourResumeSubtitle,
-                  color: AppColors.textRedBg,
-                  colorBg: AppColors.textRed,
-                ),
-
-                featureListItem(
-                  context: context,
-                  onTap: () => context.push('/review'),
-                  gradient: AppColors.reviewGradient,
-                  title: AppStrings.resumeReviewTitle,
-                  subTitle: AppStrings.resumeReviewSubtitle,
-                  color: AppColors.textBlueBg,
-                  colorBg: AppColors.textBlue,
-                ),
-
-                featureListItem(
-                  context: context,
-                  onTap: () => context.push('/flash-card'),
-                  gradient: AppColors.flashcardGradient,
-                  title: AppStrings.flashcardPracticeTitle,
-                  subTitle: AppStrings.flashcardPracticeSubtitle,
-                  color: AppColors.textGreenBg,
-                  colorBg: AppColors.textGreen,
-                ),
-
-                featureListItem(
-                  context: context,
-                  onTap: () => context.push('/interview'),
-                  gradient: AppColors.interviewGradient,
-                  title: AppStrings.mockInterviewTitle,
-                  subTitle: AppStrings.mockInterviewSubtitle,
-                  color: AppColors.textYellowBg,
-                  colorBg: AppColors.textYellow,
-                ),
-
-                featureListItem(
-                  context: context,
-                  onTap: () => context.push('/interview'),
-                  gradient: AppColors.coldMailGradient,
-                  title: AppStrings.coldMailTitle,
-                  subTitle: AppStrings.coldMailSubtitle,
-                  color: AppColors.textPurpleBg,
-                  colorBg: AppColors.textPurple,
-                ),
-
-                Divider(thickness:   context.dividerHeight  ),
-                SizedBox(height:   context.defaultSpaceH  ),
-
-                Container(
-                  height:   context.adCard  ,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(  context.borderRadiusLg  ),
-                    gradient: AppColors.backgroundGradient,
-                  ),
-                  child: Center(
-                    child: Text(AppStrings.ad, style: context.welcomeStyle  ),
-                  ),
-                ),
+                _buildWelcomeSection(),
+                SizedBox(height: context.spaceBtwSections),
+                _buildWelcomeCard(),
+                SizedBox(height: context.defaultSpaceH),
+                _buildFeaturesList(),
+                _buildAdSection(),
               ],
             ),
           ),
         ),
-        // floatingActionButton: FloatingActionButton(onPressed: (){}),
+      ),
+    );
+  }
+
+  Widget _buildWelcomeSection() {
+    return AnimatedContentWrapper(
+      fadeAnimation: _animationManager.fadeAnimations[0],
+      slideAnimation: _animationManager.slideAnimations[0],
+      child: const WelcomeMessage(),
+    );
+  }
+
+  Widget _buildWelcomeCard() {
+    return AnimatedContentWrapper(
+      fadeAnimation: _animationManager.fadeAnimations[1],
+      slideAnimation: _animationManager.slideAnimations[1],
+      child: const WelcomeCard(),
+    );
+  }
+
+  Widget _buildFeaturesList() {
+    return AnimatedFeatureList(
+      animationManager: _animationManager,
+      startIndex: 2,
+    );
+  }
+
+  Widget _buildAdSection() {
+    return AnimatedContentWrapper(
+      fadeAnimation: _animationManager.fadeAnimations[7],
+      slideAnimation: _animationManager.slideAnimations[7],
+      child: Column(
+        children: [
+          Divider(thickness: context.dividerHeight),
+          SizedBox(height: context.defaultSpaceH),
+          Container(
+            height: context.adCard,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(context.borderRadiusLg),
+              gradient: AppColors.backgroundGradient,
+            ),
+            child: Center(
+              child: Text(AppStrings.ad, style: context.welcomeStyle),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/features/interview/widgets/search_field.dart';
 
 import '../../../core/constants/colors.dart';
 import '../../core/constants/strings.dart';
@@ -14,6 +15,8 @@ class MockInterviewScreen extends StatefulWidget {
 }
 
 class _MockInterviewScreenState extends State<MockInterviewScreen> {
+  final TextEditingController _searchController = TextEditingController();
+  final String _searchText = '';
   String selectedCategory = 'Programming Languages';
 
   // Category Tabs
@@ -44,8 +47,52 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                   // Header
                   ResumeFormTopBar(pageColor: AppColors.blackLight, title: AppStrings.mockInterview,),
 
-                  const SizedBox(height: 16),
 
+                  const SizedBox(height: 16),
+                  SearchField(
+                    hintText: 'Search with custom style...',
+                    borderRadius: 20,
+                    fillColor: Colors.blue[50],
+                    borderColor: Colors.blue[200],
+                    focusedBorderColor: Colors.blue,
+                    hintStyle: TextStyle(
+                      color: Colors.blue[400],
+                      fontSize: 14,
+                    ),
+                    textStyle: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    onChanged: (value) {
+                      print('Custom search: $value');
+                    },
+                  ),
+                  if (_searchText.isNotEmpty) ...[
+                    const Text(
+                      'Search Results:',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[100],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        'Searching for: "$_searchText"',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ],
+                  const SizedBox(height: 16),
                   // Category Filter Row
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
