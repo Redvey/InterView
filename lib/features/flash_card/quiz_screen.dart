@@ -8,6 +8,7 @@ import 'package:interview/features/flash_card/widgets/quiz_action_button.dart';
 import 'package:interview/features/flash_card/widgets/quiz_appbar.dart';
 import 'package:interview/features/flash_card/widgets/quiz_completion.dart';
 import 'package:interview/features/flash_card/widgets/quiz_stats.dart';
+import '../widgets/glass_decoration.dart';
 import 'models/question.dart';
 
 class QuizScreen extends StatefulWidget {
@@ -120,6 +121,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
     return Container(
       decoration: BoxDecoration(
+        // color: AppColors.blackLight,
         image: DecorationImage(image: AssetImage(AppImage.temp3)),
       ),
       child: Scaffold(
@@ -138,35 +140,15 @@ class _QuizScreenState extends State<QuizScreen> {
                       onRestart: _restartQuiz,
                       onBackToTopics: () => context.pop(),
                     ),
-                    SizedBox(height: 12,),
+                    SizedBox(height: 12),
                     // Topic Title
-                    Container(
+                    Glass(
                       width: double.infinity,
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 2,
-                          color: Colors.white.withAlpha(128),
-                        ),
-                        borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(12),
-                          topLeft: Radius.circular(12),
-                          bottomLeft: Radius.circular(12),
-                          bottomRight: Radius.circular(12),
-                        ),
-                        color: Colors.white.withAlpha(25),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withAlpha(25),
-                            offset: const Offset(0, 7.62),
-                            blurRadius: 22.85,
-                            spreadRadius: 0,
-                          ),
-                        ],
-                      ),
+
+                      padding: 12,
                       child: Text(
                         widget.topic.toUpperCase(),
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -188,25 +170,16 @@ class _QuizScreenState extends State<QuizScreen> {
                         showAnswer: showAnswer,
                       ),
                     ),
-
-
-
-                    // QuizActionButtons(
-                    //   showAnswer: showAnswer,
-                    //   onToggleAnswer: _toggleAnswer,
-                    //   onMarkAsKnown: _markAsKnown,
-                    //   onMarkAsUnknown: _markAsUnknown,
-                    // ),
                   ],
                 ),
               ),
             ),
             QuizActionButtons(
-                showAnswer: showAnswer,
-                onToggleAnswer: _toggleAnswer,
-                onMarkAsKnown: _markAsKnown,
+              showAnswer: showAnswer,
+              onToggleAnswer: _toggleAnswer,
+              onMarkAsKnown: _markAsKnown,
               onMarkAsUnknown: _markAsUnknown,
-            )
+            ),
           ],
         ),
       ),
@@ -215,9 +188,9 @@ class _QuizScreenState extends State<QuizScreen> {
 
   Widget _buildEmptyState() {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.transparent,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => context.pop(),
@@ -249,7 +222,4 @@ class _QuizScreenState extends State<QuizScreen> {
       ),
     );
   }
-
 }
-
-

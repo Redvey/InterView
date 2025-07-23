@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interview/features/flash_card/flash_card.dart';
 import 'package:interview/features/interview/interview.dart';
@@ -47,24 +48,27 @@ final GoRouter appRouter = GoRouter(
       name: RouteNames.interview,
       builder: (context, state) => const MockInterviewScreen(),
     ),
-    // Option 1: Using path parameter
+
     GoRoute(
       path: '/quiz/:topic',
-      name: RouteNames.quiz,
-      builder: (context, state) {
+      pageBuilder: (context, state) {
         final topic = state.pathParameters['topic']!;
-        return QuizScreen(topic: topic);
+        return CustomTransitionPage<void>(
+          key: state.pageKey,
+          child: QuizScreen(topic: topic),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: CurveTween(curve: Curves.easeInOut).animate(animation),
+              child: ScaleTransition(
+                scale: Tween<double>(begin: 0.95, end: 1.0)
+                    .animate(CurveTween(curve: Curves.easeOut).animate(animation)),
+                child: child,
+              ),
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 400),
+        );
       },
     ),
-
-    // Alternative Option 2: Using query parameter (uncomment if you prefer this)
-    // GoRoute(
-    //   path: '/quiz',
-    //   name: RouteNames.quiz,
-    //   builder: (context, state) {
-    //     final topic = state.uri.queryParameters['topic'] ?? 'Unknown';
-    //     return QuizPage(topic: topic);
-    //   },
-    // ),
   ],
 );

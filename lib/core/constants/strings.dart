@@ -24,7 +24,6 @@ class AppStrings {
   static const coldMailTitle = "Cold Mail";
   static const coldMailSubtitle = "< to the recruiters />";
 
-
   //resume builder texts
   static const preview = "Preview";
   static const resumePDF = "Resume PDFs";
@@ -94,22 +93,31 @@ class AppStrings {
   static const profile = "profile";
 
   //mock-interview
-  static const mockInterview ="Select an Interview Template";
+  static const mockInterview = "Select an Interview Template";
 
   //membership
   // static const membershipSubTitle = "Only ${"perMonth"} per month";
 
-//dialog box
-  static const alertTitle ="Final Step";
-  static const alertSubTitle ="Have you filled in all your details correctly?";
-  static const alertYes ="Yes,Proceed";
-  static const alertNo ="No";
-  static const alertStart ="Start";
-  static const alertCancel ="Cancel";
+  //dialog box
+  static const alertTitle = "Final Step";
+  static const alertSubTitle = "Have you filled in all your details correctly?";
+  static const alertYes = "Yes,Proceed";
+  static const alertNo = "No";
+  static const alertStart = "Start";
+  static const alertCancel = "Cancel";
 
   // Animation index constants for better maintainability
   static const int welcomeMessageAnimationIndex = 0;
   static const int welcomeCardAnimationIndex = 1;
   static const int featuresListStartIndex = 2;
   static const int adSectionAnimationIndex = 7;
+
+  //quiz
+  //quiz completion dialog
+  static const quizCompleteTitle = 'Quiz Complete!';
+  static const backToTopics = 'Back to Topics';
+  static const restartQuiz = 'Restart Quiz';
+  static const known = 'Known';
+  static const toReview = 'To Review';
+  static String quizCompletedMessage(String topic) => 'You completed $topic quiz!';
 }

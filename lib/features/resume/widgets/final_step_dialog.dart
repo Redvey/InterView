@@ -8,7 +8,7 @@ class FinalStepDialog extends StatelessWidget {
   final String subTitle;
   final String yes;
   final String no;
-  final String navigate;
+  final String? navigate;
 
 
   const FinalStepDialog({
@@ -87,8 +87,10 @@ class FinalStepDialog extends StatelessWidget {
                 SizedBox(width: context.defaultSpace),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context);
-                    context.push(navigate);
+                    Navigator.pop(context); // ✅ Dismiss dialog
+                    if (navigate != null) {
+                      context.push(navigate!); // ✅ Navigate if a route is given
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.purple,
@@ -97,8 +99,9 @@ class FinalStepDialog extends StatelessWidget {
                       borderRadius: BorderRadius.circular(context.buttonRadius),
                     ),
                   ),
-                  child:  Text(yes),
+                  child: Text(yes),
                 ),
+
               ],
             ),
           ],

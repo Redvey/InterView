@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:interview/core/constants/colors.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 
 class QuizStatsRow extends StatelessWidget {
   final int inReview;
@@ -17,7 +19,7 @@ class QuizStatsRow extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Text('😊', style: TextStyle(fontSize: 20)),
+            Icon(Icons.emoji_emotions,color: AppColors.backgroundYellow,size: context.iconSize,),
             const SizedBox(width: 8),
             Text(
               '$inReview In Review',
@@ -27,7 +29,7 @@ class QuizStatsRow extends StatelessWidget {
         ),
         Row(
           children: [
-            const Text('✅', style: TextStyle(fontSize: 20)),
+            Icon(Icons.check,size: context.iconSize,color: AppColors.textGreen,),
             const SizedBox(width: 8),
             Text(
               '$done Done',

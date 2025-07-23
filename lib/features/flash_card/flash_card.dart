@@ -57,6 +57,7 @@ class _FlashCardState extends State<FlashCard> {
   // Show dialog when no questions are available
   void _showNoQuestionsDialog(String topic) {
     showDialog(
+      useRootNavigator: true,
       context: context,
       builder: (BuildContext context) {
         return FinalStepDialog(
@@ -64,7 +65,7 @@ class _FlashCardState extends State<FlashCard> {
           subTitle: 'Sorry, we don\'t have questions for $topic yet. Please try another topic.',
           yes: 'OK',
           no: '',
-          navigate: '', // Empty navigate means it will just close
+          navigate: null,
         );
       },
     );
