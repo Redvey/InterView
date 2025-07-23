@@ -240,8 +240,6 @@ class _LiquidMenuOverlayState extends State<LiquidMenuOverlay>
                     '${AppStrings.hi} ${widget.userName}..',
                     style: context.welcomeCardFinalStyle,
                   ),
-
-                  Divider(),
                 ],
               ),
             ),

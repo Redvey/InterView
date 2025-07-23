@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:interview/features/widgets/glass_decoration.dart';
+import 'dart:math' as math;
 import '../models/question.dart';
 
-class QuizQuestionCard extends StatelessWidget {
+class QuizQuestionCard extends StatefulWidget {
   final Question question;
   final bool showAnswer;
 
@@ -12,44 +14,94 @@ class QuizQuestionCard extends StatelessWidget {
   });
 
   @override
+  State<QuizQuestionCard> createState() => _QuizQuestionCardState();
+}
+
+class _QuizQuestionCardState extends State<QuizQuestionCard>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _flipAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 600),
+      vsync: this,
+    );
+    _flipAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
+  }
+
+  @override
+  void didUpdateWidget(QuizQuestionCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.showAnswer != oldWidget.showAnswer) {
+      if (widget.showAnswer) {
+        _controller.forward();
+      } else {
+        _controller.reverse();
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: 2,
-          color: Colors.white.withAlpha(128),
-        ),
-        borderRadius: const BorderRadius.only(
-          topRight: Radius.circular(12),
-          topLeft: Radius.circular(12),
-          bottomLeft: Radius.circular(12),
-          bottomRight: Radius.circular(12),
-        ),
-        color: Colors.white.withAlpha(25),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withAlpha(25),
-            offset: const Offset(0, 7.62),
-            blurRadius: 22.85,
-            spreadRadius: 0,
-          ),
-        ],
-      ),
+    return AnimatedBuilder(
+      animation: _flipAnimation,
+      builder: (context, child) {
+        final isShowingFront = _flipAnimation.value < 0.5;
+        return Transform(
+          alignment: Alignment.center,
+          transform: Matrix4.identity()
+            ..setEntry(3, 2, 0.001)
+            ..rotateY(math.pi * _flipAnimation.value),
+          child: Glass(
+            width: double.infinity,
+            padding: 24,
+              child: isShowingFront ? _buildFrontCard() : _buildBackCard(),),
+
+        );
+      },
+    );
+  }
+
+  Widget _buildFrontCard() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildHeaderRow(),
+        const SizedBox(height: 16),
+        _buildQuestionSection(),
+        const SizedBox(height: 24),
+        _buildOptionsSection(),
+        const Spacer(),
+      ],
+    );
+  }
+
+  Widget _buildBackCard() {
+    return Transform(
+      alignment: Alignment.center,
+      transform: Matrix4.identity()..rotateY(math.pi),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildHeaderRow(),
+          _buildAnswerHeaderRow(),
           const SizedBox(height: 16),
-          _buildQuestionSection(),
-          const SizedBox(height: 24),
-          _buildOptionsSection(),
+          _buildAnswerContent(),
           const Spacer(),
-          if (showAnswer) ...[
-            _buildAnswerSection(),
-            const SizedBox(height: 16),
-          ],
         ],
       ),
     );
@@ -75,6 +127,26 @@ class QuizQuestionCard extends StatelessWidget {
     );
   }
 
+  Widget _buildAnswerHeaderRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Icon(Icons.lightbulb_outline, color: Colors.yellow),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.yellow),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: const Text(
+            'Answer',
+            style: TextStyle(color: Colors.yellow),
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _buildQuestionSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +161,7 @@ class QuizQuestionCard extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          question.question,
+          widget.question.question,
           style: const TextStyle(
             color: Colors.white,
             fontSize: 24,
@@ -100,22 +172,51 @@ class QuizQuestionCard extends StatelessWidget {
     );
   }
 
+  Widget _buildAnswerContent() {
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'ANSWER',
+            style: TextStyle(
+              color: Colors.yellow,
+              fontSize: 12,
+              letterSpacing: 1,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Text(
+                widget.question.answer,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  height: 1.5,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildOptionsSection() {
-    if (question.type != QuestionType.multipleChoice || question.options == null) {
+    if (widget.question.type != QuestionType.multipleChoice ||
+        widget.question.options == null) {
       return const SizedBox.shrink();
     }
 
     return Wrap(
       spacing: 12,
       runSpacing: 8,
-      children: question.options!
+      children: widget.question.options!
           .map(
-            (option) => Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          decoration: BoxDecoration(
-            color: Colors.grey[800],
-            borderRadius: BorderRadius.circular(20),
-          ),
+            (option) => Glass(
+          padding: 8,
           child: Text(
             option,
             style: const TextStyle(color: Colors.white),
@@ -126,39 +227,4 @@ class QuizQuestionCard extends StatelessWidget {
     );
   }
 
-  Widget _buildAnswerSection() {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.grey[800],
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.green.withAlpha(65)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'ANSWER',
-            style: TextStyle(
-              color: Colors.green,
-              fontSize: 12,
-              letterSpacing: 1,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 8),
-          SizedBox(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Text(
-                question.answer,
-                style: const TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }

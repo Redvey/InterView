@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:interview/core/constants/image_strings.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
+import '../../../core/constants/colors.dart';
+import '../../../core/constants/strings.dart';
 
 class QuizCompletionDialog extends StatelessWidget {
   final String topic;
@@ -18,36 +22,75 @@ class QuizCompletionDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      backgroundColor: Colors.grey[900],
-      title: const Text(
-        'Quiz Complete!',
-        style: TextStyle(color: Colors.white),
-      ),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            'You completed $topic quiz!',
-            style: const TextStyle(color: Colors.white70),
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      insetPadding: EdgeInsets.all(context.lg),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular( context.borderRadiusLg),
+        child: Container(
+          padding: EdgeInsets.all(context.lg),
+          decoration: BoxDecoration(
+            image: DecorationImage(image:AssetImage(AppImage.temp4),fit: BoxFit.cover),
+            borderRadius: BorderRadius.circular(context.borderRadiusLg),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.purple.withAlpha(1075),
+                blurRadius: context.welcomeBlur,
+                offset: Offset(0, context.shadowOffsetY),
+                spreadRadius: context.welcomeSpread,
+              ),
+            ],
           ),
-          const SizedBox(height: 16),
-          _buildStatsRow(),
-        ],
-      ),
-      actions: [
-        TextButton(
-          onPressed: onBackToTopics,
-          child: const Text('Back to Topics'),
-        ),
-        ElevatedButton(
-          onPressed: onRestartQuiz,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.green,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  width: context.glowW,
+                  height: context.glowH,
+                  decoration: BoxDecoration(
+                    color: AppColors.textGreen,
+                    borderRadius: BorderRadius.circular(context.glowH / 2),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.backgroundGreen,
+                        blurRadius: context.glowBlur,
+                        offset: Offset(0, context.shadowOffsetY),
+                        spreadRadius: context.glowSpread,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: context.spaceBtwItems),
+              Text(
+                AppStrings.quizCompletedMessage(topic),
+                style: const TextStyle(color: AppColors.backgroundWhite),
+              ),
+              SizedBox(height: context.defaultSpace),
+              _buildStatsRow(),
+              SizedBox(height: context.spaceBtwFields),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: onBackToTopics,
+                    child: const Text(AppStrings.backToTopics,style: TextStyle(color: AppColors.textGreen),),
+                  ),
+                  ElevatedButton(
+                    onPressed: onRestartQuiz,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.textGreen,
+                    ),
+                    child: const Text(AppStrings.restartQuiz,style: TextStyle(color:AppColors.blackLight),),
+                  ),
+                ],
+              ),
+            ],
           ),
-          child: const Text('Restart Quiz'),
         ),
-      ],
+      ),
     );
   }
 
@@ -60,14 +103,14 @@ class QuizCompletionDialog extends StatelessWidget {
             Text(
               '$done',
               style: const TextStyle(
-                color: Colors.green,
+                color: AppColors.textGreen,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const Text(
-              'Known',
-              style: TextStyle(color: Colors.white70),
+              AppStrings.known,
+              style: TextStyle(color: AppColors.backgroundWhite,fontFamily: 'Poppins'),
             ),
           ],
         ),
@@ -76,14 +119,14 @@ class QuizCompletionDialog extends StatelessWidget {
             Text(
               '$inReview',
               style: const TextStyle(
-                color: Colors.orange,
+                color: AppColors.backgroundOrange,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const Text(
-              'To Review',
-              style: TextStyle(color: Colors.white70),
+              AppStrings.toReview,
+              style: TextStyle(color: AppColors.backgroundWhite),
             ),
           ],
         ),

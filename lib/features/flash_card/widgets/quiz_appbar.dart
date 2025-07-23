@@ -23,7 +23,7 @@ class QuizAppBar extends StatelessWidget implements PreferredSizeWidget {
       children: [
         // Back button on the left
         CircleBackButton(
-          pageColor: AppColors.backgroundWhite,
+          pageColor: AppColors.textGreen,
           onPressed: onBackToTopics,
         ),
 
