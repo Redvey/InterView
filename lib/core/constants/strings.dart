@@ -12,6 +12,13 @@ class AppStrings {
   static const String navProfile = 'Profile';
   static const String navHome = 'Home';
 
+  //finished-interview
+  static const String mockInterviewCompletedTitle = 'Congratulations';
+  static const String mockInterviewCompletedMessage =
+      'You have completed your mock interview for';
+  static const String back = 'BACK';
+  static const String interviewReport = 'Interview Report';
+
   //Card-Text
   static const buildYourResumeTitle = "Build Your Resume";
   static const resumeBuilder = "Resume Builder";

@@ -23,6 +23,8 @@ abstract class RouteNames {
 
   //  Mock Interview
   static const String interview = 'interview';
+  static const String interviewer = 'interviewer';
+  static const String finishInterview = 'finish_interview';
 
   // ✉ Cold Mailer
   static const String coldMailer = 'cold_mailer';

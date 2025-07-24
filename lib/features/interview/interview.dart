@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:interview/core/constants/image_strings.dart';
 import 'package:interview/core/extensions/responsive_extension.dart';
 import 'package:interview/features/interview/widgets/search_field.dart';
-
 import '../../../core/constants/colors.dart';
-import '../../core/constants/strings.dart';
+import '../../../core/constants/strings.dart';
 import '../resume/screens/widgets/resume_builder_home_widgets/resume_form_top_bar.dart';
-
 
 class MockInterviewScreen extends StatefulWidget {
   const MockInterviewScreen({super.key});
@@ -16,10 +16,10 @@ class MockInterviewScreen extends StatefulWidget {
 
 class _MockInterviewScreenState extends State<MockInterviewScreen> {
   final TextEditingController _searchController = TextEditingController();
-  final String _searchText = '';
+  String _searchText = '';
   String selectedCategory = 'Programming Languages';
+  final List<String> recentSearches = [];
 
-  // Category Tabs
   final List<String> categories = [
     'Programming Languages',
     'Mobile Development',
@@ -31,6 +31,24 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
     'Cloud Computing',
   ];
 
+  final List<Map<String, dynamic>> mockInterviews = [
+    {
+      'title': 'Flutter Basics',
+      'image': 'assets/images/flutter.png',
+      'topics': ['Widgets', 'State Management'],
+    },
+    {
+      'title': 'Web Development',
+      'image': 'assets/images/web.png',
+      'topics': ['HTML', 'CSS', 'JS'],
+    },
+    {
+      'title': 'AI & ML',
+      'image': 'assets/images/ai.png',
+      'topics': ['Supervised', 'Unsupervised'],
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,17 +57,18 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: Padding(
-            padding:  EdgeInsets.all( context.lg),
+            padding: EdgeInsets.all(context.lg),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Header
-                  ResumeFormTopBar(pageColor: AppColors.blackLight, title: AppStrings.mockInterview,),
-
-
+                  ResumeFormTopBar(
+                    pageColor: AppColors.blackLight,
+                    title: AppStrings.mockInterview,
+                  ),
                   const SizedBox(height: 16),
                   SearchField(
+                    controller: _searchController,
                     hintText: 'Search with custom style...',
                     borderRadius: 20,
                     fillColor: Colors.blue[50],
@@ -64,10 +83,16 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                       fontWeight: FontWeight.w500,
                     ),
                     onChanged: (value) {
-                      print('Custom search: $value');
+                      setState(() {
+                        _searchText = value;
+                        if (value.isNotEmpty && !recentSearches.contains(value)) {
+                          recentSearches.add(value);
+                        }
+                      });
                     },
                   ),
                   if (_searchText.isNotEmpty) ...[
+                    const SizedBox(height: 16),
                     const Text(
                       'Search Results:',
                       style: TextStyle(
@@ -92,8 +117,38 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                       ),
                     ),
                   ],
+                  if (recentSearches.isNotEmpty) ...[
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Recent Searches',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: recentSearches.map((search) {
+                        return InputChip(
+                          label: Text(search),
+                          onPressed: () {
+                            setState(() {
+                              _searchText = search;
+                              _searchController.text = search;
+                            });
+                          },
+                          onDeleted: () {
+                            setState(() {
+                              recentSearches.remove(search);
+                            });
+                          },
+                        );
+                      }).toList(),
+                    ),
+                  ],
                   const SizedBox(height: 16),
-                  // Category Filter Row
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -104,7 +159,8 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                           child: ChoiceChip(
                             label: Text(category),
                             selected: isSelected,
-                            onSelected: (_) => setState(() => selectedCategory = category),
+                            onSelected: (_) =>
+                                setState(() => selectedCategory = category),
                             selectedColor: Colors.black,
                             labelStyle: TextStyle(
                               color: isSelected ? Colors.white : Colors.black,
@@ -121,36 +177,42 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-
-                  // Interview Card Placeholder (Replace with your cards)
                   ListView.builder(
-                    itemCount: 4,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
+                    padding: const EdgeInsets.all(16),
+                    itemCount: mockInterviews.length,
                     itemBuilder: (context, index) {
+                      final item = mockInterviews[index];
                       return Card(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                        elevation: 2,
-                        margin: const EdgeInsets.symmetric(vertical: 8),
+                        margin: const EdgeInsets.only(bottom: 16),
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
                         child: ListTile(
+                          contentPadding: const EdgeInsets.all(12),
                           leading: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(12),
                             child: Image.asset(
-                              'assets/templates/template1.jpeg', // replace with actual icons per card
-                              width: 40,
-                              height: 40,
+                              AppImage.temp3,
+                              width: 60,
+                              height: 60,
                               fit: BoxFit.cover,
                             ),
                           ),
-                          title: Text(
-                            'TypeScript Intermediate',
-                            style: TextStyle(fontWeight: FontWeight.w600),
-                          ),
-                          subtitle: Text(
-                            'Advanced TS features, Decorators, Configuration, React integration...',
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                          title: Text(item['title'] as String),
+                          subtitle: const Text('Tap to start interview'),
+                          trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 20),
+                          onTap: () {
+                            context.pushNamed(
+                              'takeInterview',
+                              extra: {
+                                'title': item['title'],
+                                'topics': item['topics'],
+                              },
+                            );
+                          },
                         ),
                       );
                     },
