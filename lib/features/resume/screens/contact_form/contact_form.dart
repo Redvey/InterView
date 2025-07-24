@@ -9,14 +9,14 @@ class ContactForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = AppColors.contactForm;
+    
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
-          color: backgroundColor,
+          color: AppColors.contactForm,
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: SingleChildScrollView(
@@ -29,19 +29,19 @@ class ContactForm extends StatelessWidget {
               LabeledTextField(
                 label: AppStrings.basedOutOf,
                 hint: AppStrings.hintCityOrLocation,
-                containerColor: backgroundColor,
+                containerColor: AppColors.contactForm,
               ),
               LabeledTextField(
                 label: AppStrings.email,
                 hint: AppStrings.hintEmail,
                 keyboardType: TextInputType.emailAddress,
-                containerColor: backgroundColor,
+                containerColor: AppColors.contactForm,
               ),
               LabeledTextField(
                 label: AppStrings.phn,
                 hint: AppStrings.hintPhn,
                 keyboardType: TextInputType.phone,
-                containerColor: backgroundColor,
+                containerColor: AppColors.contactForm,
               ),
             ],
           ),

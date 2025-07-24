@@ -28,6 +28,12 @@ class AppColors {
     colors: [backgroundWhite, backgroundYellow],
     // stops: [0.0, 0.3],
   );
+  static const Gradient specialGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [backgroundLightPink, backgroundYellow],
+    // stops: [0.0, 0.3],
+  );
   static const Gradient resumeBuilderGradient = LinearGradient(
     begin: Alignment.centerRight,
     end: Alignment.centerLeft,
