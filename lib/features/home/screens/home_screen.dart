@@ -3,7 +3,7 @@ import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/strings.dart';
 import 'package:interview/core/extensions/responsive_extension.dart';
 import 'package:interview/features/home/widgets/welcome_message.dart';
-
+import 'package:interview/features/widgets/bottom_nav_wrapper.dart';
 import '../widgets/animated_wrapper.dart';
 import '../animation/home_animation_manager.dart';
 import '../widgets/feature_list.dart';
@@ -17,8 +17,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-
-
   late AnimationController _controller;
   late HomeAnimationManager _animationManager;
 
@@ -48,40 +46,53 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(gradient: AppColors.backgroundGradient),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            padding: context.screenPadding,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildWelcomeSection(),
-                SizedBox(height: context.spaceBtwSections),
-                _buildWelcomeCard(),
-                SizedBox(height: context.defaultSpaceH),
-                _buildFeaturesList(),
-                _buildAdSection(),
-              ],
+      child: Stack(
+        children: [
+          Scaffold(
+            backgroundColor: Colors.transparent,
+            body: SafeArea(
+
+              child: SingleChildScrollView(
+                padding: context.screenPadding,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildWelcomeSection(),
+                    SizedBox(height: context.spaceBtwSections),
+                    _buildWelcomeCard(),
+                    SizedBox(height: context.defaultSpaceH),
+                    _buildFeaturesList(),
+                    _buildAdSection(),
+                  ],
+                ),
+              ),
             ),
+
+
           ),
-        ),
+          
+          MyBottomNavWrapper()
+        ],
       ),
     );
   }
 
   Widget _buildWelcomeSection() {
     return AnimatedContentWrapper(
-      fadeAnimation: _animationManager.fadeAnimations[AppStrings.welcomeMessageAnimationIndex],
-      slideAnimation: _animationManager.slideAnimations[AppStrings.welcomeMessageAnimationIndex],
+      fadeAnimation: _animationManager
+          .fadeAnimations[AppStrings.welcomeMessageAnimationIndex],
+      slideAnimation: _animationManager
+          .slideAnimations[AppStrings.welcomeMessageAnimationIndex],
       child: const WelcomeMessage(),
     );
   }
 
   Widget _buildWelcomeCard() {
     return AnimatedContentWrapper(
-      fadeAnimation: _animationManager.fadeAnimations[AppStrings.welcomeCardAnimationIndex],
-      slideAnimation: _animationManager.slideAnimations[AppStrings.welcomeCardAnimationIndex],
+      fadeAnimation: _animationManager
+          .fadeAnimations[AppStrings.welcomeCardAnimationIndex],
+      slideAnimation: _animationManager
+          .slideAnimations[AppStrings.welcomeCardAnimationIndex],
       child: const WelcomeCard(),
     );
   }
@@ -95,8 +106,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   Widget _buildAdSection() {
     return AnimatedContentWrapper(
-      fadeAnimation: _animationManager.fadeAnimations[AppStrings.adSectionAnimationIndex],
-      slideAnimation: _animationManager.slideAnimations[AppStrings.adSectionAnimationIndex],
+      fadeAnimation:
+          _animationManager.fadeAnimations[AppStrings.adSectionAnimationIndex],
+      slideAnimation:
+          _animationManager.slideAnimations[AppStrings.adSectionAnimationIndex],
       child: Column(
         children: [
           Divider(thickness: context.dividerHeight),
@@ -117,3 +130,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 }
+
+
+
+
+
+

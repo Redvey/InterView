@@ -101,7 +101,7 @@ class _QuizQuestionCardState extends State<QuizQuestionCard>
           _buildAnswerHeaderRow(),
           const SizedBox(height: 16),
           _buildAnswerContent(),
-          const Spacer(),
+          // const Spacer(),
         ],
       ),
     );

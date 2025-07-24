@@ -31,6 +31,11 @@ extension ResponsiveContext on BuildContext {
   double get glowW => AppSizes.glowW(this);
   double get glowB => AppSizes.glowB(this);
 
+  // Border widths
+  double get borderWidthThin => AppSizes.borderWidthThin(this);
+  double get borderWidthDefault => AppSizes.borderWidthDefault(this);
+  double get borderWidthThick => AppSizes.borderWidthThick(this);
+
   // Font sizes
   double get fontSizeSs => AppSizes.fontSizeSs(this);
   double get fontSizeSm => AppSizes.fontSizeSm(this);
@@ -95,6 +100,35 @@ extension ResponsiveContext on BuildContext {
   // Star rating
   double get starSpacing => AppSizes.starSpacing(this);
   int get maxStars => AppSizes.maxStars;
+
+  // === BOTTOM NAVIGATION SPECIFIC EXTENSIONS ===
+
+  // Bottom nav container
+  double get bottomNavHeight => AppSizes.bottomNavHeight(this);
+  double get bottomNavBottomPadding => AppSizes.bottomNavBottomPadding(this);
+  double get bottomNavRadius => AppSizes.bottomNavRadius(this);
+  double get bottomNavHorizontalPadding => AppSizes.bottomNavHorizontalPadding(this);
+
+  // Bottom nav shadow
+  double get bottomNavShadowBlur => AppSizes.bottomNavShadowBlur(this);
+  double get bottomNavShadowOffsetY => AppSizes.bottomNavShadowOffsetY(this);
+  int get bottomNavShadowAlpha => AppSizes.bottomNavShadowAlpha;
+
+  // Nav icon container
+  double get navIconPaddingHorizontal => AppSizes.navIconPaddingHorizontal(this);
+  double get navIconPaddingVertical => AppSizes.navIconPaddingVertical(this);
+  double get navIconBorderRadius => AppSizes.navIconBorderRadius(this);
+
+  // Nav icon sizes
+  double get navIconSizeSelected => AppSizes.navIconSizeSelected(this);
+  double get navIconSizeUnselected => AppSizes.navIconSizeUnselected(this);
+
+  // Nav label
+  double get navLabelPaddingLeft => AppSizes.navLabelPaddingLeft(this);
+  double get navLabelFontSize => AppSizes.navLabelFontSize(this);
+
+  // Animation durations
+  int get navAnimationDuration => AppSizes.navAnimationDuration;
 
   // === NEW ADDITIONS FOR LIQUID MENU OVERLAY ===
 

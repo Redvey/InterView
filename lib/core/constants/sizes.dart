@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-
 import 'package:interview/core/extensions/responsive_extension.dart';
 
 class AppSizes {
@@ -63,8 +62,6 @@ class AppSizes {
   static double glowW(BuildContext context) => 60.0 * _getWidthScaleFactor(context);
   static double glowB(BuildContext context) => 3.0 * _getScaleFactor(context);
 
-
-
   // Font sizes
   static double fontSizeSs(BuildContext context) => 12.0 * _getScaleFactor(context);
   static double fontSizeSm(BuildContext context) => 14.0 * _getScaleFactor(context);
@@ -105,6 +102,40 @@ class AppSizes {
   //Profile Screen Items
   static double profileHeight(BuildContext context) => 38.0 * _getHeightScaleFactor(context);
   static double profileWidth(BuildContext context) => 38.0 * _getWidthScaleFactor(context);
+
+  // === BOTTOM NAVIGATION SPECIFIC SIZES ===
+
+  // Bottom nav container
+  static double bottomNavHeight(BuildContext context) => 80.0 * _getHeightScaleFactor(context);
+  static double bottomNavBottomPadding(BuildContext context) => 40.0 * _getHeightScaleFactor(context);
+  static double bottomNavRadius(BuildContext context) => 60.0 * _getScaleFactor(context);
+  static double bottomWidth(BuildContext context) => 2.0 * _getScaleFactor(context);
+  static double bottomNavHorizontalPadding(BuildContext context) => 16.0 * _getWidthScaleFactor(context);
+  // Border widths section
+  static double borderWidthThin(BuildContext context) => 1.0 * _getScaleFactor(context);
+  static double borderWidthDefault(BuildContext context) => 2.0 * _getScaleFactor(context);
+  static double borderWidthThick(BuildContext context) => 3.0 * _getScaleFactor(context);
+
+  // Bottom nav shadow
+  static double bottomNavShadowBlur(BuildContext context) => 20.0 * _getScaleFactor(context);
+  static double bottomNavShadowOffsetY(BuildContext context) => 8.0 * _getHeightScaleFactor(context);
+  static int bottomNavShadowAlpha = 26;
+
+  // Nav icon container
+  static double navIconPaddingHorizontal(BuildContext context) => 12.0 * _getWidthScaleFactor(context);
+  static double navIconPaddingVertical(BuildContext context) => 8.0 * _getHeightScaleFactor(context);
+  static double navIconBorderRadius(BuildContext context) => 24.0 * _getScaleFactor(context);
+
+  // Nav icon sizes
+  static double navIconSizeSelected(BuildContext context) => 28.0 * _getScaleFactor(context);
+  static double navIconSizeUnselected(BuildContext context) => 24.0 * _getScaleFactor(context);
+
+  // Nav label
+  static double navLabelPaddingLeft(BuildContext context) => 8.0 * _getWidthScaleFactor(context);
+  static double navLabelFontSize(BuildContext context) => 14.0 * _getScaleFactor(context);
+
+  // Animation durations (in milliseconds)
+  static int navAnimationDuration = 300;
 
   // === NEW ADDITIONS FOR LIQUID MENU OVERLAY ===
 
