@@ -118,7 +118,7 @@ class _LiquidMenuOverlayState extends State<LiquidMenuOverlay>
           _buildMetaballLayer(),
 
           // Profile button (top-left)
-          _buildProfileButton(),
+          // _buildProfileButton(),
 
           // Close button (top-right)
           _buildCloseButton(),
@@ -147,41 +147,41 @@ class _LiquidMenuOverlayState extends State<LiquidMenuOverlay>
     );
   }
 
-  Widget _buildProfileButton() {
-    return Positioned(
-      top: context.lgA,
-      left: context.lg,
-      child: GestureDetector(
-        onTap: _openMenu,
-        child: AnimatedContainer(
-          duration: MetaballConfig.animationDuration,
-          curve: Curves.easeInOut,
-          height: context.profileHeight,
-          width: context.profileWidth,
-          transform: Matrix4.translationValues(
-            _showMenu ? -context.profileTranslateX : context.zero,
-            context.zero,
-            context.zero,
-          ),
-
-          decoration: const BoxDecoration(
-            color: AppColors.blackLight,
-            shape: BoxShape.circle,
-          ),
-          child: AnimatedOpacity(
-            curve: Curves.easeOut,
-            opacity: _showMenu ? 0.3 : 1.0,
-            duration: MetaballConfig.animationDuration,
-            child: Container(
-              clipBehavior: Clip.none,
-              // Add your profile content here if needed
-              // For example: Icon, Image, etc.
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget _buildProfileButton() {
+  //   return Positioned(
+  //     top: context.lgA,
+  //     left: context.lg,
+  //     child: GestureDetector(
+  //       onTap: _openMenu,
+  //       child: AnimatedContainer(
+  //         duration: MetaballConfig.animationDuration,
+  //         curve: Curves.easeInOut,
+  //         height: context.profileHeight,
+  //         width: context.profileWidth,
+  //         transform: Matrix4.translationValues(
+  //           _showMenu ? -context.profileTranslateX : context.zero,
+  //           context.zero,
+  //           context.zero,
+  //         ),
+  //
+  //         decoration: const BoxDecoration(
+  //           color: AppColors.blackLight,
+  //           shape: BoxShape.circle,
+  //         ),
+  //         child: AnimatedOpacity(
+  //           curve: Curves.easeOut,
+  //           opacity: _showMenu ? 0.3 : 1.0,
+  //           duration: MetaballConfig.animationDuration,
+  //           child: Container(
+  //             clipBehavior: Clip.none,
+  //             // Add your profile content here if needed
+  //             // For example: Icon, Image, etc.
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget _buildCloseButton() {
     return AnimatedPositioned(

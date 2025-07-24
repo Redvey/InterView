@@ -106,7 +106,7 @@ class AppSizes {
   // === BOTTOM NAVIGATION SPECIFIC SIZES ===
 
   // Bottom nav container
-  static double bottomNavHeight(BuildContext context) => 80.0 * _getHeightScaleFactor(context);
+  static double bottomNavHeight(BuildContext context) => 70.0 * _getHeightScaleFactor(context);
   static double bottomNavBottomPadding(BuildContext context) => 40.0 * _getHeightScaleFactor(context);
   static double bottomNavRadius(BuildContext context) => 60.0 * _getScaleFactor(context);
   static double bottomWidth(BuildContext context) => 2.0 * _getScaleFactor(context);
