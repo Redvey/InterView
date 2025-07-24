@@ -6,6 +6,12 @@ class AppStrings {
   static const crackIt = "< crack the interview />";
   static const finalSteps = "Final Steps Toward Your Goal";
 
+  // Bottom Navigation Labels
+  static const String navInterviews = 'Interviews';
+  static const String navFlashCards = 'Flash Cards';
+  static const String navProfile = 'Profile';
+  static const String navHome = 'Home';
+
   //Card-Text
   static const buildYourResumeTitle = "Build Your Resume";
   static const resumeBuilder = "Resume Builder";
