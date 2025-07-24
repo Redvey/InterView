@@ -38,6 +38,13 @@ class CustomBottomNav extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               NavIcon(
+                icon: Icons.home,
+                label: AppStrings.navHome,
+                selected: currentIndex == 0,
+                selectedColor: AppColors.textGreen,
+                onTap: () => onTap(0),
+              ),
+              NavIcon(
                 icon: Icons.interests_rounded,
                 label: AppStrings.navInterviews,
                 selected: currentIndex == 1,
@@ -58,13 +65,7 @@ class CustomBottomNav extends StatelessWidget {
                 selectedColor: AppColors.textBlueBg,
                 onTap: () => onTap(3),
               ),
-              NavIcon(
-                icon: Icons.home,
-                label: AppStrings.navHome,
-                selected: currentIndex == 0,
-                selectedColor: AppColors.textGreen,
-                onTap: () => onTap(0),
-              ),
+
             ],
           ),
         ),

@@ -18,7 +18,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late AnimationController _controller;
+  late AnimationController _bottomNavController;
   late HomeAnimationManager _animationManager;
+  late Animation<Offset> _bottomNavSlideAnimation;
+  late Animation<double> _bottomNavFadeAnimation;
 
   @override
   void initState() {
@@ -32,13 +35,46 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       vsync: this,
     );
 
+    // Bottom nav animation controller with slower, synced timing
+    _bottomNavController = AnimationController(
+      duration: const Duration(milliseconds: 1200), // Match main controller duration
+      vsync: this,
+    );
+
     _animationManager = HomeAnimationManager(_controller);
+
+    // Bottom nav animations - slower and more subtle
+    _bottomNavSlideAnimation = Tween<Offset>(
+      begin: const Offset(0, 1.0), // Less dramatic starting position
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: _bottomNavController,
+      curve: Curves.easeOutCubic,
+    ));
+
+    _bottomNavFadeAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(
+      parent: _bottomNavController,
+      curve: Curves.easeOut,
+    ));
+
+
     _controller.forward();
+
+
+    Future.delayed(const Duration(milliseconds: 200), () {
+      if (mounted) {
+        _bottomNavController.forward();
+      }
+    });
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _bottomNavController.dispose();
     super.dispose();
   }
 
@@ -51,7 +87,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           Scaffold(
             backgroundColor: Colors.transparent,
             body: SafeArea(
-
               child: SingleChildScrollView(
                 padding: context.screenPadding,
                 child: Column(
@@ -67,11 +102,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 ),
               ),
             ),
-
-
           ),
-          
-          MyBottomNavWrapper()
+
+          // Animated bottom navigation
+          SlideTransition(
+            position: _bottomNavSlideAnimation,
+            child: FadeTransition(
+              opacity: _bottomNavFadeAnimation,
+              child: MyBottomNavWrapper(),
+            ),
+          ),
         ],
       ),
     );
@@ -107,9 +147,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget _buildAdSection() {
     return AnimatedContentWrapper(
       fadeAnimation:
-          _animationManager.fadeAnimations[AppStrings.adSectionAnimationIndex],
+      _animationManager.fadeAnimations[AppStrings.adSectionAnimationIndex],
       slideAnimation:
-          _animationManager.slideAnimations[AppStrings.adSectionAnimationIndex],
+      _animationManager.slideAnimations[AppStrings.adSectionAnimationIndex],
       child: Column(
         children: [
           Divider(thickness: context.dividerHeight),
@@ -130,9 +170,3 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 }
-
-
-
-
-
-
