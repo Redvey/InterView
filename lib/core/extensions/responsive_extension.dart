@@ -56,6 +56,10 @@ extension ResponsiveContext on BuildContext {
   double get profileHeight => AppSizes.profileHeight(this);
   double get profileWidth => AppSizes.profileWidth(this);
 
+  //success-screen
+  double get lottieHeight => AppSizes.lottieHeight(this);
+  double get lottieWidth => AppSizes.lottieWidth(this);
+
   // Offsets
   double get shadowOffsetY => AppSizes.shadowOffsetY(this);
   double get shadowOffsetY2 => AppSizes.shadowOffsetY2(this);
