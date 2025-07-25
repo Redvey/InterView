@@ -111,6 +111,7 @@ class AppSizes {
   static double bottomNavRadius(BuildContext context) => 60.0 * _getScaleFactor(context);
   static double bottomWidth(BuildContext context) => 2.0 * _getScaleFactor(context);
   static double bottomNavHorizontalPadding(BuildContext context) => 16.0 * _getWidthScaleFactor(context);
+
   // Border widths section
   static double borderWidthThin(BuildContext context) => 1.0 * _getScaleFactor(context);
   static double borderWidthDefault(BuildContext context) => 2.0 * _getScaleFactor(context);
@@ -200,6 +201,11 @@ class AppSizes {
   // Star Rating
   static double starSpacing(BuildContext context) => 4.0 * _getWidthScaleFactor(context);
   static int maxStars = 5;
+
+  //success screen
+  static double lottieHeight(BuildContext context) => 250.0 * _getHeightScaleFactor(context);
+  static double lottieWidth(BuildContext context) => 250.0 * _getWidthScaleFactor(context);
+
 
   // Helper methods for responsive design
   static bool isMobile(BuildContext context) {

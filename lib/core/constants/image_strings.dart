@@ -5,3 +5,9 @@ class AppImage {
   static const temp4 = "assets/templates/template3.jpg";
 
 }
+class AppAnimations {
+
+  static const complete = "assets/animations/complete.json";
+
+
+}

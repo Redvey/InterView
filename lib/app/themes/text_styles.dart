@@ -71,6 +71,12 @@ class AppTextStyles {
     color: AppColors.blackLight,
   );
 
+  static TextStyle buttonSmall(BuildContext context) => TextStyle(
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w500,
+    fontSize: context.fontSizeSs,
+  );
+
   static TextStyle welcomeCardFinal(BuildContext context) => TextStyle(
     color: AppColors.backgroundYellow,
     fontFamily: AppFonts.poppins,
