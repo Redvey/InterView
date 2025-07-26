@@ -6,31 +6,10 @@ import 'package:interview/core/extensions/responsive_extension.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/features/interview/widgets/difficulty_chip.dart';
 
+import '../models/difficulty_level.dart';
 import '../models/interview_item.dart';
 
-enum DifficultyLevel {
-  easy('Easy', Colors.green),
-  medium('Medium', Colors.orange),
-  hard('Hard', Colors.red);
 
-  final String displayName;
-  final Color color;
-
-  const DifficultyLevel(this.displayName, this.color);
-
-  static DifficultyLevel fromString(String difficulty) {
-    switch (difficulty.toLowerCase()) {
-      case 'easy':
-        return DifficultyLevel.easy;
-      case 'medium':
-        return DifficultyLevel.medium;
-      case 'hard':
-        return DifficultyLevel.hard;
-      default:
-        return DifficultyLevel.medium;
-    }
-  }
-}
 
 class InterviewCard extends StatelessWidget {
   final InterviewItem interviewItem;

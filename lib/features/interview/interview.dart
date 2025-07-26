@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:interview/app/themes/text_styles.dart';
 import 'package:interview/core/constants/app_durations.dart';
 import 'package:interview/core/extensions/responsive_extension.dart';
-import 'package:interview/features/interview/screens/custom_interview.dart';
+import 'package:interview/features/interview/screens/custom_interview/custom_interview.dart';
 import 'package:interview/features/interview/services/interview_dummy_data_service.dart';
 import 'package:interview/features/interview/widgets/search_field.dart';
 import 'package:interview/features/interview/widgets/interview_card.dart';
@@ -117,7 +117,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
       SnackBar(
         content: Text('${AppStrings.starting} ${item.jobTitle} ${AppStrings.interviewStart}'),
 
-        duration: const Duration(seconds: AppDurations.startingInterview),
+        duration: const Duration(seconds: AppDurations.interviewStartDelaySeconds),
       ),
     );
   }
@@ -158,7 +158,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
               content: Text(AppStrings.interviewCreated(interview.jobTitle))
               ,
               backgroundColor: AppColors.textGreen,
-              duration: const Duration(seconds: AppDurations.three),
+              duration:  Duration(seconds: AppDurations.interviewCountdownSeconds),
             ),
           );
         },
@@ -185,7 +185,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                   title: AppStrings.mockInterview,
                 ),
 
-                 SizedBox(height: context.spaceBtwItemsH),
+                SizedBox(height: context.spaceBtwItemsH),
 
                 // Search Field
                 SearchField(
@@ -204,12 +204,12 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
 
                 // Recent Searches
                 if (recentSearches.isNotEmpty) ...[
-                   Text(
+                  Text(
                     AppStrings.recentSearches,
                     style: AppTextStyles.searchHint(context),
                   ),
 
-                   SizedBox(height: context.spaceLess),
+                  SizedBox(height: context.spaceLess),
 
                   SizedBox(
                     height: context.bottomNavBottomPadding,
@@ -230,7 +230,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                       },
                     ),
                   ),
-                   SizedBox(height: context.spaceBtwItemsH),
+                  SizedBox(height: context.spaceBtwItemsH),
                 ],
 
                 // Category Chips
@@ -277,7 +277,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                       final item = filteredItems[index];
                       return InterviewCard(
                         interviewItem: item,
-                          onTap: ()=>context.pushNamed(RouteNames.interviewer),
+                        onTap: ()=>context.pushNamed(RouteNames.interviewer),
                       );
                     },
                   ),
@@ -306,7 +306,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
             size: context.iconSize,
             color: AppColors.textGrey,
           ),
-           SizedBox(height: context.spaceBtwItems),
+          SizedBox(height: context.spaceBtwItems),
           Text(
             _searchText.isNotEmpty
                 ? '${AppStrings.noInterviewsFound} "$_searchText"'
@@ -314,7 +314,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
             style: AppTextStyles.noInterviewsFound(context),
             textAlign: TextAlign.center,
           ),
-           SizedBox(height: context.spaceLessH),
+          SizedBox(height: context.spaceLessH),
           Text(
             AppStrings.adjustCategory,
             style: AppTextStyles.emptyStateHint(context),
@@ -325,4 +325,3 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
     );
   }
 }
-

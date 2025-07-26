@@ -1,7 +1,7 @@
 // File: lib/features/interview/widgets/difficulty_chip.dart
 
 import 'package:flutter/material.dart';
-import 'package:interview/features/interview/widgets/interview_card.dart';
+import 'package:interview/features/interview/models/difficulty_level.dart';
 
 import '../../../app/themes/fonts.dart';
 

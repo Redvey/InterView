@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../home/widgets/custom_bottom_nav.dart';
+import 'custom_bottom_nav.dart';
 
 class MyBottomNavWrapper extends StatefulWidget {
   const MyBottomNavWrapper({super.key});
