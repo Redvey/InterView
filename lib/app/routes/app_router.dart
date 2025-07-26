@@ -54,7 +54,7 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/interviewer',
       name: RouteNames.interviewer,
-      builder: (context, state) => const Interviewer(),
+      builder: (context, state) =>  InterviewerScreen(),
     ),
     GoRoute(
       path: '/finish_interview',

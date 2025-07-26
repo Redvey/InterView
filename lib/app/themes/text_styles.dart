@@ -72,7 +72,7 @@ class AppTextStyles {
   );
 
   static TextStyle buttonSmall(BuildContext context) => TextStyle(
-    fontFamily: 'Poppins',
+    fontFamily: AppFonts.poppins,
     fontWeight: FontWeight.w500,
     fontSize: context.fontSizeSs,
   );
@@ -91,6 +91,15 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
   );
 
+  //bottom nav text style
+  static TextStyle navTextStyle(BuildContext context,Color selectedColor)=>TextStyle(
+  fontFamily: AppFonts.poppins,
+  fontSize: context.navLabelFontSize,
+  color: selectedColor,
+  decoration: TextDecoration.none,
+  fontWeight: FontWeight.w500,
+  );
+
   //membership
   static TextStyle membershipSubTitle(BuildContext context) => TextStyle(
     fontFamily: AppFonts.poppins,
@@ -98,4 +107,46 @@ class AppTextStyles {
     color: AppColors.buttonYellow,
     fontWeight: FontWeight.w600,
   );
+
+
+  //interview-template
+  static TextStyle interviewTemplateJob(BuildContext context) => TextStyle(
+    fontFamily:AppFonts.poppins,
+    fontSize: context.fontSizeSx,
+    fontWeight: FontWeight.w600,
+    color: AppColors.blackLight,
+  );
+  static TextStyle interviewTemplateJobDescription(BuildContext context) => TextStyle(
+    fontFamily: AppFonts.poppins,
+    fontSize: context.fontSizeSs,
+    color: AppColors.blackLight,
+  );
+  static TextStyle chipText(BuildContext context) => TextStyle(
+    fontSize: context.fontSizeSs,
+    fontFamily: AppFonts.poppins,
+    color: AppColors.textSecondary,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle noInterviewsFound(BuildContext context) => TextStyle(
+    fontFamily: AppFonts.poppins,
+    fontSize: context.fontSizeSx,
+    color: AppColors.textGrey,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle searchHint(BuildContext context) => TextStyle(
+    fontFamily: AppFonts.poppins,
+    color: AppColors.searchHint,
+    fontSize: context.fontSizeSm,
+  );
+  static TextStyle labelStyleCategory(BuildContext context, bool isSelected) => TextStyle(
+    color: isSelected ? AppColors.backgroundWhite : AppColors.blackLight,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle emptyStateHint(BuildContext context) => TextStyle(
+    fontSize: context.fontSizeSm,
+    color: AppColors.textGrey,
+  );
+
+
+
 }

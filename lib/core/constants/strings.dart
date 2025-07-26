@@ -133,4 +133,44 @@ class AppStrings {
   static const known = 'Known';
   static const toReview = 'To Review';
   static String quizCompletedMessage(String topic) => 'You completed $topic quiz!';
+
+  //mock-interview
+  static const topic = 'TOPIC:';
+  static const noInterviewsFound = 'No interviews found for';
+  static const noInterviewsAvailable = 'No interviews available';
+  static const searchHint = 'Search interviews...';
+  static const recentSearches = 'Recent Searches';
+  static const starting = 'Starting';
+  static const interviewStart = 'interview...';
+  static const adjustCategory = 'Try adjusting your search or category filter';
+  static String interviewCreated(String title) =>
+      'Custom interview "$title" created successfully!';
+  //create interview
+  static const createCustomInterview = 'Create Custom Interview';
+  static const jobTitleLabel = 'Job Title *';
+  static const jobTitleHint = 'e.g., Senior Flutter Developer';
+  static const jobTitleValidation = 'Job title is required';
+
+  static const companyLabel = 'Company (Optional)';
+  static const companyHint = 'e.g., Google, Meta, Startup';
+
+  static const jobDescriptionLabel = 'Job Description *';
+  static const jobDescriptionHint =
+      'Describe the role, responsibilities, and requirements...';
+  static const jobDescriptionValidation = 'Job description is required';
+
+  static const difficultyLevel = 'Difficulty Level';
+  static const interviewDuration = 'Interview Duration';
+
+  static const interviewTopicsLabel = 'Interview Topics *';
+  static const interviewTopicsHint =
+      'Select topics you want to be interviewed on:';
+
+  static const addCustomTopicHint = 'Add custom topic...';
+
+  static const topicsSelected = 'topics selected';
+  static const selectAtLeastOneTopic = 'Please select at least one topic';
+
+  static const createInterview = 'Create Interview';
+
 }
