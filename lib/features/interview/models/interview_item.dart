@@ -1,4 +1,3 @@
-// Updated InterviewItem model to support custom interviews
 class InterviewItem {
   final String id;
   final String jobTitle;
@@ -39,19 +38,23 @@ class InterviewItem {
 
   // Create from JSON
   factory InterviewItem.fromJson(Map<String, dynamic> json) {
-    return InterviewItem(
-      id: json['id'],
-      jobTitle: json['jobTitle'],
-      company: json['company'],
-      jobDescription: json['jobDescription'],
-      difficulty: json['difficulty'],
-      duration: json['duration'],
-      topics: List<String>.from(json['topics']),
-      isCustom: json['isCustom'] ?? false,
-      createdAt: json['createdAt'] != null
-          ? DateTime.parse(json['createdAt'])
-          : null,
-    );
+    try {
+      return InterviewItem(
+        id: json['id'] as String,
+        jobTitle: json['jobTitle'] as String,
+        company: json['company'] as String,
+        jobDescription: json['jobDescription'] as String,
+        difficulty: json['difficulty'] as String,
+        duration: json['duration'] as String,
+        topics: List<String>.from(json['topics'] ?? []),
+        isCustom: json['isCustom'] ?? false,
+        createdAt: json['createdAt'] != null
+            ? DateTime.parse(json['createdAt'])
+            : null,
+      );
+    } catch (e) {
+      throw FormatException('Invalid InterviewItem JSON: $e');
+    }
   }
 
   // Copy with method for easy updates

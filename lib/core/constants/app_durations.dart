@@ -9,6 +9,6 @@ class AppDurations {
   static const int apiDelaySmallMilliseconds = 300;
 
   //Interview
-  static const int startingInterview = 2;
-  static const int three = 3;
+  static const int interviewStartDelaySeconds = 2;
+  static const int interviewCountdownSeconds = 3;
 }

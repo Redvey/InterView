@@ -197,7 +197,49 @@ class AppSizes {
   static double lottieHeight(BuildContext context) => 250.0 * _getHeightScaleFactor(context);
   static double lottieWidth(BuildContext context) => 250.0 * _getWidthScaleFactor(context);
 
+  static double xs(BuildContext context) => 4.0 * _getScaleFactor(context);
+  static double sm(BuildContext context) => 8.0 * _getScaleFactor(context);
+  static double xxl(BuildContext context) => 24.0 * _getScaleFactor(context);
+  static double xxxl(BuildContext context) => 32.0 * _getScaleFactor(context);
 
+  // Padding
+  static double paddingXS(BuildContext context) => 4.0 * _getScaleFactor(context);
+  static double paddingSM(BuildContext context) => 8.0 * _getScaleFactor(context);
+  static double paddingMD(BuildContext context) => 12.0 * _getScaleFactor(context);
+  static double paddingLG(BuildContext context) => 16.0 * _getScaleFactor(context);
+  static double paddingXL(BuildContext context) => 20.0 * _getScaleFactor(context);
+  static double paddingXXL(BuildContext context) => 24.0 * _getScaleFactor(context);
+
+  // Border Radius
+  static double radiusXS(BuildContext context) => 2.0 * _getScaleFactor(context);
+  static double radiusSM(BuildContext context) => 8.0 * _getScaleFactor(context);
+  static double radiusMD(BuildContext context) => 12.0 * _getScaleFactor(context);
+  static double radiusLG(BuildContext context) => 20.0 * _getScaleFactor(context);
+  static double radiusXL(BuildContext context) => 25.0 * _getScaleFactor(context);
+
+  // Heights & Widths (choose appropriate scale factor)
+  static double createButtonHeight(BuildContext context) => 50.0 * _getHeightScaleFactor(context);
+  static double handleWidth(BuildContext context) => 40.0 * _getWidthScaleFactor(context);
+  static double handleHeight(BuildContext context) => 4.0 * _getHeightScaleFactor(context);
+  // textFieldMaxLines is not a size, it's an integer property, no scaling needed
+  static const int textFieldMaxLines = 4;
+  static double iconSizeSM(BuildContext context) => 18.0 * _getScaleFactor(context);
+  static double iconSizeMD(BuildContext context) => 20.0 * _getScaleFactor(context);
+
+  // Sheet Sizes (these are usually ratios, not fixed sizes to scale)
+  static const double sheetInitialSize = 0.9;
+  static const double sheetMinSize = 0.5;
+  static const double sheetMaxSize = 0.95;
+
+
+
+  // Font Sizes
+  static double fontSizeSM(BuildContext context) => 14.0 * _getScaleFactor(context);
+  static double fontSizeMD(BuildContext context) => 16.0 * _getScaleFactor(context);
+  static double fontSizeLG(BuildContext context) => 20.0 * _getScaleFactor(context);
+
+  // Extra Spacing
+  static double extraSpacingForButton(BuildContext context) => 100.0 * _getHeightScaleFactor(context);
 
 
 

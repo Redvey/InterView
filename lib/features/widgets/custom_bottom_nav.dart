@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:interview/app/themes/text_styles.dart';
 import 'package:interview/core/constants/strings.dart';
 import 'package:interview/core/extensions/responsive_extension.dart';
-import '../../../core/constants/colors.dart';
+import '../../core/constants/colors.dart';
 
 class CustomBottomNav extends StatelessWidget {
   final int currentIndex;
@@ -29,7 +29,7 @@ class CustomBottomNav extends StatelessWidget {
             borderRadius: BorderRadius.circular(context.bottomNavRadius),
             boxShadow: [
               BoxShadow(
-
+                color:AppColors.bottomNavShadowAlpha,
                 blurRadius: context.bottomNavShadowBlur,
                 offset: Offset(context.zero, context.bottomNavShadowOffsetY),
               ),

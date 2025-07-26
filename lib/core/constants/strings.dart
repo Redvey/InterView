@@ -107,6 +107,8 @@ class AppStrings {
 
   //mock-interview
   static const mockInterview = "Select an Interview Template";
+  static const String failedToLoadInterviews = 'Failed to load interview items. Please try again.';
+  static const String customCompany = 'Custom Company';
 
   //membership
   // static const membershipSubTitle = "Only ${"perMonth"} per month";
