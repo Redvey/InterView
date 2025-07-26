@@ -20,26 +20,12 @@ class AppSizes {
     // Use the smaller scale factor to ensure content fits on screen
     return math.min(_getWidthScaleFactor(context), _getHeightScaleFactor(context));
   }
-// ignore: unused_element
-  static double _getMinScaleFactor(BuildContext context) {
-    // Use minimum scale factor to ensure content fits on screen
-    return math.min(_getWidthScaleFactor(context), _getHeightScaleFactor(context));
-  }
 
-  // ignore: unused_element
-  static double _getMaxScaleFactor(BuildContext context) {
-    // Use maximum scale factor for elements that should fill available space
-    return math.max(_getWidthScaleFactor(context), _getHeightScaleFactor(context));
-  }
-
-  // ignore: unused_element
-  static double _getAverageScaleFactor(BuildContext context) {
-    // Use average scale factor for balanced scaling
-    return (_getWidthScaleFactor(context) + _getHeightScaleFactor(context)) / 2;
-  }
 
   // Padding and margin sizes
   static double md(BuildContext context) => 16.0 * _getScaleFactor(context);
+  static double mx(BuildContext context) => 12.0 * _getScaleFactor(context);
+  static double mxW(BuildContext context) => 12.0 * _getScaleFactor(context);
   static double mdV(BuildContext context) => 16.0 * _getHeightScaleFactor(context);
   static double lg(BuildContext context) => 24.0 * _getScaleFactor(context);
   static double lgV(BuildContext context) => 24.0 * _getHeightScaleFactor(context);
@@ -49,6 +35,7 @@ class AppSizes {
 
   // Icons size
   static double iconSize(BuildContext context) => 30.0 * _getScaleFactor(context);
+  static double iconSizeSm(BuildContext context) => 24.0 * _getScaleFactor(context);
 
   // Blur radius & spread radius
   static double welcomeBlur(BuildContext context) => 40.0 * _getScaleFactor(context);
@@ -120,7 +107,7 @@ class AppSizes {
   // Bottom nav shadow
   static double bottomNavShadowBlur(BuildContext context) => 20.0 * _getScaleFactor(context);
   static double bottomNavShadowOffsetY(BuildContext context) => 8.0 * _getHeightScaleFactor(context);
-  static int bottomNavShadowAlpha = 26;
+  static double bottomNavShadowAlpha(BuildContext context) => 26 * _getScaleFactor(context);
 
   // Nav icon container
   static double navIconPaddingHorizontal(BuildContext context) => 12.0 * _getWidthScaleFactor(context);
@@ -178,6 +165,7 @@ class AppSizes {
 
   // Border radius
   static double borderRadiusSm(BuildContext context) => 4.0 * _getScaleFactor(context);
+  static double borderRadiusLx(BuildContext context) => 12.0 * _getScaleFactor(context);
   static double borderRadiusMd(BuildContext context) => 8.0 * _getScaleFactor(context);
   static double borderRadiusLg(BuildContext context) => 24.0 * _getScaleFactor(context);
   static double sheetRadius(BuildContext context) => 24.0 * _getScaleFactor(context);
@@ -202,9 +190,15 @@ class AppSizes {
   static double starSpacing(BuildContext context) => 4.0 * _getWidthScaleFactor(context);
   static int maxStars = 5;
 
+
+  //mock-interview
+  static double recentSearches(BuildContext context) => 40.0 * _getHeightScaleFactor(context);
   //success screen
   static double lottieHeight(BuildContext context) => 250.0 * _getHeightScaleFactor(context);
   static double lottieWidth(BuildContext context) => 250.0 * _getWidthScaleFactor(context);
+
+
+
 
 
   // Helper methods for responsive design

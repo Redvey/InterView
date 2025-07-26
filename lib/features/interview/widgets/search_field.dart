@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:interview/app/themes/text_styles.dart';
+import 'package:interview/core/constants/colors.dart';
+import 'package:interview/core/extensions/responsive_extension.dart';
 
 class SearchField extends StatefulWidget {
   final String? hintText;
@@ -9,7 +12,7 @@ class SearchField extends StatefulWidget {
   final Color? fillColor;
   final Color? borderColor;
   final Color? focusedBorderColor;
-  final double borderRadius;
+  final double? borderRadius;
   final EdgeInsetsGeometry? contentPadding;
   final TextStyle? hintStyle;
   final TextStyle? textStyle;
@@ -18,7 +21,7 @@ class SearchField extends StatefulWidget {
 
   const SearchField({
     super.key,
-    this.hintText = 'Search...',
+    this.hintText,
     this.onChanged,
     this.onSubmitted,
     this.controller,
@@ -26,7 +29,7 @@ class SearchField extends StatefulWidget {
     this.fillColor,
     this.borderColor,
     this.focusedBorderColor,
-    this.borderRadius = 12.0,
+    this.borderRadius ,
     this.contentPadding,
     this.hintStyle,
     this.textStyle,
@@ -83,56 +86,51 @@ class _SearchFieldState extends State<SearchField> {
       style: widget.textStyle,
       decoration: InputDecoration(
         hintText: widget.hintText,
-        hintStyle: widget.hintStyle ?? TextStyle(
-          color: Colors.grey[600],
-          fontSize: 16,
-        ),
+        hintStyle: widget.hintStyle ?? AppTextStyles.emptyStateHint(context),
         prefixIcon: Container(
-          padding: const EdgeInsets.all(12),
-          child: const Text(
-            '🔍',
-            style: TextStyle(fontSize: 18),
-          ),
+          padding:  EdgeInsets.all(context.mx),
+          child: Icon(Icons.search,size: context.iconSizeSm),
         ),
         suffixIcon: _showClearButton
             ? IconButton(
-          icon: const Icon(Icons.clear, color: Colors.grey),
+          icon:  Icon(Icons.clear,size: context.iconSizeSm, color: AppColors.bottomBlackLight),
+
           onPressed: _clearText,
         )
             : widget.suffixIcon,
         filled: true,
-        fillColor: widget.fillColor ?? Colors.grey[50],
+        fillColor: widget.fillColor ?? AppColors.buttonGray,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
+          borderRadius: BorderRadius.circular(context.borderRadiusLg),
           borderSide: BorderSide(
-            color: widget.borderColor ?? Colors.grey[300]!,
-            width: 1.0,
+            color: widget.borderColor ?? AppColors.textGrey,
+            width: context.borderWidthThin,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
+          borderRadius: BorderRadius.circular(context.borderRadiusLg),
           borderSide: BorderSide(
-            color: widget.borderColor ?? Colors.grey[300]!,
-            width: 1.0,
+            color: widget.borderColor ?? AppColors.textGrey,
+            width: context.borderWidthThin,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
+          borderRadius: BorderRadius.circular(context.borderRadiusLg),
           borderSide: BorderSide(
-            color: widget.focusedBorderColor ?? Colors.blue,
-            width: 2.0,
+            color: widget.focusedBorderColor ?? AppColors.searchFocused,
+            width: context.borderWidthDefault,
           ),
         ),
         disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
+          borderRadius: BorderRadius.circular(context.borderRadiusLg),
           borderSide: BorderSide(
-            color: Colors.grey[200]!,
-            width: 1.0,
+            color: AppColors.buttonTextGray,
+            width: context.borderWidthThin,
           ),
         ),
-        contentPadding: widget.contentPadding ?? const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 12,
+        contentPadding: widget.contentPadding ??  EdgeInsets.symmetric(
+          horizontal: context.md,
+          vertical: context.mx,
         ),
       ),
     );

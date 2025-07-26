@@ -15,6 +15,7 @@ class AppColors {
   static const backgroundLightOrange = Color(0xFFF1995E);
   static const backgroundPink = Color(0xFFD7008F);
   static const backgroundLightPink = Color(0xFFF260EB);
+  static const backgroundLightBlue = Color(0xFFFFCBCB);
 
   //widget background
   static const purple = Color(0xFFB05CFF);
@@ -32,6 +33,12 @@ class AppColors {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [backgroundLightPink, backgroundYellow],
+    // stops: [0.0, 0.3],
+  );
+  static const Gradient interviewerGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [blackLight,backgroundLightPink, blackLight],
     // stops: [0.0, 0.3],
   );
   static const Gradient resumeBuilderGradient = LinearGradient(
@@ -89,6 +96,15 @@ class AppColors {
   static const achievementsForm = Color(0xFF92FFEF);
   static const otherForm = Color(0xFFEDE3FF);
 
+
+
+  //search-field
+  static const searchFill = Color(0xFFE3F2FD);
+  static const searchBorder = Color(0xFF90CAF9);
+  static const searchFocused = Color(0xFF2196F3);
+  static const searchHint = Color(0xFF42A5F5);
+
+
   // Text Colors
 
   static const black = Color(0xFF000000);
@@ -96,6 +112,8 @@ class AppColors {
   static const bottomBlack = Color(0xFF030306);
   static const bottomBlackLight = Color(0xFF101012);
   static const bottomGrey = Color(0xFF878789);
+
+  static const textGrey = Color(0xFF757575);
 
   static const textRed = Color(0xFFFF9594);
   static const textRedBg = Color(0xFFFFE7E7);
@@ -130,8 +148,14 @@ class AppColors {
 
   static const buttonRed = Color(
     0xFFFDEFEE,
-  ); // Button background: FDEFEE, Text: EC6A5B
+  );
   static const buttonTextRed = Color(0xFFEC6A5B);
 
   static const buttonYellow = Color(0xFFFEAA02);
+
+//card
+  static const Color textPrimary = Color(0xFF212121);
+  static const Color textSecondary = Color(0xFF757575);
+  static const Color chipBackground = Color(0xFFF5F5F5);
+  static const Color chipBorder = Color(0xFFE0E0E0);
 }

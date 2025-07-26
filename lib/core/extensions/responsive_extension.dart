@@ -9,6 +9,8 @@ extension ResponsiveContext on BuildContext {
 
   // Padding and margins
   double get md => AppSizes.md(this);
+  double get mx => AppSizes.mx(this);
+  double get mxW => AppSizes.mxW(this);
   double get mdV => AppSizes.mdV(this);
   double get lg => AppSizes.lg(this);
   double get lgV => AppSizes.lgV(this);
@@ -18,6 +20,7 @@ extension ResponsiveContext on BuildContext {
 
   // Icons
   double get iconSize => AppSizes.iconSize(this);
+  double get iconSizeSm => AppSizes.iconSizeSm(this);
 
   // Blur & spread
   double get welcomeBlur => AppSizes.welcomeBlur(this);
@@ -83,6 +86,7 @@ extension ResponsiveContext on BuildContext {
   double get borderRadiusSm => AppSizes.borderRadiusSm(this);
   double get borderRadiusMd => AppSizes.borderRadiusMd(this);
   double get borderRadiusLg => AppSizes.borderRadiusLg(this);
+  double get borderRadiusLx => AppSizes.borderRadiusLx(this);
   double get sheetRadius => AppSizes.sheetRadius(this);
 
   // Divider
@@ -116,7 +120,7 @@ extension ResponsiveContext on BuildContext {
   // Bottom nav shadow
   double get bottomNavShadowBlur => AppSizes.bottomNavShadowBlur(this);
   double get bottomNavShadowOffsetY => AppSizes.bottomNavShadowOffsetY(this);
-  int get bottomNavShadowAlpha => AppSizes.bottomNavShadowAlpha;
+  double get bottomNavShadowAlpha => AppSizes.bottomNavShadowAlpha(this);
 
   // Nav icon container
   double get navIconPaddingHorizontal => AppSizes.navIconPaddingHorizontal(this);
@@ -170,6 +174,11 @@ extension ResponsiveContext on BuildContext {
   TextStyle get welcomeCardFinalStyle => AppTextStyles.welcomeCardFinal(this);
   TextStyle get crackItStyle => AppTextStyles.crackIt(this);
   TextStyle get membershipSubTitle => AppTextStyles.membershipSubTitle(this);
+
+  // Additional size constants
+
+
+
 
   // === SCREEN INFO ===
   Size get screenSize => MediaQuery.of(this).size;

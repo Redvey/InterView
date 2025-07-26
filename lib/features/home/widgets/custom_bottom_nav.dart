@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interview/app/themes/text_styles.dart';
 import 'package:interview/core/constants/strings.dart';
 import 'package:interview/core/extensions/responsive_extension.dart';
 import '../../../core/constants/colors.dart';
@@ -28,7 +29,7 @@ class CustomBottomNav extends StatelessWidget {
             borderRadius: BorderRadius.circular(context.bottomNavRadius),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withAlpha(context.bottomNavShadowAlpha),
+
                 blurRadius: context.bottomNavShadowBlur,
                 offset: Offset(context.zero, context.bottomNavShadowOffsetY),
               ),
@@ -61,6 +62,7 @@ class CustomBottomNav extends StatelessWidget {
               NavIcon(
                 icon: Icons.person_rounded,
                 label: AppStrings.navProfile,
+
                 selected: currentIndex == 3,
                 selectedColor: AppColors.textBlueBg,
                 onTap: () => onTap(3),
@@ -133,12 +135,7 @@ class NavIcon extends StatelessWidget {
                     padding: EdgeInsets.only(left: context.navLabelPaddingLeft),
                     child: Text(
                       label,
-                      style: TextStyle(
-                        fontSize: context.navLabelFontSize,
-                        color: selectedColor,
-                        decoration: TextDecoration.none,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: AppTextStyles.navTextStyle(context,selectedColor),
                     ),
                   ),
                 ),
