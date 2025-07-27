@@ -5,6 +5,8 @@ import '../../../core/constants/colors.dart';
 import '../../../core/utils/color_utils.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
 
+import '../../../core/utils/validators.dart';
+
 enum FieldType {
   text,
   name,
@@ -139,7 +141,10 @@ class LabeledTextFormField extends StatelessWidget {
           focusNode: focusNode,
           validator: _buildValidator(),
           obscureText: obscureText,
-          autocorrect: autocorrect && fieldType != FieldType.email && fieldType != FieldType.url,
+          autocorrect:
+              autocorrect &&
+              fieldType != FieldType.email &&
+              fieldType != FieldType.url,
           textCapitalization: _getTextCapitalization(),
           textInputAction: _getTextInputAction(),
           inputFormatters: _getInputFormatters(),
@@ -153,56 +158,57 @@ class LabeledTextFormField extends StatelessWidget {
             }
           },
           onChanged: onChanged,
-          decoration: whiteInputDecoration(
-            context,
-            hint,
-            hintTextColor,
-            borderColor ?? AppColors.backgroundWhite,
-          ).copyWith(
-            counterText: showCounter ? null : '',
-            enabled: enabled,
-            filled: true,
-            fillColor: enabled
-                ? AppColors.backgroundWhite
-                : containerColor.withAlpha(127),
-            // Enhanced error styling
-            errorStyle: TextStyle(
-              color: Colors.red.shade700,
-              fontSize: 12,
-              height: 1.2,
-            ),
-            errorMaxLines: 2,
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(context.radiusSM),
-              borderSide: BorderSide(
-                color: Colors.red.shade400,
-                width: 1.5,
+          decoration:
+              whiteInputDecoration(
+                context,
+                hint,
+                hintTextColor,
+                borderColor ?? AppColors.backgroundWhite,
+              ).copyWith(
+                counterText: showCounter ? null : '',
+                enabled: enabled,
+                filled: true,
+                fillColor: enabled
+                    ? AppColors.backgroundWhite
+                    : containerColor.withAlpha(127),
+                // Enhanced error styling
+                errorStyle: TextStyle(
+                  color: Colors.red.shade700,
+                  fontSize: 12,
+                  height: 1.2,
+                ),
+                errorMaxLines: 2,
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(context.radiusSM),
+                  borderSide: BorderSide(
+                    color: Colors.red.shade400,
+                    width: 1.5,
+                  ),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(context.radiusSM),
+                  borderSide: BorderSide(
+                    color: Colors.red.shade600,
+                    width: 2.0,
+                  ),
+                ),
+                // Enhanced focus styling
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(context.radiusSM),
+                  borderSide: BorderSide(
+                    color: AppColors.blackLight,
+                    width: 2.0,
+                  ),
+                ),
+                // Disabled state styling
+                disabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(context.radiusSM),
+                  borderSide: BorderSide(
+                    color: Colors.grey.shade300,
+                    width: 1.0,
+                  ),
+                ),
               ),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(context.radiusSM),
-              borderSide: BorderSide(
-                color: Colors.red.shade600,
-                width: 2.0,
-              ),
-            ),
-            // Enhanced focus styling
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(context.radiusSM),
-              borderSide: BorderSide(
-                color: AppColors.blackLight,
-                width: 2.0,
-              ),
-            ),
-            // Disabled state styling
-            disabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(context.radiusSM),
-              borderSide: BorderSide(
-                color: Colors.grey.shade300,
-                width: 1.0,
-              ),
-            ),
-          ),
         ),
 
         SizedBox(height: context.spaceBtwFields),
@@ -273,7 +279,8 @@ class LabeledTextFormField extends StatelessWidget {
     if (textInputAction != null) return textInputAction!;
     if (isLastField) return TextInputAction.done;
     if (nextFocus != null) return TextInputAction.next;
-    if (fieldType == FieldType.multiline || fieldType == FieldType.description) {
+    if (fieldType == FieldType.multiline ||
+        fieldType == FieldType.description) {
       return TextInputAction.newline;
     }
     return TextInputAction.next;
@@ -314,7 +321,7 @@ class LabeledTextFormField extends StatelessWidget {
         formatters.addAll([
           FilteringTextInputFormatter.digitsOnly,
           LengthLimitingTextInputFormatter(10),
-          _PhoneNumberFormatter(),
+          FormFormatters.phoneFormatter(),
         ]);
         break;
 
@@ -324,35 +331,33 @@ class LabeledTextFormField extends StatelessWidget {
       case FieldType.projectTitle:
         formatters.addAll([
           FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z0-9\s\-\.\(\)&/]")),
-          _CapitalizeFormatter(),
+          FormFormatters.capitalizeWordsFormatter(),
         ]);
         break;
 
       case FieldType.location:
         formatters.addAll([
           FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z\s,\-\']")),
-          _CapitalizeFormatter(),
+          FormFormatters.currencyFormatter(),
         ]);
         break;
 
       case FieldType.email:
         formatters.addAll([
           FilteringTextInputFormatter.deny(RegExp(r'\s')), // No spaces
-          _LowerCaseFormatter(),
+          FormFormatters.lowercaseFormatter(),
         ]);
         break;
 
       case FieldType.number:
       case FieldType.experience:
-        formatters.addAll([
-          FilteringTextInputFormatter.digitsOnly,
-        ]);
+        formatters.addAll([FilteringTextInputFormatter.digitsOnly]);
         break;
 
       case FieldType.currency:
         formatters.addAll([
           FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
-          _CurrencyFormatter(),
+          FormFormatters.currencyFormatter(),
         ]);
         break;
 
@@ -360,13 +365,13 @@ class LabeledTextFormField extends StatelessWidget {
       case FieldType.socialLink:
         formatters.addAll([
           FilteringTextInputFormatter.deny(RegExp(r'\s')), // No spaces
-          _UrlFormatter(),
+          FormFormatters.urlFormatter(),
         ]);
         break;
 
       case FieldType.description:
       case FieldType.multiline:
-      // Allow all characters for descriptions
+        // Allow all characters for descriptions
         break;
 
       case FieldType.password:
@@ -401,30 +406,14 @@ class LabeledTextFormField extends StatelessWidget {
       // Field-specific validation
       switch (fieldType) {
         case FieldType.email:
-          if (!_isValidEmail(trimmedValue)) {
-            return 'Enter a valid email address';
-          }
-          break;
+          return CommonValidators.email(trimmedValue);
 
         case FieldType.phone:
-          final digitsOnly = trimmedValue.replaceAll(RegExp(r'[^\d]'), '');
-          if (digitsOnly.length != 10) {
-            return 'Enter a valid 10-digit phone number';
-          }
-          if (RegExp(r'^(\d)\1{9}$').hasMatch(digitsOnly)) {
-            return 'Please enter a valid phone number';
-          }
-          if (digitsOnly.startsWith('0') || digitsOnly.startsWith('1')) {
-            return 'Invalid phone number format';
-          }
-          break;
+          return CommonValidators.phone(trimmedValue);
 
         case FieldType.url:
         case FieldType.socialLink:
-          if (!_isValidUrl(trimmedValue)) {
-            return 'Enter a valid URL (include http:// or https://)';
-          }
-          break;
+          return CommonValidators.url(trimmedValue);
 
         case FieldType.name:
         case FieldType.jobTitle:
@@ -443,8 +432,8 @@ class LabeledTextFormField extends StatelessWidget {
           break;
 
         case FieldType.currency:
-          if (!_isValidCurrency(trimmedValue)) {
-            return 'Enter a valid amount';
+          if (!FormValidationUtils.isValidCurrency(trimmedValue)) {
+            return ValidationMessages.invalidCurrency;
           }
           break;
 
@@ -477,134 +466,6 @@ class LabeledTextFormField extends StatelessWidget {
       return null;
     };
   }
-
-  bool _isValidEmail(String email) {
-    return RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
-        .hasMatch(email);
-  }
-
-  bool _isValidUrl(String url) {
-    // Accept URLs with or without protocol, but add validation
-    if (!url.startsWith('http://') && !url.startsWith('https://')) {
-      url = 'https://$url';
-    }
-    return RegExp(r'^https?:\/\/[^\s/$.?#].[^\s]*$').hasMatch(url);
-  }
-
-  bool _isValidCurrency(String amount) {
-    return RegExp(r'^\d+(\.\d{1,2})?$').hasMatch(amount);
-  }
 }
 
-// Custom Input Formatters
 
-class _PhoneNumberFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue,
-      TextEditingValue newValue,
-      ) {
-    final String digits = newValue.text.replaceAll(RegExp(r'[^\d]'), '');
-
-    if (digits.length <= 10) {
-      String formatted = digits;
-
-      if (digits.length >= 6) {
-        formatted = '${digits.substring(0, 3)}-${digits.substring(3, 6)}-${digits.substring(6)}';
-      } else if (digits.length >= 3) {
-        formatted = '${digits.substring(0, 3)}-${digits.substring(3)}';
-      }
-
-      return TextEditingValue(
-        text: formatted,
-        selection: TextSelection.collapsed(offset: formatted.length),
-      );
-    }
-
-    return oldValue;
-  }
-}
-
-class _CapitalizeFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue,
-      TextEditingValue newValue,
-      ) {
-    String newText = newValue.text;
-
-    if (newText.isNotEmpty) {
-      // Split by spaces and capitalize each word
-      final words = newText.split(' ');
-      final capitalizedWords = words.map((word) {
-        if (word.isNotEmpty) {
-          return word[0].toUpperCase() + word.substring(1).toLowerCase();
-        }
-        return word;
-      }).toList();
-
-      newText = capitalizedWords.join(' ');
-    }
-
-    return TextEditingValue(
-      text: newText,
-      selection: newValue.selection,
-    );
-  }
-}
-
-class _LowerCaseFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue,
-      TextEditingValue newValue,
-      ) {
-    return TextEditingValue(
-      text: newValue.text.toLowerCase(),
-      selection: newValue.selection,
-    );
-  }
-}
-
-class _CurrencyFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue,
-      TextEditingValue newValue,
-      ) {
-    String newText = newValue.text;
-
-    // Prevent multiple decimal points
-    if (newText.split('.').length > 2) {
-      return oldValue;
-    }
-
-    // Limit decimal places to 2
-    if (newText.contains('.')) {
-      final parts = newText.split('.');
-      if (parts[1].length > 2) {
-        newText = '${parts[0]}.${parts[1].substring(0, 2)}';
-      }
-    }
-
-    return TextEditingValue(
-      text: newText,
-      selection: TextSelection.collapsed(offset: newText.length),
-    );
-  }
-}
-
-class _UrlFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue,
-      TextEditingValue newValue,
-      ) {
-    String newText = newValue.text.toLowerCase().trim();
-
-    return TextEditingValue(
-      text: newText,
-      selection: newValue.selection,
-    );
-  }
-}

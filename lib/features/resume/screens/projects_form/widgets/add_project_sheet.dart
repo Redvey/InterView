@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:interview/core/utils/color_utils.dart';
 
 import '../../../../../core/constants/colors.dart';
+import '../../../../../core/utils/validators.dart';
 import '../../../widgets/labelled_text_field.dart';
 
 class AddProjectSheet extends StatefulWidget {
-  final void Function(String title, String about, String github, String live) onAdd;
+  final void Function(String title, String about, String github, String live)
+  onAdd;
 
   const AddProjectSheet({super.key, required this.onAdd});
 
@@ -68,10 +70,7 @@ class _AddProjectSheetState extends State<AddProjectSheet> {
             children: [
               const Text(
                 "Add Project",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               const SizedBox(height: 16),
 
@@ -112,12 +111,16 @@ class _AddProjectSheetState extends State<AddProjectSheet> {
                     return null; // GitHub link is optional
                   }
 
-                  String url = value.trim().toLowerCase();
-                  if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                    url = 'https://$url';
+                  // Update the controller with normalized URL
+                  if (!value.trim().startsWith('http://') &&
+                      !value.trim().startsWith('https://')) {
+                    _githubController.text = 'https://${value.trim()}';
                   }
 
-                  if (!url.contains('github.com')) {
+                  // Use the centralized GitHub URL validator
+                  if (!FormValidationUtils.isValidGitHubUrl(
+                    _githubController.text,
+                  )) {
                     return 'Please enter a valid GitHub URL';
                   }
 

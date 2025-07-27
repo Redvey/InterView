@@ -32,13 +32,15 @@ class FormValidationUtils {
   // GitHub URL validation
   static bool isValidGitHubUrl(String url) {
     if (!isValidUrl(url)) return false;
-    return url.toLowerCase().contains('github.com');
+        final uri = Uri.tryParse(url.toLowerCase());
+        return uri != null && uri.host == 'github.com';
   }
 
   // LinkedIn URL validation
   static bool isValidLinkedInUrl(String url) {
     if (!isValidUrl(url)) return false;
-    return url.toLowerCase().contains('linkedin.com');
+        final uri = Uri.tryParse(url.toLowerCase());
+        return uri != null && (uri.host == 'linkedin.com' || uri.host == 'www.linkedin.com');
   }
 
   // Currency validation

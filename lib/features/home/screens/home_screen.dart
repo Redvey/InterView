@@ -144,29 +144,29 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildAdSection() {
-    return AnimatedContentWrapper(
-      fadeAnimation:
-      _animationManager.fadeAnimations[AppStrings.adSectionAnimationIndex],
-      slideAnimation:
-      _animationManager.slideAnimations[AppStrings.adSectionAnimationIndex],
-      child: Column(
-        children: [
-          Divider(thickness: context.dividerHeight),
-          SizedBox(height: context.defaultSpaceH),
-          Container(
-            height: context.adCard,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(context.borderRadiusLg),
-              gradient: AppColors.backgroundGradient,
-            ),
-            child: Center(
-              child: Text(AppStrings.ad, style: context.welcomeStyle),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildAdSection() {
+  //   return AnimatedContentWrapper(
+  //     fadeAnimation:
+  //     _animationManager.fadeAnimations[AppStrings.adSectionAnimationIndex],
+  //     slideAnimation:
+  //     _animationManager.slideAnimations[AppStrings.adSectionAnimationIndex],
+  //     child: Column(
+  //       children: [
+  //         Divider(thickness: context.dividerHeight),
+  //         SizedBox(height: context.defaultSpaceH),
+  //         Container(
+  //           height: context.adCard,
+  //           width: double.infinity,
+  //           decoration: BoxDecoration(
+  //             borderRadius: BorderRadius.circular(context.borderRadiusLg),
+  //             gradient: AppColors.backgroundGradient,
+  //           ),
+  //           child: Center(
+  //             child: Text(AppStrings.ad, style: context.welcomeStyle),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }
