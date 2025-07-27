@@ -3,6 +3,8 @@ import '../../features/home/widgets/feature_container.dart';
 import '../../features/resume/screens/widgets/model/selectable_item.dart';
 import '../../features/resume/screens/widgets/selectable_item_bottom_sheet.dart';
 import '../constants/sizes.dart';
+import 'package:go_router/go_router.dart';
+import 'package:interview/features/profile/widgets/liquid_menu_overlay.dart';
 
 void launchCategoryBottomSheet({
   required BuildContext context,
@@ -97,3 +99,140 @@ mixin FormStateMixin<T extends StatefulWidget> on State<T> {
     FocusScope.of(context).unfocus();
   }
 }
+
+
+
+
+
+void showLiquidMenuOverlay({
+  required BuildContext context,
+  required String userName,
+  required List<String> menuItems,
+  required void Function(String item) onMenuItemTap,
+}) {
+  final overlay = OverlayEntry(
+    builder: (_) => LiquidMenuOverlay(
+      backgroundWidget: _buildCurrentPageSnapshot(context),
+      userName: userName,
+      menuItems: menuItems,
+      onClose: () => _closeOverlay(context),
+      onMenuItemTap: onMenuItemTap,
+    ),
+  );
+
+  Overlay.of(context).insert(overlay);
+  _overlayMap[context] = overlay;
+}
+
+final Map<BuildContext, OverlayEntry> _overlayMap = {};
+
+void _closeOverlay(BuildContext context) {
+  _overlayMap[context]?.remove();
+  _overlayMap.remove(context);
+}
+
+Widget _buildCurrentPageSnapshot(BuildContext context) {
+  return RepaintBoundary(
+    child: SizedBox(
+      width: double.infinity,
+      height: double.infinity,
+      child: Material(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        child: const SizedBox.expand(),
+      ),
+    ),
+  );
+}
+
+void handleProfileMenuItemTap(BuildContext context, String item) {
+  final lower = item.toLowerCase();
+  _closeOverlay(context);
+
+  switch (lower) {
+    case 'home':
+      context.go('/');
+      break;
+    case 'profile':
+      context.go('/profile');
+      break;
+    case 'settings':
+      context.go('/settings');
+      break;
+    case 'help':
+      context.go('/help');
+      break;
+    case 'logout':
+      _showLogoutDialog(context);
+      break;
+  }
+}
+
+void _showLogoutDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: const Text('Logout'),
+      content: const Text('Are you sure you want to logout?'),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+            context.go('/login');
+          },
+          child: const Text('Logout'),
+        ),
+      ],
+    ),
+  );
+}
+
+void showLiquidMenu({
+  required BuildContext context,
+  required Widget background,
+  required String userName,
+}) {
+  OverlayEntry? overlay; // Declare first
+
+  overlay = OverlayEntry(
+    builder: (_) => LiquidMenuOverlay(
+      backgroundWidget: background,
+      userName: userName,
+      onClose: () {
+        overlay?.remove();
+      },
+      onMenuItemTap: (item) {
+        if (item.toLowerCase() != 'logout') {
+          overlay?.remove();
+        }
+
+        switch (item.toLowerCase()) {
+          case 'home':
+            context.go('/');
+            break;
+          case 'profile':
+            context.go('/profile');
+            break;
+          case 'settings':
+            context.go('/settings');
+            break;
+          case 'help':
+            context.go('/help');
+            break;
+          case 'logout':
+            _showLogoutDialog(context);
+            break;
+        }
+      },
+    ),
+  );
+
+  Overlay.of(context).insert(overlay);
+}
+
+
+
+

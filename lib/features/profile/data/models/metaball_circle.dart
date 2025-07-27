@@ -16,7 +16,7 @@ class MetaballCircle {
     this.radius = 0,
     this.scaledRadius = 200,
     this.scaleOrigin = Alignment.center,
-    this.color = AppColors.blackLight,
+    this.color = AppColors.bottomBlack,
   });
 
   /// Creates a copy of the circle with a new radius

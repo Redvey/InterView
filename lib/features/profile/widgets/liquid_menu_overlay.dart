@@ -165,7 +165,7 @@ class _LiquidMenuOverlayState extends State<LiquidMenuOverlay>
   //         ),
   //
   //         decoration: const BoxDecoration(
-  //           color: AppColors.blackLight,
+  //           color: AppColors.withAlpha,
   //           shape: BoxShape.circle,
   //         ),
   //         child: AnimatedOpacity(
@@ -233,7 +233,7 @@ class _LiquidMenuOverlayState extends State<LiquidMenuOverlay>
                 children: [
                   CircleAvatar(
                     radius: context.userAvatarRadius,
-                    backgroundImage: AssetImage(AppImage.pfp),
+                    backgroundImage: AssetImage(AppImage.temp),
                   ),
                   SizedBox(height: context.md),
                   Text(

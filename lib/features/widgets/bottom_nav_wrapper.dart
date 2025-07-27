@@ -1,15 +1,41 @@
-import 'package:flutter/cupertino.dart';
-
+import 'package:flutter/material.dart';
 import 'custom_bottom_nav.dart';
 
-class MyBottomNavWrapper extends StatefulWidget {
-  const MyBottomNavWrapper({super.key});
+// This wrapper is now optional since tab management is handled in HomeScreen
+// But kept for backward compatibility if needed elsewhere
+class MyBottomNavWrapper extends StatelessWidget {
+  final int currentIndex;
+  final Function(int) onTap;
+
+  const MyBottomNavWrapper({
+    super.key,
+    required this.currentIndex,
+    required this.onTap,
+  });
 
   @override
-  State<MyBottomNavWrapper> createState() => _MyBottomNavWrapperState();
+  Widget build(BuildContext context) {
+    return CustomBottomNav(
+      currentIndex: currentIndex,
+      onTap: onTap,
+    );
+  }
 }
 
-class _MyBottomNavWrapperState extends State<MyBottomNavWrapper> {
+// Alternative standalone version if you need it elsewhere
+class StandaloneBottomNavWrapper extends StatefulWidget {
+  final Function(int)? onTabChanged;
+
+  const StandaloneBottomNavWrapper({
+    super.key,
+    this.onTabChanged,
+  });
+
+  @override
+  State<StandaloneBottomNavWrapper> createState() => _StandaloneBottomNavWrapperState();
+}
+
+class _StandaloneBottomNavWrapperState extends State<StandaloneBottomNavWrapper> {
   int _selectedIndex = 0;
 
   @override
@@ -17,10 +43,12 @@ class _MyBottomNavWrapperState extends State<MyBottomNavWrapper> {
     return CustomBottomNav(
       currentIndex: _selectedIndex,
       onTap: (index) {
-        setState(() {
-          _selectedIndex = index;
-        });
-        // Future: Add navigation logic here
+        if (index != 3) { // Not profile tab
+          setState(() {
+            _selectedIndex = index;
+          });
+        }
+        widget.onTabChanged?.call(index);
       },
     );
   }
