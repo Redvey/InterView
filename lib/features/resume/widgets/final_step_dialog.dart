@@ -76,7 +76,7 @@ class FinalStepDialog extends StatelessWidget {
             Text(
               subTitle,
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white70, fontSize: 16),
+              style: TextStyle(color: Colors.white70, fontSize: context.fontSizeSx),
             ),
             SizedBox(height: context.spaceBtwFields),
             Row(
@@ -84,7 +84,7 @@ class FinalStepDialog extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),
-                  style: TextButton.styleFrom(foregroundColor: Colors.white),
+                  style: TextButton.styleFrom(foregroundColor: AppColors.backgroundWhite),
                   child: Text(no),
                 ),
                 SizedBox(width: context.defaultSpace),
@@ -98,7 +98,7 @@ class FinalStepDialog extends StatelessWidget {
 
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.purple,
-                    foregroundColor: Colors.white,
+                    foregroundColor: AppColors.backgroundWhite,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(context.buttonRadius),
                     ),
