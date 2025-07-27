@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 
 class FinalStepDialog extends StatelessWidget {
+  final Map<String, String>? routeParams;
+
   final String title;
   final String subTitle;
   final String yes;
   final String no;
   final String? navigate;
 
-
   const FinalStepDialog({
     super.key,
     required this.title,
     required this.subTitle,
     required this.yes,
-    required this.no, required this.navigate,
+    required this.no,
+    required this.navigate,
+    this.routeParams,
   });
 
   @override
@@ -61,7 +64,7 @@ class FinalStepDialog extends StatelessWidget {
               ),
             ),
             SizedBox(height: context.spaceBtwItems),
-             Text(
+            Text(
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 22,
@@ -70,7 +73,7 @@ class FinalStepDialog extends StatelessWidget {
               title,
             ),
             SizedBox(height: context.defaultSpace),
-             Text(
+            Text(
               subTitle,
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white70, fontSize: 16),
@@ -87,11 +90,12 @@ class FinalStepDialog extends StatelessWidget {
                 SizedBox(width: context.defaultSpace),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context); // ✅ Dismiss dialog
+                    Navigator.pop(context);
                     if (navigate != null) {
-                      context.push(navigate!); // ✅ Navigate if a route is given
+                      context.pushNamed(navigate!, extra: routeParams ?? {});
                     }
                   },
+
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.purple,
                     foregroundColor: Colors.white,
@@ -101,7 +105,6 @@ class FinalStepDialog extends StatelessWidget {
                   ),
                   child: Text(yes),
                 ),
-
               ],
             ),
           ],

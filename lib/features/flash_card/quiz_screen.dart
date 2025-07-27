@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interview/core/constants/image_strings.dart';
-import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import 'package:interview/features/flash_card/services/questions_service.dart';
 import 'package:interview/features/flash_card/widgets/question_card.dart';
 import 'package:interview/features/flash_card/widgets/quiz_action_button.dart';

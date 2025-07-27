@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/app/themes/text_styles.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 
 class SearchField extends StatefulWidget {
   final String? hintText;

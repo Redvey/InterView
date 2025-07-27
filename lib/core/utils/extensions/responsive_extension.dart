@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../app/themes/text_styles.dart';
-import '../constants/sizes.dart';
+import '../../../app/themes/text_styles.dart';
+import '../../constants/sizes.dart';
+
 
 
 extension ResponsiveContext on BuildContext {
@@ -32,9 +33,10 @@ extension ResponsiveContext on BuildContext {
   double get createButtonHeight => AppSizes.createButtonHeight(this);
   double get handleWidth => AppSizes.handleWidth(this);
   double get handleHeight => AppSizes.handleHeight(this);
-  int get textFieldMaxLines => AppSizes.textFieldMaxLines; // This is a static int, not a responsive double
-  double get iconSizeSM => AppSizes.iconSizeSM(this); // Note: Conflicts with existing `iconSizeSm`, keep both as per request.
-  double get iconSizeMD => AppSizes.iconSizeMD(this); // Note: Conflicts with existing `fontSizeMd`, keep both as per request.
+  int get textFieldMaxLines => AppSizes.textFieldMaxLines;
+  double get iconSizeSM => AppSizes.iconSizeSM(this);
+  double get iconSizeSX => AppSizes.iconSizeSX(this);
+  double get iconSizeMD => AppSizes.iconSizeMD(this);
 
   // Sheet Sizes (remain static as they are ratios)
   double get sheetInitialSize => AppSizes.sheetInitialSize;
@@ -53,6 +55,7 @@ extension ResponsiveContext on BuildContext {
   // Padding and margins (Existing, untouched)
   double get md => AppSizes.md(this);
   double get mx => AppSizes.mx(this);
+  double get mxs => AppSizes.mxs(this);
   double get mxW => AppSizes.mxW(this);
   double get mdV => AppSizes.mdV(this);
   double get lg => AppSizes.lg(this);
@@ -121,6 +124,7 @@ extension ResponsiveContext on BuildContext {
 
   // Vertical spacing (Existing, untouched)
   double get spaceLessH => AppSizes.spaceLessH(this);
+  double get fieldLabelSpacing => AppSizes.fieldLabelSpacing(this);
   double get defaultSpaceH => AppSizes.defaultSpaceH(this);
   double get spaceBtwItemsH => AppSizes.spaceBtwItemsH(this);
   double get spaceBtwFields => AppSizes.spaceBtwFields(this);
@@ -216,7 +220,7 @@ extension ResponsiveContext on BuildContext {
   TextStyle hintTextStyle({required Color color}) => AppTextStyles.hintText(this, color: color);
   TextStyle get buttonLightStyle => AppTextStyles.buttonLight(this);
   TextStyle get welcomeCardFinalStyle => AppTextStyles.welcomeCardFinal(this);
-  TextStyle get crackItStyle => AppTextStyles.crackIt(this);
+  TextStyle get  crackItStyle => AppTextStyles.crackIt(this);
   TextStyle get membershipSubTitle => AppTextStyles.membershipSubTitle(this);
 
 
@@ -234,4 +238,8 @@ extension ResponsiveContext on BuildContext {
   Widget get verticalSpaceLarge => SizedBox(height: spaceBtwSections);
   Widget get horizontalSpaceSmall => SizedBox(width: spaceBtwItems);
   Widget get horizontalSpaceMedium => SizedBox(width: defaultSpace);
+
+
+  //constants
+  int get maxSelection => AppSizes.maxSelection;
 }

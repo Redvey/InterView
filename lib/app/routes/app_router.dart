@@ -32,7 +32,7 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => const ContactForm(),
     ),
     GoRoute(
-      path: '/final',
+      path: '/final_resume',
       name: RouteNames.finalResume,
       builder: (context, state) => const ResumeBuilderFinalScreen(),
     ),

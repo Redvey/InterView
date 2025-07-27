@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/app/themes/text_styles.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import 'package:interview/core/utils/color_utils.dart';
 import 'package:interview/features/resume/widgets/dotted_button.dart';
 import 'package:interview/features/resume/widgets/labelled_text_field.dart';
-
-import '../../../../core/constants/colors.dart';
+import 'package:interview/core/constants/colors.dart';
+import 'package:interview/core/constants/strings.dart';
 
 class EducationForm extends StatefulWidget {
   const EducationForm({super.key});
@@ -19,12 +20,12 @@ class _EducationFormState extends State<EducationForm> {
   @override
   void initState() {
     super.initState();
-    _addEducationEntry(); // Initial entry
+    _addEducationEntry();
   }
 
   void _addEducationEntry() {
     setState(() {
-      _entryIds.add(DateTime.now().millisecondsSinceEpoch); // Unique key
+      _entryIds.add(DateTime.now().millisecondsSinceEpoch);
     });
   }
 
@@ -36,11 +37,11 @@ class _EducationFormState extends State<EducationForm> {
 
   Widget _buildEducationEntry(int index, Color containerColor) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 24.0),
-      padding: const EdgeInsets.all(12),
+      margin:  EdgeInsets.only(bottom: context.lgV),
+      padding:  EdgeInsets.all(context.mxs),
       decoration: BoxDecoration(
         color: AppColors.educationForm,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(context.borderRadiusLx),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,36 +49,39 @@ class _EducationFormState extends State<EducationForm> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('First educational entry...', style: TextStyle(fontSize: 14)),
+              Text(
+                AppStrings.educationEntryTitle,
+                style: AppTextStyles.buttonLight(context)
+              ),
               IconButton(
                 icon: const Icon(Icons.delete_outline, color: Colors.red),
                 onPressed: () => _removeEducationEntry(index),
               ),
             ],
           ),
-          const SizedBox(height: 8),
-          LabeledTextField(
-            label: 'Institution Name',
-            hint: 'Enter institution name',
+          SizedBox(height: context.mxs),
+          LabeledTextFormField(
+            label: AppStrings.institutionNameLabel,
+            hint: AppStrings.institutionNameHint,
             containerColor: containerColor,
           ),
-          const SizedBox(height: 16),
-          LabeledTextField(
-            label: 'Course Name',
-            hint: 'Enter course name',
+          SizedBox(height: context.spaceBtwItemsH),
+          LabeledTextFormField(
+            label: AppStrings.courseNameLabel,
+            hint: AppStrings.courseNameHint,
             containerColor: containerColor,
           ),
-          const SizedBox(height: 16),
-          LabeledTextField(
-            label: 'Score',
-            hint: 'Enter score (CGPA or %)',
-            keyboardType: TextInputType.numberWithOptions(decimal: true),
+          SizedBox(height: context.spaceBtwItemsH),
+          LabeledTextFormField(
+            label: AppStrings.scoreLabel,
+            hint: AppStrings.scoreHint,
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
             containerColor: containerColor,
           ),
-          const SizedBox(height: 16),
-          LabeledTextField(
-            label: 'Passing Year',
-            hint: 'Enter passing year',
+          SizedBox(height: context.spaceBtwItemsH),
+          LabeledTextFormField(
+            label: AppStrings.passingYearLabel,
+            hint: AppStrings.passingYearHint,
             keyboardType: TextInputType.number,
             containerColor: containerColor,
           ),
@@ -91,28 +95,30 @@ class _EducationFormState extends State<EducationForm> {
     final Color containerColor = darkerEducationColor;
 
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(context.paddingMD),
       child: Container(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(context.paddingMD),
         decoration: BoxDecoration(
           color: containerColor,
-          borderRadius: BorderRadius.circular(16.0),
+          borderRadius: BorderRadius.circular(context.borderRadiusLx),
         ),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Education Entry', style:  context.infoHeaderStyle),
-              const SizedBox(height: 16),
+              Text(AppStrings.educationSectionTitle, style: context.infoHeaderStyle), 
+              SizedBox(height: context.defaultSpaceH),
               ..._entryIds.asMap().entries.map(
-                (entry) => _buildEducationEntry(entry.key, containerColor),
+                    (entry) => _buildEducationEntry(entry.key, containerColor),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: context.defaultSpaceH),
               Align(
                 alignment: Alignment.centerLeft,
                 child: GestureDetector(
                   onTap: _addEducationEntry,
-                  child: DottedBorderButton(detail: "Add Education"),
+                  child: DottedBorderButton(
+                    detail: AppStrings.addEducationButtonLabel, 
+                  ),
                 ),
               ),
             ],

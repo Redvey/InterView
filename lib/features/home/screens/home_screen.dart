@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/strings.dart';
-import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import 'package:interview/features/home/widgets/welcome_message.dart';
 import 'package:interview/features/widgets/bottom_nav_wrapper.dart';
 import '../widgets/animated_wrapper.dart';
@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     _buildWelcomeCard(),
                     SizedBox(height: context.defaultSpaceH),
                     _buildFeaturesList(),
-                    _buildAdSection(),
+                    // _buildAdSection(),
                   ],
                 ),
               ),
@@ -144,29 +144,29 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildAdSection() {
-    return AnimatedContentWrapper(
-      fadeAnimation:
-      _animationManager.fadeAnimations[AppStrings.adSectionAnimationIndex],
-      slideAnimation:
-      _animationManager.slideAnimations[AppStrings.adSectionAnimationIndex],
-      child: Column(
-        children: [
-          Divider(thickness: context.dividerHeight),
-          SizedBox(height: context.defaultSpaceH),
-          Container(
-            height: context.adCard,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(context.borderRadiusLg),
-              gradient: AppColors.backgroundGradient,
-            ),
-            child: Center(
-              child: Text(AppStrings.ad, style: context.welcomeStyle),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildAdSection() {
+  //   return AnimatedContentWrapper(
+  //     fadeAnimation:
+  //     _animationManager.fadeAnimations[AppStrings.adSectionAnimationIndex],
+  //     slideAnimation:
+  //     _animationManager.slideAnimations[AppStrings.adSectionAnimationIndex],
+  //     child: Column(
+  //       children: [
+  //         Divider(thickness: context.dividerHeight),
+  //         SizedBox(height: context.defaultSpaceH),
+  //         Container(
+  //           height: context.adCard,
+  //           width: double.infinity,
+  //           decoration: BoxDecoration(
+  //             borderRadius: BorderRadius.circular(context.borderRadiusLg),
+  //             gradient: AppColors.backgroundGradient,
+  //           ),
+  //           child: Center(
+  //             child: Text(AppStrings.ad, style: context.welcomeStyle),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }

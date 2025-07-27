@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interview/features/resume/screens/projects_form/widgets/add_project_sheet.dart';
+import 'package:interview/features/resume/widgets/dotted_button.dart';
 
 import '../../../../core/constants/colors.dart';
 
@@ -124,7 +125,7 @@ class _ProjectsFormState extends State<ProjectsForm> {
                 const SizedBox(height: 16),
                 GestureDetector(
                   onTap: _showAddProjectDialog,
-                  child: DottedBorderContainer(label: "+ Add Project"),
+                  child: DottedBorderButton(detail: "Add Project"),
                 ),
               ],
             ),
@@ -149,24 +150,4 @@ class Project {
   });
 }
 
-class DottedBorderContainer extends StatelessWidget {
-  final String label;
 
-  const DottedBorderContainer({super.key, required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.black,
-          style: BorderStyle.solid,
-          width: 1,
-        ),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
-    );
-  }
-}

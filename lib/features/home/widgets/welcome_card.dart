@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import 'package:interview/features/home/widgets/star_rating.dart';
 
 import '../../../core/constants/colors.dart';

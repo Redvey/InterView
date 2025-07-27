@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import 'package:interview/features/interview/models/interview_item.dart';
 import 'package:interview/features/interview/screens/custom_interview/widgets/custom_topic.dart';
 import 'package:interview/features/interview/screens/custom_interview/widgets/custom_topic_display.dart';

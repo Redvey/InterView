@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import 'package:intl/intl.dart';
 import '../../../../../core/constants/strings.dart';
 
@@ -27,7 +27,7 @@ class DatePickerField extends StatelessWidget {
         TextButton.icon(
 
           onPressed: onPressed,
-          icon: const Icon(Icons.calendar_today, size: 16,color: AppColors.backgroundRedPink,),
+          icon:  Icon(Icons.calendar_today, size: context.iconSizeSX,color: AppColors.backgroundRedPink,),
           label: Text(
             date != null
                 ? formatter.format(date!)

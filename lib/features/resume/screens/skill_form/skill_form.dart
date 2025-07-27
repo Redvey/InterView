@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
+import 'package:interview/core/constants/strings.dart';
 import 'package:interview/features/resume/screens/widgets/selectable_item_bottom_sheet.dart';
 import 'package:interview/features/resume/screens/widgets/selectable_item_wrap.dart';
 import 'package:interview/features/resume/screens/skill_form/data/skill_data.dart';
-
+import '../../../../core/utils/extensions/responsive_extension.dart';
 import '../widgets/selectable_controller.dart';
 
 class SkillForm extends StatefulWidget {
@@ -20,15 +21,15 @@ class _SkillFormState extends State<SkillForm> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(context.radiusLG)),
       ),
       builder: (context) => SelectableItemBottomSheet(
-        title: "Select Skills",
+        title: AppStrings.selectSkills,
         sheetColor: AppColors.skillForm,
         categoryData: skillData,
         initiallySelected: _controller.selectedItems,
-        maxSelection: 12,
+        maxSelection: context.maxSelection,
         onConfirm: (selected) {
           setState(() {
             _controller.setItems(selected);
@@ -41,25 +42,27 @@ class _SkillFormState extends State<SkillForm> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(context.paddingMD),
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(context.paddingMD),
         decoration: BoxDecoration(
           color: AppColors.skillForm,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(context.radiusMD),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Your Skills", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 16),
+            Text(
+              AppStrings.yourSkills,
+              style: context.infoHeaderStyle
+            ),
+            SizedBox(height: context.spaceBtwFields),
             SelectableItemWrap(
               selectedItems: _controller.selectedItems,
               onDelete: (item) => _controller.removeItem(item, () => setState(() {})),
               onAdd: _showSkillBottomSheet,
-              addLabel: " Add Skill",
+              addLabel: AppStrings.addSkills,
             ),
-
           ],
         ),
       ),

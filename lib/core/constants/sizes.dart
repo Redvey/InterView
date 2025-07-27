@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 
 class AppSizes {
   // iPhone 16 width as reference
@@ -25,6 +25,7 @@ class AppSizes {
   // Padding and margin sizes
   static double md(BuildContext context) => 16.0 * _getScaleFactor(context);
   static double mx(BuildContext context) => 12.0 * _getScaleFactor(context);
+  static double mxs(BuildContext context) => 8.0 * _getScaleFactor(context);
   static double mxW(BuildContext context) => 12.0 * _getScaleFactor(context);
   static double mdV(BuildContext context) => 16.0 * _getHeightScaleFactor(context);
   static double lg(BuildContext context) => 24.0 * _getScaleFactor(context);
@@ -81,6 +82,7 @@ class AppSizes {
 
   // Vertical spacing
   static double spaceLessH(BuildContext context) => 10.0 * _getHeightScaleFactor(context);
+  static double fieldLabelSpacing(BuildContext context) => 4.0 * _getHeightScaleFactor(context);
   static double defaultSpaceH(BuildContext context) => 12.0 * _getHeightScaleFactor(context);
   static double spaceBtwItemsH(BuildContext context) => 16.0 * _getHeightScaleFactor(context);
   static double spaceBtwFields(BuildContext context) => 20.0 * _getHeightScaleFactor(context);
@@ -124,6 +126,7 @@ class AppSizes {
 
   // Animation durations (in milliseconds)
   static int navAnimationDuration = 300;
+  static int maxSelection = 12;
 
   // === NEW ADDITIONS FOR LIQUID MENU OVERLAY ===
 
@@ -224,6 +227,7 @@ class AppSizes {
   // textFieldMaxLines is not a size, it's an integer property, no scaling needed
   static const int textFieldMaxLines = 4;
   static double iconSizeSM(BuildContext context) => 18.0 * _getScaleFactor(context);
+  static double iconSizeSX(BuildContext context) => 16.0 * _getScaleFactor(context);
   static double iconSizeMD(BuildContext context) => 20.0 * _getScaleFactor(context);
 
   // Sheet Sizes (these are usually ratios, not fixed sizes to scale)
