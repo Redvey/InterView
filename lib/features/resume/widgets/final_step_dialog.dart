@@ -34,7 +34,7 @@ class FinalStepDialog extends StatelessWidget {
           borderRadius: BorderRadius.circular(context.borderRadiusLg),
           boxShadow: [
             BoxShadow(
-              color: AppColors.purple.withAlpha(1075),
+              color: AppColors.purple.withAlpha(107),
               blurRadius: context.welcomeBlur,
               offset: Offset(0, context.shadowOffsetY),
               spreadRadius: context.welcomeSpread,
