@@ -11,11 +11,13 @@ import 'date_picker.dart';
 class ExperienceCard extends StatefulWidget {
   final ExperienceEntry experience;
   final VoidCallback onRemove;
+  final bool isLast;
 
   const ExperienceCard({
     super.key,
     required this.experience,
     required this.onRemove,
+    this.isLast = false,
   });
 
   @override
@@ -24,6 +26,27 @@ class ExperienceCard extends StatefulWidget {
 
 class _ExperienceCardState extends State<ExperienceCard> {
   final DateFormat formatter = DateFormat.yMMM();
+
+  // Focus nodes for proper navigation
+  late final FocusNode _jobTitleFocus;
+  late final FocusNode _companyFocus;
+  late final FocusNode _descriptionFocus;
+
+  @override
+  void initState() {
+    super.initState();
+    _jobTitleFocus = FocusNode();
+    _companyFocus = FocusNode();
+    _descriptionFocus = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    _jobTitleFocus.dispose();
+    _companyFocus.dispose();
+    _descriptionFocus.dispose();
+    super.dispose();
+  }
 
   Future<void> _selectDate({required bool isFrom}) async {
     final picked = await showDatePicker(
@@ -35,15 +58,16 @@ class _ExperienceCardState extends State<ExperienceCard> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
-              primary: AppColors.backgroundRed, // Header & selected date
-              onPrimary: AppColors.backgroundWhite,              // Header text/icon color
-              onSurface: AppColors.backgroundPink,              // General text color
+              primary: AppColors.backgroundRed,
+              onPrimary: AppColors.backgroundWhite,
+              onSurface: AppColors.backgroundPink,
             ),
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
                 foregroundColor: AppColors.backgroundRedPink,
               ),
-            ), dialogTheme: DialogThemeData(backgroundColor: AppColors.blackLight),
+            ),
+            dialogTheme: DialogThemeData(backgroundColor: AppColors.blackLight),
           ),
           child: child!,
         );
@@ -61,7 +85,6 @@ class _ExperienceCardState extends State<ExperienceCard> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     final exp = widget.experience;
@@ -75,34 +98,50 @@ class _ExperienceCardState extends State<ExperienceCard> {
       ),
       child: Column(
         children: [
-          LabeledTextField(
+          LabeledTextFormField(
             label: "Job Title",
             hint: AppStrings.jobTitle,
             controller: exp.jobTitleController,
             containerColor: lighterJobColor,
+            focusNode: _jobTitleFocus,
+            nextFocus: _companyFocus,
+            fieldType: FieldType.jobTitle,
+            isRequired: true,
           ),
           const SizedBox(height: 8),
-          LabeledTextField(
+
+          LabeledTextFormField(
             label: "Company",
             hint: AppStrings.company,
             controller: exp.companyController,
             containerColor: lighterJobColor,
+            focusNode: _companyFocus,
+            nextFocus: _descriptionFocus,
+            fieldType: FieldType.company,
+            isRequired: true,
           ),
           const SizedBox(height: 8),
-          LabeledTextField(
+
+          LabeledTextFormField(
             label: "Description",
             hint: AppStrings.jobDescription,
             controller: exp.descriptionController,
             maxLines: 4,
             containerColor: lighterJobColor,
+            focusNode: _descriptionFocus,
+            fieldType: FieldType.description,
+            isRequired: true,
+            isLastField: widget.isLast,
           ),
           const SizedBox(height: 12),
+
           DatePickerField(
             label: AppStrings.from,
             date: exp.fromDate,
             onPressed: () => _selectDate(isFrom: true),
             formatter: formatter,
           ),
+
           ToggleField(
             label: AppStrings.stillWorkHere,
             value: exp.isCurrent,
@@ -113,6 +152,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
               });
             },
           ),
+
           if (!exp.isCurrent)
             DatePickerField(
               label: AppStrings.to,
@@ -121,6 +161,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
               formatter: formatter,
             ),
           const SizedBox(height: 12),
+
           TextButton.icon(
             onPressed: widget.onRemove,
             icon: const Icon(Icons.delete, color: Colors.red),
@@ -134,3 +175,6 @@ class _ExperienceCardState extends State<ExperienceCard> {
     );
   }
 }
+
+
+

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interview/features/resume/widgets/dotted_button.dart';
 import '../../../../core/constants/colors.dart';
 
 class AchievementsForm extends StatefulWidget {
@@ -115,7 +116,7 @@ class _AchievementsFormState extends State<AchievementsForm> {
                   const SizedBox(height: 12),
                   GestureDetector(
                     onTap: _addAchievement,
-                    child: const DottedBorderContainer(label: "+ Add Achievement"),
+                    child: const DottedBorderButton(detail: "+ Add Achievement"),
                   ),
                 ],
               ),
@@ -127,24 +128,4 @@ class _AchievementsFormState extends State<AchievementsForm> {
   }
 }
 
-class DottedBorderContainer extends StatelessWidget {
-  final String label;
 
-  const DottedBorderContainer({super.key, required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.black,
-          style: BorderStyle.solid,
-          width: 1,
-        ),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
-    );
-  }
-}

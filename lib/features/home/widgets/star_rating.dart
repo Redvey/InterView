@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 
 Widget buildStarRating(
     BuildContext context, {

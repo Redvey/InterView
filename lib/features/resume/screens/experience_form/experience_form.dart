@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/strings.dart';
-import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import 'package:interview/features/resume/screens/experience_form/experience_entry_model.dart';
 import 'package:interview/features/resume/screens/experience_form/widgets/experience_card.dart';
 import 'package:interview/features/resume/widgets/dotted_button.dart';

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-
+import 'package:interview/app/themes/text_styles.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import 'model/selectable_item.dart';
 
 
 
-/// Generic bottom sheet widget
 class SelectableItemBottomSheet extends StatefulWidget {
   final String title;
   final Map<String, List<SelectableItem>> categoryData;
   final List<String> initiallySelected;
   final int maxSelection;
   final Function(List<String>) onConfirm;
-
 
   final Color? sheetColor;
   const SelectableItemBottomSheet({
@@ -67,50 +66,60 @@ class _SelectableItemBottomSheetState extends State<SelectableItemBottomSheet> {
     final selectedCount = _selectedItems.length;
 
     return Container(
-      height: MediaQuery.of(context).size.height * 0.85,
-      padding: const EdgeInsets.all(16),
-      decoration:  BoxDecoration(
+      height: context.screenHeight * 0.85,
+      padding: EdgeInsets.all(context.paddingMD),
+      decoration: BoxDecoration(
         color: widget.sheetColor ?? Colors.white,
-
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(context.radiusXL),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "${widget.title} ($selectedCount / ${widget.maxSelection})",
-                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-              ),
-              GestureDetector(
-                onTap: () {
-                  final selected = _selectedItems.map((s) => s.name).toList();
-                  widget.onConfirm(selected);
-                  Navigator.pop(context);
-                },
-                child: const Icon(Icons.check),
-              )
-            ],
+          Padding(
+            padding: EdgeInsets.only(bottom: context.paddingMD),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "${widget.title} ($selectedCount / ${widget.maxSelection})",
+                  style: TextStyle(
+                    fontSize: context.fontSizeSM,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    final selected = _selectedItems.map((s) => s.name).toList();
+                    widget.onConfirm(selected);
+                    Navigator.pop(context);
+                  },
+                  child: Icon(Icons.check, size: context.iconSizeMD),
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: context.spaceBtwFields),
           Expanded(
             child: ListView(
               children: _items.entries.map((entry) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(entry.key, style: Theme.of(context).textTheme.titleMedium),
+                    Text(
+                      entry.key,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                     Wrap(
-                      spacing: 8,
+                      spacing: context.paddingSM,
                       children: entry.value.map((item) {
                         final isSelected = item.isSelected;
                         return ChoiceChip(
                           label: Text(item.name),
                           avatar: Icon(
                             item.icon,
-                            size: 18,
+                            size: context.iconSizeSM,
                             color: isSelected ? Colors.white : Colors.black,
                           ),
                           selected: isSelected,
@@ -120,13 +129,17 @@ class _SelectableItemBottomSheetState extends State<SelectableItemBottomSheet> {
                           },
                           selectedColor: Colors.black,
                           backgroundColor: Colors.grey[200],
-                          labelStyle: TextStyle(color: isSelected ? Colors.white : Colors.black),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                          labelStyle: isSelected
+                              ? AppTextStyles.chipSelected(context)
+                              : AppTextStyles.chipUnselected(context),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(context.radiusLG),
+                          ),
                           showCheckmark: false,
                         );
                       }).toList(),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: context.spaceBtwFields),
                   ],
                 );
               }).toList(),

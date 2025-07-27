@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interview/app/themes/text_styles.dart';
 import 'package:interview/core/constants/app_durations.dart';
-import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import 'package:interview/features/interview/screens/custom_interview/custom_interview.dart';
 import 'package:interview/features/interview/services/interview_dummy_data_service.dart';
 import 'package:interview/features/interview/widgets/search_field.dart';

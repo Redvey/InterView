@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/strings.dart';
-import 'package:interview/core/extensions/responsive_extension.dart';
-
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
+import 'package:interview/features/resume/widgets/dotted_button.dart';
 import '../../widgets/labelled_text_field.dart';
 
 
@@ -30,12 +30,12 @@ class _SocialLinksFormState extends State<SocialLinksForm> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Add Social Platform"),
+        title: const Text(AppStrings.addSocialPlatform),
         content: TextField(
           controller: nameController,
           autofocus: true,
           decoration: const InputDecoration(
-            hintText: "Platform name (e.g., Twitter)",
+            hintText: AppStrings.platformHintText,
             border: OutlineInputBorder(),
           ),
         ),
@@ -51,7 +51,7 @@ class _SocialLinksFormState extends State<SocialLinksForm> {
               }
               Navigator.pop(context);
             },
-            child: const Text("Add"),
+            child: const Text(AppStrings.addSocialPlatform),
           ),
         ],
       ),
@@ -66,9 +66,9 @@ class _SocialLinksFormState extends State<SocialLinksForm> {
   }
 
   Widget _buildSocialField(String label, {bool removable = false}) {
-    return LabeledTextField(
+    return LabeledTextFormField(
       label: label,
-      hint: "Paste link",
+      hint: AppStrings.pasteLink,
       containerColor: AppColors.socialForm,
       controller: _controllers[label],
       removable: removable,
@@ -117,7 +117,7 @@ class _SocialLinksFormState extends State<SocialLinksForm> {
               // Add other button
               GestureDetector(
                 onTap: _addCustomLink,
-                child: const DottedBorderContainer(label: "+ Add Other"),
+                child: const DottedBorderButton(detail: AppStrings.addSocialPlatform),
               ),
             ],
           ),
@@ -127,27 +127,4 @@ class _SocialLinksFormState extends State<SocialLinksForm> {
   }
 }
 
-class DottedBorderContainer extends StatelessWidget {
-  final String label;
-  const DottedBorderContainer({super.key, required this.label});
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      margin: const EdgeInsets.only(top: 8),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.black,
-          style: BorderStyle.solid,
-          width: 1,
-        ),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(
-        label,
-        style: const TextStyle(fontWeight: FontWeight.w500),
-      ),
-    );
-  }
-}

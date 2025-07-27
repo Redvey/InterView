@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 
 class ResumeFormBottomButtons extends StatelessWidget {
   final int currentPage;
@@ -19,7 +19,7 @@ class ResumeFormBottomButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all( context.md),
+      padding: EdgeInsets.all( context.mx-4),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/image_strings.dart';
-import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import '../../../core/constants/colors.dart';
 import '../../../core/constants/strings.dart';
 

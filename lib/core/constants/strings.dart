@@ -74,8 +74,15 @@ class AppStrings {
   static const github = "github profile";
   static const codingProfile = "Coding Profile";
 
+  //skills
+  static const selectSkills ="Select Skills";
+  static const addSkills =" Add Skills";
+  static const yourSkills ="Your Skills";
+
   //social links
   static const pasteLink = "Paste Link";
+  static const addSocialPlatform = "Add Social Platform";
+  static const platformHintText = "Platform name (e.g., Twitter)";
 
   // Work Experience
   static const workExperience = "Work Experience";
@@ -174,5 +181,22 @@ class AppStrings {
   static const selectAtLeastOneTopic = 'Please select at least one topic';
 
   static const createInterview = 'Create Interview';
+
+  static const educationSectionTitle = "Education Entry";
+  static const educationEntryTitle = "First educational entry...";
+
+  static const institutionNameLabel = "Institution Name";
+  static const institutionNameHint = "Enter institution name";
+
+  static const courseNameLabel = "Course Name";
+  static const courseNameHint = "Enter course name";
+
+  static const scoreLabel = "Score";
+  static const scoreHint = "Enter score (CGPA or %)";
+
+  static const passingYearLabel = "Passing Year";
+  static const passingYearHint = "Enter passing year";
+
+  static const addEducationButtonLabel = "Add Education";
 
 }

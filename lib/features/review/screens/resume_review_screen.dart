@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/strings.dart';
-import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import '../../resume/screens/widgets/resume_builder_home_widgets/resume_form_top_bar.dart';
 import '../controllers/resume_review_controllers.dart';
 import '../widgets/jd_input_field.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/core/extensions/responsive_extension.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 
 class FinalStepDialog extends StatelessWidget {
   final String title;
@@ -87,9 +87,9 @@ class FinalStepDialog extends StatelessWidget {
                 SizedBox(width: context.defaultSpace),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context); // ✅ Dismiss dialog
+                    Navigator.pop(context);
                     if (navigate != null) {
-                      context.push(navigate!); // ✅ Navigate if a route is given
+                      context.pushNamed(navigate!);
                     }
                   },
                   style: ElevatedButton.styleFrom(
