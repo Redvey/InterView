@@ -88,6 +88,7 @@ final GoRouter appRouter = GoRouter(
 
     GoRoute(
       path: '/quiz/:topic',
+      name: RouteNames.quiz,
       pageBuilder: (context, state) {
         final topic = state.pathParameters['topic']!;
         return CustomTransitionPage<void>(

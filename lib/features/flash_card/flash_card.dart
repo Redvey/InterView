@@ -16,62 +16,42 @@ class FlashCard extends StatefulWidget {
 class _FlashCardState extends State<FlashCard> {
   String? selectedTopic;
 
-  final List<String> programmingLanguages = [
-    'Python', 'Java', 'Javascript', 'C++', 'C#', 'Ruby', 'Swift',
-    'Kotlin', 'Go', 'Rust', 'TypeScript', 'PHP', 'HTML', 'CSS',
-  ];
+  // Consolidated topic lists
+  final Map<String, List<String>> topicCategories = {
+    'Programming Languages': [
+      'Python', 'Java', 'Javascript', 'C++', 'C#', 'Ruby', 'Swift',
+      'Kotlin', 'Go', 'Rust', 'TypeScript', 'PHP', 'HTML', 'CSS',
+    ],
+    'Mobile Development': [
+      'React Native', 'Flutter', 'iOS SDK', 'Android SDK',
+    ],
+    'Web Development': [
+      'MERN', 'Node.js', 'Next.js', 'React', 'Angular', 'Vue.js',
+      'Django', 'Flask', 'Ruby on Rails', 'Express.js', 'Spring Boot', 'Laravel',
+    ],
+  };
 
-  final List<String> mobileDevelopment = [
-    'React Native', 'Flutter', 'iOS SDK', 'Android SDK',
-  ];
-
-  final List<String> webDevelopment = [
-    'MERN', 'Node.js', 'Next.js', 'React', 'Angular', 'Vue.js',
-    'Django', 'Flask', 'Ruby on Rails', 'Express.js', 'Spring Boot', 'Laravel',
-  ];
-
-  // Function to show confirmation dialog and navigate
   void _showTopicConfirmationDialog(String topic) {
-    // Check if questions are available for this topic
     final questionCount = QuestionService.getTotalQuestionsForTopic(topic);
 
-    if (questionCount == 0) {
-      _showNoQuestionsDialog(topic);
-      return;
-    }
-
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return FinalStepDialog(
-          title: 'Ready for $topic revision?',
-          subTitle: '$questionCount questions available',
-          yes: AppStrings.alertStart,
-          no: AppStrings.alertCancel,
-          navigate: '/quiz/$topic',
+          title: questionCount > 0
+              ? 'Ready for $topic revision?'
+              : 'No Questions Available',
+          subTitle: questionCount > 0
+              ? '$questionCount questions available'
+              : 'Sorry, we don\'t have questions for $topic yet. Please try another topic.',
+          yes: questionCount > 0 ? AppStrings.alertStart : 'OK',
+          no: questionCount > 0 ? AppStrings.alertCancel : '',
+          routeName: questionCount > 0 ? 'quiz' : null,
+          pathParams: questionCount > 0 ? {'topic': topic} : null,
         );
       },
     );
   }
-
-  // Show dialog when no questions are available
-  void _showNoQuestionsDialog(String topic) {
-    showDialog(
-      useRootNavigator: true,
-      context: context,
-      builder: (BuildContext context) {
-        return FinalStepDialog(
-          title: 'No Questions Available',
-          subTitle: 'Sorry, we don\'t have questions for $topic yet. Please try another topic.',
-          yes: 'OK',
-          no: '',
-          navigate: null,
-        );
-      },
-    );
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -86,13 +66,11 @@ class _FlashCardState extends State<FlashCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Header
                   ResumeFormTopBar(
                       pageColor: AppColors.blackLight,
                       title: AppStrings.flashcard
                   ),
                   const SizedBox(height: 16),
-
                   const Text(
                       "Practice Cards",
                       style: TextStyle(
@@ -103,24 +81,15 @@ class _FlashCardState extends State<FlashCard> {
                   ),
                   const SizedBox(height: 12),
 
-                  _buildTopicSection(
-                      "Programming Languages",
-                      programmingLanguages
+                  // Build all topic sections dynamically
+                  ...topicCategories.entries.map((entry) =>
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: _buildTopicSection(entry.key, entry.value),
+                      )
                   ),
 
-                  const SizedBox(height: 16),
-                  _buildTopicSection(
-                      "Mobile Development",
-                      mobileDevelopment
-                  ),
-
-                  const SizedBox(height: 16),
-                  _buildTopicSection(
-                      "Web Development",
-                      webDevelopment
-                  ),
-
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 4),
                   _buildAvailableTopicsInfo(),
                 ],
               ),
@@ -131,7 +100,6 @@ class _FlashCardState extends State<FlashCard> {
     );
   }
 
-  // Helper method to build topic sections
   Widget _buildTopicSection(String title, List<String> topics) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,23 +115,14 @@ class _FlashCardState extends State<FlashCard> {
         Wrap(
           spacing: 8,
           runSpacing: 8,
-          children: topics.map((topic) => _buildChip(
-              topic,
-              selectedTopic,
-                  (val) {
-                setState(() => selectedTopic = val);
-                _showTopicConfirmationDialog(val);
-              }
-          )).toList(),
+          children: topics.map((topic) => _buildChip(topic)).toList(),
         ),
       ],
     );
   }
 
-  // Build info section showing available topics
   Widget _buildAvailableTopicsInfo() {
     final availableTopics = QuestionService.getAllTopics();
-
     if (availableTopics.isEmpty) return const SizedBox.shrink();
 
     return Container(
@@ -219,9 +178,8 @@ class _FlashCardState extends State<FlashCard> {
     );
   }
 
-  // Build individual chip widget
-  Widget _buildChip(String label, String? selectedValue, Function(String) onSelected) {
-    final bool isSelected = selectedValue == label;
+  Widget _buildChip(String label) {
+    final bool isSelected = selectedTopic == label;
     final bool hasQuestions = QuestionService.getTotalQuestionsForTopic(label) > 0;
 
     return ChoiceChip(
@@ -243,14 +201,16 @@ class _FlashCardState extends State<FlashCard> {
         ],
       ),
       selected: isSelected,
-      onSelected: (_) => onSelected(label),
+      onSelected: (_) {
+        setState(() => selectedTopic = label);
+        _showTopicConfirmationDialog(label);
+      },
       labelStyle: TextStyle(
         color: isSelected ? Colors.white : Colors.black,
         fontWeight: isSelected ? FontWeight.w500 : FontWeight.normal,
       ),
       selectedColor: AppColors.blackLight,
       backgroundColor: hasQuestions ? Colors.white : Colors.grey[300],
-      disabledColor: Colors.grey[300],
       shape: StadiumBorder(
           side: BorderSide(
               color: isSelected

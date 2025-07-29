@@ -5,13 +5,17 @@ import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
 
 class FinalStepDialog extends StatelessWidget {
-  final Map<String, String>? routeParams;
-
   final String title;
   final String subTitle;
   final String yes;
   final String no;
+
+  // Navigation parameters - backward compatible
   final String? navigate;
+  final String? routeName;
+  final Map<String, String>? pathParams;
+  final Map<String, dynamic>? extra;
+  final Map<String, String>? routeParams; 
 
   const FinalStepDialog({
     super.key,
@@ -19,8 +23,11 @@ class FinalStepDialog extends StatelessWidget {
     required this.subTitle,
     required this.yes,
     required this.no,
-    required this.navigate,
-    this.routeParams,
+    this.navigate, 
+    this.routeName,
+    this.pathParams,
+    this.extra,
+    this.routeParams, 
   });
 
   @override
@@ -29,7 +36,7 @@ class FinalStepDialog extends StatelessWidget {
       backgroundColor: Colors.transparent,
       insetPadding: EdgeInsets.all(context.lg),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular( context.borderRadiusLg),
+        borderRadius: BorderRadius.circular(context.borderRadiusLg),
         child: Container(
           padding: EdgeInsets.all(context.lg),
           decoration: BoxDecoration(
@@ -47,29 +54,27 @@ class FinalStepDialog extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                  width: context.glowW,
-                  height: context.glowH,
-                  decoration: BoxDecoration(
-                    color: AppColors.otherForm,
-                    borderRadius: BorderRadius.circular(context.glowBorderRadius),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.purple,
-                        blurRadius: context.glowBlur,
-                        offset: Offset(0, context.shadowOffsetY),
-                        spreadRadius: context.glowSpread,
-                      ),
-                    ],
-                  ),
+              // Glow effect container
+              Container(
+                width: context.glowW,
+                height: context.glowH,
+                decoration: BoxDecoration(
+                  color: AppColors.otherForm,
+                  borderRadius: BorderRadius.circular(context.glowBorderRadius),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.purple,
+                      blurRadius: context.glowBlur,
+                      offset: Offset(0, context.shadowOffsetY),
+                      spreadRadius: context.glowSpread,
+                    ),
+                  ],
                 ),
               ),
               SizedBox(height: context.spaceBtwItems),
               Text(
-                style: AppTextStyles.dialogBoxTitle(context),
                 title,
+                style: AppTextStyles.dialogBoxTitle(context),
               ),
               SizedBox(height: context.defaultSpace),
               Text(
@@ -81,20 +86,18 @@ class FinalStepDialog extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    style: TextButton.styleFrom(foregroundColor: AppColors.backgroundWhite),
-                    child: Text(no,style: AppTextStyles.yes(context)),
-                  ),
-                  SizedBox(width: context.defaultSpace),
+                  if (no.isNotEmpty) ...[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      style: TextButton.styleFrom(
+                        foregroundColor: AppColors.backgroundWhite,
+                      ),
+                      child: Text(no, style: AppTextStyles.yes(context)),
+                    ),
+                    SizedBox(width: context.defaultSpace),
+                  ],
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      if (navigate != null) {
-                        context.pushNamed(navigate!, extra: routeParams ?? {});
-                      }
-                    },
-
+                    onPressed: () => _handleYesPressed(context),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.purple,
                       foregroundColor: AppColors.backgroundWhite,
@@ -102,7 +105,7 @@ class FinalStepDialog extends StatelessWidget {
                         borderRadius: BorderRadius.circular(context.buttonRadius),
                       ),
                     ),
-                    child: Text(yes,style: AppTextStyles.yes(context)),
+                    child: Text(yes, style: AppTextStyles.yes(context)),
                   ),
                 ],
               ),
@@ -111,5 +114,20 @@ class FinalStepDialog extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _handleYesPressed(BuildContext context) {
+    Navigator.pop(context);
+
+    // Handle navigation - prioritize routeName, fallback to navigate
+    if (routeName != null) {
+      context.pushNamed(
+        routeName!,
+        pathParameters: pathParams ?? {},
+        extra: extra ?? routeParams,
+      );
+    } else if (navigate != null) {
+      context.push(navigate!, extra: routeParams ?? {});
+    }
   }
 }
