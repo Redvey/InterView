@@ -293,38 +293,38 @@ class AppTextStyles {
       );
 
   // Date group headers: "TODAY", "YESTERDAY", etc.
-  static TextStyle get dateHeader =>
+  static TextStyle dateHeader(BuildContext context) =>
       TextStyle(
-        fontSize: 14,
+        fontSize: context.fontSizeSM,
         fontFamily: AppFonts.poppins,
         fontWeight: FontWeight.w600,
-        color: Colors.deepPurple,
-        letterSpacing: 0.5,
+        color: AppColors.darkPurple,
+        letterSpacing: context.letterSpacing,
       );
 
   // Role title: "Flutter Developer (Dart Fundamentals)"
-  static TextStyle get roleTitle =>
+  static TextStyle  roleTitle(BuildContext context) =>
       TextStyle(
-        fontSize: 16,
+        fontSize: context.fontSizeSx,
         fontFamily: AppFonts.poppins,
         fontWeight: FontWeight.w500,
-        color: Colors.black87,
+        color:AppColors.blackLight,
       );
 
   // Topics list: "Dart, OOP, SOLID..."
-  static TextStyle get topicSummary =>
+  static TextStyle  topicSummary(BuildContext context) =>
       TextStyle(
         fontFamily: AppFonts.poppins,
-        fontSize: 13,
+        fontSize: context.fontSizeSms,
 
         fontWeight: FontWeight.w400,
         color: Colors.grey[700],
       );
 
   // Timestamp: "8 minutes ago"
-  static TextStyle get timestamp =>
+  static TextStyle  timestamp(BuildContext context) =>
       TextStyle(
-        fontSize: 12,
+        fontSize: context.fontSizeSs,
         fontFamily: AppFonts.poppins,
         fontWeight: FontWeight.w400,
         color: Colors.grey[500],

@@ -251,7 +251,7 @@ class _LiquidMenuOverlayState extends State<LiquidMenuOverlay>
             final item = entry.value;
             return AnimatedMenuItem(
               text: item,
-              index: index + 1,
+              index: index,
               showMenu: _showMenu,
               onTap: () => _handleMenuItemTap(item),
             );

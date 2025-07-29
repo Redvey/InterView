@@ -44,9 +44,10 @@ extension ResponsiveContext on BuildContext {
   double get sheetMaxSize => AppSizes.sheetMaxSize;
 
   // NEWLY ADDED RESPONSIVE FONT SIZES
-  double get fontSizeSM => AppSizes.fontSizeSM(this); // Note: Conflicts with existing `fontSizeSm`, keep both as per request.
-  double get fontSizeMD => AppSizes.fontSizeMD(this); // Note: Conflicts with existing `fontSizeMd`, keep both as per request.
-  double get fontSizeLG => AppSizes.fontSizeLG(this); // Note: Conflicts with existing `fontSizeLg`, keep both as per request.
+  double get fontSizeSM => AppSizes.fontSizeSM(this);
+  double get fontSizeMD => AppSizes.fontSizeMD(this);
+  double get fontSizeLG => AppSizes.fontSizeLG(this);
+  double get letterSpacing => AppSizes.letterSpacing(this);
 
   // NEWLY ADDED EXTRA SPACING
   double get extraSpacingForButton => AppSizes.extraSpacingForButton(this);
@@ -91,6 +92,7 @@ extension ResponsiveContext on BuildContext {
   double get fontSizeSs => AppSizes.fontSizeSs(this);
   // `fontSizeSm` conflict handled above.
   double get fontSizeSx => AppSizes.fontSizeSx(this);
+  double get fontSizeSms => AppSizes.fontSizeSms(this);
   double get fontSizeSd => AppSizes.fontSizeSd(this);
   // `fontSizeMd` conflict handled above.
   // `fontSizeLg` conflict handled above.
