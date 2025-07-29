@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/utils/helper_functions.dart';
+import '../../../core/utils/helper_functions/feature_item.dart';
 
 class FeatureListItem extends StatelessWidget {
   final VoidCallback onTap;

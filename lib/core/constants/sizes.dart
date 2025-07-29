@@ -53,11 +53,13 @@ class AppSizes {
 
   // Font sizes
   static double fontSizeSs(BuildContext context) => 12.0 * _getScaleFactor(context);
+  static double fontSizeSms(BuildContext context) => 13.0 * _getScaleFactor(context);
   static double fontSizeSm(BuildContext context) => 14.0 * _getScaleFactor(context);
   static double fontSizeSx(BuildContext context) => 16.0 * _getScaleFactor(context);
   static double fontSizeSd(BuildContext context) => 18.0 * _getScaleFactor(context);
   static double fontSizeMd(BuildContext context) => 20.0 * _getScaleFactor(context);
   static double fontSizeLg(BuildContext context) => 22.0 * _getScaleFactor(context);
+  static double letterSpacing(BuildContext context) => 0.5 * _getScaleFactor(context);
 
   // Button sizes
   static double buttonHeight(BuildContext context) => 18.0 * _getHeightScaleFactor(context);

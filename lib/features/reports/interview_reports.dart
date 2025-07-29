@@ -76,20 +76,26 @@ class _InterviewReportsScreenState extends State<InterviewReportsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(AppStrings.interviewReports, style: AppTextStyles.roleTitle,),
+              Text(
+                AppStrings.interviewReports,
+                style: AppTextStyles.roleTitle(context),
+              ),
               SizedBox(height: context.spaceBtwSections),
               for (var entry in grouped.entries) ...[
-                Text(entry.key.toUpperCase(), style: AppTextStyles.dateHeader),
+                Text(
+                  entry.key.toUpperCase(),
+                  style: AppTextStyles.dateHeader(context),
+                ),
                 const SizedBox(height: 8),
                 for (var report in entry.value)
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    leading:  CircleAvatar(
+                    leading: CircleAvatar(
                       backgroundImage: AssetImage(AppImage.temp),
                     ),
                     title: Text(
                       report.role,
-                      style: AppTextStyles.roleTitle,
+                      style: AppTextStyles.roleTitle(context),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -97,15 +103,18 @@ class _InterviewReportsScreenState extends State<InterviewReportsScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          report.topics,
-                          style: AppTextStyles.topicSummary,
+                          // report.topics.map((e) => '• $e').join('\n'),
+                          report.topics.join(', '),
+
+                          // or use bullets / line breaks if preferred
+                          style: AppTextStyles.topicSummary(context),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
                         const SizedBox(height: 4),
                         Text(
                           getTimeAgo(report.submittedAt),
-                          style: AppTextStyles.timestamp,
+                          style: AppTextStyles.timestamp(context),
                         ),
                       ],
                     ),

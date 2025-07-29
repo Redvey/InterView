@@ -38,6 +38,12 @@ class AppStrings {
   static const coldMailSubtitle = "< to the recruiters />";
 
   static const underConstruction = "Under Construction";
+  //menu items
+  static const String editProfile = 'Edit Profile';
+  static const String inviteAFriend = 'Invite a Friend';
+  static const String settings = 'Settings';
+  static const String helpCenter = 'Help Center';
+  static const String logout = 'Logout';
 
   //resume builder texts
   static const preview = "Preview";
@@ -111,7 +117,6 @@ class AppStrings {
   //profile
   static const menu = "Menu";
   static const logOut = "Log out";
-  static const settings = "settings";
   static const profile = "profile";
 
   //mock-interview

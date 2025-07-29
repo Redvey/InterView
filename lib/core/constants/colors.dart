@@ -23,6 +23,7 @@ class AppColors {
 
   // --- Widget/Overlay Backgrounds ---
   static const Color purple = Color(0xFFB05CFF);
+  static const Color darkPurple = Color(0xFF5500A5);
   static final Color purpleOverlay = purple.withAlpha(107);
   static const Color purpleLight = Color(0xFFE8D0FF);
   static final Color cardOverlay = backgroundWhite.withAlpha(26);
