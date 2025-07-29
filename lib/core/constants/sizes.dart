@@ -227,6 +227,8 @@ class AppSizes {
   static double createButtonHeight(BuildContext context) => 50.0 * _getHeightScaleFactor(context);
   static double handleWidth(BuildContext context) => 40.0 * _getWidthScaleFactor(context);
   static double handleHeight(BuildContext context) => 4.0 * _getHeightScaleFactor(context);
+
+
   // textFieldMaxLines is not a size, it's an integer property, no scaling needed
   static const int textFieldMaxLines = 4;
   static double iconSizeSM(BuildContext context) => 18.0 * _getScaleFactor(context);
@@ -240,10 +242,7 @@ class AppSizes {
 
 
 
-  // Font Sizes
-  static double fontSizeSM(BuildContext context) => 14.0 * _getScaleFactor(context);
-  static double fontSizeMD(BuildContext context) => 16.0 * _getScaleFactor(context);
-  static double fontSizeLG(BuildContext context) => 20.0 * _getScaleFactor(context);
+
 
   // Extra Spacing
   static double extraSpacingForButton(BuildContext context) => 100.0 * _getHeightScaleFactor(context);

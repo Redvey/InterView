@@ -85,7 +85,7 @@ class _SelectableItemBottomSheetState extends State<SelectableItemBottomSheet> {
                 Text(
                   "${widget.title} ($selectedCount / ${widget.maxSelection})",
                   style: TextStyle(
-                    fontSize: context.fontSizeSM,
+                    fontSize: context.fontSizeSm,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

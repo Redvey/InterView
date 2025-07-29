@@ -118,11 +118,11 @@ class _SubscriptionPlanBottomSheetState extends State<SubscriptionPlanBottomShee
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: context.bodyBoldStyle.copyWith(fontSize:  context.fontSizeMD )),
+                  Text(title, style: context.bodyBoldStyle.copyWith(fontSize:  context.fontSizeSx )),
                   if (perMonth != null)
                     Text(
                       "Only $perMonth per month",
-                      style: context.membershipSubTitle
+                      style: context.membershipSubTitleStyle
                     ),
                   if (save != null)
                     Text(
@@ -149,7 +149,7 @@ class _SubscriptionPlanBottomSheetState extends State<SubscriptionPlanBottomShee
                 ),
                 Text(
                   newPrice,
-                  style: context.bodyBoldStyle.copyWith(fontSize:  context.fontSizeMD ),
+                  style: context.bodyBoldStyle.copyWith(fontSize:  context.fontSizeSx ),
                 ),
               ],
             ),

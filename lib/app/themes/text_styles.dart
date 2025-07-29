@@ -18,14 +18,14 @@ class AppTextStyles {
       TextStyle(
         fontFamily: AppFonts.poppins,
         fontWeight: FontWeight.w600,
-        fontSize: context.fontSizeLG,
+        fontSize: context.fontSizeMd,
         color: color,
       );
 
   static TextStyle subheading(BuildContext context, {required Color color}) =>
       TextStyle(
         fontFamily: AppFonts.poppins,
-        fontSize: context.fontSizeSM,
+        fontSize: context.fontSizeSm,
         fontWeight: FontWeight.w600,
         color: color,
       );
@@ -33,7 +33,7 @@ class AppTextStyles {
   static TextStyle welcome(BuildContext context) =>
       TextStyle(
         fontFamily: AppFonts.poppins,
-        fontSize: context.fontSizeMD,
+        fontSize: context.fontSizeSx,
         fontWeight: FontWeight.w600,
       );
 
@@ -55,7 +55,7 @@ class AppTextStyles {
   static TextStyle detailHeader(BuildContext context) =>
       TextStyle(
         fontFamily: AppFonts.poppins,
-        fontSize: context.fontSizeSM,
+        fontSize: context.fontSizeSm,
         fontWeight: FontWeight.w500,
         color: AppColors.black,
       );
@@ -72,7 +72,7 @@ class AppTextStyles {
   static TextStyle buttonLight(BuildContext context) =>
       TextStyle(
         fontFamily: AppFonts.poppins,
-        fontSize: context.fontSizeSM,
+        fontSize: context.fontSizeSm,
         fontWeight: FontWeight.w400,
         color: AppColors.blackLight,
       );
@@ -88,7 +88,7 @@ class AppTextStyles {
       TextStyle(
         color: AppColors.backgroundYellow,
         fontFamily: AppFonts.poppins,
-        fontSize: context.fontSizeMD,
+        fontSize: context.fontSizeSx,
         fontWeight: FontWeight.w400,
       );
 
@@ -96,7 +96,7 @@ class AppTextStyles {
       TextStyle(
         color: AppColors.textGreen,
         fontFamily: AppFonts.poppins,
-        fontSize: context.fontSizeSM,
+        fontSize: context.fontSizeSm,
         fontWeight: FontWeight.w400,
       );
 
@@ -123,7 +123,7 @@ class AppTextStyles {
       TextStyle(
         fontFamily: AppFonts.poppins,
         color: AppColors.backgroundWhite,
-        fontSize: context.fontSizeSM,
+        fontSize: context.fontSizeSm,
         fontWeight: FontWeight.w400,
       );
 
@@ -136,7 +136,7 @@ class AppTextStyles {
   static TextStyle membershipSubTitle(BuildContext context) =>
       TextStyle(
         fontFamily: AppFonts.poppins,
-        fontSize: context.fontSizeSM,
+        fontSize: context.fontSizeSm,
         color: AppColors.buttonYellow,
         fontWeight: FontWeight.w600,
       );
@@ -178,7 +178,7 @@ class AppTextStyles {
       TextStyle(
         fontFamily: AppFonts.poppins,
         color: AppColors.searchHint,
-        fontSize: context.fontSizeSM,
+        fontSize: context.fontSizeSm,
       );
 
   static TextStyle labelStyleCategory(BuildContext context, bool isSelected) =>
@@ -192,7 +192,7 @@ class AppTextStyles {
   static TextStyle emptyStateHint(BuildContext context) =>
       TextStyle(
         fontFamily: AppFonts.poppins,
-        fontSize: context.fontSizeSM,
+        fontSize: context.fontSizeSm,
         color: AppColors.textGrey,
       );
 
@@ -200,7 +200,7 @@ class AppTextStyles {
   static TextStyle header(BuildContext context) =>
       TextStyle(
         fontFamily: AppFonts.poppins,
-        fontSize: context.fontSizeLG,
+        fontSize: context.fontSizeMd,
         fontWeight: FontWeight.bold,
       );
 
@@ -208,7 +208,7 @@ class AppTextStyles {
   static TextStyle sectionTitle(BuildContext context) =>
       TextStyle(
         fontFamily: AppFonts.poppins,
-        fontSize: context.fontSizeMD,
+        fontSize: context.fontSizeSx,
         fontWeight: FontWeight.w600,
         color: AppColors.black87,
       );
@@ -219,7 +219,7 @@ class AppTextStyles {
       TextStyle(
         // Added fontFamily
         fontFamily: AppFonts.poppins,
-        fontSize: context.fontSizeSM,
+        fontSize: context.fontSizeSm,
         color: AppColors.textGrey,
       );
 
@@ -228,7 +228,7 @@ class AppTextStyles {
       TextStyle(
         // Added fontFamily
         fontFamily: AppFonts.poppins,
-        fontSize: context.fontSizeMD,
+        fontSize: context.fontSizeSx,
         fontWeight: FontWeight.w600,
       );
 
@@ -286,7 +286,7 @@ class AppTextStyles {
   // Section title: "Interview Reports"
   static TextStyle interviewReportsTitle(BuildContext context) =>
       TextStyle(
-        fontSize: context.fontSizeLG,
+        fontSize: context.fontSizeMd,
         fontFamily: AppFonts.poppins,
         fontWeight: FontWeight.w600,
         color: Colors.black,
@@ -295,7 +295,7 @@ class AppTextStyles {
   // Date group headers: "TODAY", "YESTERDAY", etc.
   static TextStyle dateHeader(BuildContext context) =>
       TextStyle(
-        fontSize: context.fontSizeSM,
+        fontSize: context.fontSizeSm,
         fontFamily: AppFonts.poppins,
         fontWeight: FontWeight.w600,
         color: AppColors.darkPurple,
