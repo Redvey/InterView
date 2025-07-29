@@ -78,6 +78,7 @@ extension ResponsiveContext on BuildContext {
 
   // Glow bars (Existing, untouched)
   double get glowH => AppSizes.glowH(this);
+  double get glowBorderRadius => AppSizes.glowBorderRadius(this);
   double get glowW => AppSizes.glowW(this);
   double get glowB => AppSizes.glowB(this);
 

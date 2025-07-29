@@ -47,6 +47,7 @@ class AppSizes {
 
   // Glow bar sizes
   static double glowH(BuildContext context) => 6.0 * _getHeightScaleFactor(context);
+  static double glowBorderRadius(BuildContext context) => 3.0 * _getHeightScaleFactor(context);
   static double glowW(BuildContext context) => 60.0 * _getWidthScaleFactor(context);
   static double glowB(BuildContext context) => 3.0 * _getScaleFactor(context);
 

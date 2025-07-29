@@ -20,15 +20,18 @@ abstract class RouteNames {
 
   //  Flashcards
   static const String flashcards = 'flashcards';
+  static const String flashcardsHistory = 'flashcardsHistory';
 
   //  Mock Interview
   static const String interview = 'interview';
   static const String interviewer = 'interviewer';
+  static const String takeInterview = 'takeInterview';
   static const String finishInterview = 'finish_interview';
+  static const String interviewReports = 'interviewReports';
 
   // ✉ Cold Mailer
   static const String coldMailer = 'cold_mailer';
 
   //  Under Development
-  static const String underDevelopment = 'under_development';
+  static const String underDevelopment = 'in_progress';
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:interview/app/themes/fonts.dart';
+import 'package:interview/core/constants/colors.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
 
 /// A widget that displays a menu item with animated slide-in effect
 class AnimatedMenuItem extends StatelessWidget {
@@ -20,7 +23,7 @@ class AnimatedMenuItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 1000 + index * 50), // Staggered timing
+        duration: Duration(milliseconds: 1000 + index * 50),
         curve: Curves.easeInOut,
         transform: Matrix4.translationValues(
           showMenu ? 0 : -500 - (index * 20).toDouble(), // Slide in from left
@@ -33,10 +36,7 @@ class AnimatedMenuItem extends StatelessWidget {
             label: text, button: onTap != null,
             child: Text(
               text,
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                color: Theme.of(context).colorScheme.onPrimary,
-                fontWeight: FontWeight.w500,
-              ),
+              style: TextStyle(fontFamily: AppFonts.poppins,color: AppColors.backgroundYellow,fontSize: context.fontSizeSd),
             ),
           ),
         ),

@@ -68,7 +68,7 @@ class AnimatedFeatureList extends StatelessWidget {
         colorBg: AppColors.textYellow,
       ),
       FeatureListItem(
-        onTap: () => context.push('/interview'),
+        onTap: () => context.push('/in_progress'),
         gradient: AppColors.coldMailGradient,
         title: AppStrings.coldMailTitle,
         subTitle: AppStrings.coldMailSubtitle,

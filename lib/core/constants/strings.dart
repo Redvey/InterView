@@ -37,6 +37,8 @@ class AppStrings {
   static const coldMailTitle = "Cold Mail";
   static const coldMailSubtitle = "< to the recruiters />";
 
+  static const underConstruction = "Under Construction";
+
   //resume builder texts
   static const preview = "Preview";
   static const resumePDF = "Resume PDFs";
@@ -198,5 +200,22 @@ class AppStrings {
   static const passingYearHint = "Enter passing year";
 
   static const addEducationButtonLabel = "Add Education";
+
+  //interview reports
+// Screen Titles
+  static const interviewReports = 'Interview Reports';
+
+  // States
+  static const loading = 'Loading...';
+  static const noReports = 'No interviews given yet.';
+
+  // Time Labels
+  static const today = 'Today';
+  static const yesterday = 'Yesterday';
+
+  // Generic
+  static const minutesAgo = 'minutes ago';
+  static const hoursAgo = 'hours ago';
+  static const dayAgo = 'a day ago';
 
 }

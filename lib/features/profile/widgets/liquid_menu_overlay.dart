@@ -20,7 +20,7 @@ class LiquidMenuOverlay extends StatefulWidget {
     required this.onClose,
     required this.backgroundWidget,
     this.onMenuItemTap,
-    this.menuItems = const ["Home", "Profile", "Settings", "Help", "Logout"],
+    required this.menuItems,
     this.userName = "Roopam",
   });
 
@@ -251,7 +251,7 @@ class _LiquidMenuOverlayState extends State<LiquidMenuOverlay>
             final item = entry.value;
             return AnimatedMenuItem(
               text: item,
-              index: index + 1, // Offset by 1 to account for user greeting
+              index: index + 1,
               showMenu: _showMenu,
               onTap: () => _handleMenuItemTap(item),
             );
