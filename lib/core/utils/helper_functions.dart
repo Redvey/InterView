@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:interview/features/resume/widgets/final_step_dialog.dart';
 import '../../features/home/widgets/feature_container.dart';
+import '../../features/profile/data/models/menu_data.dart';
 import '../../features/resume/screens/widgets/model/selectable_item.dart';
 import '../../features/resume/screens/widgets/selectable_item_bottom_sheet.dart';
 import '../constants/sizes.dart';
@@ -100,31 +102,62 @@ mixin FormStateMixin<T extends StatefulWidget> on State<T> {
   }
 }
 
+final Map<BuildContext, OverlayEntry> _overlayMap = {};
 
+// Standardized menu item constants to avoid mismatches
+class MenuItems {
+  static const String editProfile = 'Edit Profile';
+  static const String inviteAFriend = 'Invite a Friend';
+  static const String settings = 'Settings';
+  static const String helpCenter = 'Help Center';
+  static const String logout = 'Logout';
 
-
+  static const List<String> allItems = [
+    editProfile,
+    inviteAFriend,
+    settings,
+    helpCenter,
+    logout,
+  ];
+}
 
 void showLiquidMenuOverlay({
   required BuildContext context,
   required String userName,
-  required List<String> menuItems,
-  required void Function(String item) onMenuItemTap,
+  Widget? backgroundWidget,
+  void Function(String item)? onMenuItemTap,
+  void Function()? onClose,
 }) {
-  final overlay = OverlayEntry(
+  late OverlayEntry overlay;
+
+  final background = backgroundWidget ?? _buildCurrentPageSnapshot(context);
+
+  overlay = OverlayEntry(
     builder: (_) => LiquidMenuOverlay(
-      backgroundWidget: _buildCurrentPageSnapshot(context),
+      backgroundWidget: background,
       userName: userName,
-      menuItems: menuItems,
-      onClose: () => _closeOverlay(context),
-      onMenuItemTap: onMenuItemTap,
+      menuItems: defaultMenuItems, // Ensure this matches MenuItems.allItems
+      onClose: onClose ??
+              () {
+            overlay.remove();
+            _overlayMap.remove(context);
+          },
+      onMenuItemTap: onMenuItemTap ??
+              (item) {
+            // Handle logout separately to keep overlay open during dialog
+            if (item != MenuItems.logout) {
+              overlay.remove();
+              _overlayMap.remove(context);
+            }
+
+            _handleMenuItemTap(context, item, overlay);
+          },
     ),
   );
 
   Overlay.of(context).insert(overlay);
   _overlayMap[context] = overlay;
 }
-
-final Map<BuildContext, OverlayEntry> _overlayMap = {};
 
 void _closeOverlay(BuildContext context) {
   _overlayMap[context]?.remove();
@@ -144,95 +177,41 @@ Widget _buildCurrentPageSnapshot(BuildContext context) {
   );
 }
 
-void handleProfileMenuItemTap(BuildContext context, String item) {
-  final lower = item.toLowerCase();
-  _closeOverlay(context);
-
-  switch (lower) {
-    case 'home':
-      context.go('/');
+// Centralized menu item handler using exact string matching
+void _handleMenuItemTap(BuildContext context, String item, [OverlayEntry? overlay]) {
+  switch (item) {
+    case MenuItems.editProfile:
+      context.go('/edit-profile');
       break;
-    case 'profile':
-      context.go('/profile');
+    case MenuItems.inviteAFriend:
+      context.go('/invite');
       break;
-    case 'settings':
+    case MenuItems.settings:
       context.go('/settings');
       break;
-    case 'help':
+    case MenuItems.helpCenter:
       context.go('/help');
       break;
-    case 'logout':
-      _showLogoutDialog(context);
+    case MenuItems.logout:
+      _showLogoutDialog(context, overlay);
+      break;
+    default:
+    // Handle any unexpected menu items
+      debugPrint('Unknown menu item: $item');
       break;
   }
 }
 
-void _showLogoutDialog(BuildContext context) {
+// Updated to match the new standardized approach
+void handleProfileMenuItemTap(BuildContext context, String item) {
+  _closeOverlay(context);
+  _handleMenuItemTap(context, item);
+}
+
+void _showLogoutDialog(BuildContext context, [OverlayEntry? overlay]) {
   showDialog(
     context: context,
-    builder: (context) => AlertDialog(
-      title: const Text('Logout'),
-      content: const Text('Are you sure you want to logout?'),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
-        ),
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-            context.go('/login');
-          },
-          child: const Text('Logout'),
-        ),
-      ],
-    ),
+    builder: (context) => FinalStepDialog
+      (title: 'Logout', subTitle: 'Are you sure you want to logout?', yes: 'Logout', no: 'Cancel', navigate: '/login'),
   );
 }
-
-void showLiquidMenu({
-  required BuildContext context,
-  required Widget background,
-  required String userName,
-}) {
-  OverlayEntry? overlay; // Declare first
-
-  overlay = OverlayEntry(
-    builder: (_) => LiquidMenuOverlay(
-      backgroundWidget: background,
-      userName: userName,
-      onClose: () {
-        overlay?.remove();
-      },
-      onMenuItemTap: (item) {
-        if (item.toLowerCase() != 'logout') {
-          overlay?.remove();
-        }
-
-        switch (item.toLowerCase()) {
-          case 'home':
-            context.go('/');
-            break;
-          case 'profile':
-            context.go('/profile');
-            break;
-          case 'settings':
-            context.go('/settings');
-            break;
-          case 'help':
-            context.go('/help');
-            break;
-          case 'logout':
-            _showLogoutDialog(context);
-            break;
-        }
-      },
-    ),
-  );
-
-  Overlay.of(context).insert(overlay);
-}
-
-
-
-

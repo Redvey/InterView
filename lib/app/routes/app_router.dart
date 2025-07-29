@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:interview/features/cold_email/cold_dm.dart';
 import 'package:interview/features/flash_card/flash_card.dart';
 import 'package:interview/features/interview/interview.dart';
 import 'package:interview/features/interview/screens/interview_completion_screen.dart';
@@ -8,7 +9,6 @@ import 'package:interview/features/interview/screens/interviewer.dart';
 import '../../features/flash_card/quiz_screen.dart';
 import '../../features/home/screens/home_screen.dart';
 import '../../features/interview/screens/take_mock_interview.dart';
-import '../../features/reports/interview_reports.dart';
 import '../../features/resume/screens/contact_form/contact_form.dart';
 import '../../features/resume/screens/resume_builder_final.dart';
 import '../../features/resume/screens/resume_builder_home.dart';
@@ -17,23 +17,14 @@ import 'route_names.dart';
 
 final GoRouter appRouter = GoRouter(
   routes: [
+    GoRoute(
+      path: '/in_progress',
+      name: RouteNames.underDevelopment,
+      builder: (context, state) => const ColdMail(),
+    ),
 
 
-    GoRoute(
-      path: '/interview-reports',
-      name: 'interviewReports',
-      builder: (context, state) => const InterviewReportsScreen(),
-    ),
-    GoRoute(
-      path: '/flashcards-history',
-      name: 'flashcardsHistory',
-      builder: (context, state) => const FlashCardsScreen(),
-    ),
-    // GoRoute(
-    //   path: '/profile',
-    //   name: 'profile',
-    //   builder: (context, state) => const ProfileScreen(),
-    // ),
+
     GoRoute(
       path: '/',
       name: RouteNames.home,
@@ -81,7 +72,7 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(
       path: '/take-interview',
-      name: 'takeInterview',
+      name: RouteNames.takeInterview,
       builder: (context, state) {
         final title = state.extra != null && state.extra is Map
             ? (state.extra as Map)['title'] ?? 'Interview'

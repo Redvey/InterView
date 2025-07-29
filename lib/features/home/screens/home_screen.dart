@@ -3,13 +3,16 @@ import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/strings.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import 'package:interview/features/home/widgets/welcome_message.dart';
+import 'package:interview/features/reports/interview_reports.dart';
 import '../../../core/utils/helper_functions.dart';
+import '../../reports/flash_card_reports.dart';
 import '../../widgets/custom_bottom_nav.dart';
 import '../widgets/animated_wrapper.dart';
 import '../animation/home_animation_manager.dart';
 import '../widgets/feature_list.dart';
 import '../widgets/welcome_card.dart';
 import 'package:interview/features/profile/widgets/liquid_menu_overlay.dart';
+import 'package:interview/features/profile/data/models/menu_data.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -46,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen>
   late PageController _pageController;
 
   @override
-  bool get wantKeepAlive => true; // Keep state alive during tab switches
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -130,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context); // Required for AutomaticKeepAliveClientMixin
+    super.build(context);
 
     return Container(
       decoration: BoxDecoration(gradient: AppColors.backgroundGradient),
@@ -156,11 +159,15 @@ class _HomeScreenState extends State<HomeScreen>
             LiquidMenuOverlay(
               backgroundWidget: _buildCurrentPageSnapshot(),
               userName: "Roopam",
-              menuItems: const ["Home", "Profile", "Settings", "Help", "Logout"],
+              // Use the correct menu items from menu data instead of hardcoded values
+              menuItems: defaultMenuItems, // This should contain the updated menu items
               onClose: () => setState(() => _showMenu = false),
               onMenuItemTap: (item) {
                 handleProfileMenuItemTap(context, item);
-                setState(() => _showMenu = false);
+                // Only close menu if it's not logout (logout dialog handles its own overlay cleanup)
+                if (item != 'Logout') {
+                  setState(() => _showMenu = false);
+                }
               },
             ),
 
@@ -168,12 +175,12 @@ class _HomeScreenState extends State<HomeScreen>
           SlideTransition(
             position: _bottomNavSlideAnimation,
             child: FadeTransition(
-              opacity: _bottomNavFadeAnimation,
-              child: CustomBottomNav(
-                currentIndex: _selectedIndex,
-                onTap: _onTabSelected,
-                isProfileMenuOpen: _showMenu,
-              )
+                opacity: _bottomNavFadeAnimation,
+                child: CustomBottomNav(
+                  currentIndex: _selectedIndex,
+                  onTap: _onTabSelected,
+                  isProfileMenuOpen: _showMenu,
+                )
             ),
           ),
         ],
@@ -200,63 +207,11 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   Widget _buildInterviewsTab() {
-    return SingleChildScrollView(
-      padding: context.screenPadding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Interview Reports', style: context.welcomeStyle),
-          SizedBox(height: context.spaceBtwSections),
-          Container(
-            height: 200,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: AppColors.bottomBlackLight,
-              borderRadius: BorderRadius.circular(context.borderRadiusLg),
-            ),
-            child: Center(
-              child: Text(
-                'Interview Reports Content',
-                style: context.welcomeStyle.copyWith(
-                  color: AppColors.textGreen,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: context.bottomNavHeight + 20),
-        ],
-      ),
-    );
+    return InterviewReportsScreen();
   }
 
   Widget _buildFlashCardsTab() {
-    return SingleChildScrollView(
-      padding: context.screenPadding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('FlashCard History', style: context.welcomeStyle),
-          SizedBox(height: context.spaceBtwSections),
-          Container(
-            height: 200,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: AppColors.bottomBlackLight,
-              borderRadius: BorderRadius.circular(context.borderRadiusLg),
-            ),
-            child: Center(
-              child: Text(
-                'FlashCard History Content',
-                style: context.welcomeStyle.copyWith(
-                  color: AppColors.backgroundYellow,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: context.bottomNavHeight + 20),
-        ],
-      ),
-    );
+    return FlashCardsHistoryScreen();
   }
 
   Widget _buildWelcomeSection() {

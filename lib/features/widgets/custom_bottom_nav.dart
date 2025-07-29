@@ -43,21 +43,21 @@ class CustomBottomNav extends StatelessWidget {
               NavIcon(
                 icon: Icons.home,
                 label: AppStrings.navHome,
-                selected: currentIndex == 0 && !isProfileMenuOpen, // Don't show as selected when profile menu is open
+                selected: currentIndex == 0 && !isProfileMenuOpen, 
                 selectedColor: AppColors.textGreen,
                 onTap: () => onTap(0),
               ),
               NavIcon(
                 icon: Icons.interests_rounded,
                 label: AppStrings.navInterviews,
-                selected: currentIndex == 1 && !isProfileMenuOpen, // Don't show as selected when profile menu is open
+                selected: currentIndex == 1 && !isProfileMenuOpen, 
                 selectedColor: AppColors.backgroundLightPink,
                 onTap: () => onTap(1),
               ),
               NavIcon(
                 icon: Icons.flash_on_sharp,
                 label: AppStrings.navFlashCards,
-                selected: currentIndex == 2 && !isProfileMenuOpen, // Don't show as selected when profile menu is open
+                selected: currentIndex == 2 && !isProfileMenuOpen,
                 selectedColor: AppColors.backgroundYellow,
                 onTap: () => onTap(2),
               ),
@@ -86,7 +86,7 @@ class NavIcon extends StatefulWidget {
   final VoidCallback onTap;
   final String label;
   final bool isProfileTab;
-  final bool isProfileMenuOpen; // Add this parameter
+  final bool isProfileMenuOpen;
 
   const NavIcon({
     super.key,
@@ -96,7 +96,7 @@ class NavIcon extends StatefulWidget {
     required this.selectedColor,
     required this.onTap,
     this.isProfileTab = false,
-    this.isProfileMenuOpen = false, // Add default value
+    this.isProfileMenuOpen = false,
   });
 
   @override
@@ -152,7 +152,7 @@ class _NavIconState extends State<NavIcon> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    // Determine if profile should show active state
+
     final isProfileActive = widget.isProfileTab && widget.isProfileMenuOpen;
 
     return GestureDetector(
