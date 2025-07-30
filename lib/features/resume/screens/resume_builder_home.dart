@@ -63,7 +63,7 @@ class _ResumeFormScreenState extends State<ResumeFormScreen> {
           subTitle: AppStrings.alertSubTitle,
           yes: AppStrings.alertYes,
           no: AppStrings.alertNo,
-          navigate: RouteNames.finalResume,
+          routeName: RouteNames.finalResume,
         ),
       );
     }

@@ -122,7 +122,7 @@ class _QuizScreenState extends State<QuizScreen> {
     return Container(
       decoration: BoxDecoration(
         // color: AppColors.blackLight,
-        image: DecorationImage(image: AssetImage(AppImage.temp3)),
+        image: DecorationImage(image: AssetImage(AppImage.temp3),fit: BoxFit.cover),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,

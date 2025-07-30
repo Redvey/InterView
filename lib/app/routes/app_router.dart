@@ -8,7 +8,6 @@ import 'package:interview/features/interview/screens/interviewer.dart';
 
 import '../../features/flash_card/quiz_screen.dart';
 import '../../features/home/screens/home_screen.dart';
-import '../../features/interview/screens/take_mock_interview.dart';
 import '../../features/resume/screens/contact_form/contact_form.dart';
 import '../../features/resume/screens/resume_builder_final.dart';
 import '../../features/resume/screens/resume_builder_home.dart';
@@ -70,21 +69,21 @@ final GoRouter appRouter = GoRouter(
       name: RouteNames.finishInterview,
       builder: (context, state) => const FinishInterview(),
     ),
-    GoRoute(
-      path: '/take-interview',
-      name: RouteNames.takeInterview,
-      builder: (context, state) {
-        final title = state.extra != null && state.extra is Map
-            ? (state.extra as Map)['title'] ?? 'Interview'
-            : 'Interview';
-
-        final topics = state.extra != null && state.extra is Map
-            ? (state.extra as Map)['topics'] ?? <String>[]
-            : <String>[];
-
-        return TakeMockInterview(title: title, topics: List<String>.from(topics));
-      },
-    ),
+    // GoRoute(
+    //   path: '/take-interview',
+    //   name: RouteNames.takeInterview,
+    //   builder: (context, state) {
+    //     final title = state.extra != null && state.extra is Map
+    //         ? (state.extra as Map)['title'] ?? 'Interview'
+    //         : 'Interview';
+    //
+    //     final topics = state.extra != null && state.extra is Map
+    //         ? (state.extra as Map)['topics'] ?? <String>[]
+    //         : <String>[];
+    //
+    //     return TakeMockInterview(title: title, topics: List<String>.from(topics));
+    //   },
+    // ),
 
     GoRoute(
       path: '/quiz/:topic',

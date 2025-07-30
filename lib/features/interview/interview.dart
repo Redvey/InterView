@@ -4,6 +4,7 @@ import 'package:interview/app/themes/text_styles.dart';
 import 'package:interview/core/constants/app_durations.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import 'package:interview/features/interview/screens/custom_interview/custom_interview.dart';
+import 'package:interview/features/interview/screens/interview_information.dart';
 import 'package:interview/features/interview/services/interview_dummy_data_service.dart';
 import 'package:interview/features/interview/widgets/search_field.dart';
 import 'package:interview/features/interview/widgets/interview_card.dart';
@@ -113,12 +114,47 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
   }
 
   void _onInterviewCardTap(InterviewItem item) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('${AppStrings.starting} ${item.jobTitle} ${AppStrings.interviewStart}'),
+    print('_onInterviewCardTap called with item: ${item.jobTitle}');
 
-        duration: const Duration(seconds: AppDurations.interviewStartDelaySeconds),
-      ),
+    // Show the preparation dialog
+    InterviewPreparationDialog.show(
+      context: context,
+      onProceed: () {
+        print('onProceed callback called');
+
+        // Debug: Print the route name
+        print('Route name: ${RouteNames.interviewer}');
+
+        try {
+          // Try multiple navigation approaches
+
+
+          context.pushNamed(RouteNames.interviewer, extra: item);
+
+
+        } catch (e) {
+          print('Navigation error: $e');
+
+          // Fallback: Show error message
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Unable to start interview: ${e.toString()}'),
+              backgroundColor: Colors.red,
+              duration: const Duration(seconds: 3),
+            ),
+          );
+        }
+      },
+      onCancel: () {
+        print('onCancel callback called');
+        // Optional: Show a message when user cancels
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Interview cancelled'),
+            duration: const Duration(seconds: 2),
+          ),
+        );
+      },
     );
   }
 
@@ -277,7 +313,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                       final item = filteredItems[index];
                       return InterviewCard(
                         interviewItem: item,
-                        onTap: ()=>context.pushNamed(RouteNames.interviewer),
+                        onTap: () => _onInterviewCardTap(item),
                       );
                     },
                   ),
