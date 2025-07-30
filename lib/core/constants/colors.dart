@@ -34,6 +34,14 @@ class AppColors {
     end: Alignment.bottomCenter,
     colors: [backgroundWhite, backgroundYellow],
   );
+  static const Gradient interviewer = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      Color(0xff211a2e),
+      AppColors.blackLight,
+      AppColors.black,
+    ],);
   static const Gradient specialGradient = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,

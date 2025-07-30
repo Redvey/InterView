@@ -271,6 +271,8 @@ extension ResponsiveContext on BuildContext {
   TextStyle get detailHeaderStyle => AppTextStyles.detailHeader(this);
   TextStyle get headerStyle => AppTextStyles.header(this);
   TextStyle get sectionTitleStyle => AppTextStyles.sectionTitle(this);
+  TextStyle get interviewInformationTitleStyle => AppTextStyles.interviewInformationTitle(this);
+  TextStyle get interviewInformationSubTitleStyle => AppTextStyles.interviewInformationSubTitle(this);
 
   // ═══════════════════════════════════════════════════════════════════════════
   // 💬 TEXT STYLES - HINTS & HELPER TEXT
@@ -288,6 +290,7 @@ extension ResponsiveContext on BuildContext {
   TextStyle get buttonLightStyle => AppTextStyles.buttonLight(this);
   TextStyle get buttonSmallStyle => AppTextStyles.buttonSmall(this);
   TextStyle get buttonTextStyle => AppTextStyles.buttonText(this);
+  TextStyle get buttonWhiteTextStyle => AppTextStyles.buttonWhiteText(this);
   TextStyle get yesStyle => AppTextStyles.yes(this);
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -308,6 +311,7 @@ extension ResponsiveContext on BuildContext {
   TextStyle get welcomeCardFinalStyle => AppTextStyles.welcomeCardFinal(this);
   TextStyle get crackItStyle => AppTextStyles.crackIt(this);
   TextStyle get membershipSubTitleStyle => AppTextStyles.membershipSubTitle(this);
+  TextStyle get membershipDetailStyle => AppTextStyles.membershipDetail(this);
   TextStyle get infoTextStyle => AppTextStyles.infoText(this);
 
   // ═══════════════════════════════════════════════════════════════════════════

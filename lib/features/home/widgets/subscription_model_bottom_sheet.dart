@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
+import 'package:interview/core/constants/image_strings.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
 
 class SubscriptionPlanBottomSheet extends StatefulWidget {
@@ -21,6 +22,7 @@ class _SubscriptionPlanBottomSheetState extends State<SubscriptionPlanBottomShee
         padding:  context.screenPadding ,
         decoration: BoxDecoration(
             color: AppColors.backgroundWhite,
+          image: DecorationImage(image: AssetImage(AppImage.temp1),fit: BoxFit.cover),
           boxShadow: [
             BoxShadow(
               color: AppColors.purpleOverlay,
@@ -80,7 +82,7 @@ class _SubscriptionPlanBottomSheetState extends State<SubscriptionPlanBottomShee
         ],
         borderRadius: BorderRadius.circular( context.borderRadiusMd ),
       ),
-      child: Text(text, style: context.bodyBoldStyle.copyWith(color: AppColors.blackLight)),
+      child: Text(text, style: context.bodyBoldStyle),
     );
   }
 
@@ -127,12 +129,12 @@ class _SubscriptionPlanBottomSheetState extends State<SubscriptionPlanBottomShee
                   if (save != null)
                     Text(
                       "$save compared to the Monthly Plan!",
-                      style: const TextStyle(color: Colors.black87),
+                      style: context.membershipDetailStyle,
                     ),
                   if (note != null)
                     Text(
                       note,
-                      style: const TextStyle(color: Colors.black54),
+                      style: context.membershipDetailStyle,
                     ),
                 ],
               ),

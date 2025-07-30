@@ -30,7 +30,7 @@ class QuizCompletionDialog extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(context.lg),
           decoration: BoxDecoration(
-            image: DecorationImage(image:AssetImage(AppImage.temp4),fit: BoxFit.cover),
+            image: DecorationImage(image:AssetImage(AppImage.temp1),fit: BoxFit.cover),
             borderRadius: BorderRadius.circular(context.borderRadiusLg),
             boxShadow: [
               BoxShadow(

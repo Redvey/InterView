@@ -17,7 +17,7 @@ class ProfileAvatar extends StatelessWidget {
       onTap: onTap,
       child: CircleAvatar(
         radius: radius,
-        backgroundImage: const AssetImage(AppImage.temp),
+        backgroundImage: const AssetImage(AppImage.temp2),
       ),
     );
   }

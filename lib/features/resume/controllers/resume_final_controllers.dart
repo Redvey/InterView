@@ -18,8 +18,8 @@ class ResumeController extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
   List<String> get templateThumbnails => [
-    AppImage.temp,
-    AppImage.temp,
+    AppImage.temp2,
+    AppImage.temp3,
   ];
 
   ResumeController() {

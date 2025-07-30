@@ -223,4 +223,7 @@ class AppStrings {
   static const hoursAgo = 'hours ago';
   static const dayAgo = 'a day ago';
 
+  //
+  static const cancel = 'Cancel';
+
 }

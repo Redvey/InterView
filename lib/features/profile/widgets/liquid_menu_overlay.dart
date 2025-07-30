@@ -233,7 +233,7 @@ class _LiquidMenuOverlayState extends State<LiquidMenuOverlay>
                 children: [
                   CircleAvatar(
                     radius: context.userAvatarRadius,
-                    backgroundImage: AssetImage(AppImage.temp),
+                    backgroundImage: AssetImage(AppImage.temp2),
                   ),
                   SizedBox(height: context.md),
                   Text(

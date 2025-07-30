@@ -91,7 +91,7 @@ class _InterviewReportsScreenState extends State<InterviewReportsScreen> {
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: CircleAvatar(
-                      backgroundImage: AssetImage(AppImage.temp),
+                      backgroundImage: AssetImage(AppImage.temp1),
                     ),
                     title: Text(
                       report.role,

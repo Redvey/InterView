@@ -83,6 +83,13 @@ class AppTextStyles {
         fontWeight: FontWeight.w500,
         fontSize: context.fontSizeSs,
       );
+  static TextStyle buttonWhiteText(BuildContext context) =>
+      TextStyle(
+        fontFamily: AppFonts.poppins,
+        fontWeight: FontWeight.w500,
+        fontSize: context.fontSizeSs,
+        color: AppColors.white
+      );
 
   static TextStyle welcomeCardFinal(BuildContext context) =>
       TextStyle(
@@ -139,6 +146,13 @@ class AppTextStyles {
         fontSize: context.fontSizeSm,
         color: AppColors.buttonYellow,
         fontWeight: FontWeight.w600,
+      );
+  static TextStyle membershipDetail(BuildContext context) =>
+      TextStyle(
+        fontFamily: AppFonts.poppins,
+        fontSize: context.fontSizeSs,
+        color: AppColors.backgroundYellow,
+        fontWeight: FontWeight.w400,
       );
 
 
@@ -328,6 +342,21 @@ class AppTextStyles {
         fontFamily: AppFonts.poppins,
         fontWeight: FontWeight.w400,
         color: Colors.grey[500],
+      );
+
+  static TextStyle  interviewInformationTitle(BuildContext context) =>
+      TextStyle(
+        fontFamily: AppFonts.poppins,
+        color: AppColors.backgroundWhite,
+        fontSize: context.fontSizeSm,
+        fontWeight: FontWeight.w600,
+      );
+  static TextStyle  interviewInformationSubTitle(BuildContext context) =>
+      TextStyle(
+        fontFamily: AppFonts.poppins,
+        color: AppColors.backgroundWhite,
+        fontSize: context.fontSizeSs,
+        fontWeight: FontWeight.w400,
       );
 
 }
