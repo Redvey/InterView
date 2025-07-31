@@ -71,7 +71,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
       });
     } catch (e) {
       setState(() => isLoading = false);
-      debugPrint('Error loading interview items: $e');
+
     }
   }
 
@@ -114,16 +114,16 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
   }
 
   void _onInterviewCardTap(InterviewItem item) {
-    print('_onInterviewCardTap called with item: ${item.jobTitle}');
+    // print('_onInterviewCardTap called with item: ${item.jobTitle}');
 
     // Show the preparation dialog
     InterviewPreparationDialog.show(
       context: context,
       onProceed: () {
-        print('onProceed callback called');
+        // print('onProceed callback called');
 
         // Debug: Print the route name
-        print('Route name: ${RouteNames.interviewer}');
+        // print('Route name: ${RouteNames.interviewer}');
 
         try {
           // Try multiple navigation approaches
@@ -133,7 +133,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
 
 
         } catch (e) {
-          print('Navigation error: $e');
+          // print('Navigation error: $e');
 
           // Fallback: Show error message
           ScaffoldMessenger.of(context).showSnackBar(
@@ -146,7 +146,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
         }
       },
       onCancel: () {
-        print('onCancel callback called');
+        // print('onCancel callback called');
         // Optional: Show a message when user cancels
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

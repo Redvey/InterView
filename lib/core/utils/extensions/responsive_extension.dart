@@ -309,6 +309,7 @@ extension ResponsiveContext on BuildContext {
   // ═══════════════════════════════════════════════════════════════════════════
 
   TextStyle get welcomeCardFinalStyle => AppTextStyles.welcomeCardFinal(this);
+  TextStyle get subscriptionTitleStyle => AppTextStyles.subscriptionTitle(this);
   TextStyle get crackItStyle => AppTextStyles.crackIt(this);
   TextStyle get membershipSubTitleStyle => AppTextStyles.membershipSubTitle(this);
   TextStyle get membershipDetailStyle => AppTextStyles.membershipDetail(this);
