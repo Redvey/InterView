@@ -99,6 +99,15 @@ class AppTextStyles {
         fontWeight: FontWeight.w400,
       );
 
+  //modal bottom sheet
+  static TextStyle subscriptionTitle(BuildContext context) =>
+      TextStyle(
+        color: AppColors.textYellow,
+        fontFamily: AppFonts.poppins,
+        fontSize: context.fontSizeSx,
+        fontWeight: FontWeight.w600,
+      );
+
   static TextStyle crackIt(BuildContext context) =>
       TextStyle(
         color: AppColors.textGreen,

@@ -33,12 +33,12 @@ class ResumeService {
     await Future.delayed(const Duration(seconds: 2));
 
     // Send selectedTemplate and form data to backend or PDF generator
-    print('Building resume with template index: $templateIndex');
+    // print('Building resume with template index: $templateIndex');
   }
 
   Future<void> downloadResume(String resumeId) async {
     // TODO: Implement download logic
     await Future.delayed(const Duration(seconds: 1));
-    print('Downloading resume: $resumeId');
+    // print('Downloading resume: $resumeId');
   }
 }

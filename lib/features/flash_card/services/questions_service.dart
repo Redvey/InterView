@@ -208,7 +208,7 @@ class QuestionService {
       return true;
     } catch (e) {
       // Log error or handle as needed
-      print('Failed to add question: $e');
+      // print('Failed to add question: $e');
       return false;
     }
   }

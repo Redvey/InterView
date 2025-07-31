@@ -42,7 +42,7 @@ class AppSizes {
   static double welcomeBlur(BuildContext context) => 40.0 * _getScaleFactor(context);
   static double welcomeSpread(BuildContext context) => 2.0 * _getScaleFactor(context);
   static double glowBlur(BuildContext context) => 100.0 * _getScaleFactor(context);
-  static double glowSpread(BuildContext context) => 25.0 * _getScaleFactor(context);
+  static double glowSpread(BuildContext context) => 10.0 * _getScaleFactor(context);
   static double metaBlur(BuildContext context) => 30.0 * _getScaleFactor(context);
 
   // Glow bar sizes
