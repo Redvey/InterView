@@ -268,6 +268,7 @@ extension ResponsiveContext on BuildContext {
   // ═══════════════════════════════════════════════════════════════════════════
 
   TextStyle get infoHeaderStyle => AppTextStyles.infoHeader(this);
+  TextStyle get infoSmallHeaderStyle => AppTextStyles.infoSmallHeader(this);
   TextStyle get detailHeaderStyle => AppTextStyles.detailHeader(this);
   TextStyle get headerStyle => AppTextStyles.header(this);
   TextStyle get sectionTitleStyle => AppTextStyles.sectionTitle(this);

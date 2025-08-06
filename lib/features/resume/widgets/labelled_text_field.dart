@@ -197,7 +197,7 @@ class LabeledTextFormField extends StatelessWidget {
                   borderRadius: BorderRadius.circular(context.radiusSM),
                   borderSide: BorderSide(
                     color: AppColors.blackLight,
-                    width: 2.0,
+                    width: 1.0,
                   ),
                 ),
                 // Disabled state styling

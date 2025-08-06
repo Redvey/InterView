@@ -8,7 +8,7 @@ class FeatureContainer extends StatelessWidget {
   final String subTitle;
   final Color color;
   final Color colorBg;
-  final IconData icon;
+
 
   const FeatureContainer({
     super.key,
@@ -17,7 +17,7 @@ class FeatureContainer extends StatelessWidget {
     required this.subTitle,
     required this.color,
     required this.colorBg,
-    this.icon = Icons.brush_outlined,
+
   });
 
   @override
@@ -50,8 +50,8 @@ class FeatureContainer extends StatelessWidget {
               child: ShaderMask(
                 shaderCallback: (bounds) => gradient.createShader(bounds),
                 child: Icon(
-                  icon,
-                  size:  context.iconSize ,
+                  Icons.auto_fix_high,
+                  size:  context.iconSizeSm ,
                   color: AppColors.backgroundWhite,
                 ),
               ),

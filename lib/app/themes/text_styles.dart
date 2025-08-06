@@ -5,7 +5,7 @@ import 'fonts.dart';
 
 class AppTextStyles {
   static TextStyle textField(BuildContext context) =>
-      TextStyle(fontFamily: AppFonts.poppins, fontSize: context.fontSizeSx);
+      TextStyle(fontFamily: AppFonts.poppins, fontSize: context.fontSizeSm);
 
   static TextStyle bodyBold(BuildContext context) =>
       TextStyle(
@@ -51,13 +51,19 @@ class AppTextStyles {
         fontSize: context.fontSizeSd,
         fontWeight: FontWeight.w600,
       );
+  static TextStyle infoSmallHeader(BuildContext context) =>
+      TextStyle(
+        fontFamily: AppFonts.poppins,
+        fontSize: context.fontSizeSx,
+        fontWeight: FontWeight.w600,
+      );
 
   static TextStyle detailHeader(BuildContext context) =>
       TextStyle(
         fontFamily: AppFonts.poppins,
-        fontSize: context.fontSizeSm,
+        fontSize: context.fontSizeSs,
         fontWeight: FontWeight.w500,
-        color: AppColors.black,
+        color: AppColors.blackLight,
       );
 
   static TextStyle hintText(BuildContext context, {required Color color}) =>
