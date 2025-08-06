@@ -20,4 +20,3 @@ InputDecoration whiteInputDecoration(
     borderSide: BorderSide(color: hintColor, width: 1),
   ),
 );
-

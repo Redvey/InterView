@@ -61,15 +61,15 @@ class CustomBottomNav extends StatelessWidget {
                 selectedColor: AppColors.backgroundYellow,
                 onTap: () => onTap(2),
               ),
-              // Profile tab with special handling
+
               NavIcon(
                 icon: Icons.person_rounded,
                 label: AppStrings.navProfile,
-                selected: false, // Never selected, always shows overlay
+                selected: false,
                 selectedColor: AppColors.textBlueBg,
                 onTap: () => onTap(3),
                 isProfileTab: true,
-                isProfileMenuOpen: isProfileMenuOpen, // Pass the menu state
+                isProfileMenuOpen: isProfileMenuOpen,
               ),
             ],
           ),

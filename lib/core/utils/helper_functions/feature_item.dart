@@ -23,7 +23,7 @@ Widget featureListItem({
           subTitle: subTitle,
           color: color,
           colorBg: colorBg,
-          icon: icon,
+
         ),
       ),
       SizedBox(height: context.defaultSpaceH),
