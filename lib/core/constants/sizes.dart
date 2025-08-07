@@ -52,6 +52,7 @@ class AppSizes {
   static double glowB(BuildContext context) => 3.0 * _getScaleFactor(context);
 
   // Font sizes
+  static double fontSizeSten(BuildContext context) => 10.0 * _getScaleFactor(context);
   static double fontSizeSs(BuildContext context) => 12.0 * _getScaleFactor(context);
   static double fontSizeSms(BuildContext context) => 13.0 * _getScaleFactor(context);
   static double fontSizeSm(BuildContext context) => 14.0 * _getScaleFactor(context);
@@ -63,6 +64,7 @@ class AppSizes {
 
   // Button sizes
   static double buttonHeight(BuildContext context) => 18.0 * _getHeightScaleFactor(context);
+  static double buttonHeightSmall(BuildContext context) => 10.0 * _getHeightScaleFactor(context);
   static double buttonRadius(BuildContext context) => 12.0 * _getScaleFactor(context);
   static double circularButtonRadius(BuildContext context) => 30.0 * _getScaleFactor(context);
   static double buttonWidth(BuildContext context) => 120.0 * _getWidthScaleFactor(context);
@@ -130,6 +132,7 @@ class AppSizes {
   // Animation durations (in milliseconds)
   static int navAnimationDuration = 300;
   static int maxSelection = 12;
+  static int maxLinesEmailBody = 10;
 
   // === NEW ADDITIONS FOR LIQUID MENU OVERLAY ===
 
@@ -239,6 +242,12 @@ class AppSizes {
   static const double sheetInitialSize = 0.9;
   static const double sheetMinSize = 0.5;
   static const double sheetMaxSize = 0.95;
+
+  //cold mail
+  //file attachment
+  static double attachedFileItemHeight(BuildContext context) => 100.0 * _getHeightScaleFactor(context);
+  static double attachedFileItemWidth(BuildContext context) => 140.0 * _getWidthScaleFactor(context);
+  static double emailBodyHeight(BuildContext context) => 320.0 * _getHeightScaleFactor(context);
 
 
 
