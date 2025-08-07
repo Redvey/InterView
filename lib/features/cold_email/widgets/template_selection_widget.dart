@@ -1,9 +1,8 @@
-// widgets/template_selection_widget.dart
+
 import 'package:flutter/material.dart';
-import 'package:interview/app/themes/fonts.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
-import 'package:interview/core/utils/color_utils.dart';
-import '../../../core/constants/colors.dart';
+import 'package:interview/core/constants/colors.dart';
+import 'package:interview/core/constants/strings.dart';
 
 class TemplateSelectionWidget extends StatelessWidget {
   final String selectedTemplate;
@@ -17,99 +16,132 @@ class TemplateSelectionWidget extends StatelessWidget {
     required this.onShowDrafts,
   });
 
+  static const Map<String, String> _templateNames = {
+    'informational': AppStrings.informationalTemplate,
+    'jobApplication': AppStrings.jobApplicationTemplate,
+    'networking': AppStrings.networkingTemplate,
+    'followUp': AppStrings.followUpTemplate,
+  };
+
+  static const Map<String, IconData> _templateIcons = {
+    'informational': Icons.info_outline,
+    'jobApplication': Icons.work_outline,
+    'networking': Icons.people_outline,
+    'followUp': Icons.follow_the_signs_outlined,
+  };
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: context.defaultPadding,
       decoration: BoxDecoration(
-        color: AppColors.searchBorder,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.backgroundBlue.withAlpha(77)),
+        color: AppColors.socialForm,
+        borderRadius: BorderRadius.circular(context.radiusMD),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Email Template",
-                style: context.infoSmallHeaderStyle
+                AppStrings.selectTemplate,
+                style: context.sectionTitleStyle,
               ),
-              const Spacer(),
               TextButton.icon(
                 onPressed: onShowDrafts,
-                icon: const Icon(Icons.drafts, size: 16),
-                label:  Text('Drafts',style: TextStyle(fontFamily: AppFonts.poppins),),
-                style: TextButton.styleFrom(
-                  foregroundColor: AppColors.blackLight,
+                icon: const Icon(
+                  Icons.drafts_outlined,
+                  color: AppColors.primary,
+                ),
+                label: Text(
+                  AppStrings.viewDrafts,
+                  style: context.buttonTextStyle.copyWith(
+                    color: AppColors.primary,
+                    fontSize: context.fontSizeSm,
+                  ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 12),
 
-          // Template Selection using consistent styling
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "TEMPLATE TYPE",
-                style: context.detailHeaderStyle,
-              ),
-              SizedBox(height: context.fieldLabelSpacing),
+          SizedBox(height: context.spaceBtwFields),
 
-              DropdownButtonFormField<String>(
-                value: selectedTemplate,
-                style: context.textFieldStyle,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(context.radiusSM),
-                    borderSide: BorderSide(color: AppColors.backgroundWhite),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(context.radiusSM),
-                    borderSide: BorderSide(color: AppColors.backgroundWhite),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(context.radiusSM),
-                    borderSide: BorderSide(
-                      color: AppColors.blackLight,
-                      width: 2.0,
-                    ),
-                  ),
-                  filled: true,
-                  fillColor: AppColors.backgroundWhite,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-                ),
-                items:  [
-                  DropdownMenuItem(
-                    value: 'informational',
-                    child: Text('Informational Interview',style: context.hintTextStyle(color: getMatchingHintColor(AppColors.searchBorder)),),
-                  ),
-                  DropdownMenuItem(
-                    value: 'job_inquiry',
-                    child: Text('Job Inquiry',style: context.hintTextStyle(color: getMatchingHintColor(AppColors.searchBorder))),
-                  ),
-                  DropdownMenuItem(
-                    value: 'networking',
-                    child: Text('Networking',style: context.hintTextStyle(color: getMatchingHintColor(AppColors.searchBorder))),
-                  ),
-                ],
-                onChanged: (value) {
-                  if (value != null) {
-                    onTemplateChanged(value);
-                  }
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please select a template type';
-                  }
-                  return null;
-                },
-              ),
-            ],
+          // Template Selection Grid
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 2.5,
+              crossAxisSpacing: context.spaceBtwItems,
+              mainAxisSpacing: context.spaceBtwItemsH,
+            ),
+            itemCount: _templateNames.length,
+            itemBuilder: (context, index) {
+              final templateKey = _templateNames.keys.elementAt(index);
+              final templateName = _templateNames[templateKey]!;
+              final templateIcon = _templateIcons[templateKey]!;
+              final isSelected = selectedTemplate == templateKey;
+
+              return _buildTemplateCard(
+                context: context,
+                templateKey: templateKey,
+                templateName: templateName,
+                templateIcon: templateIcon,
+                isSelected: isSelected,
+              );
+            },
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildTemplateCard({
+    required BuildContext context,
+    required String templateKey,
+    required String templateName,
+    required IconData templateIcon,
+    required bool isSelected,
+  }) {
+    return GestureDetector(
+      onTap: () => onTemplateChanged(templateKey),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: EdgeInsets.all(context.paddingMD),
+        decoration: BoxDecoration(
+          color: isSelected ? AppColors.primary : AppColors.searchFill,
+          borderRadius: BorderRadius.circular(context.radiusMD),
+          border: Border.all(
+            color: isSelected ? AppColors.primary : AppColors.searchBorder,
+            width: context.borderWidthDefault,
+          ),
+          boxShadow: isSelected ? [
+
+          ] : null,
+        ),
+        child: Row(
+          children: [
+            Icon(
+              templateIcon,
+              color: isSelected ? AppColors.white : AppColors.textGrey,
+              size: context.iconSizeSM,
+            ),
+            SizedBox(width: context.mxs),
+            Expanded(
+              child: Text(
+                templateName,
+                style: context.buttonSmallStyle.copyWith(
+                  color: isSelected ? AppColors.white : AppColors.textGrey,
+                  fontSize: context.fontSizeSs,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

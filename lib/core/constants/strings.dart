@@ -226,4 +226,76 @@ class AppStrings {
   //
   static const cancel = 'Cancel';
 
+
+  static const noFilesAttached = 'No files attached';
+  static const tapToAttach = 'Tap "Add Files" to attach documents';
+  static const attachments = "Attachments";
+  static const addFiles = "Add Files";
+  static const sendEmail = "Send Email";
+  static const saveDraft = "Save Draft";
+
+  // Main Screen
+  static const String coldMail = "Cold Mail";
+
+  // Email Actions
+  static const String openingEmailClient = "Opening email client...";
+  static const String emailClientOpenedSuccess = "Email client opened successfully!";
+  static const String failedToOpenEmailClient = "Failed to open email client";
+  static const String emailAppInstallationHint = "Please make sure you have an email app installed (Gmail, Outlook, etc.)";
+  static const String retry = "Retry";
+
+  // Validation Messages
+  static const String pleaseEnterRecipientEmail = "Please enter recipient email address";
+  static const String incompleteEmail = "Incomplete Email";
+  static const String fillPlaceholders = "Please fill in the following placeholders:";
+
+  // Draft Actions
+  static const String draftSavedLocally = "Draft saved locally!";
+  static const String viewDrafts = "View Drafts";
+  static const String draftLoadedSuccess = "Draft loaded successfully!";
+  static const String draftEmails = "Draft Emails";
+  static const String noDraftsFound = "No drafts found";
+  static const String untitledDraft = "Untitled Draft";
+  static const String close = "Close";
+  static const String ok = "OK";
+
+  // Template Selection
+  static const String selectTemplate = "Select Template";
+  static const String informationalTemplate = "Informational Interview";
+  static const String jobApplicationTemplate = "Job Application";
+  static const String networkingTemplate = "Networking";
+  static const String followUpTemplate = "Follow Up";
+
+  // Recipient Details
+  static const String recipientDetails = "Recipient Details";
+  static const String recipientName = "Recipient Name";
+  static const String recipientEmail = "Recipient Email";
+  static const String companyName = "Company Name";
+  static const String positionTitle = "Position Title";
+  static const String personalizeEmail = "Personalize Email";
+
+  // Hints
+  static const String hintRecipientName = "Enter recipient's full name";
+  static const String hintRecipientEmail = "Enter recipient's email address";
+  static const String hintCompanyName = "Enter company name";
+  static const String hintPositionTitle = "Enter position you're interested in";
+
+  // Email Composition
+  static const String emailComposition = "Email Composition";
+  static const String subject = "Subject";
+  static const String emailBody = "Email Body";
+  static const String hintSubject = "Enter email subject";
+  static const String hintEmailBody = "Compose your email message";
+
+  // File Attachments
+  static const String fileAttachments = "File Attachments";
+  static const String noFilesAttachedTitle = "No files attached";
+  static const String tapToAttachHint = "Tap \"Add Files\" to attach documents";
+
+  // Validation
+  static const String fieldRequired = "This field is required";
+  static const String tenCharacters = 'Email body should be at least 10 characters';
+  static const String invalidEmail = "Please enter a valid email address";
+
+
 }

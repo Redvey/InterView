@@ -79,6 +79,7 @@ extension ResponsiveContext on BuildContext {
   // ═══════════════════════════════════════════════════════════════════════════
 
   double get fontSizeSs => AppSizes.fontSizeSs(this);
+  double get fontSizeSten => AppSizes.fontSizeSten(this);
   double get fontSizeSms => AppSizes.fontSizeSms(this);
   double get fontSizeSm => AppSizes.fontSizeSm(this);
   double get fontSizeSx => AppSizes.fontSizeSx(this);
@@ -92,6 +93,7 @@ extension ResponsiveContext on BuildContext {
   // ═══════════════════════════════════════════════════════════════════════════
 
   double get buttonHeight => AppSizes.buttonHeight(this);
+  double get buttonHeightSmall => AppSizes.buttonHeightSmall(this);
   double get buttonRadius => AppSizes.buttonRadius(this);
   double get circularButtonRadius => AppSizes.circularButtonRadius(this);
   double get buttonWidth => AppSizes.buttonWidth(this);
@@ -174,6 +176,9 @@ extension ResponsiveContext on BuildContext {
 
   double get adCard => AppSizes.adCard(this);
   double get featureCard => AppSizes.featureCard(this);
+  double get attachedFileItemHeight => AppSizes.attachedFileItemHeight(this);
+  double get attachedFileItemWidth => AppSizes.attachedFileItemWidth(this);
+  double get emailBodyHeight => AppSizes.emailBodyHeight(this);
 
   // ═══════════════════════════════════════════════════════════════════════════
   // ⭐ RATING & STAR SIZES
@@ -188,6 +193,7 @@ extension ResponsiveContext on BuildContext {
 
   int get textFieldMaxLines => AppSizes.textFieldMaxLines;
   int get maxSelection => AppSizes.maxSelection;
+  int get maxLinesEmailBody => AppSizes.maxLinesEmailBody;
 
   // Sheet Sizes (ratios)
   double get sheetInitialSize => AppSizes.sheetInitialSize;

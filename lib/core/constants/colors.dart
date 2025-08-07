@@ -175,12 +175,15 @@ class AppColors {
   static const Color blue50 = Color(0xFFE3F2FD);  // Colors.blue[50]
   static const Color blue200 = Color(0xFF90CAF9); // Colors.blue[200]
   static const Color blue600 = Color(0xFF1976D2); // Colors.blue[600]
-  static const Color blue700 = Color(0xFF1565C0); // Colors.blue[700]
+  static const Color blue700 = Color(0xFF1565C0);
+  static const Color blue800 = Color(0x4D341899);
 
 
 
   static Color textGreenWithAlpha51 = textGreen.withAlpha(51);
   static Color textGreenWithAlpha26 = textGreen.withAlpha(26);
+
+
 
 
   // --- System/Feedback Colors ---
