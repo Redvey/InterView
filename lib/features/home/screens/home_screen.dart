@@ -221,7 +221,7 @@ class _HomeScreenState extends State<HomeScreen>
       slideAnimation: _animationManager
           .slideAnimations[AppStrings.welcomeMessageAnimationIndex],
       child: WelcomeMessage(
-        onProfileTap: () => setState(() => _showMenu = true), // Add this callback
+        onProfileTap: () => setState(() => _showMenu = true),
       ),
     );
   }

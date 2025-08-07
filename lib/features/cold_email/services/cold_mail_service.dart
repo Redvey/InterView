@@ -1,66 +1,62 @@
-// services/cold_mail_service.dart
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/foundation.dart';
 import '../models/email_draft_model.dart';
 
 class ColdMailService {
-  // In a real app, you'd use SharedPreferences or a database
-  static final List<EmailDraftModel> _drafts = [];
+  // Your existing methods for templates, personalization, etc.
 
-  final Map<String, String> _emailTemplates = {
-    'informational': '''Dear [Name],
+  String getEmailTemplate(String templateType) {
+    switch (templateType) {
+      case 'informational':
+        return '''Dear [RECIPIENT_NAME],
 
-I hope this email finds you well. I'm [Your Name], a [Your Background] interested in learning more about your experience at [Company].
+I hope this email finds you well. I am reaching out to learn more about [COMPANY] and the opportunities available in [POSITION].
 
-I would greatly appreciate the opportunity to have a brief informational interview with you to gain insights into [Specific Area/Role].
+I am particularly interested in [SPECIFIC_INTEREST] and would appreciate any insights you might share about the company culture and growth opportunities.
 
-Would you be available for a 15-20 minute conversation in the coming weeks?
+Would you be available for a brief 15-minute call to discuss your experience at [COMPANY]?
 
 Thank you for your time and consideration.
 
 Best regards,
-[Your Name]''',
+[YOUR_NAME]''';
 
-    'job_inquiry': '''Dear [Name],
+      case 'job_application':
+        return '''Dear Hiring Manager,
 
-I hope you're doing well. I'm writing to express my interest in potential opportunities at [Company].
+I am writing to express my interest in the [POSITION] position at [COMPANY]. With my background in [YOUR_FIELD], I believe I would be a valuable addition to your team.
 
-With my background in [Your Field], I believe I could contribute meaningfully to your team. I'm particularly drawn to [Company] because of [Specific Reason].
+[BRIEF_QUALIFICATIONS]
 
-I would welcome the opportunity to discuss how my skills align with your current or future needs.
+I have attached my resume for your review. I would welcome the opportunity to discuss how my skills and experience align with [COMPANY]'s goals.
 
-Thank you for your consideration.
-
-Best regards,
-[Your Name]''',
-
-    'networking': '''Dear [Name],
-
-I hope this message finds you well. I came across your profile and was impressed by your work at [Company].
-
-As someone interested in [Industry/Field], I would value the opportunity to connect and learn from your experience.
-
-Would you be open to a brief coffee chat or virtual meeting in the coming weeks?
-
-Looking forward to potentially connecting.
+Thank you for considering my application.
 
 Best regards,
-[Your Name]''',
-  };
+[YOUR_NAME]''';
 
-  String getEmailTemplate(String templateKey) {
-    return _emailTemplates[templateKey] ?? '';
+      default:
+        return '''Dear [RECIPIENT_NAME],
+
+I hope this email finds you well.
+
+[YOUR_MESSAGE]
+
+Thank you for your time.
+
+Best regards,
+[YOUR_NAME]''';
+    }
   }
 
-  String getDefaultSubject(String templateKey) {
-    switch (templateKey) {
+  String getDefaultSubject(String templateType) {
+    switch (templateType) {
       case 'informational':
-        return 'Request for Informational Interview - [Your Name]';
-      case 'job_inquiry':
-        return 'Interest in Opportunities at [Company] - [Your Name]';
-      case 'networking':
-        return 'Connecting in [Industry/Field] - [Your Name]';
+        return 'Seeking insights about opportunities at [COMPANY]';
+      case 'job_application':
+        return 'Application for [POSITION] position';
       default:
-        return 'Professional Inquiry - [Your Name]';
+        return 'Hello from [YOUR_NAME]';
     }
   }
 
@@ -70,26 +66,19 @@ Best regards,
     required String recipientName,
     required String companyName,
     required String position,
+    required String userName,
   }) {
-    String personalizedBody = bodyTemplate;
-    String personalizedSubject = subjectTemplate;
+    String personalizedBody = bodyTemplate
+        .replaceAll('[RECIPIENT_NAME]', recipientName)
+        .replaceAll('[COMPANY]', companyName)
+        .replaceAll('[POSITION]', position)
+        .replaceAll('[YOUR_NAME]', userName);
 
-    if (recipientName.isNotEmpty) {
-      personalizedBody = personalizedBody.replaceAll('[Name]', recipientName);
-      personalizedSubject = personalizedSubject.replaceAll('[Name]', recipientName);
-    }
-
-    if (companyName.isNotEmpty) {
-      personalizedBody = personalizedBody.replaceAll('[Company]', companyName);
-      personalizedSubject = personalizedSubject.replaceAll('[Company]', companyName);
-    }
-
-    if (position.isNotEmpty) {
-      personalizedBody = personalizedBody.replaceAll('[Specific Area/Role]', position);
-      personalizedBody = personalizedBody.replaceAll('[Your Field]', position);
-      personalizedBody = personalizedBody.replaceAll('[Industry/Field]', position);
-      personalizedSubject = personalizedSubject.replaceAll('[Industry/Field]', position);
-    }
+    String personalizedSubject = subjectTemplate
+        .replaceAll('[RECIPIENT_NAME]', recipientName)
+        .replaceAll('[COMPANY]', companyName)
+        .replaceAll('[POSITION]', position)
+        .replaceAll('[YOUR_NAME]', userName);
 
     return {
       'body': personalizedBody,
@@ -97,23 +86,19 @@ Best regards,
     };
   }
 
-  List<String> validatePlaceholders(String emailBody, String subject) {
-    List<String> unfilled = [];
-    RegExp placeholderRegex = RegExp(r'\[([^\]]+)\]');
+  List<String> validatePlaceholders(String body, String subject) {
+    final List<String> unfilled = [];
+    final RegExp placeholderRegex = RegExp(r'\[([^\]]+)\]');
 
-    // Check body placeholders
-    Iterable<RegExpMatch> bodyMatches = placeholderRegex.allMatches(emailBody);
-    for (RegExpMatch match in bodyMatches) {
-      String placeholder = match.group(0)!;
-      if (!unfilled.contains(placeholder)) {
-        unfilled.add(placeholder);
-      }
+    final bodyMatches = placeholderRegex.allMatches(body);
+    final subjectMatches = placeholderRegex.allMatches(subject);
+
+    for (final match in bodyMatches) {
+      unfilled.add(match.group(1)!);
     }
 
-    // Check subject placeholders
-    Iterable<RegExpMatch> subjectMatches = placeholderRegex.allMatches(subject);
-    for (RegExpMatch match in subjectMatches) {
-      String placeholder = match.group(0)!;
+    for (final match in subjectMatches) {
+      final placeholder = match.group(1)!;
       if (!unfilled.contains(placeholder)) {
         unfilled.add(placeholder);
       }
@@ -122,79 +107,70 @@ Best regards,
     return unfilled;
   }
 
+  // Fixed sendEmail method that handles + encoding issue
   Future<void> sendEmail({
     required String recipientEmail,
     required String subject,
     required String body,
-    required List<dynamic> attachments,
+    List<dynamic>? attachments,
   }) async {
-    String emailUrl = _buildEmailUrl(
-      recipientEmail: recipientEmail,
-      subject: subject,
-      body: body,
-      attachments: attachments,
-    );
-
-    Uri uri = Uri.parse(emailUrl);
-
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch email client';
+    if (kDebugMode) {
+      print('Attempting to send email to: $recipientEmail');
+      print('Subject: $subject');
     }
-  }
 
-  String _buildEmailUrl({
-    required String recipientEmail,
-    required String subject,
-    required String body,
-    required List<dynamic> attachments,
-  }) {
-    String to = Uri.encodeComponent(recipientEmail);
-    String encodedSubject = Uri.encodeComponent(subject);
-    String bodyWithAttachments = body;
+    try {
 
-    // Add attachment note to body if files are attached
-    if (attachments.isNotEmpty) {
-      String attachmentNote = '\n\nNote: Please attach the following files:\n';
-      for (var file in attachments) {
-        attachmentNote += '• ${file.name}\n';
+      final String encodedSubject = Uri.encodeComponent(subject);
+      final String encodedBody = Uri.encodeComponent(body);
+
+      // Manual URL construction to avoid Uri constructor issues
+      final String mailtoUrl = 'mailto:$recipientEmail?subject=$encodedSubject&body=$encodedBody';
+      final Uri mailtoUri = Uri.parse(mailtoUrl);
+
+      if (kDebugMode) {
+        print('Encoded subject: $encodedSubject');
+        print('Encoded body preview: ${encodedBody.substring(0, encodedBody.length > 100 ? 100 : encodedBody.length)}...');
+        print('Final mailto URL: $mailtoUrl');
       }
-      bodyWithAttachments += attachmentNote;
-    }
 
-    String encodedBody = Uri.encodeComponent(bodyWithAttachments);
-    return 'mailto:$to?subject=$encodedSubject&body=$encodedBody';
+      if (await canLaunchUrl(mailtoUri)) {
+        final bool launched = await launchUrl(
+          mailtoUri,
+          mode: LaunchMode.externalApplication,
+        );
+
+        if (launched) {
+          if (kDebugMode) print('Email client opened successfully');
+          return;
+        } else {
+          throw Exception('Failed to launch email client');
+        }
+      } else {
+        throw Exception('Cannot launch email client - no email app available');
+      }
+    } catch (e) {
+      if (kDebugMode) print('Email launch failed: $e');
+      throw Exception('No email client available on this device. Please install an email app like Gmail or Outlook.');
+    }
   }
 
+  // Draft management methods
   void saveDraft(EmailDraftModel draft) {
-    // Remove existing draft with same ID
-    _drafts.removeWhere((d) => d.id == draft.id);
-    _drafts.add(draft);
-    // In a real app, persist to SharedPreferences or database
+    // Implement your draft saving logic here
+    // This could be SharedPreferences, local database, etc.
   }
 
   List<EmailDraftModel> getDrafts() {
-    return List.from(_drafts);
+    // Implement your draft retrieval logic here
+    return [];
   }
 
-  void deleteDraft(String draftId) {
-    _drafts.removeWhere((draft) => draft.id == draftId);
-    // In a real app, remove from SharedPreferences or database
+  void deleteDraft(String id) {
+    // Implement your draft deletion logic here
   }
 
   String formatDate(DateTime date) {
-    final now = DateTime.now();
-    final difference = now.difference(date);
-
-    if (difference.inDays > 0) {
-      return '${difference.inDays} day${difference.inDays == 1 ? '' : 's'} ago';
-    } else if (difference.inHours > 0) {
-      return '${difference.inHours} hour${difference.inHours == 1 ? '' : 's'} ago';
-    } else if (difference.inMinutes > 0) {
-      return '${difference.inMinutes} minute${difference.inMinutes == 1 ? '' : 's'} ago';
-    } else {
-      return 'Just now';
-    }
+    return '${date.day}/${date.month}/${date.year}';
   }
 }

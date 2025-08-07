@@ -32,6 +32,9 @@ class _ColdMailState extends State<ColdMail> {
   String selectedTemplate = 'informational';
   List<dynamic> attachedFiles = [];
 
+  // Hardcoded user name for now - TODO: fetch from app user
+  static const String userName = 'Roopam';
+
   @override
   void initState() {
     super.initState();
@@ -52,7 +55,6 @@ class _ColdMailState extends State<ColdMail> {
     });
   }
 
-
   void _updateEmailTemplate() {
     final template = _coldMailService.getEmailTemplate(selectedTemplate);
     setState(() {
@@ -68,6 +70,7 @@ class _ColdMailState extends State<ColdMail> {
       recipientName: _recipientController.text,
       companyName: _companyController.text,
       position: _positionController.text,
+      userName: userName, // Pass the hardcoded user name
     );
 
     setState(() {
@@ -112,6 +115,27 @@ class _ColdMailState extends State<ColdMail> {
       return;
     }
 
+    // Show loading indicator
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Row(
+            children: [
+              SizedBox(
+                width: 20,
+                height: 20,
+                child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+              ),
+              SizedBox(width: 16),
+              Text('Opening email client...'),
+            ],
+          ),
+          duration: Duration(seconds: 2),
+          backgroundColor: Colors.blue,
+        ),
+      );
+    }
+
     try {
       await _coldMailService.sendEmail(
         recipientEmail: _recipientEmailController.text,
@@ -122,14 +146,57 @@ class _ColdMailState extends State<ColdMail> {
 
       if (mounted) {
         _clearDraft();
+        ScaffoldMessenger.of(context).clearSnackBars();
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Email client opened successfully')),
+          const SnackBar(
+            content: Row(
+              children: [
+                Icon(Icons.check_circle, color: Colors.white),
+                SizedBox(width: 8),
+                Text('Email client opened successfully!'),
+              ],
+            ),
+            backgroundColor: Colors.green,
+            duration: Duration(seconds: 3),
+          ),
         );
       }
     } catch (e) {
       if (mounted) {
+        ScaffoldMessenger.of(context).clearSnackBars();
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error opening email client: $e')),
+          SnackBar(
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Row(
+                  children: [
+                    Icon(Icons.error, color: Colors.white),
+                    SizedBox(width: 8),
+                    Text('Failed to open email client', style: TextStyle(fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Error: ${e.toString()}',
+                  style: const TextStyle(fontSize: 12, color: Colors.white70),
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Please make sure you have an email app installed (Gmail, Outlook, etc.)',
+                  style: TextStyle(fontSize: 12, color: Colors.white70),
+                ),
+              ],
+            ),
+            backgroundColor: Colors.red,
+            duration: const Duration(seconds: 5),
+            action: SnackBarAction(
+              label: 'Retry',
+              textColor: Colors.white,
+              onPressed: () => _sendEmail(),
+            ),
+          ),
         );
       }
     }
@@ -140,22 +207,45 @@ class _ColdMailState extends State<ColdMail> {
       context: context,
       builder: (BuildContext dialogContext) {
         return AlertDialog(
-          title: const Text('Incomplete Email'),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          title: const Row(
+            children: [
+              Icon(Icons.warning, color: Colors.orange),
+              SizedBox(width: 8),
+              Text('Incomplete Email'),
+            ],
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text('Please fill in the following placeholders:'),
-              const SizedBox(height: 8),
-              ...unfilled.map((placeholder) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2),
-                child: Text('• $placeholder', style: const TextStyle(fontWeight: FontWeight.w500)),
-              )),
+              const SizedBox(height: 12),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.orange,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: unfilled.map((placeholder) => Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 2),
+                    child: Text(
+                      '• $placeholder',
+                      style: const TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                  )).toList(),
+                ),
+              ),
             ],
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(dialogContext).pop(),
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.blue,
+              ),
               child: const Text('OK'),
             ),
           ],
@@ -183,9 +273,17 @@ class _ColdMailState extends State<ColdMail> {
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: const Text('Draft saved locally!'),
+          content: const Row(
+            children: [
+              Icon(Icons.save, color: Colors.white),
+              SizedBox(width: 8),
+              Text('Draft saved locally!'),
+            ],
+          ),
+          backgroundColor: Colors.blue,
           action: SnackBarAction(
             label: 'View Drafts',
+            textColor: Colors.white,
             onPressed: () => _showDraftsDialog(),
           ),
         ),
@@ -216,31 +314,60 @@ class _ColdMailState extends State<ColdMail> {
       context: context,
       builder: (BuildContext dialogContext) {
         return AlertDialog(
-          title: const Text('Draft Emails'),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          title: const Row(
+            children: [
+              Icon(Icons.drafts, color: Colors.blue),
+              SizedBox(width: 8),
+              Text('Draft Emails'),
+            ],
+          ),
           content: SizedBox(
             width: double.maxFinite,
             height: 300,
             child: drafts.isEmpty
-                ? const Center(child: Text('No drafts found'))
+                ? const Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.inbox, size: 48, color: Colors.grey),
+                  SizedBox(height: 16),
+                  Text('No drafts found', style: TextStyle(color: Colors.grey)),
+                ],
+              ),
+            )
                 : ListView.builder(
               itemCount: drafts.length,
               itemBuilder: (context, index) {
                 final draft = drafts[index];
-                return ListTile(
-                  title: Text(draft.subject.isEmpty ? 'Untitled Draft' : draft.subject),
-                  subtitle: Text('To: ${draft.recipientEmail} • ${_coldMailService.formatDate(draft.createdAt)}'),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      _coldMailService.deleteDraft(draft.id);
+                return Card(
+                  elevation: 2,
+                  margin: const EdgeInsets.symmetric(vertical: 4),
+                  child: ListTile(
+                    leading: const Icon(Icons.email, color: Colors.blue),
+                    title: Text(
+                      draft.subject.isEmpty ? 'Untitled Draft' : draft.subject,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    subtitle: Text(
+                      'To: ${draft.recipientEmail}\n${_coldMailService.formatDate(draft.createdAt)}',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.delete, color: Colors.red),
+                      onPressed: () {
+                        _coldMailService.deleteDraft(draft.id);
+                        Navigator.of(dialogContext).pop();
+                        _showDraftsDialog(); // Refresh dialog
+                      },
+                    ),
+                    onTap: () {
+                      _loadDraftData(draft);
                       Navigator.of(dialogContext).pop();
-                      _showDraftsDialog(); // Refresh dialog
                     },
                   ),
-                  onTap: () {
-                    _loadDraftData(draft);
-                    Navigator.of(dialogContext).pop();
-                  },
                 );
               },
             ),
@@ -248,6 +375,9 @@ class _ColdMailState extends State<ColdMail> {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(dialogContext).pop(),
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.blue,
+              ),
               child: const Text('Close'),
             ),
           ],
@@ -267,6 +397,22 @@ class _ColdMailState extends State<ColdMail> {
       selectedTemplate = draft.template;
       // Note: attachments would need to be handled separately
     });
+
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Row(
+            children: [
+              Icon(Icons.restore, color: Colors.white),
+              SizedBox(width: 8),
+              Text('Draft loaded successfully!'),
+            ],
+          ),
+          backgroundColor: Colors.green,
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
   }
 
   @override
@@ -275,7 +421,6 @@ class _ColdMailState extends State<ColdMail> {
       decoration: BoxDecoration(gradient: AppColors.backgroundGradient),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-
         body: SafeArea(
           child: Form(
             key: _formKey,
@@ -365,7 +510,6 @@ class _ColdMailState extends State<ColdMail> {
             child: Icon(Icons.arrow_downward, color: AppColors.searchFill),
           ),
         ),
-
       ),
     );
   }
@@ -379,7 +523,6 @@ class _ColdMailState extends State<ColdMail> {
     _subjectController.dispose();
     _bodyController.dispose();
     _scrollController.dispose();
-
     super.dispose();
   }
 }
