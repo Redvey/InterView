@@ -5,6 +5,8 @@ import 'package:interview/core/constants/strings.dart';
 import 'dart:async';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
 
+import '../../widgets/glass_decoration.dart';
+
 class InterviewPreparationDialog extends StatefulWidget {
   final VoidCallback onProceed;
   final VoidCallback? onCancel;
@@ -200,7 +202,7 @@ class InterviewPreparationDialogState extends State<InterviewPreparationDialog>
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Get Ready',
+            AppStrings.getReady,
             style: context.headingStyle(color: AppColors.greyLight)
           ),
           AnimatedBuilder(
@@ -242,7 +244,7 @@ class InterviewPreparationDialogState extends State<InterviewPreparationDialog>
         ),
         SizedBox(height: context.sm),
         Text(
-          'Please ensure the following before starting your interview:',
+          AppStrings.checkBeforeInterview,
           style: context.subheadingStyle(color: AppColors.greyLight),
           textAlign: TextAlign.center,)
       ],
@@ -250,55 +252,50 @@ class InterviewPreparationDialogState extends State<InterviewPreparationDialog>
   }
 
   Widget _buildChecklistItem(BuildContext context, Map<String, dynamic> item) {
-    return Container(
-      margin: EdgeInsets.only(bottom: context.md),
-      padding: EdgeInsets.all(context.md),
-      decoration: BoxDecoration(
-        color: Colors.white.withAlpha(26), // 0.1 * 255 = 25.5 ≈ 26
-        borderRadius: BorderRadius.circular(context.paddingMD),
-        border: Border.all(
-          color: Colors.white.withAlpha(51), // 0.2 * 255 = 51
-          width: context.borderWidthThin,
-        ),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: context.spaceBtwItemsH + context.paddingXXL,
-            height: context.spaceBtwItemsH + context.paddingXXL,
-            decoration: BoxDecoration(
-              color: Colors.white.withAlpha(51), // 0.2 * 255 = 51
-              borderRadius: BorderRadius.circular(context.sm),
+    return Padding(
+      padding:  EdgeInsets.symmetric(vertical: context.xs),
+      child: Glass(
+
+        padding: context.md,
+        child: Row(
+          children: [
+            Container(
+              width: context.spaceBtwItemsH + context.paddingXXL,
+              height: context.spaceBtwItemsH + context.paddingXXL,
+              decoration: BoxDecoration(
+                color: Colors.white.withAlpha(51), // 0.2 * 255 = 51
+                borderRadius: BorderRadius.circular(context.sm),
+              ),
+              child: Icon(
+                item['icon'],
+                color: AppColors.purpleLight,
+                size: context.paddingXL,
+              ),
             ),
-            child: Icon(
-              item['icon'],
-              color: AppColors.purpleLight,
+            SizedBox(width: context.md),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    item['title'],
+                    style: context.interviewInformationTitleStyle
+                  ),
+                  SizedBox(height: context.xs),
+                  Text(
+                    item['description'],
+                    style: context.interviewInformationSubTitleStyle
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              Icons.check_circle_outline,
+              color: AppColors.textGreen,
               size: context.paddingXL,
             ),
-          ),
-          SizedBox(width: context.md),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  item['title'],
-                  style: context.interviewInformationTitleStyle
-                ),
-                SizedBox(height: context.xs),
-                Text(
-                  item['description'],
-                  style: context.interviewInformationSubTitleStyle
-                ),
-              ],
-            ),
-          ),
-          Icon(
-            Icons.check_circle_outline,
-            color: AppColors.textGreen, // 0.7 * 255 = 178.5 ≈ 179
-            size: context.paddingXL,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -351,7 +348,7 @@ class InterviewPreparationDialogState extends State<InterviewPreparationDialog>
                   ),
                   SizedBox(width: context.sm),
                   Text(
-                    'Skip Timer',
+                    AppStrings.skipTimer,
                     style: context.buttonWhiteTextStyle
                   ),
                 ],
