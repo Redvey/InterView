@@ -123,6 +123,8 @@ class AppStrings {
   static const mockInterview = "Select an Interview Template";
   static const String failedToLoadInterviews = 'Failed to load interview items. Please try again.';
   static const String customCompany = 'Custom Company';
+  static const String getReady = 'Get Ready';
+  static const String skipTimer = 'skipTimer';
 
   //membership
   // static const membershipSubTitle = "Only ${"perMonth"} per month";
@@ -161,6 +163,7 @@ class AppStrings {
   static const adjustCategory = 'Try adjusting your search or category filter';
   static String interviewCreated(String title) =>
       'Custom interview "$title" created successfully!';
+
   //create interview
   static const createCustomInterview = 'Create Custom Interview';
   static const jobTitleLabel = 'Job Title *';
@@ -179,8 +182,11 @@ class AppStrings {
   static const interviewDuration = 'Interview Duration';
 
   static const interviewTopicsLabel = 'Interview Topics *';
+  static const checkBeforeInterview = 'Please ensure the following before starting your interview:';
   static const interviewTopicsHint =
       'Select topics you want to be interviewed on:';
+
+
 
   static const addCustomTopicHint = 'Add custom topic...';
 
