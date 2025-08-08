@@ -108,6 +108,7 @@ class AppSizes {
 
   // Border widths section
   static double borderWidthThin(BuildContext context) => 1.0 * _getScaleFactor(context);
+  static double borderWidthThinnest(BuildContext context) => 0.5 * _getScaleFactor(context);
   static double borderWidthDefault(BuildContext context) => 2.0 * _getScaleFactor(context);
   static double borderWidthThick(BuildContext context) => 3.0 * _getScaleFactor(context);
 
@@ -248,6 +249,8 @@ class AppSizes {
   static double attachedFileItemHeight(BuildContext context) => 100.0 * _getHeightScaleFactor(context);
   static double attachedFileItemWidth(BuildContext context) => 140.0 * _getWidthScaleFactor(context);
   static double emailBodyHeight(BuildContext context) => 320.0 * _getHeightScaleFactor(context);
+  static double mailTemplateCardHeight(BuildContext context) => 120.0 * _getHeightScaleFactor(context);
+  static double mailTemplateCardSpaceHeight(BuildContext context) => 150.0 * _getHeightScaleFactor(context);
 
 
 

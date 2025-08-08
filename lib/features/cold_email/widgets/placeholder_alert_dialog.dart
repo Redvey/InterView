@@ -1,4 +1,3 @@
-// lib/features/cold_email/widgets/dialogs/placeholder_alert_dialog.dart
 import 'package:flutter/material.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import 'package:interview/core/constants/colors.dart';
@@ -67,7 +66,7 @@ class PlaceholderAlertDialog extends StatelessWidget {
           ),
           child: Text(
             AppStrings.ok,
-            style: context.buttonTextStyle.copyWith(color: AppColors.primary),
+            style: context.snackBarTextStyle,
           ),
         ),
       ],

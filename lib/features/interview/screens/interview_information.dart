@@ -149,7 +149,7 @@ class InterviewPreparationDialogState extends State<InterviewPreparationDialog>
           ),
           decoration: BoxDecoration(
             // gradient: AppColors.interviewer,
-            image: DecorationImage(image: AssetImage(AppImage.temp2),fit: BoxFit.cover),
+            image: DecorationImage(image: AssetImage(AppImage.temp1),fit: BoxFit.cover),
             borderRadius: BorderRadius.circular(context.paddingXXL),
             border: Border.all(
               color: Colors.white.withAlpha(51), // 0.2 * 255 = 51
@@ -237,7 +237,7 @@ class InterviewPreparationDialogState extends State<InterviewPreparationDialog>
       children: [
         Icon(
           Icons.checklist_rtl,
-          color: Colors.blue,
+          color: AppColors.purple,
           size: context.iconSize ,
         ),
         SizedBox(height: context.sm),
@@ -295,7 +295,7 @@ class InterviewPreparationDialogState extends State<InterviewPreparationDialog>
           ),
           Icon(
             Icons.check_circle_outline,
-            color: Colors.green.withAlpha(179), // 0.7 * 255 = 178.5 ≈ 179
+            color: AppColors.textGreen, // 0.7 * 255 = 178.5 ≈ 179
             size: context.paddingXL,
           ),
         ],

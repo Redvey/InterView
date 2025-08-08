@@ -52,7 +52,6 @@ class EmailCompositionWidget extends StatelessWidget {
           EmailBodyField(
             bodyController: bodyController,
           ),
-          SizedBox(height: context.defaultSpaceH),
           EmailActionButtons(
             onSaveDraft: onSaveDraft,
             onSendEmail: onSendEmail,

@@ -60,6 +60,7 @@ extension ResponsiveContext on BuildContext {
   // ═══════════════════════════════════════════════════════════════════════════
 
   double get borderWidthThin => AppSizes.borderWidthThin(this);
+  double get borderWidthThinnest => AppSizes.borderWidthThinnest(this);
   double get borderWidthDefault => AppSizes.borderWidthDefault(this);
   double get borderWidthThick => AppSizes.borderWidthThick(this);
   double get bottomWidth => AppSizes.bottomWidth(this);
@@ -179,6 +180,8 @@ extension ResponsiveContext on BuildContext {
   double get attachedFileItemHeight => AppSizes.attachedFileItemHeight(this);
   double get attachedFileItemWidth => AppSizes.attachedFileItemWidth(this);
   double get emailBodyHeight => AppSizes.emailBodyHeight(this);
+  double get mailTemplateCardHeight => AppSizes.mailTemplateCardHeight(this);
+  double get mailTemplateCardSpaceHeight => AppSizes.mailTemplateCardSpaceHeight(this);
 
   // ═══════════════════════════════════════════════════════════════════════════
   // ⭐ RATING & STAR SIZES
@@ -320,6 +323,8 @@ extension ResponsiveContext on BuildContext {
   TextStyle get crackItStyle => AppTextStyles.crackIt(this);
   TextStyle get membershipSubTitleStyle => AppTextStyles.membershipSubTitle(this);
   TextStyle get membershipDetailStyle => AppTextStyles.membershipDetail(this);
+  TextStyle get membershipOldMoney => AppTextStyles.membershipOldMoney(this);
+  TextStyle get membershipNewMoney => AppTextStyles.membershipNewMoney(this);
   TextStyle get infoTextStyle => AppTextStyles.infoText(this);
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -347,6 +352,7 @@ extension ResponsiveContext on BuildContext {
 
   TextStyle get dialogBoxTitleStyle => AppTextStyles.dialogBoxTitle(this);
   TextStyle get dialogBoxSubTitleStyle => AppTextStyles.dialogBoxSubTitle(this);
+  TextStyle get snackBarTextStyle => AppTextStyles.snackBarText(this);
 
   // ═══════════════════════════════════════════════════════════════════════════
   // 🧭 TEXT STYLES - NAVIGATION

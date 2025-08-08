@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import '../../core/constants/colors.dart';
-import '../home/widgets/subscription_model_bottom_sheet.dart';
+import 'subscription_model_bottom_sheet.dart';
 
 class MembershipIcon extends StatelessWidget {
   const MembershipIcon({

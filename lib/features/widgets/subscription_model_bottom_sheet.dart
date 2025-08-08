@@ -104,7 +104,7 @@ class _SubscriptionPlanBottomSheetState extends State<SubscriptionPlanBottomShee
         padding:  context.screenPadding .copyWith(top:  context.md , bottom:  context.md ),
         decoration: BoxDecoration(
           border: Border.all(
-            color: isSelected ? AppColors.purple : Colors.grey.shade300,
+            color: isSelected ? AppColors.purple : AppColors.greyDark,
             width: isSelected ? 2 : 1,
           ),
           borderRadius: BorderRadius.circular( context.borderRadiusLg ),
@@ -113,7 +113,7 @@ class _SubscriptionPlanBottomSheetState extends State<SubscriptionPlanBottomShee
           children: [
             Icon(
               isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
-              color: isSelected ? AppColors.purple : Colors.grey,
+              color: isSelected ? AppColors.purple : AppColors.greyDark,
             ),
             SizedBox(width:  context.spaceLess ),
             Expanded(
@@ -143,15 +143,11 @@ class _SubscriptionPlanBottomSheetState extends State<SubscriptionPlanBottomShee
               children: [
                 Text(
                   oldPrice,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    decoration: TextDecoration.lineThrough,
-                    color: Colors.grey,
-                  ),
+                  style: context.membershipOldMoney
                 ),
                 Text(
                   newPrice,
-                  style: context.bodyBoldStyle.copyWith(fontSize:  context.fontSizeSx ),
+                    style: context.membershipNewMoney
                 ),
               ],
             ),
