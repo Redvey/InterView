@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:interview/core/utils/extensions/responsive_extension.dart';
+import 'package:go_router/go_router.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/constants/strings.dart';
+import 'package:interview/core/utils/extensions/responsive_extension.dart';
+import '../../../core/constants/image_strings.dart';
+import '../../widgets/glass_decoration.dart';
 import '../models/email_draft_model.dart';
 import '../services/cold_mail_service.dart';
 
@@ -36,44 +39,61 @@ class _DraftsDialogState extends State<DraftsDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      backgroundColor: AppColors.white,
-
+    return Dialog(
       shape: RoundedRectangleBorder(
-
         borderRadius: BorderRadius.circular(context.radiusLG),
       ),
-      title: Row(
-        children: [
-          const Icon(Icons.drafts, color: AppColors.primary),
-          SizedBox(width: context.mxs),
-          Text(
-            AppStrings.draftEmails,
-            style: context.sectionTitleStyle,
-          ),
-        ],
-      ),
-      content: SizedBox(
-        width: double.maxFinite,
-        height: context.lottieHeight + context.xl,
-        child: drafts.isEmpty
-            ? _buildEmptyState()
-            : _buildDraftsList(),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          style: TextButton.styleFrom(
-            foregroundColor: AppColors.primary,
-          ),
-          child: Text(
-            AppStrings.close,
-            style: context.buttonTextStyle.copyWith(color: AppColors.primary),
+      backgroundColor: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(context.radiusLG),
+          image: DecorationImage(
+            image: AssetImage(AppImage.temp1),
+            fit: BoxFit.cover,
           ),
         ),
-      ],
+        padding: EdgeInsets.all(context.paddingMD),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.drafts, color: AppColors.searchFill),
+                SizedBox(width: context.mxs),
+                Text(
+                  AppStrings.draftEmails,
+                  style: context.sectionTitleStyle.copyWith(color: AppColors.searchFill),
+                ),
+              ],
+            ),
+            SizedBox(height: context.spaceBtwItemsH),
+            SizedBox(
+              width: double.maxFinite,
+              height: context.lottieHeight + context.xl,
+              child: drafts.isEmpty
+                  ? _buildEmptyState()
+                  : _buildDraftsList(),
+            ),
+            SizedBox(height: context.spaceBtwItemsH),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                style: TextButton.styleFrom(
+                  foregroundColor: AppColors.primary,
+                ),
+                child: Text(
+                  AppStrings.close,
+                  style: context.navTextStyle(AppColors.searchFill),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
+
 
   Widget _buildEmptyState() {
     return Center(
@@ -100,47 +120,46 @@ class _DraftsDialogState extends State<DraftsDialog> {
       itemCount: drafts.length,
       itemBuilder: (context, index) {
         final draft = drafts[index];
-        return Card(
-          elevation: context.borderWidthThin,
-          margin: EdgeInsets.symmetric(vertical: context.paddingXS),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(context.radiusMD),
-          ),
-          child: ListTile(
-            leading: const Icon(Icons.email, color: AppColors.primary),
-            title: Text(
-              draft.subject.isEmpty ? AppStrings.untitledDraft : draft.subject,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: context.bodyBoldStyle,
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: context.mxs),
+          child: Glass(
+            padding: context.paddingXS,
+            child: ListTile(
+              leading: const Icon(Icons.email, color: AppColors.white),
+              trailing: IconButton(
+                icon: const Icon(Icons.delete, color: AppColors.error),
+                onPressed: () => _deleteDraft(draft.id),
+              ),
+              title: Text(
+                draft.subject.isEmpty
+                    ? AppStrings.untitledDraft
+                    : draft.subject,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: context.buttonTextStyle.copyWith(color: AppColors.white),
+              ),
+              subtitle: Text(
+                '${AppStrings.to}: ${draft.recipientEmail}\n${widget.coldMailService.formatDate(draft.createdAt)}',
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: context.hintTextStyle(color: AppColors.searchFill),
+              ),
+              onTap: () => _selectDraft(draft),
             ),
-            subtitle: Text(
-              '${AppStrings.to}: ${draft.recipientEmail}\n${widget.coldMailService.formatDate(draft.createdAt)}',
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: context.hintTextStyle(color: AppColors.textGrey),
-            ),
-            trailing: IconButton(
-              icon: const Icon(Icons.delete, color: AppColors.error),
-              onPressed: () => _deleteDraft(draft.id),
-            ),
-            onTap: () => _selectDraft(draft),
           ),
         );
       },
     );
   }
 
+
   void _deleteDraft(String draftId) {
     widget.coldMailService.deleteDraft(draftId);
-
-    // Update the local drafts list immediately
     _refreshDrafts();
-
   }
 
   void _selectDraft(EmailDraftModel draft) {
     widget.onDraftSelected(draft);
-    Navigator.of(context).pop();
+    context.pop();
   }
 }

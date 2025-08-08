@@ -248,6 +248,7 @@ class AppStrings {
   static const String pleaseEnterRecipientEmail = "Please enter recipient email address";
   static const String incompleteEmail = "Incomplete Email";
   static const String fillPlaceholders = "Please fill in the following placeholders:";
+  static const String fillAllRecipientDetails = 'Please fill all recipient details first';
 
   // Draft Actions
   static const String draftSavedLocally = "Draft saved locally!";
@@ -271,8 +272,10 @@ class AppStrings {
   static const String recipientName = "Recipient Name";
   static const String recipientEmail = "Recipient Email";
   static const String companyName = "Company Name";
-  static const String positionTitle = "Position Title";
+  static const String positionTitle = "Position/Field of Interest";
   static const String personalizeEmail = "Personalize Email";
+  static const String craftEmail = "Crafting your email...";
+  static const String emailPersonalized = "Email Personalized!";
 
   // Hints
   static const String hintRecipientName = "Enter recipient's full name";
@@ -296,6 +299,8 @@ class AppStrings {
   static const String fieldRequired = "This field is required";
   static const String tenCharacters = 'Email body should be at least 10 characters';
   static const String invalidEmail = "Please enter a valid email address";
+  static const String failedToLoadTemplates = 'Failed to load Templates';
+  static const String usingDefaultTemplates = 'Using default templates instead';
 
 
 }

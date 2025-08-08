@@ -7,8 +7,8 @@ import 'package:interview/features/cold_email/widgets/drafted_mail.dart';
 import 'package:interview/features/cold_email/widgets/email_composition/email_composition_widget.dart';
 import 'package:interview/features/cold_email/widgets/file_attachment/file_attachment_widget.dart';
 import 'package:interview/features/cold_email/widgets/placeholder_alert_dialog.dart';
-import 'package:interview/features/cold_email/widgets/receipient_details_widget.dart';
-import 'package:interview/features/cold_email/widgets/template_selection_widget.dart';
+import 'package:interview/features/cold_email/widgets/recipient_details/recipient_details_widget.dart';
+import 'package:interview/features/cold_email/widgets/template_selection/template_selection_widget.dart';
 import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_top_bar.dart';
 
 import 'models/email_draft_model.dart';
@@ -101,6 +101,34 @@ class _ColdMailState extends State<ColdMail> {
   }
 
   Future<void> _sendEmail() async {
+    // Check recipient email FIRST (before form validation)
+    if (_recipientEmailController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      if (mounted) {
+        _showSnackBar(
+          AppStrings.pleaseEnterRecipientEmail,
+          AppColors.error,
+          Icons.warning,
+        );
+      }
+      return;
+    }
+
+    // Validate email format (optional but recommended)
+    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    if (!emailRegex.hasMatch(_recipientEmailController.text.trim())) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      if (mounted) {
+        _showSnackBar(
+          "Please enter a valid email address",
+          AppColors.error,
+          Icons.warning,
+        );
+      }
+      return;
+    }
+
+    // Then check if form validation passes
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -111,17 +139,10 @@ class _ColdMailState extends State<ColdMail> {
       _subjectController.text,
     );
 
-    if (unfilled.isNotEmpty && mounted) {
-      _showPlaceholderAlert(unfilled);
-      return;
-    }
-
-    if (_recipientEmailController.text.isEmpty && mounted) {
-      _showSnackBar(
-        AppStrings.pleaseEnterRecipientEmail,
-        AppColors.error,
-        Icons.warning,
-      );
+    if (unfilled.isNotEmpty) {
+      if (mounted) {
+        _showPlaceholderAlert(unfilled);
+      }
       return;
     }
 
@@ -129,7 +150,7 @@ class _ColdMailState extends State<ColdMail> {
 
     try {
       await _coldMailService.sendEmail(
-        recipientEmail: _recipientEmailController.text,
+        recipientEmail: _recipientEmailController.text.trim(),
         subject: _subjectController.text,
         body: _bodyController.text,
         attachments: attachedFiles,
@@ -147,6 +168,7 @@ class _ColdMailState extends State<ColdMail> {
       }
     } catch (e) {
       if (mounted) {
+        ScaffoldMessenger.of(context).clearSnackBars();
         _showErrorSnackBar(e.toString());
       }
     }

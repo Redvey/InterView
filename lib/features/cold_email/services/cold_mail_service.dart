@@ -3,7 +3,8 @@ import 'package:flutter/foundation.dart';
 import '../models/email_draft_model.dart';
 
 class ColdMailService {
-  // Your existing methods for templates, personalization, etc.
+  // Temporary in-memory storage for drafts
+  final List<EmailDraftModel> _drafts = [];
 
   String getEmailTemplate(String templateType) {
     switch (templateType) {
@@ -107,7 +108,6 @@ Best regards,
     return unfilled;
   }
 
-  // Fixed sendEmail method that handles + encoding issue
   Future<void> sendEmail({
     required String recipientEmail,
     required String subject,
@@ -120,19 +120,12 @@ Best regards,
     }
 
     try {
-
       final String encodedSubject = Uri.encodeComponent(subject);
       final String encodedBody = Uri.encodeComponent(body);
 
-      // Manual URL construction to avoid Uri constructor issues
-      final String mailtoUrl = 'mailto:$recipientEmail?subject=$encodedSubject&body=$encodedBody';
+      final String mailtoUrl =
+          'mailto:$recipientEmail?subject=$encodedSubject&body=$encodedBody';
       final Uri mailtoUri = Uri.parse(mailtoUrl);
-
-      if (kDebugMode) {
-        print('Encoded subject: $encodedSubject');
-        print('Encoded body preview: ${encodedBody.substring(0, encodedBody.length > 100 ? 100 : encodedBody.length)}...');
-        print('Final mailto URL: $mailtoUrl');
-      }
 
       if (await canLaunchUrl(mailtoUri)) {
         final bool launched = await launchUrl(
@@ -151,23 +144,33 @@ Best regards,
       }
     } catch (e) {
       if (kDebugMode) print('Email launch failed: $e');
-      throw Exception('No email client available on this device. Please install an email app like Gmail or Outlook.');
+      throw Exception(
+          'No email client available on this device. Please install an email app like Gmail or Outlook.');
     }
   }
 
-  // Draft management methods
+  // -------------------------
+  // TEMPORARY DRAFT MANAGEMENT
+  // -------------------------
+
   void saveDraft(EmailDraftModel draft) {
-    // Implement your draft saving logic here
-    // This could be SharedPreferences, local database, etc.
+    // Remove existing draft with same ID (update case)
+    _drafts.removeWhere((d) => d.id == draft.id);
+    _drafts.add(draft);
+
+    // ⚠️ LATER: Replace with backend API call to save draft permanently
   }
 
   List<EmailDraftModel> getDrafts() {
-    // Implement your draft retrieval logic here
-    return [];
+    return List.unmodifiable(_drafts);
+
+    // ⚠️ LATER: Replace with backend API call to fetch drafts
   }
 
   void deleteDraft(String id) {
-    // Implement your draft deletion logic here
+    _drafts.removeWhere((d) => d.id == id);
+
+    // ⚠️ LATER: Replace with backend API call to delete draft
   }
 
   String formatDate(DateTime date) {
