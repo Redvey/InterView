@@ -64,6 +64,8 @@ class AppSizes {
 
   // Button sizes
   static double buttonHeight(BuildContext context) => 18.0 * _getHeightScaleFactor(context);
+  static  double circularButtonSize(BuildContext context) => 56.0 * _getScaleFactor(context);
+  static  double mainActionButtonSize(BuildContext context) => 64.0* _getScaleFactor(context);
   static double buttonHeightSmall(BuildContext context) => 10.0 * _getHeightScaleFactor(context);
   static double buttonRadius(BuildContext context) => 12.0 * _getScaleFactor(context);
   static double circularButtonRadius(BuildContext context) => 30.0 * _getScaleFactor(context);
