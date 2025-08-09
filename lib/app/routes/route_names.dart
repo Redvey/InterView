@@ -1,37 +1,18 @@
-
-
-abstract class RouteNames {
-  static const String profile = 'profile';
-  static const String profileAnimations = 'profile-animation';
-
-  //topic
-  static const String quiz = 'quiz';
-
-  //  Home
+class RouteNames {
+  static const String onboarding = 'onboarding';
   static const String home = 'home';
-
-  //  Resume Builder
-  static const String resumeForm = 'resume';
-  static const String contactForm = 'contact_form';
-  static const String finalResume = 'final_resume';
-
-  //  Resume Review
-  static const String resumeReview = 'resume_review';
-
-  //  Flashcards
+  static const String resumeForm = 'resume-form';
+  static const String contactForm = 'contact-form';
+  static const String finalResume = 'final-resume';
+  static const String resumeReview = 'resume-review';
   static const String flashcards = 'flashcards';
-  static const String flashcardsHistory = 'flashcardsHistory';
-
-  //  Mock Interview
   static const String interview = 'interview';
   static const String interviewer = 'interviewer';
-  static const String takeInterview = 'takeInterview';
-  static const String finishInterview = 'finish_interview';
-  static const String interviewReports = 'interviewReports';
-
-  // ✉ Cold Mailer
-  static const String coldMailer = 'cold_mailer';
-
-  //  Under Development
-  static const String underDevelopment = 'in_progress';
+  static const String finishInterview = 'finish-interview';
+  static const String quiz = 'quiz';
+  static const String underDevelopment = 'under-development';
+  static const String takeInterview = 'take-interview';
+  static const String signUp = 'sign-up';
+  static const String signIn = 'sign-in';
+  static const String profileSetup = 'profile-setup';
 }

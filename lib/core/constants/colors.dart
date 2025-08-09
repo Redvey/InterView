@@ -12,8 +12,10 @@ class AppColors {
   static const Color backgroundBlue = Color(0xFF341899);
   static const Color backgroundSky = Color(0xff5729ff);
   static const Color backgroundGreen = Color(0xFF199B2A);
+  static const Color darkGreen = Color(0xFF0F5D22);
   static const Color backgroundLime = Color(0xFF07E000);
   static const Color backgroundOrange = Color(0xFFD76400);
+  static const Color darkOrange = Color(0xFFD73200);
   static const Color backgroundLightOrange = Color(0xFFF1995E);
   static const Color backgroundPink = Color(0xFFD7008F);
   static const Color backgroundLightPink = Color(0xFFF260EB);
@@ -33,6 +35,31 @@ class AppColors {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [backgroundWhite, backgroundYellow],
+  );
+  static const Gradient onboard1 = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [red, backgroundLightOrange],
+  );
+  static const Gradient onboard2 = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [backgroundBlue, backgroundLightBlue],
+  );
+  static const Gradient onboard3 = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [darkGreen,backgroundGreen ,textGreen],
+  );
+  static const Gradient onboard4 = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [darkOrange,backgroundOrange, backgroundLightOrange,textYellow],
+  );
+  static const Gradient onboard5 = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [backgroundRedPink,backgroundPink, backgroundLightPink,],
   );
   static const Gradient interviewer = LinearGradient(
     begin: Alignment.topLeft,
@@ -88,14 +115,7 @@ class AppColors {
       backgroundWhite,
     ],
   );
-  static const LinearGradient primaryGradient = LinearGradient( // From second set of duplicates
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    colors: [
-      Color(0xFF1976D2), // primary
-      Color(0xFF42A5F5), // primaryLight
-    ],
-  );
+
 
   // --- Card Colors ---
   static const Color generalInformation = Color(0xFFC6B9FF);

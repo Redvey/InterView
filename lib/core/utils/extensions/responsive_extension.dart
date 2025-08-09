@@ -94,6 +94,8 @@ extension ResponsiveContext on BuildContext {
   // ═══════════════════════════════════════════════════════════════════════════
 
   double get buttonHeight => AppSizes.buttonHeight(this);
+  double get circularButtonSize => AppSizes.circularButtonSize(this);
+  double get mainActionButtonSize => AppSizes.mainActionButtonSize(this);
   double get buttonHeightSmall => AppSizes.buttonHeightSmall(this);
   double get buttonRadius => AppSizes.buttonRadius(this);
   double get circularButtonRadius => AppSizes.circularButtonRadius(this);

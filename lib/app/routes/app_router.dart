@@ -1,89 +1,106 @@
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interview/features/cold_email/cold_dm.dart';
 import 'package:interview/features/flash_card/flash_card.dart';
+import 'package:interview/features/flash_card/quiz_screen.dart';
+import 'package:interview/features/home/screens/home_screen.dart';
 import 'package:interview/features/interview/interview.dart';
 import 'package:interview/features/interview/screens/interview_completion_screen.dart';
 import 'package:interview/features/interview/screens/interviewer.dart';
-
-import '../../features/flash_card/quiz_screen.dart';
-import '../../features/home/screens/home_screen.dart';
-import '../../features/resume/screens/contact_form/contact_form.dart';
-import '../../features/resume/screens/resume_builder_final.dart';
-import '../../features/resume/screens/resume_builder_home.dart';
-import '../../features/review/screens/resume_review_screen.dart';
+import 'package:interview/features/resume/screens/contact_form/contact_form.dart';
+import 'package:interview/features/resume/screens/resume_builder_final.dart';
+import 'package:interview/features/resume/screens/resume_builder_home.dart';
+import 'package:interview/features/review/screens/resume_review_screen.dart';
+import '../../features/onboarding/screens/error_screen/error_screen.dart';
+import '../../features/onboarding/screens/onboarding/onboarding_screen.dart';
+import '../../features/onboarding/screens/profile_setup/profile_setup.dart';
+import '../../features/onboarding/screens/signup/signup_screen.dart';
 import 'route_names.dart';
 
 final GoRouter appRouter = GoRouter(
+  initialLocation: '/',
   routes: [
-    GoRoute(
-      path: '/in_progress',
-      name: RouteNames.underDevelopment,
-      builder: (context, state) => const ColdMail(),
-    ),
-
-
-
+    // Onboarding Route
     GoRoute(
       path: '/',
+      name: RouteNames.onboarding,
+      builder: (context, state) => const OnboardingScreen(),
+    ),
+
+    // Home Route
+    GoRoute(
+      path: '/home',
       name: RouteNames.home,
       builder: (context, state) => const HomeScreen(),
     ),
+
+    // Auth Routes
+    GoRoute(
+      path: '/sign-up',
+      name: RouteNames.signUp,
+      builder: (context, state) => const SignUpScreen(),
+    ),
+
+    GoRoute(
+      path: '/profile-setup',
+      name: RouteNames.profileSetup,
+      builder: (context, state) {
+        final signupData = state.extra as Map<String, dynamic>?;
+        return ProfileSetupScreen(signupData: signupData);
+      },
+    ),
+
+    // Resume Routes
     GoRoute(
       path: '/form',
       name: RouteNames.resumeForm,
       builder: (context, state) => const ResumeFormScreen(),
     ),
+
     GoRoute(
       path: '/contact',
       name: RouteNames.contactForm,
       builder: (context, state) => const ContactForm(),
     ),
+
     GoRoute(
       path: '/final_resume',
       name: RouteNames.finalResume,
       builder: (context, state) => const ResumeBuilderFinalScreen(),
     ),
+
     GoRoute(
       path: '/review',
       name: RouteNames.resumeReview,
       builder: (context, state) => const ResumeReviewScreen(),
     ),
-    GoRoute(
-      path: '/flash-card',
-      name: RouteNames.flashcards,
-      builder: (context, state) => const FlashCard(),
-    ),
+
+    // Interview Routes
     GoRoute(
       path: '/interview',
       name: RouteNames.interview,
       builder: (context, state) => const MockInterviewScreen(),
     ),
+
     GoRoute(
       path: '/interviewer',
       name: RouteNames.interviewer,
-      builder: (context, state) =>  InterviewerScreen(),
+      builder: (context, state) => InterviewerScreen(),
     ),
+
     GoRoute(
       path: '/finish_interview',
       name: RouteNames.finishInterview,
       builder: (context, state) => const FinishInterview(),
     ),
-    // GoRoute(
-    //   path: '/take-interview',
-    //   name: RouteNames.takeInterview,
-    //   builder: (context, state) {
-    //     final title = state.extra != null && state.extra is Map
-    //         ? (state.extra as Map)['title'] ?? 'Interview'
-    //         : 'Interview';
-    //
-    //     final topics = state.extra != null && state.extra is Map
-    //         ? (state.extra as Map)['topics'] ?? <String>[]
-    //         : <String>[];
-    //
-    //     return TakeMockInterview(title: title, topics: List<String>.from(topics));
-    //   },
-    // ),
+
+    // Flash Card Routes
+    GoRoute(
+      path: '/flash-card',
+      name: RouteNames.flashcards,
+      builder: (context, state) => const FlashCard(),
+    ),
 
     GoRoute(
       path: '/quiz/:topic',
@@ -107,5 +124,31 @@ final GoRouter appRouter = GoRouter(
         );
       },
     ),
+
+    // Development Routes
+    GoRoute(
+      path: '/in_progress',
+      name: RouteNames.underDevelopment,
+      builder: (context, state) => const ColdMail(),
+    ),
+
+    // Error Route
+    GoRoute(
+      path: '/error',
+      builder: (context, state) => const ErrorScreen(),
+    ),
   ],
+
+  // Error handling
+  errorBuilder: (context, state) => ErrorScreen(error: state.error.toString()),
+
+  // Redirect logic (optional)
+  redirect: (context, state) {
+    // Add authentication logic here if needed
+    // For example:
+    // if (!isAuthenticated && protectedRoutes.contains(state.location)) {
+    //   return '/sign-in';
+    // }
+    return null; // No redirect
+  },
 );

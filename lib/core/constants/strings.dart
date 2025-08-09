@@ -125,6 +125,7 @@ class AppStrings {
   static const String customCompany = 'Custom Company';
   static const String getReady = 'Get Ready';
   static const String skipTimer = 'skipTimer';
+  static const String skip = 'Skip';
 
   //membership
   // static const membershipSubTitle = "Only ${"perMonth"} per month";
