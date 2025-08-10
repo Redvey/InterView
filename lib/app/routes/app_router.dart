@@ -8,6 +8,7 @@ import 'package:interview/features/home/screens/home_screen.dart';
 import 'package:interview/features/interview/interview.dart';
 import 'package:interview/features/interview/screens/interview_completion_screen.dart';
 import 'package:interview/features/interview/screens/interviewer.dart';
+import 'package:interview/features/onboarding/screens/auth/auth_screen.dart';
 import 'package:interview/features/resume/screens/contact_form/contact_form.dart';
 import 'package:interview/features/resume/screens/resume_builder_final.dart';
 import 'package:interview/features/resume/screens/resume_builder_home.dart';
@@ -15,7 +16,7 @@ import 'package:interview/features/review/screens/resume_review_screen.dart';
 import '../../features/onboarding/screens/error_screen/error_screen.dart';
 import '../../features/onboarding/screens/onboarding/onboarding_screen.dart';
 import '../../features/onboarding/screens/profile_setup/profile_setup.dart';
-import '../../features/onboarding/screens/signup/signup_screen.dart';
+
 import 'route_names.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -36,10 +37,13 @@ final GoRouter appRouter = GoRouter(
     ),
 
     // Auth Routes
+
     GoRoute(
-      path: '/sign-up',
-      name: RouteNames.signUp,
-      builder: (context, state) => const SignUpScreen(),
+      path: '/auth',
+      builder: (context, state) {
+        final isLogin = state.uri.queryParameters['mode'] != 'signup';
+        return AuthScreen(isLogin: isLogin);
+      },
     ),
 
     GoRoute(

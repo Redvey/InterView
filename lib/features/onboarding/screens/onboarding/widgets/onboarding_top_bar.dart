@@ -44,7 +44,7 @@ class OnboardingTopBar extends StatelessWidget {
               radius: context.xs,
               // Changed from 4
               dotColor: AppColors.grey300,
-              activeDotColor: Colors.white,
+              activeDotColor: AppColors.white,
               paintStyle: PaintingStyle.fill,
             ),
           ),
@@ -57,7 +57,7 @@ class OnboardingTopBar extends StatelessWidget {
               TextButton(
                 onPressed: onSkip,
                 child: Text(
-                  AppStrings.skip,
+                  AppStrings.skip.toUpperCase(),
                   style: context.buttonWhiteTextStyle
                 ),
               ),

@@ -5,24 +5,24 @@ import '../model/onboarding_data.dart';
 class OnboardingConstants {
   static List<OnboardingData> onboardingPages = [
     OnboardingData(
-      title: "Welcome to Interview Ace",
-      description: "Your personal interview coach that helps you practice, improve, and land your dream job.",
+      title: "Welcome to Interview App",
+      description: "Build,improve and land your dream job.",
     ),
     OnboardingData(
-      title: "Practice Mock Interviews",
-      description: "Get realistic interview practice with AI-powered feedback and suggestions for improvement.",
+      title: "Resume Review",
+      description: "Get job matching percentage",
     ),
     OnboardingData(
-      title: "Build a Perfect Resume",
-      description: "Create ATS-friendly resumes with our smart builder and get professional reviews.",
+      title: "Practice Flash Cards",
+      description: "Learn and practice interview topics with flash cards",
     ),
     OnboardingData(
-      title: "Track Your Progress",
-      description: "Monitor your improvement over time and identify areas that need more attention.",
+      title: "Take Mock Interview",
+      description: "Take Live Interview to track progress, gain more experience and be interview ready",
     ),
     OnboardingData(
-      title: "Track Your Progress",
-      description: "Monitor your improvement over time and identify areas that need more attention.",
+      title: "Send Cold Mail",
+      description: "Send refined Mails to recruiters using mail templates",
     ),
   ];
 

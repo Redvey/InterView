@@ -240,6 +240,12 @@ class AppTextStyles {
     fontSize: context.fontSizeSm,
     color: AppColors.textGrey,
   );
+  static TextStyle hintTextColorful(BuildContext context, {required Color color}) => TextStyle(
+    // Added fontFamily
+    fontFamily: AppFonts.poppins,
+    fontSize: context.fontSizeSms,
+    color: color,
+  );
 
   // Button styles
   static TextStyle buttonText(BuildContext context) => TextStyle(

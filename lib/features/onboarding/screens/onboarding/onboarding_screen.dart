@@ -43,7 +43,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   void _skipOnboarding() async {
     await AuthService.completeOnboarding();
-    if (mounted) context.go('/home');
+    if (mounted) context.go('/auth');
   }
 
   void _completeOnboarding() async {

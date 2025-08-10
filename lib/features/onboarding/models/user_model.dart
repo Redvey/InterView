@@ -16,6 +16,7 @@ class User {
   List<String> skills;
   String? linkedinProfile;
   String? githubProfile;
+  String? profilePicture; // Added profile picture field
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -36,6 +37,7 @@ class User {
     this.skills = const [],
     this.linkedinProfile,
     this.githubProfile,
+    this.profilePicture,
     this.createdAt,
     this.updatedAt,
   });
@@ -58,6 +60,7 @@ class User {
       'skills': skills,
       'linkedinProfile': linkedinProfile,
       'githubProfile': githubProfile,
+      'profilePicture': profilePicture,
       'createdAt': createdAt?.toIso8601String(),
       'updatedAt': updatedAt?.toIso8601String(),
     };
@@ -81,6 +84,7 @@ class User {
       skills: List<String>.from(map['skills'] ?? []),
       linkedinProfile: map['linkedinProfile'],
       githubProfile: map['githubProfile'],
+      profilePicture: map['profilePicture'],
       createdAt: map['createdAt'] != null ? DateTime.parse(map['createdAt']) : null,
       updatedAt: map['updatedAt'] != null ? DateTime.parse(map['updatedAt']) : null,
     );
@@ -104,6 +108,7 @@ class User {
     List<String>? skills,
     String? linkedinProfile,
     String? githubProfile,
+    String? profilePicture,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -124,9 +129,40 @@ class User {
       skills: skills ?? this.skills,
       linkedinProfile: linkedinProfile ?? this.linkedinProfile,
       githubProfile: githubProfile ?? this.githubProfile,
+      profilePicture: profilePicture ?? this.profilePicture,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );
+  }
+
+  // Helper methods for profile completion
+  bool get hasBasicInfo => fullName?.isNotEmpty == true && email?.isNotEmpty == true;
+
+  bool get hasEducationInfo => college?.isNotEmpty == true || degree?.isNotEmpty == true;
+
+  bool get hasProfessionalInfo => currentPosition?.isNotEmpty == true || experience?.isNotEmpty == true;
+
+  double get profileCompletionPercentage {
+    int totalFields = 15; // Total important fields
+    int filledFields = 0;
+
+    if (fullName?.isNotEmpty == true) filledFields++;
+    if (email?.isNotEmpty == true) filledFields++;
+    if (phone?.isNotEmpty == true) filledFields++;
+    if (age != null) filledFields++;
+    if (gender?.isNotEmpty == true) filledFields++;
+    if (college?.isNotEmpty == true) filledFields++;
+    if (degree?.isNotEmpty == true) filledFields++;
+    if (graduationYear?.isNotEmpty == true) filledFields++;
+    if (currentPosition?.isNotEmpty == true) filledFields++;
+    if (experience?.isNotEmpty == true) filledFields++;
+    if (skills.isNotEmpty) filledFields++;
+    if (linkedinProfile?.isNotEmpty == true) filledFields++;
+    if (githubProfile?.isNotEmpty == true) filledFields++;
+    if (profilePicture?.isNotEmpty == true) filledFields++;
+    if (referralId?.isNotEmpty == true) filledFields++;
+
+    return filledFields / totalFields;
   }
 
   @override
