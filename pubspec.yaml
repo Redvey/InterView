@@ -21,6 +21,8 @@ dependencies:
   url_launcher: ^6.3.2
   shared_preferences: ^2.5.3
   device_info_plus: ^11.5.0
+  cupertino_icons: ^1.0.8
+  image_picker: ^1.1.2
 
 
 

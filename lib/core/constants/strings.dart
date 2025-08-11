@@ -48,7 +48,6 @@ class AppStrings {
   static const String pleaseAgreeToTerms = 'Agree Terms of Service and Privacy Policy';
   static const String accountCreatedSuccessfully = 'Account created successfully!';
   static const String signupFailed = 'Sign up failed:';
-  static const String welcomeBackMessage = 'Welcome back!';
   static const String loginFailed = 'Login failed:';
   static const String passwordTooShort = 'Password must be at least 8 characters long';
   static const String passwordMissingUppercase = 'Password must contain at least one uppercase letter';
