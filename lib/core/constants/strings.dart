@@ -6,6 +6,60 @@ class AppStrings {
   static const crackIt = "< crack the interview />";
   static const finalSteps = "Final Steps Toward Your Goal";
 
+  //signup
+  static const createAccount ='Create Account';
+  static const String welcomeBack = 'Welcome back!';
+  static const String signInToContinue = 'Sign in to continue your journey';
+  static const String or = 'or';
+  static const String forgotPassword = 'Forgot Password?';
+  static const String signIn = 'Sign In';
+  static const String signUp = 'Sign Up';
+  static const String continueAsGuest = 'Continue as Guest';
+  static const String joinUsToday = 'Join us today!';
+  static const String createAccountAndGetStarted = 'Create an account and get started';
+  static const String continueWithGoogle = 'Continue with Google';
+  static const String continueWithApple = 'Continue with Apple';
+  static const String signUpWithGoogle = 'Sign up with Google';
+  static const String signUpWithApple = 'Sign up with Apple';
+  static const String emailAddress = 'Email Address';
+  static const String enterYourEmail = 'Enter your email';
+  static const String password = 'Password';
+  static const String enterYourPassword = 'Enter your password';
+  static const String fullName = 'Full Name';
+  static const String enterYourFullName = 'Enter your full name';
+  static const String createStrongPassword = 'Create a strong password';
+  static const String confirmPassword = 'Confirm Password';
+  static const String reEnterYourPassword = 'Re-enter your password';
+  static const String passwordRequirements = 'Password Requirements:';
+  static const String passwordRequirementLength = 'At least 8 characters';
+  static const String passwordRequirementUppercase = 'One uppercase letter';
+  static const String passwordRequirementNumber = 'One number';
+  static const String termsAndConditionsPart1 = 'I agree to the ';
+  static const String termsAndConditionsPart2 = 'Terms of Service';
+  static const String termsAndConditionsPart3 = ' and ';
+  static const String termsAndConditionsPart4 = 'Privacy Policy';
+
+
+  // Validation Messages
+  static const String pleaseEnterYourName = 'Please enter your name';
+  static const String nameTooShort = 'Name must be at least 2 characters';
+  static const String pleaseConfirmPassword = 'Please confirm your password';
+  static const String passwordsDoNotMatch = 'Passwords do not match';
+  static const String pleaseAgreeToTerms = 'Agree Terms of Service and Privacy Policy';
+  static const String accountCreatedSuccessfully = 'Account created successfully!';
+  static const String signupFailed = 'Sign up failed:';
+  static const String welcomeBackMessage = 'Welcome back!';
+  static const String loginFailed = 'Login failed:';
+  static const String passwordTooShort = 'Password must be at least 8 characters long';
+  static const String passwordMissingUppercase = 'Password must contain at least one uppercase letter';
+  static const String passwordMissingNumber = 'Password must contain at least one number';
+  static const String invalidEmail = 'Invalid email address';
+  static const String pleaseEnterEmail = 'Please enter an email address';
+  static const String pleaseEnterPassword = 'Please enter a password';
+
+  // App
+  static const String appName = 'Interview Ace';
+
   // Bottom Navigation Labels
   static const String navInterviews = 'Interviews';
   static const String navFlashCards = 'Flash Cards';
@@ -305,7 +359,6 @@ class AppStrings {
   // Validation
   static const String fieldRequired = "This field is required";
   static const String tenCharacters = 'Email body should be at least 10 characters';
-  static const String invalidEmail = "Please enter a valid email address";
   static const String failedToLoadTemplates = 'Failed to load Templates';
   static const String usingDefaultTemplates = 'Using default templates instead';
 

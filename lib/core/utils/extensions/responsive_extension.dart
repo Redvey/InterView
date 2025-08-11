@@ -87,6 +87,7 @@ extension ResponsiveContext on BuildContext {
   double get fontSizeSd => AppSizes.fontSizeSd(this);
   double get fontSizeMd => AppSizes.fontSizeMd(this);
   double get fontSizeLg => AppSizes.fontSizeLg(this);
+  double get fontSizeMax => AppSizes.fontSizeMax(this);
   double get letterSpacing => AppSizes.letterSpacing(this);
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -94,6 +95,7 @@ extension ResponsiveContext on BuildContext {
   // ═══════════════════════════════════════════════════════════════════════════
 
   double get buttonHeight => AppSizes.buttonHeight(this);
+  double get fifty => AppSizes.fifty(this);
   double get circularButtonSize => AppSizes.circularButtonSize(this);
   double get mainActionButtonSize => AppSizes.mainActionButtonSize(this);
   double get buttonHeightSmall => AppSizes.buttonHeightSmall(this);
@@ -292,6 +294,7 @@ extension ResponsiveContext on BuildContext {
 
   TextStyle hintTextStyle({required Color color}) => AppTextStyles.hintText(this, color: color);
   TextStyle get hintTextGreyStyle => AppTextStyles.hintTextGrey(this);
+  TextStyle  hintTextColorful({required Color color}) => AppTextStyles.hintTextColorful(this,color: color);
   TextStyle get searchHintStyle => AppTextStyles.searchHint(this);
   TextStyle get emptyStateHintStyle => AppTextStyles.emptyStateHint(this);
 
