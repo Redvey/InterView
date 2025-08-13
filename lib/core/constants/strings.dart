@@ -56,8 +56,56 @@ class AppStrings {
   static const String pleaseEnterEmail = 'Please enter an email address';
   static const String pleaseEnterPassword = 'Please enter a password';
 
+  //Onboarding
+  //step1
+  static const String stepOneMessage='Your profile picture or avatar and name will be visible to interviewers';
+  static const String stepOneSubtitle='Add a profile picture or choose an avatar and tell us your name';
+  static const String stepOneTitle='Let\'s start with your profile';
+
+
+  //step2
+
+  // Section headers
+  static const String basicInfoTitle = 'Basic Information';
+  static const String basicInfoSubtitle = 'Tell us a bit more about yourself';
+
+  // Username
+  static const String usernameLabel = 'Username';
+  static const String usernameHint = 'Choose a unique username';
+  static const String usernameEmptyError = 'Please enter a username';
+  static const String usernameLengthError = 'Username must be at least 3 characters';
+  static const String usernameFormatError =
+  'Username can only contain letters, numbers, and underscores';
+
+  // Gender
+  static const String genderLabel = 'Gender';
+  static const String genderHint = 'Select your gender';
+  static const String genderEmptyError = 'Please select your gender';
+  static const List<String> genderOptions = [
+  'Male',
+  'Female',
+  'Other',
+  'Prefer not to say',
+  ];
+
+  // Date of Birth
+  static const String dobLabel = 'Date of Birth';
+  static const String dobHint = 'Select your date of birth';
+  static const String dobEmptyError = 'Please select your date of birth';
+
+  // Location
+  static const String locationLabel = 'Location';
+  static const String locationHint = 'Enter your city, country';
+  static const String locationEmptyError = 'Please enter your location';
+
+  // Privacy Notice
+  static const String privacyNotice =
+  'Your personal information is secure and will only be used to enhance your experience';
+
+
+
   // App
-  static const String appName = 'Interview Ace';
+  static const String appName = 'Interview';
 
   // Bottom Navigation Labels
   static const String navInterviews = 'Interviews';

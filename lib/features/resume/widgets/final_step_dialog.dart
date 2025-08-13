@@ -9,13 +9,19 @@ class FinalStepDialog extends StatelessWidget {
   final String subTitle;
   final String yes;
   final String no;
+  final bool newChild;
+  final Widget child;
 
   // Navigation parameters - backward compatible
   final String? navigate;
   final String? routeName;
   final Map<String, String>? pathParams;
   final Map<String, dynamic>? extra;
-  final Map<String, String>? routeParams; 
+  final Map<String, String>? routeParams;
+
+  // Callback functions for button presses
+  final VoidCallback? onYesPressed;
+  final VoidCallback? onNoPressed;
 
   const FinalStepDialog({
     super.key,
@@ -23,11 +29,15 @@ class FinalStepDialog extends StatelessWidget {
     required this.subTitle,
     required this.yes,
     required this.no,
-    this.navigate, 
+    this.navigate,
     this.routeName,
     this.pathParams,
     this.extra,
-    this.routeParams, 
+    this.routeParams,
+    this.onYesPressed,
+    this.onNoPressed,
+    this.newChild = false,
+    this.child = const SizedBox.shrink(),
   });
 
   @override
@@ -37,14 +47,14 @@ class FinalStepDialog extends StatelessWidget {
       insetPadding: EdgeInsets.all(context.lg),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(context.borderRadiusLg),
-        child: Container(
+        child:  Container(
           padding: EdgeInsets.all(context.lg),
           decoration: BoxDecoration(
             color: AppColors.blackLight,
             borderRadius: BorderRadius.circular(context.borderRadiusLg),
             boxShadow: [
               BoxShadow(
-                color: AppColors.purple.withAlpha(107),
+                color: AppColors.purple,
                 blurRadius: context.welcomeBlur,
                 offset: Offset(0, context.shadowOffsetY),
                 spreadRadius: context.welcomeSpread,
@@ -54,7 +64,7 @@ class FinalStepDialog extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Glow effect container
+              // Glow effect container or custom icon
               Container(
                 width: context.glowW,
                 height: context.glowH,
@@ -71,44 +81,50 @@ class FinalStepDialog extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: context.spaceBtwItems),
-              Text(
-                title,
-                style: AppTextStyles.dialogBoxTitle(context),
-              ),
-              SizedBox(height: context.defaultSpace),
-              Text(
-                subTitle,
-                textAlign: TextAlign.center,
-                style: AppTextStyles.dialogBoxSubTitle(context),
-              ),
-              SizedBox(height: context.spaceBtwFields),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  if (no.isNotEmpty) ...[
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      style: TextButton.styleFrom(
+              // Conditional content
+              if (newChild)
+                child
+              else ...[
+                SizedBox(height: context.spaceBtwItems),
+                Text(
+                  title,
+                  style: AppTextStyles.dialogBoxTitle(context),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: context.defaultSpace),
+                Text(
+                  subTitle,
+                  textAlign: TextAlign.center,
+                  style: AppTextStyles.dialogBoxSubTitle(context),
+                ),
+                SizedBox(height: context.spaceBtwFields),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    if (no.isNotEmpty) ...[
+                      TextButton(
+                        onPressed: () => _handleNoPressed(context),
+                        style: TextButton.styleFrom(
+                          foregroundColor: AppColors.backgroundWhite,
+                        ),
+                        child: Text(no, style: AppTextStyles.yes(context)),
+                      ),
+                      SizedBox(width: context.defaultSpace),
+                    ],
+                    ElevatedButton(
+                      onPressed: () => _handleYesPressed(context),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.purple,
                         foregroundColor: AppColors.backgroundWhite,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(context.buttonRadius),
+                        ),
                       ),
-                      child: Text(no, style: AppTextStyles.yes(context)),
+                      child: Text(yes, style: AppTextStyles.yes(context)),
                     ),
-                    SizedBox(width: context.defaultSpace),
                   ],
-                  ElevatedButton(
-                    onPressed: () => _handleYesPressed(context),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.purple,
-                      foregroundColor: AppColors.backgroundWhite,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(context.buttonRadius),
-                      ),
-                    ),
-                    child: Text(yes, style: AppTextStyles.yes(context)),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ],
           ),
         ),
@@ -117,6 +133,13 @@ class FinalStepDialog extends StatelessWidget {
   }
 
   void _handleYesPressed(BuildContext context) {
+    // If custom callback is provided, use it
+    if (onYesPressed != null) {
+      onYesPressed!();
+      return;
+    }
+
+    // Otherwise, use the default navigation logic
     Navigator.pop(context);
 
     // Handle navigation - prioritize routeName, fallback to navigate
@@ -129,5 +152,16 @@ class FinalStepDialog extends StatelessWidget {
     } else if (navigate != null) {
       context.push(navigate!, extra: routeParams ?? {});
     }
+  }
+
+  void _handleNoPressed(BuildContext context) {
+    // If custom callback is provided, use it
+    if (onNoPressed != null) {
+      onNoPressed!();
+      return;
+    }
+
+    // Otherwise, just close the dialog
+    Navigator.pop(context);
   }
 }

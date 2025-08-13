@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:interview/core/constants/colors.dart';
+import 'package:interview/core/constants/strings.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import 'package:interview/features/onboarding/screens/profile_setup/widgets/step_one/utils/avatar_data.dart';
 import 'package:interview/features/onboarding/screens/profile_setup/widgets/step_one/widgets/avatar_section.dart';
@@ -116,19 +117,20 @@ class _StepOneProfilePictureState extends State<StepOneProfilePicture> {
         key: _formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: context.spaceBtwFields),
 
             Text(
-              'Let\'s start with your profile',
+              AppStrings.stepOneTitle,
               style: context.headingStyle(color: AppColors.black87),
-              textAlign: TextAlign.center,
+              
             ),
             SizedBox(height: context.sm),
             Text(
-              'Add a profile picture or choose an avatar and tell us your name',
+              AppStrings.stepOneSubtitle,
               style: context.subheadingStyle(color: AppColors.textGrey),
-              textAlign: TextAlign.center,
+              
             ),
 
             SizedBox(height: context.spaceBtwSections),
@@ -165,7 +167,7 @@ class _StepOneProfilePictureState extends State<StepOneProfilePicture> {
             // Info box
             const InfoBox(
               message:
-              'Your profile picture or avatar and name will be visible to interviewers',
+              AppStrings.stepOneMessage,
             ),
           ],
         ),

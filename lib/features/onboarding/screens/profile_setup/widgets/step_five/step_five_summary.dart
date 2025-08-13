@@ -1,7 +1,7 @@
 // step_five_summary.dart
 import 'package:flutter/material.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
-import '../../../../../core/constants/colors.dart';
+import '../../../../../../core/constants/colors.dart';
 
 class StepFiveSummary extends StatefulWidget {
   final Map<String, dynamic> profileData;
