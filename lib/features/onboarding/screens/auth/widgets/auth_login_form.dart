@@ -155,11 +155,11 @@ class AuthLoginForm extends StatelessWidget {
             // Guest Mode
             Center(
               child: TextButton(
-                onPressed: () => context.go('/dashboard'),
+                onPressed: () => context.go('/profile-setup'),
                 child: Text(
                   AppStrings.continueAsGuest,
                   style: context.hintTextGreyStyle.copyWith(
-                    fontSize: context.fontSizeSm,
+                   fontSize: context.fontSizeSm,
                     decoration: TextDecoration.underline,
                   ),
                 ),

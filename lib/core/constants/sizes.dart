@@ -156,10 +156,10 @@ class AppSizes {
 
   // Combined spacing
   static EdgeInsets screenPadding(BuildContext context) {
-    // EdgeInsets safePadding = MediaQuery.of(context).padding;
+
     return EdgeInsets.symmetric(horizontal: context.lg).copyWith(
         top: context.lgV,
-        bottom: spaceBtwSections(context)
+        bottom: context.spaceBtwSections
     );
   }
 

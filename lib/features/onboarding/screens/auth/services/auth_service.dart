@@ -385,7 +385,7 @@ class AuthService {
       await Future.delayed(const Duration(seconds: 1));
 
       // TODO: Implement actual password reset
-      print('Password reset requested for: $email');
+      // print('Password reset requested for: $email');
     } catch (e) {
       throw AuthException('Failed to reset password', 'RESET_ERROR');
     }

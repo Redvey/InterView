@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
+import '../../../../../../../core/constants/colors.dart';
+import '../../../../../../../core/constants/strings.dart';
 
-import '../../../../../core/constants/colors.dart';
 
-class ProfileSetupHeader extends StatelessWidget {
-  const ProfileSetupHeader({super.key});
+class BasicDetailsHeader extends StatelessWidget {
+  const BasicDetailsHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +13,12 @@ class ProfileSetupHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Complete Your Profile',
+          AppStrings.basicInfoTitle,
           style: context.headingStyle(color: AppColors.black87),
         ),
         SizedBox(height: context.sm),
         Text(
-          'Tell us a bit about yourself to personalize your experience',
+          AppStrings.basicInfoSubtitle,
           style: context.subheadingStyle(color: AppColors.textGrey),
         ),
       ],

@@ -143,24 +143,28 @@ class User {
   bool get hasProfessionalInfo => currentPosition?.isNotEmpty == true || experience?.isNotEmpty == true;
 
   double get profileCompletionPercentage {
-    int totalFields = 15; // Total important fields
-    int filledFields = 0;
+    // List of all field completion checks
+    final fieldChecks = [
+      fullName?.isNotEmpty == true,
+      email?.isNotEmpty == true,
+      phone?.isNotEmpty == true,
+      age != null,
+      gender?.isNotEmpty == true,
+      college?.isNotEmpty == true,
+      degree?.isNotEmpty == true,
+      graduationYear?.isNotEmpty == true,
+      currentPosition?.isNotEmpty == true,
+      experience?.isNotEmpty == true,
+      skills.isNotEmpty,
+      linkedinProfile?.isNotEmpty == true,
+      githubProfile?.isNotEmpty == true,
+      profilePicture?.isNotEmpty == true,
+      referralId?.isNotEmpty == true,
+    ];
 
-    if (fullName?.isNotEmpty == true) filledFields++;
-    if (email?.isNotEmpty == true) filledFields++;
-    if (phone?.isNotEmpty == true) filledFields++;
-    if (age != null) filledFields++;
-    if (gender?.isNotEmpty == true) filledFields++;
-    if (college?.isNotEmpty == true) filledFields++;
-    if (degree?.isNotEmpty == true) filledFields++;
-    if (graduationYear?.isNotEmpty == true) filledFields++;
-    if (currentPosition?.isNotEmpty == true) filledFields++;
-    if (experience?.isNotEmpty == true) filledFields++;
-    if (skills.isNotEmpty) filledFields++;
-    if (linkedinProfile?.isNotEmpty == true) filledFields++;
-    if (githubProfile?.isNotEmpty == true) filledFields++;
-    if (profilePicture?.isNotEmpty == true) filledFields++;
-    if (referralId?.isNotEmpty == true) filledFields++;
+    // Count filled fields and calculate percentage
+    final filledFields = fieldChecks.where((check) => check).length;
+    final totalFields = fieldChecks.length;
 
     return filledFields / totalFields;
   }
