@@ -19,7 +19,7 @@ class AppColors {
   static const Color backgroundLightOrange = Color(0xFFF1995E);
   static const Color backgroundPink = Color(0xFFD7008F);
   static const Color backgroundLightPink = Color(0xFFF260EB);
-  static const Color backgroundLightBlue = Color(
+  static const Color backgroundLightRed = Color(
     0xFFFFCBCB,
   ); // This was previously 'backgroundLightBlue', but the color value was for light pink. Renamed to avoid confusion with textBlueBg.
   static const Color backgroundGrey = Color(
@@ -59,7 +59,7 @@ class AppColors {
   static const Gradient onboard2 = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
-    colors: [backgroundBlue, backgroundLightBlue],
+    colors: [backgroundBlue, backgroundLightRed],
   );
   static const Gradient onboard3 = LinearGradient(
     begin: Alignment.topCenter,
@@ -248,4 +248,10 @@ class AppColors {
   static const Color warningLight = Color(0xFFFFE0B2);
   static const Color info = Color(0xFF1976D2);
   static const Color infoLight = Color(0xFFBBDEFB);
+
+  static const Color personalInfoColor = AppColors.blue600;
+  static const Color skillsColor = AppColors.backgroundGreen;
+  static const Color preferencesColor = AppColors.backgroundOrange;
+  static const Color termsBackgroundColor = AppColors.backgroundYellow;
+  static const Color termsBorderColor = AppColors.buttonYellow;
 }

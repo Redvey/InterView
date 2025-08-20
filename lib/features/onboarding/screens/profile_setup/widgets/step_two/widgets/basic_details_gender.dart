@@ -20,18 +20,15 @@ class BasicDetailsGenderDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
       value: selectedGender,
+      hint: Text(AppStrings.genderHint,style: context.hintTextGreyStyle,),
       decoration: InputDecoration(
-        labelText: AppStrings.genderLabel,
-        hintText: AppStrings.genderHint,
+
         prefixIcon: Icon(Icons.people_outline, size: context.iconSizeMD),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(context.radiusMD),
-        ),
       ),
       items: genderOptions
           .map((gender) => DropdownMenuItem(
         value: gender,
-        child: Text(gender, style: context.textFieldStyle),
+        child: Text(gender,style: context.textFieldStyle,), // Text widget will inherit the default font
       ))
           .toList(),
       onChanged: onChanged,

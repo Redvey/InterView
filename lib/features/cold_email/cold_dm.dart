@@ -10,7 +10,6 @@ import 'package:interview/features/cold_email/widgets/placeholder_alert_dialog.d
 import 'package:interview/features/cold_email/widgets/recipient_details/recipient_details_widget.dart';
 import 'package:interview/features/cold_email/widgets/template_selection/template_selection_widget.dart';
 import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_top_bar.dart';
-
 import 'models/email_draft_model.dart';
 
 

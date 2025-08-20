@@ -13,11 +13,13 @@ import 'widgets/info_box.dart';
 class StepOneProfilePicture extends StatefulWidget {
   final Map<String, dynamic> initialData;
   final Function(Map<String, dynamic>) onDataChanged;
+  final Function(bool)? onValidationChanged;
 
   const StepOneProfilePicture({
     super.key,
     required this.initialData,
     required this.onDataChanged,
+    this.onValidationChanged,
   });
 
   @override
@@ -33,6 +35,9 @@ class _StepOneProfilePictureState extends State<StepOneProfilePicture> {
   IconData? _selectedAvatarIcon;
   Color? _selectedAvatarBg;
 
+  // Add this to track if validation should be shown
+  bool _showValidationErrors = false;
+
   @override
   void initState() {
     super.initState();
@@ -40,8 +45,13 @@ class _StepOneProfilePictureState extends State<StepOneProfilePicture> {
     _lastNameController.text = widget.initialData['lastName'] ?? '';
     _profileImagePath = widget.initialData['profileImage'];
 
-    _firstNameController.addListener(_updateData);
-    _lastNameController.addListener(_updateData);
+    _firstNameController.addListener(_onFormChanged);
+    _lastNameController.addListener(_onFormChanged);
+
+    // Always allow user to proceed initially
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.onValidationChanged?.call(true);
+    });
   }
 
   @override
@@ -49,6 +59,38 @@ class _StepOneProfilePictureState extends State<StepOneProfilePicture> {
     _firstNameController.dispose();
     _lastNameController.dispose();
     super.dispose();
+  }
+
+  void _onFormChanged() {
+    _updateData();
+
+    // If validation errors are being shown, revalidate in real-time
+    if (_showValidationErrors) {
+      _validateAndNotify();
+    }
+  }
+
+  bool _validateAndNotify() {
+    final isFormValid = _formKey.currentState?.validate() ?? false;
+    final firstNameValid = _firstNameController.text.trim().length >= 2;
+    final lastNameValid = _lastNameController.text.trim().length >= 2;
+    final formValid = isFormValid && firstNameValid && lastNameValid;
+
+    final hasImage = _profileImageFile != null ||
+        (_profileImagePath != null && _profileImagePath!.isNotEmpty) ||
+        _selectedAvatarIcon != null;
+
+    final isComplete = formValid && hasImage;
+    widget.onValidationChanged?.call(isComplete);
+    return isComplete;
+  }
+
+  // Add this method to trigger validation when Next is clicked
+  bool validateStep() {
+    setState(() {
+      _showValidationErrors = true;
+    });
+    return _validateAndNotify();
   }
 
   void _updateData() {
@@ -93,9 +135,14 @@ class _StepOneProfilePictureState extends State<StepOneProfilePicture> {
       if (pickedFile != null) {
         setState(() {
           _profileImageFile = File(pickedFile.path);
-          _selectedAvatarIcon = null; // Remove avatar selection
+          _selectedAvatarIcon = null;
         });
         _updateData();
+
+        // If validation errors are being shown, revalidate
+        if (_showValidationErrors) {
+          _validateAndNotify();
+        }
       }
     }
   }
@@ -104,9 +151,14 @@ class _StepOneProfilePictureState extends State<StepOneProfilePicture> {
     setState(() {
       _selectedAvatarIcon = avatar.icon;
       _selectedAvatarBg = avatar.background;
-      _profileImageFile = null; // Remove uploaded image if avatar chosen
+      _profileImageFile = null;
     });
     _updateData();
+
+    // If validation errors are being shown, revalidate
+    if (_showValidationErrors) {
+      _validateAndNotify();
+    }
   }
 
   @override
@@ -120,32 +172,51 @@ class _StepOneProfilePictureState extends State<StepOneProfilePicture> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: context.spaceBtwFields),
-
-            Text(
-              AppStrings.stepOneTitle,
-              style: context.headingStyle(color: AppColors.black87),
-              
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                AppStrings.stepOneTitle,
+                style: context.headingStyle(color: AppColors.black87),
+              ),
             ),
             SizedBox(height: context.sm),
             Text(
               AppStrings.stepOneSubtitle,
               style: context.subheadingStyle(color: AppColors.textGrey),
-              
             ),
 
             SizedBox(height: context.spaceBtwSections),
 
-            // Profile picture preview
-            ProfileImageSelector(
-              profileImageFile: _profileImageFile,
-              profileImagePath: _profileImagePath,
-              avatarIcons: avatarList.map((a) => a.icon).toList(),
-              selectedAvatarIcon: _selectedAvatarIcon,
-              selectedAvatarBg: _selectedAvatarBg,
-              onChooseImage: _selectProfileImage,
+            // Profile picture preview with validation error
+            Column(
+              children: [
+                ProfileImageSelector(
+                  profileImageFile: _profileImageFile,
+                  profileImagePath: _profileImagePath,
+                  avatarIcons: avatarList.map((a) => a.icon).toList(),
+                  selectedAvatarIcon: _selectedAvatarIcon,
+                  selectedAvatarBg: _selectedAvatarBg,
+                  onChooseImage: _selectProfileImage,
+                ),
+                // Show error only when validation is triggered and no image is selected
+                if (_showValidationErrors &&
+                    _profileImageFile == null &&
+                    (_profileImagePath == null || _profileImagePath!.isEmpty) &&
+                    _selectedAvatarIcon == null)
+                  Padding(
+                    padding: EdgeInsets.only(top: context.xs),
+                    child: Text(
+                      'Please select a profile picture',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.error,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+              ],
             ),
 
-            SizedBox(height: context.spaceBtwSections),
+            SizedBox(height: context.spaceBtwFields),
 
             // Avatar choices
             AvatarSelector(
@@ -154,20 +225,20 @@ class _StepOneProfilePictureState extends State<StepOneProfilePicture> {
               onSelectAvatar: _selectAvatar,
             ),
 
-            SizedBox(height: context.spaceBtwSections),
+            SizedBox(height: context.spaceBtwFields),
 
             // Name fields
             NameFields(
               firstNameController: _firstNameController,
               lastNameController: _lastNameController,
+              showValidationErrors: _showValidationErrors,
             ),
 
             SizedBox(height: context.spaceBtwSections),
 
             // Info box
             const InfoBox(
-              message:
-              AppStrings.stepOneMessage,
+              message: AppStrings.stepOneMessage,
             ),
           ],
         ),

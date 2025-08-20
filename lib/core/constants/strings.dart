@@ -1,3 +1,4 @@
+
 class AppStrings {
   static const hi = "Hello";
   static const name = "Roopam!";
@@ -30,7 +31,7 @@ class AppStrings {
   static const String createStrongPassword = 'Create a strong password';
   static const String confirmPassword = 'Confirm Password';
   static const String reEnterYourPassword = 'Re-enter your password';
-  static const String passwordRequirements = 'Password Requirements:';
+  static const String passwordRequirements = 'Password Requirements=';
   static const String passwordRequirementLength = 'At least 8 characters';
   static const String passwordRequirementUppercase = 'One uppercase letter';
   static const String passwordRequirementNumber = 'One number';
@@ -47,8 +48,8 @@ class AppStrings {
   static const String passwordsDoNotMatch = 'Passwords do not match';
   static const String pleaseAgreeToTerms = 'Agree Terms of Service and Privacy Policy';
   static const String accountCreatedSuccessfully = 'Account created successfully!';
-  static const String signupFailed = 'Sign up failed:';
-  static const String loginFailed = 'Login failed:';
+  static const String signupFailed = 'Sign up failed=';
+  static const String loginFailed = 'Login failed=';
   static const String passwordTooShort = 'Password must be at least 8 characters long';
   static const String passwordMissingUppercase = 'Password must contain at least one uppercase letter';
   static const String passwordMissingNumber = 'Password must contain at least one number';
@@ -57,6 +58,32 @@ class AppStrings {
   static const String pleaseEnterPassword = 'Please enter a password';
 
   //Onboarding
+
+  //profileSetup
+  static const String quickSetup = 'Quick Setup';
+  static const String resumeUploadDescription = 'Would you like to upload your resume to automatically fill in your profile details?';
+  static const String uploadResume = 'Upload Resume';
+  static const String skipForNow = 'Skip for now';
+  static const String profileSetupCompleted = 'Profile setup completed successfully!';
+  static const skipProfileSetupTitle = "Skip Profile Setup?";
+  static const skipProfileSetupSubtitle = "You can finish this later from the settings menu.";
+
+
+  static const String next = 'Next';
+  static const String finishSetup = 'Finish Setup';
+
+
+  // Resume Upload
+
+  static const uploadResumePrompt = 'Would you like to upload your resume to automatically fill in your profile details?';
+
+
+  // Messages
+  static const profileSetupSuccess = 'Profile setup completed successfully!';
+  static const profileSetupFailed = 'Profile setup failed';
+
+  // Steps
+  static const uploadResumeUpper = 'UPLOAD RESUME';
   //step1
   static const String stepOneMessage='Your profile picture or avatar and name will be visible to interviewers';
   static const String stepOneSubtitle='Add a profile picture or choose an avatar and tell us your name';
@@ -102,8 +129,77 @@ class AppStrings {
   static const String privacyNotice =
   'Your personal information is secure and will only be used to enhance your experience';
 
+  //step3
 
+  // Headers & Descriptions
+  static const yourSkillsExpertise = 'Your Skills & Expertise';
+  static const _selectSkillsDescriptionTemplate =
+  'Select up to {max} skills that best represent your expertise';
 
+  // Skills Section
+  static const selectYourSkills = 'Select Your Skills';
+  static const _selectedCountTemplate = 'Selected= {count}/{max}';
+  static const clearAll = 'Clear All';
+  static const yourSelectedSkills = 'Your Selected Skills';
+  static const _skillLimitMessageTemplate =
+  'You can select up to {max} skills';
+
+  // Categories
+  static const categoryProgramming = 'Programming';
+  static const categoryDesign = 'Design';
+  static const categoryData = 'Data';
+  static const categoryMarketing = 'Marketing';
+  static const categoryBusiness = 'Business';
+
+  // ==== Dynamic String Getters ====
+
+  static String selectSkillsDescription(int max) =>
+  _selectSkillsDescriptionTemplate.replaceFirst('{max}', '$max');
+
+  static String selectedCount(int count, int max) => _selectedCountTemplate
+      .replaceFirst('{count}', '$count')
+      .replaceFirst('{max}', '$max');
+
+  static String skillLimitMessage(int max) =>
+  _skillLimitMessageTemplate.replaceFirst('{max}', '$max');
+// Strings for the preferences page
+  static const preferencesTitle= "Customize Your Experience";
+  static const preferencesSubtitle= "Set your preferences to tailor the app to your needs";
+  static const languageSectionTitle= "Language";
+  static const languageSectionSubtitle= "Choose your preferred language";
+  static const experienceSectionTitle= "Experience Level";
+  static const experienceSectionSubtitle= "Help us understand your experience";
+  static const interviewTimeSectionTitle= "Preferred Interview Time";
+  static const interviewTimeSectionSubtitle= "When do you prefer to take interviews?";
+  static const notificationsSectionTitle= "Notifications";
+  static const notificationsSectionSubtitle= "Manage how you receive updates";
+  static const emailNotificationsSwitch= "Email Notifications";
+  static const emailNotificationsSwitchSubtitle= "Receive updates via email";
+  static const pushNotificationsSwitch= "Push Notifications";
+  static const pushNotificationsSwitchSubtitle= "Get real-time app notifications";
+  static const interviewRemindersSwitch= "Interview Reminders";
+  static const interviewRemindersSwitchSubtitle= "Get reminded before scheduled interviews";
+  static const weeklyReportsSwitch= "Weekly Reports";
+  static const weeklyReportsSwitchSubtitle= "Receive weekly progress summaries";
+  static const String pageTitle = 'Review Your Profile';
+  static const String pageSubtitle = 'Please review your information before completing setup';
+
+  static const String personalInfoTitle = 'Personal Information';
+  static const String skillsTitle = 'Skills & Expertise';
+  static const String termsTitle = 'Terms & Conditions';
+
+  static const String termsOfServiceTitle = 'I agree to the Terms of Service';
+  static const String termsOfServiceSubtitle = 'You must agree to our terms to continue';
+  static const String privacyPolicyTitle = 'I agree to the Privacy Policy';
+  static const String privacyPolicySubtitle = 'We respect your privacy and data security';
+
+  static const String validationMessage = 'Please agree to both Terms of Service and Privacy Policy to continue';
+
+  static const String notificationSettingsTitle = 'Notification Settings';
+  static const String notSpecified = 'Not specified';
+  static const String defaultLanguage = 'English';
+  static const String enabled = 'Enabled';
+  static const String disabled = 'Disabled';
   // App
   static const String appName = 'Interview';
 
@@ -198,8 +294,8 @@ class AppStrings {
   static const jobTitle = "Job Title";
   static const company = "Company";
   static const jobDescription = "Job Description";
-  static const from = "FROM: ";
-  static const to = "TO: ";
+  static const from = "FROM= ";
+  static const to = "TO= ";
   static const stillWorkHere = "Still working here?";
   static const removeExperience = "Remove this experience";
   static const select = "Select";
@@ -207,7 +303,6 @@ class AppStrings {
 
   //review review
   static const runPrompts = "Run Prompts";
-  static const uploadResume = "Upload Your Resume(.pdf)";
   static const provideJD = "Please provide JD and upload resume";
   static const aboutResume = "Tell me about the resume";
   static const improviseSkill = "How can I improvise my skills?";
@@ -255,7 +350,7 @@ class AppStrings {
   static String quizCompletedMessage(String topic) => 'You completed $topic quiz!';
 
   //mock-interview
-  static const topic = 'TOPIC:';
+  static const topic = 'TOPIC=';
   static const noInterviewsFound = 'No interviews found for';
   static const noInterviewsAvailable = 'No interviews available';
   static const searchHint = 'Search interviews...';
@@ -284,9 +379,9 @@ class AppStrings {
   static const interviewDuration = 'Interview Duration';
 
   static const interviewTopicsLabel = 'Interview Topics *';
-  static const checkBeforeInterview = 'Please ensure the following before starting your interview:';
+  static const checkBeforeInterview = 'Please ensure the following before starting your interview=';
   static const interviewTopicsHint =
-      'Select topics you want to be interviewed on:';
+      'Select topics you want to be interviewed on=';
 
 
 
@@ -355,7 +450,7 @@ class AppStrings {
   // Validation Messages
   static const String pleaseEnterRecipientEmail = "Please enter recipient email address";
   static const String incompleteEmail = "Incomplete Email";
-  static const String fillPlaceholders = "Please fill in the following placeholders:";
+  static const String fillPlaceholders = "Please fill in the following placeholders=";
   static const String fillAllRecipientDetails = 'Please fill all recipient details first';
 
   // Draft Actions
@@ -411,3 +506,5 @@ class AppStrings {
 
 
 }
+
+

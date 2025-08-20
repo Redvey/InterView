@@ -1,7 +1,12 @@
-// step_three_skills.dart
 import 'package:flutter/material.dart';
+import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
-import '../../../../../../core/constants/colors.dart';
+import 'package:interview/features/onboarding/screens/profile_setup/widgets/step_three/widgets/category_tab.dart';
+import 'package:interview/features/onboarding/screens/profile_setup/widgets/step_three/widgets/skill_chip.dart';
+
+import '../../../../../../core/constants/strings.dart';
+import 'data/skill_categories.dart';
+
 
 class StepThreeSkills extends StatefulWidget {
   final Map<String, dynamic> initialData;
@@ -18,47 +23,22 @@ class StepThreeSkills extends StatefulWidget {
 }
 
 class _StepThreeSkillsState extends State<StepThreeSkills> {
-  // Form key and controllers
   final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _locationController = TextEditingController();
 
-  // Skills state
   List<String> _selectedSkills = [];
-  String _selectedCategory = 'Programming';
+  String _selectedCategory = AppStrings.categoryProgramming;
 
-  final Map<String, List<String>> _skillCategories = {
-    'Programming': [
-      'Flutter', 'Dart', 'JavaScript', 'Python', 'Java', 'C++', 'React', 'Node.js',
-      'Swift', 'Kotlin', 'TypeScript', 'Go', 'Rust', 'C#', 'PHP', 'Ruby'
-    ],
-    'Design': [
-      'UI/UX Design', 'Figma', 'Adobe XD', 'Photoshop', 'Illustrator', 'Sketch',
-      'InVision', 'Canva', 'Wireframing', 'Prototyping', 'User Research', 'Design Systems'
-    ],
-    'Data': [
-      'Data Analysis', 'SQL', 'Excel', 'Tableau', 'Power BI', 'R', 'Pandas',
-      'Machine Learning', 'Statistics', 'Data Visualization', 'NumPy', 'Scikit-learn'
-    ],
-    'Marketing': [
-      'Digital Marketing', 'SEO', 'SEM', 'Social Media', 'Content Marketing', 'Email Marketing',
-      'Google Analytics', 'Facebook Ads', 'Brand Management', 'Market Research'
-    ],
-    'Business': [
-      'Project Management', 'Agile', 'Scrum', 'Leadership', 'Strategy', 'Sales',
-      'Business Analysis', 'Consulting', 'Operations', 'Finance', 'HR Management'
-    ],
-  };
+  static const int maxSelection = 10;
 
   @override
   void initState() {
     super.initState();
-    // Initialize with existing data
     _selectedSkills = List<String>.from(widget.initialData['skills'] ?? []);
     _usernameController.text = widget.initialData['username'] ?? '';
     _locationController.text = widget.initialData['location'] ?? '';
 
-    // Add listeners to text controllers
     _usernameController.addListener(_updateData);
     _locationController.addListener(_updateData);
   }
@@ -84,15 +64,13 @@ class _StepThreeSkillsState extends State<StepThreeSkills> {
       if (_selectedSkills.contains(skill)) {
         _selectedSkills.remove(skill);
       } else {
-        // Assuming maxSelection is 10 if not available in context
-        final maxSelection = 10; // You can get this from context if available
         if (_selectedSkills.length < maxSelection) {
           _selectedSkills.add(skill);
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                'You can select up to $maxSelection skills',
+                AppStrings.skillLimitMessage(maxSelection),
                 style: const TextStyle(color: Colors.white),
               ),
               backgroundColor: AppColors.warning,
@@ -108,78 +86,8 @@ class _StepThreeSkillsState extends State<StepThreeSkills> {
     _updateData();
   }
 
-  Widget _buildSkillChip(String skill) {
-    final isSelected = _selectedSkills.contains(skill);
-
-    return GestureDetector(
-      onTap: () => _toggleSkill(skill),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        margin: EdgeInsets.only(
-          right: context.sm,
-          bottom: context.sm,
-        ),
-        padding: EdgeInsets.symmetric(
-          horizontal: context.paddingMD,
-          vertical: context.paddingSM,
-        ),
-        decoration: BoxDecoration(
-          color: isSelected ? AppColors.blackLight : AppColors.grey300,
-          borderRadius: BorderRadius.circular(context.radiusLG),
-          border: Border.all(
-            color: isSelected ? AppColors.blackLight : AppColors.grey400,
-            width: context.borderWidthThin,
-          ),
-        ),
-        child: Text(
-          skill,
-          style: TextStyle(
-            color: isSelected ? Colors.white : Colors.black,
-            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCategoryTab(String category) {
-    final isSelected = _selectedCategory == category;
-
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _selectedCategory = category;
-        });
-      },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: EdgeInsets.symmetric(
-          horizontal: context.paddingLG,
-          vertical: context.paddingSM,
-        ),
-        decoration: BoxDecoration(
-          color: isSelected ? AppColors.blackLight : Colors.transparent,
-          borderRadius: BorderRadius.circular(context.radiusLG),
-          border: Border.all(
-            color: AppColors.blackLight,
-            width: context.borderWidthThin,
-          ),
-        ),
-        child: Text(
-          category,
-          style: TextStyle(
-            color: isSelected ? Colors.white : AppColors.blackLight,
-            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    final maxSelection = 10; // Fallback value
-
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: context.lg),
       child: Form(
@@ -191,88 +99,41 @@ class _StepThreeSkillsState extends State<StepThreeSkills> {
 
             // Header
             Text(
-              'Your Skills & Expertise',
+              AppStrings.yourSkillsExpertise,
               style: context.headingStyle(color: AppColors.black87),
             ),
             SizedBox(height: context.sm),
             Text(
-              'Select up to $maxSelection skills that best represent your expertise',
+              AppStrings.selectSkillsDescription(maxSelection),
               style: context.subheadingStyle(color: AppColors.textGrey),
             ),
 
             SizedBox(height: context.spaceBtwSections),
 
-            // Username field
-            TextFormField(
-              controller: _usernameController,
-              decoration: InputDecoration(
-                labelText: 'Username',
-                hintText: 'Choose a unique username',
-                prefixIcon: Icon(Icons.alternate_email, size: context.iconSizeMD),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(context.radiusMD),
+                Text(
+                  'Filter by Category',
+                  style: context.bodyBoldStyle.copyWith(fontSize: context.fontSizeSms,color: AppColors.purple),
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(context.radiusMD),
-                  borderSide: const BorderSide(color: AppColors.blackLight, width: 2),
-                ),
-              ),
-              validator: (value) {
-                if (value?.isEmpty ?? true) {
-                  return 'Please enter a username';
-                }
-                if (value!.length < 3) {
-                  return 'Username must be at least 3 characters';
-                }
-                return null;
-              },
-            ),
+
 
             SizedBox(height: context.spaceBtwFields),
-
-            // Location field
-            TextFormField(
-              controller: _locationController,
-              decoration: InputDecoration(
-                labelText: 'Location',
-                hintText: 'Enter your city, country',
-                prefixIcon: Icon(Icons.location_on_outlined, size: context.iconSizeMD),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(context.radiusMD),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(context.radiusMD),
-                  borderSide: const BorderSide(color: AppColors.blackLight, width: 2),
-                ),
-              ),
-              validator: (value) {
-                if (value?.isEmpty ?? true) {
-                  return 'Please enter your location';
-                }
-                return null;
-              },
-            ),
-
-            SizedBox(height: context.spaceBtwSections),
-
-            // Skills section header
-            Text(
-              'Select Your Skills',
-              style: context.sectionTitleStyle,
-            ),
-            SizedBox(height: context.spaceBtwFields),
-
             // Category tabs
             SizedBox(
-              height: 50, // Fixed height for category tabs
+              height: context.spaceBtwSections,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: _skillCategories.keys.length,
+                itemCount: skillCategories.keys.length,
                 itemBuilder: (context, index) {
-                  final category = _skillCategories.keys.elementAt(index);
+                  final category = skillCategories.keys.elementAt(index);
                   return Padding(
                     padding: EdgeInsets.only(right: context.sm),
-                    child: _buildCategoryTab(category),
+                    child: CategoryTab(
+                      category: category,
+                      isSelected: _selectedCategory == category,
+                      onTap: () {
+                        setState(() => _selectedCategory = category);
+                      },
+                    ),
                   );
                 },
               ),
@@ -280,33 +141,26 @@ class _StepThreeSkillsState extends State<StepThreeSkills> {
 
             SizedBox(height: context.spaceBtwFields),
 
-            // Selected skills count
+            // Selected count + Clear All
             Row(
               children: [
                 Text(
-                  'Selected: ${_selectedSkills.length}/$maxSelection',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: _selectedSkills.length >= maxSelection
-                        ? AppColors.warning
-                        : AppColors.success,
-                  ),
+                  AppStrings.selectedCount(_selectedSkills.length, maxSelection),
+                  style: context.bodyBoldStyle.copyWith(fontSize: context.fontSizeSms,color: _selectedSkills.length >= maxSelection
+                  ? AppColors.warning
+                    : AppColors.success,),
+
                 ),
                 const Spacer(),
                 if (_selectedSkills.isNotEmpty)
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _selectedSkills.clear();
-                      });
+                  InkWell(
+                    onTap: () {
+                      setState(() => _selectedSkills.clear());
                       _updateData();
                     },
                     child: Text(
-                      'Clear All',
-                      style: TextStyle(
-                        color: AppColors.error,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      AppStrings.clearAll,
+                      style: context.bodyBoldStyle.copyWith(fontSize: context.fontSizeSms,color: AppColors.red),
                     ),
                   ),
               ],
@@ -314,19 +168,23 @@ class _StepThreeSkillsState extends State<StepThreeSkills> {
 
             SizedBox(height: context.spaceBtwFields),
 
-            // Skills grid
+            // Skills
             Wrap(
-              children: _skillCategories[_selectedCategory]!
-                  .map((skill) => _buildSkillChip(skill))
+              children: skillCategories[_selectedCategory]!
+                  .map((skill) => SkillChip(
+                skill: skill,
+                isSelected: _selectedSkills.contains(skill),
+                onTap: () => _toggleSkill(skill),
+              ))
                   .toList(),
             ),
 
             SizedBox(height: context.spaceBtwSections),
 
-            // Selected skills preview
+            // Selected preview
             if (_selectedSkills.isNotEmpty) ...[
               Text(
-                'Your Selected Skills',
+                AppStrings.yourSelectedSkills,
                 style: context.sectionTitleStyle,
               ),
               SizedBox(height: context.spaceBtwFields),

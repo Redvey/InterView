@@ -23,7 +23,7 @@ class InterviewCard extends StatelessWidget {
       width: double.infinity,
       margin: EdgeInsets.only(bottom: context.spaceBtwItemsH),
       decoration: BoxDecoration(
-        color: AppColors.backgroundLightBlue,
+        color: AppColors.backgroundLightRed,
         borderRadius: BorderRadius.circular(context.borderRadiusLx),
         boxShadow: [
           BoxShadow(

@@ -26,8 +26,8 @@ class ProfileImageSelector extends StatelessWidget {
     return GestureDetector(
       onTap: onChooseImage,
       child: Container(
-        width: context.lottieWidth * 0.5,
-        height: context.lottieHeight * 0.5,
+        width: context.lottieWidth,
+        height: context.lottieHeightSmall,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: AppColors.grey300,
@@ -49,7 +49,7 @@ class ProfileImageSelector extends StatelessWidget {
     }
     if (selectedAvatarIcon != null) {
       return CircleAvatar(
-        backgroundColor: selectedAvatarBg ?? AppColors.textBlueBg,
+        backgroundColor: selectedAvatarBg ?? AppColors.purpleLight,
         child: Icon(selectedAvatarIcon, size: 40, color: AppColors.black87),
       );
     }

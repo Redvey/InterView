@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:interview/core/constants/strings.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import 'package:interview/features/onboarding/screens/profile_setup/widgets/profile_setup_progress.dart';
+import 'package:interview/features/onboarding/screens/profile_setup/widgets/setup_footer.dart';
 import 'package:interview/features/onboarding/screens/profile_setup/widgets/step_one/step_one_profile_picture.dart';
 import 'package:interview/features/onboarding/screens/profile_setup/widgets/step_two/step_two_basic_details.dart';
 import 'package:interview/features/onboarding/screens/profile_setup/widgets/step_three/step_three_skills.dart';
 import 'package:interview/features/onboarding/screens/profile_setup/widgets/step_four/step_four_preferences.dart';
 import 'package:interview/features/onboarding/screens/profile_setup/widgets/step_five/step_five_summary.dart';
-import 'package:interview/features/resume/widgets/final_step_dialog.dart';
 import '../../../../core/constants/colors.dart';
-import '../../services/resume_upload_service.dart';
+import 'controllers/profile_setup_controllers.dart';
 
 class ProfileSetupScreen extends StatefulWidget {
   final Map<String, dynamic>? signupData;
@@ -22,133 +22,70 @@ class ProfileSetupScreen extends StatefulWidget {
 
 class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   final PageController _pageController = PageController();
-  int _currentStep = 0;
-  final int _totalSteps = 5;
-  bool _isLoading = false;
+  late ProfileSetupController _controller;
 
-  final Map<String, dynamic> _profileData = {};
-  late final ResumeUploadService _resumeUploadService;
+  // Add a GlobalKey for the current step widget
+  final List<GlobalKey> _stepKeys = List.generate(5, (index) => GlobalKey());
+
+  // Track if Step 1 is completed for Skip button logic
+  bool _isStepOneCompleted = false;
+
 
   @override
   void initState() {
     super.initState();
-    _resumeUploadService = ResumeUploadService(
+    _controller = ProfileSetupController(
       context: context,
-      onProfileDataUpdate: _updateProfileData,
-      onShowError: _showErrorMessage,
+      pageController: _pageController,
+      onStateChanged: () => setState(() {}),
+      signupData: widget.signupData,
     );
 
-    if (widget.signupData != null) {
-      _profileData.addAll(widget.signupData!);
-    }
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _showResumeUploadDialog();
+      _controller.showResumeUploadDialog();
     });
   }
 
   @override
   void dispose() {
     _pageController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
-  void _updateProfileData(Map<String, dynamic> stepData) {
-    setState(() {
-      _profileData.addAll(stepData);
-    });
-  }
-
-  void _nextStep() {
-    if (_currentStep < _totalSteps - 1) {
-      setState(() => _currentStep++);
-      _pageController.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
+  // Method to handle skip functionality
+  void _handleSkip() {
+    _controller.skipToFinalStep();
+    if (_isStepOneCompleted) {
+      // Navigate directly to the final step (step 4, index 4)
+      _controller.skipToFinalStep();
     }
   }
 
-  void _previousStep() {
-    if (_currentStep > 0) {
-      setState(() => _currentStep--);
-      _pageController.previousPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    }
-  }
+  // Method to validate Step 1 and update completion status
+  bool _validateStepOne() {
+    final currentStepKey = _stepKeys[0];
+    final stepOneState = currentStepKey.currentState;
 
-  Future<void> _showResumeUploadDialog() async {
-    if (!mounted) return;
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) {
-        return FinalStepDialog(
-          title: 'Quick Setup',
-          subTitle: 'Would you like to upload your resume to automatically fill in your profile details?',
-          yes: 'Upload Resume',
-          no: 'Skip for now',
-          onYesPressed: () async {
-            await _resumeUploadService.uploadResume();
-          },
-        );
-      },
-    );
-  }
-
-  void _showErrorMessage(String message) {
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            Icon(Icons.error_outline, color: AppColors.white),
-            SizedBox(width: context.spaceBtwItems),
-            Expanded(child: Text(message, style: context.snackBarTextStyle)),
-          ],
-        ),
-        backgroundColor: AppColors.error,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(context.radiusMD)),
-        duration: const Duration(seconds: 4),
-      ),
-    );
-  }
-
-  Future<void> _finishSetup() async {
-    setState(() => _isLoading = true);
     try {
-      await Future.delayed(const Duration(seconds: 2));
-      if (!mounted) return;
-      _showSuccessMessage('Profile setup completed successfully!');
-      context.go('/home');
+      if (stepOneState != null) {
+        bool isValid = (stepOneState as dynamic).validateStep() as bool? ?? false;
+        setState(() {
+          _isStepOneCompleted = isValid;
+        });
+        return isValid;
+      }
     } catch (e) {
-      if (!mounted) return;
-      _showErrorMessage('Profile setup failed: ${e.toString()}');
-    } finally {
-      if (mounted) setState(() => _isLoading = false);
+      setState(() {
+        _isStepOneCompleted = false;
+      });
+      return false;
     }
-  }
 
-  void _showSuccessMessage(String message) {
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            Icon(Icons.check_circle, color: AppColors.white),
-            SizedBox(width: context.spaceBtwItems),
-            Expanded(child: Text(message, style: context.snackBarTextStyle)),
-          ],
-        ),
-        backgroundColor: AppColors.success,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(context.radiusMD)),
-        duration: const Duration(seconds: 4),
-      ),
-    );
+    setState(() {
+      _isStepOneCompleted = false;
+    });
+    return false;
   }
 
   @override
@@ -162,90 +99,121 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
             padding: context.defaultPadding,
             child: Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: context.lg),
-                  child: ProfileSetupProgress(
-                    currentStep: _currentStep + 1,
-                    totalSteps: _totalSteps,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _buildResumeUploadButton(),
+                    _buildSkipButton(),
+                  ],
                 ),
+                _buildProgressIndicator(),
                 SizedBox(height: context.spaceBtwFields),
-                if (_currentStep == 0)
-                  TextButton.icon(
-                    onPressed: _showResumeUploadDialog,
-                    icon: Icon(Icons.upload_file, size: context.iconSizeSM, color: AppColors.blackLight),
-                    label: Text('Upload Resume', style: context.buttonTextStyle.copyWith(color: AppColors.blackLight)),
-                  ),
-                Expanded(
-                  child: PageView(
-                    controller: _pageController,
-                    onPageChanged: (index) {
-                      setState(() => _currentStep = index);
-                    },
-                    children: [
-                      StepOneProfilePicture(initialData: _profileData, onDataChanged: _updateProfileData),
-                      StepTwoBasicDetails(initialData: _profileData, onDataChanged: _updateProfileData),
-                      StepThreeSkills(initialData: _profileData, onDataChanged: _updateProfileData),
-                      StepFourPreferences(initialData: _profileData, onDataChanged: _updateProfileData),
-                      StepFiveSummary(profileData: _profileData, onDataChanged: _updateProfileData),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(context.lg),
-                  child: Row(
-                    children: [
-                      if (_currentStep > 0)
-                        Expanded(
-                          child: SizedBox(
-                            height: context.createButtonHeight,
-                            child: OutlinedButton(
-                              onPressed: _previousStep,
-                              style: OutlinedButton.styleFrom(
-                                side: const BorderSide(color: AppColors.blackLight),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(context.radiusLG)),
-                              ),
-                              child: Text('Back', style: context.buttonTextStyle.copyWith(color: AppColors.blackLight)),
-                            ),
-                          ),
-                        ),
-                      if (_currentStep > 0) SizedBox(width: context.spaceBtwItems),
-                      Expanded(
-                        child: SizedBox(
-                          height: context.createButtonHeight,
-                          child: ElevatedButton(
-                            onPressed: _isLoading
-                                ? null
-                                : (_currentStep == _totalSteps - 1 ? _finishSetup : _nextStep),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.blackLight,
-                              disabledBackgroundColor: AppColors.grey400,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(context.radiusLG)),
-                            ),
-                            child: _isLoading
-                                ? SizedBox(
-                              height: context.iconSizeSX,
-                              width: context.iconSizeSX,
-                              child: const CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation(AppColors.white),
-                                strokeWidth: 2,
-                              ),
-                            )
-                                : Text(
-                              _currentStep == _totalSteps - 1 ? 'Finish Setup' : 'Next',
-                              style: context.buttonWhiteTextStyle,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                _buildPageView(),
+                _buildBottomButtons(),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildProgressIndicator() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: context.lg),
+      child: ProfileSetupProgress(
+        currentStep: _controller.currentStep + 1,
+        totalSteps: _controller.totalSteps,
+      ),
+    );
+  }
+
+  Widget _buildResumeUploadButton() {
+    if (_controller.currentStep != 0) return const SizedBox.shrink();
+
+    return TextButton.icon(
+      onPressed: _controller.showResumeUploadDialog,
+      icon: const Icon(Icons.cloud_upload_rounded),
+      label: Text(
+        AppStrings.uploadResume,
+        style: context.buttonSmallStyle.copyWith(color: AppColors.purple),
+      ),
+    );
+  }
+
+  Widget _buildSkipButton() {
+    return TextButton(
+      onPressed: _isStepOneCompleted ? _handleSkip : null,
+      child: Text(
+        textAlign: TextAlign.right,
+        AppStrings.skip.toUpperCase(),
+        style: context.subheadingStyle(
+          color: _isStepOneCompleted ? AppColors.purple : AppColors.grey400,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPageView() {
+    return Expanded(
+      child: PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: _pageController,
+        onPageChanged: _controller.onPageChanged,
+        children: [
+          StepOneProfilePicture(
+            key: _stepKeys[0],
+            initialData: _controller.profileData,
+            onDataChanged: _controller.updateProfileData,
+            onValidationChanged: (isValid) {
+              _controller.updateStepValidation(0, isValid);
+              setState(() {
+                _isStepOneCompleted = isValid;
+              });
+            },
+          ),
+          StepTwoBasicDetails(
+            key: _stepKeys[1],
+            initialData: _controller.profileData,
+            onDataChanged: _controller.updateProfileData,
+          ),
+          StepThreeSkills(
+            key: _stepKeys[2],
+            initialData: _controller.profileData,
+            onDataChanged: _controller.updateProfileData,
+          ),
+          StepFourPreferences(
+            key: _stepKeys[3],
+            initialData: _controller.profileData,
+            onDataChanged: _controller.updateProfileData,
+          ),
+          StepFiveSummary(
+            key: _stepKeys[4],
+            profileData: _controller.profileData,
+            onDataChanged: _controller.updateProfileData,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBottomButtons() {
+    return ProfileSetupBottomButtons(
+      currentStep: _controller.currentStep,
+      totalSteps: _controller.totalSteps,
+      isLoading: _controller.isLoading,
+      onPrevious: _controller.previousStep,
+      onNext: _controller.nextStep,
+      onFinish: _controller.finishSetup,
+      validateCurrentStep: () {
+        // Only validate Step 1 strictly
+        if (_controller.currentStep == 0) {
+          return _validateStepOne();
+        }
+
+        // For other steps, allow proceeding (no strict validation)
+        return true;
+      },
     );
   }
 }

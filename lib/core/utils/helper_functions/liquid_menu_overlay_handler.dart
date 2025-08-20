@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../features/profile/widgets/liquid_menu_overlay.dart';
-import '../../../features/resume/widgets/final_step_dialog.dart';
+import '../../../features/widgets/final_step_dialog.dart';
 import '../../constants/strings.dart';
 
 

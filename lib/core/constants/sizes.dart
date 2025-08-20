@@ -208,7 +208,9 @@ class AppSizes {
   static double recentSearches(BuildContext context) => 40.0 * _getHeightScaleFactor(context);
   //success screen
   static double lottieHeight(BuildContext context) => 250.0 * _getHeightScaleFactor(context);
+  static double lottieHeightSmall(BuildContext context) => 220.0 * _getHeightScaleFactor(context);
   static double lottieWidth(BuildContext context) => 250.0 * _getWidthScaleFactor(context);
+  static double lottieWidthSmall(BuildContext context) => 220.0 * _getWidthScaleFactor(context);
 
   static double xs(BuildContext context) => 4.0 * _getScaleFactor(context);
   static double sm(BuildContext context) => 8.0 * _getScaleFactor(context);
@@ -270,8 +272,7 @@ class AppSizes {
   }
 
   static bool isTablet(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    return width >= 600 && width < 1200;
+    return MediaQuery.of(context).size.width >= 600 && MediaQuery.of(context).size.width < 1200;
   }
 
   static bool isDesktop(BuildContext context) {

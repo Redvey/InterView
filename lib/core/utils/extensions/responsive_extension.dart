@@ -114,6 +114,8 @@ extension ResponsiveContext on BuildContext {
   double get profileWidth => AppSizes.profileWidth(this);
   double get lottieHeight => AppSizes.lottieHeight(this);
   double get lottieWidth => AppSizes.lottieWidth(this);
+  double get lottieWidthSmall => AppSizes.lottieWidthSmall(this);
+  double get lottieHeightSmall => AppSizes.lottieHeightSmall(this);
   double get productImageSize => AppSizes.productImageSize(this);
   double get productImageRadius => AppSizes.productImageRadius(this);
   double get productItemHeight => AppSizes.productItemHeight(this);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'model/selectable_item.dart';
-import 'selectable_item_chip.dart';
+import '../../../widgets/selectable_item_chip.dart';
 
 class SelectableItemListView extends StatelessWidget {
   final Map<String, List<SelectableItem>> items;

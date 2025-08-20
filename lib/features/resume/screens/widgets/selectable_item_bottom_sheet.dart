@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:interview/app/themes/text_styles.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
 import 'model/selectable_item.dart';
-
-
+import '../../../widgets/selectable_item_chip.dart';
 
 class SelectableItemBottomSheet extends StatefulWidget {
   final String title;
@@ -11,8 +9,8 @@ class SelectableItemBottomSheet extends StatefulWidget {
   final List<String> initiallySelected;
   final int maxSelection;
   final Function(List<String>) onConfirm;
-
   final Color? sheetColor;
+
   const SelectableItemBottomSheet({
     super.key,
     required this.title,
@@ -114,28 +112,12 @@ class _SelectableItemBottomSheetState extends State<SelectableItemBottomSheet> {
                     Wrap(
                       spacing: context.paddingSM,
                       children: entry.value.map((item) {
-                        final isSelected = item.isSelected;
-                        return ChoiceChip(
-                          label: Text(item.name),
-                          avatar: Icon(
-                            item.icon,
-                            size: context.iconSizeSM,
-                            color: isSelected ? Colors.white : Colors.black,
-                          ),
-                          selected: isSelected,
-                          onSelected: (_) {
-                            if (!isSelected && selectedCount >= widget.maxSelection) return;
-                            _toggleItem(item);
-                          },
-                          selectedColor: Colors.black,
-                          backgroundColor: Colors.grey[200],
-                          labelStyle: isSelected
-                              ? AppTextStyles.chipSelected(context)
-                              : AppTextStyles.chipUnselected(context),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(context.radiusLG),
-                          ),
-                          showCheckmark: false,
+                        return SelectableItemChip.skill(
+                          item: item,
+                          selectedCount: selectedCount,
+                          maxSelection: widget.maxSelection,
+                          onToggle: _toggleItem,
+                          showIcon: true,
                         );
                       }).toList(),
                     ),

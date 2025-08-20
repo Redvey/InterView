@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:interview/features/resume/widgets/final_step_dialog.dart';
+import 'package:interview/features/widgets/final_step_dialog.dart';
 import '../screens/profile_setup/helpers/file_validators.dart';
 import '../screens/profile_setup/widgets/processing_dialog_box.dart';
 
