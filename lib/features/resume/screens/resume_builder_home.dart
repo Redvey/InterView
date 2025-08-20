@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
-import 'package:interview/features/resume/widgets/final_step_dialog.dart';
+import 'package:interview/features/widgets/final_step_dialog.dart';
 import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_bottom_buttons.dart';
 import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_pages.dart';
 import 'package:interview/features/resume/screens/widgets/resume_builder_home_widgets/resume_form_top_bar.dart';

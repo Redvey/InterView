@@ -88,7 +88,7 @@ class FinalStepDialog extends StatelessWidget {
                 SizedBox(height: context.spaceBtwItems),
                 Text(
                   title,
-                  style: AppTextStyles.dialogBoxTitle(context),
+                  style: context.dialogBoxTitleStyle,
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: context.defaultSpace),
@@ -107,7 +107,7 @@ class FinalStepDialog extends StatelessWidget {
                         style: TextButton.styleFrom(
                           foregroundColor: AppColors.backgroundWhite,
                         ),
-                        child: Text(no, style: AppTextStyles.yes(context)),
+                        child: Text(no, style: context.yesStyle),
                       ),
                       SizedBox(width: context.defaultSpace),
                     ],
@@ -120,7 +120,7 @@ class FinalStepDialog extends StatelessWidget {
                           borderRadius: BorderRadius.circular(context.buttonRadius),
                         ),
                       ),
-                      child: Text(yes, style: AppTextStyles.yes(context)),
+                      child: Text(yes, style: context.yesStyle),
                     ),
                   ],
                 ),

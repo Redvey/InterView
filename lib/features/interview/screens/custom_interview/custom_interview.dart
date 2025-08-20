@@ -158,7 +158,7 @@ class _CreateCustomInterviewBottomSheetState
       builder: (context, scrollController) {
         return Container(
           decoration: BoxDecoration(
-            color: AppColors.backgroundLightBlue,
+            color: AppColors.backgroundLightRed,
             borderRadius: BorderRadius.vertical(
               top: Radius.circular(context.radiusLG),
             ),
@@ -366,7 +366,7 @@ class _CreateCustomInterviewBottomSheetState
   Widget _buildCreateButton() {
     return Container(
       padding: EdgeInsets.all(context.paddingLG),
-      decoration: BoxDecoration(color: AppColors.backgroundLightBlue),
+      decoration: BoxDecoration(color: AppColors.backgroundLightRed),
       child: SizedBox(
         width: double.infinity,
         height: context.createButtonHeight,

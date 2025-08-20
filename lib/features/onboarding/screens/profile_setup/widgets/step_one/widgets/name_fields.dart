@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:interview/core/constants/colors.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
 
 class NameFields extends StatelessWidget {
   final TextEditingController firstNameController;
   final TextEditingController lastNameController;
+  final bool showValidationErrors; // Add this parameter
 
   const NameFields({
     super.key,
     required this.firstNameController,
     required this.lastNameController,
+    this.showValidationErrors = false, // Default to false
   });
 
   InputDecoration _buildInputDecoration({
@@ -25,9 +26,21 @@ class NameFields extends StatelessWidget {
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(context.radiusMD),
       ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(context.radiusMD),
+        borderSide: const BorderSide(color: Colors.grey),
+      ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(context.radiusMD),
-        borderSide: const BorderSide(color: AppColors.blackLight, width: 2),
+        borderSide: const BorderSide(color: Colors.blue, width: 2),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(context.radiusMD),
+        borderSide: const BorderSide(color: Colors.red),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(context.radiusMD),
+        borderSide: const BorderSide(color: Colors.red, width: 2),
       ),
     );
   }
@@ -46,15 +59,19 @@ class NameFields extends StatelessWidget {
             icon: Icons.person_outline,
             context: context,
           ),
-          validator: (value) {
+          validator: showValidationErrors ? (value) {
             if (value?.isEmpty ?? true) {
               return 'Please enter your first name';
             }
-            if (value!.length < 2) {
+            if (value!.trim().length < 2) {
               return 'First name must be at least 2 characters';
             }
+            // Check for invalid characters
+            if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(value.trim())) {
+              return 'First name should only contain letters';
+            }
             return null;
-          },
+          } : null, // Don't show validation until triggered
         ),
 
         SizedBox(height: context.spaceBtwFields),
@@ -69,15 +86,19 @@ class NameFields extends StatelessWidget {
             icon: Icons.person_outline,
             context: context,
           ),
-          validator: (value) {
+          validator: showValidationErrors ? (value) {
             if (value?.isEmpty ?? true) {
               return 'Please enter your last name';
             }
-            if (value!.length < 2) {
+            if (value!.trim().length < 2) {
               return 'Last name must be at least 2 characters';
             }
+            // Check for invalid characters
+            if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(value.trim())) {
+              return 'Last name should only contain letters';
+            }
             return null;
-          },
+          } : null, // Don't show validation until triggered
         ),
       ],
     );

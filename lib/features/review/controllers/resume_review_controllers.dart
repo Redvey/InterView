@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/core/constants/strings.dart';
 import 'package:interview/core/constants/colors.dart';
-import 'package:interview/features/resume/screens/roles_form/widget/response_sheet.dart';
+import 'package:interview/features/review/widgets/response_sheet.dart';
 
 import '../utils/resume_review_utils.dart';
 

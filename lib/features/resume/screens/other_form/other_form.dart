@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:interview/features/widgets/selectable_item_chip.dart';
+import 'package:interview/features/resume/screens/widgets/model/selectable_item.dart';
 
 class OtherInformationForm extends StatefulWidget {
   const OtherInformationForm({super.key});
@@ -29,6 +31,14 @@ class _OtherInformationFormState extends State<OtherInformationForm> {
   final List<String> genders = ['Man', 'Woman', 'Others'];
   final List<String> pronouns = ['He/Him', 'She/Her', 'They/Them', 'Prefer not to say'];
 
+  List<SelectableItem> _createSelectableItems(List<String> items, String? selectedValue) {
+    return items.map((item) => SelectableItem(
+      name: item,
+      isSelected: selectedValue == item,
+      icon: Icons.person_outline, // You can customize this icon per category
+    )).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -48,44 +58,59 @@ class _OtherInformationFormState extends State<OtherInformationForm> {
             Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: races.map((race) => _buildChip(race, selectedRace, (val) {
-                setState(() => selectedRace = val);
-              })).toList(),
+              children: _createSelectableItems(races, selectedRace).map((item) {
+                return SelectableItemChip.preference(
+                  item: item,
+                  selectedCount: selectedRace != null ? 1 : 0,
+                  maxSelection: 1,
+                  onToggle: (selectedItem) {
+                    setState(() {
+                      selectedRace = selectedRace == selectedItem.name ? null : selectedItem.name;
+                    });
+                  },
+                  showIcon: false,
+                );
+              }).toList(),
             ),
             const SizedBox(height: 16),
             const Text("Gender", style: TextStyle(fontWeight: FontWeight.w600)),
             Wrap(
               spacing: 8,
-              children: genders.map((gender) => _buildChip(gender, selectedGender, (val) {
-                setState(() => selectedGender = val);
-              })).toList(),
+              children: _createSelectableItems(genders, selectedGender).map((item) {
+                return SelectableItemChip.preference(
+                  item: item,
+                  selectedCount: selectedGender != null ? 1 : 0,
+                  maxSelection: 1,
+                  onToggle: (selectedItem) {
+                    setState(() {
+                      selectedGender = selectedGender == selectedItem.name ? null : selectedItem.name;
+                    });
+                  },
+                  showIcon: false,
+                );
+              }).toList(),
             ),
             const SizedBox(height: 16),
             const Text("Pronoun", style: TextStyle(fontWeight: FontWeight.w600)),
             Wrap(
               spacing: 8,
-              children: pronouns.map((pronoun) => _buildChip(pronoun, selectedPronoun, (val) {
-                setState(() => selectedPronoun = val);
-              })).toList(),
+              children: _createSelectableItems(pronouns, selectedPronoun).map((item) {
+                return SelectableItemChip.preference(
+                  item: item,
+                  selectedCount: selectedPronoun != null ? 1 : 0,
+                  maxSelection: 1,
+                  onToggle: (selectedItem) {
+                    setState(() {
+                      selectedPronoun = selectedPronoun == selectedItem.name ? null : selectedItem.name;
+                    });
+                  },
+                  showIcon: false,
+                );
+              }).toList(),
             ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildChip(String label, String? selectedValue, Function(String) onSelected) {
-    final bool isSelected = selectedValue == label;
-
-    return ChoiceChip(
-      label: Text(label),
-      selected: isSelected,
-      onSelected: (_) => onSelected(label),
-      labelStyle: TextStyle(color: isSelected ? Colors.white : Colors.black),
-      selectedColor: Colors.black,
-      backgroundColor: Colors.white,
-      shape: StadiumBorder(side: BorderSide(color: Colors.grey.shade400)),
-      showCheckmark: false,
     );
   }
 }

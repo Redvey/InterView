@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:go_router/go_router.dart';
 import 'package:interview/core/utils/extensions/responsive_extension.dart';
-import 'package:interview/features/resume/widgets/final_step_dialog.dart';
+import 'package:interview/features/widgets/final_step_dialog.dart';
 import '../../../../../core/constants/colors.dart';
 import '../../../services/resume_processing_service.dart';
 import '../models/profile_data.dart';

@@ -4,7 +4,7 @@ import '../../core/constants/colors.dart';
 import '../../core/constants/sizes.dart';
 import '../../core/constants/strings.dart';
 import '../resume/screens/widgets/resume_builder_home_widgets/resume_form_top_bar.dart';
-import '../resume/widgets/final_step_dialog.dart';
+import '../widgets/final_step_dialog.dart';
 
 class FlashCard extends StatefulWidget {
   const FlashCard({super.key});
